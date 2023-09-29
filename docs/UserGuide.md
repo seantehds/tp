@@ -161,6 +161,58 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Mark a task as done : `mark`
+
+Marks a task as done.
+
+Format: `delete INDEX`
+
+* Marks a task at a specified index as being done.
+
+Examples:
+
+* `mark 1`
+
+Output with valid input:
+
+<img src="images/marktask.png" width="200px">
+
+Acceptable values for each parameter:
+
+* Any integer that is between 0 to (total number of tasks - 1) inclusive
+
+Expected output:
+
+* Popup window displaying string: "Task [Task name] has been marked as done!"
+* GUI strikethrough removed
+
+**Expected output (fail)**:
+
+Cause: Wrong Number - Out of Bounds
+
+| Explanation | Description |
+|---|---|
+| Example | `mark 3` (when there are only 2 tasks) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+Cause: No Index Provided
+
+| Explanation | Description |
+|---|---|
+| Example | `mark` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+Cause: Non-Integer Input for List Index
+
+| Explanation | Description |
+|---|---|
+| Example | `mark this` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+Output with invalid input:
+
+<img src="images/invalidnumber2.png" width="200px">
+
 ### Exiting the program : `exit`
 
 Exits the program.
