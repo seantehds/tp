@@ -96,3 +96,54 @@ The next few sections will detail the different features that
 ### UI
 
 ![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/c2cdf5ba-87cb-43df-9b62-94833b373a98)
+
+## Delete Tasks
+[(Jump to top)](#TaskWise-User-Guide)
+
+### What it does
+
+* Deletes a task from the task list
+
+### Command
+
+* `delete [task number within task list]`
+
+### Example
+
+* `delete 1`
+
+### Acceptable values for each parameter
+
+* string `delete`, followed by a space ` `, followed by an integer
+
+### Expected output
+
+* Popup window showing the task: “[task status][task name] has been deleted successfully!”
+* The original task on the GUI window will be struck through
+
+### Expected output (fail)
+
+#### Cause: Wrong Number - Out of Bounds
+
+| Explanation | Description |
+|---|---|
+| Example | `delete 3` (when there are only 2 tasks) |
+| Expected Outputs | Popup window displaying text:  “Please provide a valid integer task number” |
+
+#### Cause: No Index Provided
+
+| Explanation | Description |
+|---|---|
+| Example | `delete` (no task number provided) |
+| Expected Outputs | Popup window displaying text:  “Please provide a valid integer task number” |
+
+#### Cause: Non-Integer Input for List Index
+
+| Explanation | Description |
+|---|---|
+| Example | `delete this` (no task number provided) |
+| Expected Outputs | Popup window displaying text:  “Please provide a valid integer task number” |
+
+### UI
+
+![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/e5a3e2c5-2326-4320-a187-8a739f772262)
