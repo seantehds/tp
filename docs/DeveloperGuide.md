@@ -157,3 +157,40 @@ Use case ends.
 &ensp;&ensp;1b2. User acknowledges and closes the warning.
 
 Use case ends.
+
+### UC05: Unmarks a task that was marked as done
+
+Actor(s): Project Manager
+Guarantees:
+* The specified task is successfully marked as incomplete in the system.
+
+**MSS**
+1. User inputs command to unmark certain task.
+2. System updates and marks the task as incomplete.
+3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+1a. User enters an invalid command.
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
+&ensp;&ensp;1a2. User acknowledges and closes the warning.
+1b. User enters an illegal command.
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+&ensp;&ensp;1b2. User acknowledges and closes the warning.
+
+Use case ends.
+
+### UC06: Warn on invalid command
+
+Actor(s): Project Manager, System
+Guarantee(s):
+* No commands will be executed.
+
+**MSS**
+
+1. User inputs an invalid command.
+2. System warns user that the command entered is invalid.
+
+Use case ends.
+
