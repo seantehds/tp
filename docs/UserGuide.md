@@ -238,3 +238,55 @@ The task list is empty! Try adding tasks with the add command first! (when task 
 ![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/73705042/51640f4e-db06-4297-87ee-703ed847ff8a)
 
 ![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/da07283a-0ca4-4f5e-b299-097d39871c45)
+
+## Mark Tasks as Incomplete
+[(Jump to top)](#TaskWise-User-Guide)
+
+### What it does
+* Unmark tasks as undone
+
+### Command
+* `unmark [task index]`
+
+### Example
+
+* `unmark 1`
+
+### Acceptable values for each parameter
+
+* Any integer that is between 0 to (total number of tasks - 1) inclusive
+
+### Expected output
+
+* Popup window displaying string: "Task [Task name] has been marked as undone!"
+* GUI strikethrough removed
+
+### Expected output (fail)
+
+#### Cause: Task Number does not Exist
+
+| Explanation | Description |
+|---|---|
+| Example | `unmark 3` (when there are only 2 tasks) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+#### Cause: No Task Number Provided
+
+| Explanation | Description |
+|---|---|
+| Example | `unmark` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+#### Cause: Task Number is not a Number
+
+| Explanation | Description |
+|---|---|
+| Example | `unmark this` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+### UI
+
+![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/bf62789a-5ccf-4906-9fb1-131db2d9cd96)
+
+![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/e8a3fd69-695d-4232-93b6-38d375af1786)
+
