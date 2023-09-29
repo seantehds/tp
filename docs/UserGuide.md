@@ -290,3 +290,47 @@ The task list is empty! Try adding tasks with the add command first! (when task 
 
 ![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/e8a3fd69-695d-4232-93b6-38d375af1786)
 
+## Check for Valid Command
+[(Jump to top)](#TaskWise-User-Guide)
+
+### What it does
+
+* Inform the user if they have entered an unknown command
+
+### Command
+
+* `[unrecognised commands]`
+
+### Example
+
+* Mistyped commands:
+  * `adddddddddd [task name]`
+  * `deletq 1`
+  * `msrk 2`
+* Invalid commands:
+  * `complete 0`
+  * `remove 1`
+  * `djisd`
+
+### Acceptable values for each parameter
+
+* N/A
+
+### Expected output
+
+* Unrecognised Command → Popup window displays text: “The command you entered is invalid! Press “help” for available commands!”
+
+### Expected output (fail)
+
+* N/A
+
+### UI
+
+![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/4c311afe-921b-4f38-a6b3-a0a187e6d581)
+
+# Commands
+
+## Commands Summary
+
+# FAQ
+[(Jump to top)](#TaskWise-User-Guide)
