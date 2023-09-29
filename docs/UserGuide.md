@@ -147,3 +147,94 @@ The next few sections will detail the different features that
 ### UI
 
 ![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/e5a3e2c5-2326-4320-a187-8a739f772262)
+
+## See All Tasks Added
+[(Jump to top)](#TaskWise-User-Guide)
+
+### What it does
+
+* Displays the task list to the user
+
+### Command
+
+* `list`
+* `display`
+
+### Example
+
+* `list`
+* `display`
+
+### Acceptable values for each parameter
+
+* One of “list” or “display”, case-sensitive
+
+### Expected output
+
+* A popup with the text ”Here are all your tasks!”
+
+### Expected output (fail)
+
+The task list is empty! Try adding tasks with the add command first! (when task list is empty)
+
+#### Cause: Task List is Empty
+
+| Explanation | Description |
+|---|---|
+| Example | `list` or `display` |
+| Expected Outputs | Popup window displaying text: “The task list is empty!<br/>Try adding tasks with the add command first!" |
+
+### UI
+
+![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/73705042/8c4dbe98-8815-4fca-a37b-e5730c70a28a)
+
+## Mark Tasks As Complete
+[(Jump to top)](#TaskWise-User-Guide)
+
+### What it does
+* Marks tasks as done
+
+### Command
+* `mark [task index]`
+
+### Example
+
+* `mark 1`
+
+### Acceptable values for each parameter
+
+* Any integer that is between 0 to (total number of tasks - 1) inclusive
+
+### Expected output
+
+* Popup window displaying string: "Task [Task name] has been marked as done!"
+* GUI strikethrough removed
+
+### Expected output (fail)
+
+#### Cause: Wrong Number - Out of Bounds
+
+| Explanation | Description |
+|---|---|
+| Example | `mark 3` (when there are only 2 tasks) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+#### Cause: No Index Provided
+
+| Explanation | Description |
+|---|---|
+| Example | `mark` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+#### Cause: Non-Integer Input for List Index
+
+| Explanation | Description |
+|---|---|
+| Example | `mark this` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+### UI
+
+![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/73705042/51640f4e-db06-4297-87ee-703ed847ff8a)
+
+![Image](https://github.com/AY2324S1-CS2103T-T17-1/tp/assets/111076731/da07283a-0ca4-4f5e-b299-097d39871c45)
