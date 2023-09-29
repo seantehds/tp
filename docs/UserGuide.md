@@ -72,19 +72,33 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a task: `add`
 
-Adds a person to the address book.
+Adds a task to the task list
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add [task name]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add` meeting
+* `add` user guide
+
+#### Acceptable values for each parameter
+* Any valid Strings
+
+#### Expected output
+
+* Popup window with text: “[task status][task name] has been added successfully!”
+* The task entry will be displayed on the main GUI screen
+
+#### Expected output (fail)
+
+#### Cause: Missing Description
+
+| Explanation | Description |
+|---|---|
+| Cause | Missing Description |
+| Example | `add` |
+| Expected Outputs | Popup window displaying text: “Please enter a <br>valid task in this format “add {task name}”! |
 
 ### Listing all persons : `list`
 
