@@ -194,3 +194,34 @@ Guarantee(s):
 
 Use case ends.
 
+### UC07: Warn on illegal command
+
+Actor(s): Project Manager, System
+Guarantee(s):
+* Illegal command will not be executed.
+
+**MSS**
+
+1. User inputs an illegal command (valid command but the user has no permission to execute the command or argument is invalid).
+2. System warns user that the command entered is illegal and cannot be completed.
+
+Use case ends.
+
+![diagram](images/CS2103T_dg_use_case_diagram.png)
+
+## Non-Functional Requirements
+
+1. Should work on any mainstream OS as long as it has `Java 11` or above installed.
+2. A user should be able to accomplish most of the tasks using commands rather than using mouse.
+
+## Glossary
+
+* **Argument**: A word or number or a sequence of words or numbers that represent
+* **Command**: A sequence of words that represents an action that TaskWise can understand and execute
+* **System**: The TaskWise program
+
+{More to be added}
+
+# Appendix: Instruction for Manual Testing
+
+wow appendix
