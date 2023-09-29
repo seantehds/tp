@@ -92,6 +92,100 @@ Cause: Non-Integer Input for List Index
 ## UI
 ![unmarktask.png](images%2Funmarktask.png)
 
+### Adding a task: `add`
+
+Adds a task to the task list
+
+Format: `add [task name]`
+
+Examples:
+* `add` meeting
+* `add` user guide
+
+#### Acceptable values for each parameter
+* Any valid Strings
+
+#### Expected output
+
+* Popup window with text: “[task status][task name] has been added successfully!”
+* The task entry will be displayed on the main GUI screen
+
+#### Expected output (fail)
+
+#### Cause: Missing Description
+
+| Explanation | Description |
+|---|---|
+| Cause | Missing Description |
+| Example | `add` |
+| Expected Outputs | Popup window displaying text: “Please enter a <br>valid task in this format “add {task name}”! |
+### Mark a task as done : `mark`
+
+Marks a task as done.
+
+Format: `mark INDEX`
+
+* Marks a task at a specified index as being done.
+
+Examples:
+
+* `mark 1`
+
+Output with valid input:
+
+<img src="images/marktask.png" width="200px">
+
+Acceptable values for each parameter:
+
+* Any integer that is between 0 to (total number of tasks - 1) inclusive
+
+Expected output:
+
+* Popup window displaying string: "Task [Task name] has been marked as done!"
+* GUI strikethrough removed
+
+**Expected output (fail)**:
+
+Cause: Wrong Number - Out of Bounds
+
+| Explanation | Description |
+|---|---|
+| Example | `mark 3` (when there are only 2 tasks) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+Cause: No Index Provided
+
+| Explanation | Description |
+|---|---|
+| Example | `mark` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+Cause: Non-Integer Input for List Index
+
+| Explanation | Description |
+|---|---|
+| Example | `mark this` (no task number provided) |
+| Expected Outputs | Popup window displaying text: “Please provide a valid integer task number” |
+
+Output with invalid input:
+
+<img src="images/invalidnumber2.png" width="200px">
+
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+</div>
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
