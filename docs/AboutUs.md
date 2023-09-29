@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### George Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/asdfghjkxd.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/asdfghjkxd)]
+[[portfolio](team/asdfghjkxd.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: DevOps/GitHub Expert
+* Responsibilities: Implementing and maintaining DevOps tools and processes on GitHub
 
 ### Johnny Doe
 
