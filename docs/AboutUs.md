@@ -32,6 +32,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Implementing and maintaining DevOps tools and processes on GitHub
 
 
+=======
+### May Thandar Hinn
+
+<img src="images/maypfv.png" width="200px">
+
+[[github](http://github.com/maypfv)] [[portfolio](team/johndoe.md)]
+
+* Role: Deliverables & deadlines
+* Responsibilities: Manage schedules, deliverables.
+
 ### Sean Teh
 
 <img src="images/seantehds.png" width="200px">
@@ -40,26 +50,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 * Responsibilities: Code Quality
-
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Justin Cheah
 
