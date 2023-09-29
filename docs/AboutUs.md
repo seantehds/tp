@@ -9,15 +9,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project Team
 
-### John Doe
+### Sebastian Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sebtey.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/Sebtey)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Testing, Code Quality
+
+
+### George Tay
+
+<img src="images/asdfghjkxd.png" width="200px">
+
+[[github](http://github.com/asdfghjkxd)]
+[[portfolio](team/asdfghjkxd.md)]
+
+* Role: DevOps/GitHub Expert
+* Responsibilities: Implementing and maintaining DevOps tools and processes on GitHub
+
 
 ### Sean Teh
 
@@ -27,6 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 * Responsibilities: Code Quality
+
 
 ### Johnny Doe
 
@@ -47,12 +61,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Justin Cheah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jcsnap.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jcsnap)]
+[[portfolio](team/jcsnap.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents such as User Guide.
