@@ -88,3 +88,72 @@ Use case ends.
 1a. User enters an illegal command.
 &ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
+
+Use case ends.
+
+### UC02: Delete a task
+Actor(s): Project Manager
+Guarantees:
+* The specified task is successfully deleted from the system.
+
+**MSS**
+
+1. User inputs command to delete a certain task.
+2. System deletes the task and <u>[displays the updated task list (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
+&ensp;&ensp;1a2. User acknowledges and closes the warning.
+1b. User enters an illegal command.
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+&ensp;&ensp;1b2. User acknowledges and closes the warning.
+
+Use case ends.
+
+### UC03: View all tasks
+
+Actor(s): Project Manager
+
+**MSS**
+
+1. User opens up the application.
+2. System displays a list of tasks to the user.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
+&ensp;&ensp;1a2. User acknowledges and closes the warning.
+
+Use case ends.
+
+### UC04: Marks a task as done
+
+Actor(s): Project Manager
+Guarantees:
+* The specified task is successfully marked as complete in the system.
+
+**MSS**
+
+1. User inputs command to mark a certain task as done.
+2. System updates and marks the task as done.
+3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
+&ensp;&ensp;1a2. User acknowledges and closes the warning.
+1b. User enters an illegal command.
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+&ensp;&ensp;1b2. User acknowledges and closes the warning.
+
+Use case ends.
