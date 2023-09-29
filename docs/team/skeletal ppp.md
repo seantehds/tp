@@ -1,8 +1,9 @@
 # NAME's Project Portfolio Page
 
-
 ## Project Name: TaskWise
-TaskWise is a task managing application used by CS2103/T task managers. The user interacts with it via the Command Line Interface (CLI), and it has a Graphical User Interface (GUI) made using JavaFX. It is written in Java, and it has about _____ LoC.
+Taskwise is a task managing application used by CS2103/T task managers. 
+The user interacts with it via the Command Line Interface (CLI), and it has a Graphical User Interface (GUI)
+made using JavaFX. It is written in Java, and it has about ______ LoC.
 
 Given below are my contributions to the project.
 
@@ -22,5 +23,5 @@ Given below are my contributions to the project.
   * Developer Guide:
 * Contribution to team-based tasks:
 * Review/mentoring contributions:
-* Contributions to Community:
+* Contributions to community:
 
