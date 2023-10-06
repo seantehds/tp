@@ -8,16 +8,16 @@ Welcome to the TaskWise Developer Guide!
 - [Getting Started](#getting-started)
 - [Design](#design)
 - [Implementation](#implementation)
-- [Documentation, Logging, Testing, Configuration and DevOps](#Documentation-Logging-Testing-Configuration-and-DevOps)
+- [Documentation, Logging, Testing, Configuration and DevOps](#documentation-logging-testing-configuration-and-devops)
 - [Appendix: Requirements](#appendix-requirements)
-    - [Product Scope](#Product-Scope)
+    - [Product Scope](#product-scope)
         - [Value Proposition](#Value-Proposition)
         - [Target Audience](#Target-Audience)
-    - [User Stories](#User-Stories)
-    - [Use Cases](#Use-Cases)
-    - [Non-Functional Requirements](#Non-Functional-Requirements)
-    - [Glossary](#Glossary)
-- [Appendix: Instruction for Manual Testing](#Appendix-Instruction-for-Manual-Testing)
+    - [User Stories](#user-stories)
+    - [Use Cases](#use-cases)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+- [Appendix: Instruction for Manual Testing](#appendix-instruction-for-manual-testing)
 
 # Acknowledgements
 
@@ -31,19 +31,19 @@ Through this guide you will learn more about the vision behind TaskWise, how Tas
 
 # Getting Started
 
-wow start
+Work in Progress...
 
 # Design
 
-wow design
+Work in Progress...
 
 # Implementation
 
-wow implementation
+Work in Progress...
 
 # Documentation, Logging, Testing, Configuration and DevOps
 
-wow documentation
+Work in Progress...
 
 # Appendix: Requirements
 
@@ -73,7 +73,7 @@ Our target audience of this application are Project Managers of CS2103T Group Pr
 
 ## Use Cases
 ### UC01: Add a task
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * A task is added into the system list of tasks.
 
@@ -85,14 +85,14 @@ Guarantees:
 Use case ends.
 
 **Extensions:**
-1a. User enters an illegal command.
-&ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+1a. User enters an illegal command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC02: Delete a task
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * The specified task is successfully deleted from the system.
 
@@ -105,11 +105,11 @@ Use case ends.
 
 **Extensions:**
 
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
-1b. User enters an illegal command.
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges and closes the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1b2. User acknowledges and closes the warning.
 
 Use case ends.
@@ -127,15 +127,15 @@ Use case ends.
 
 **Extensions:**
 
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC04: Marks a task as done
 
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * The specified task is successfully marked as complete in the system.
 
@@ -149,18 +149,18 @@ Use case ends.
 
 **Extensions:**
 
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
-1b. User enters an illegal command.
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges and closes the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1b2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC05: Unmarks a task that was marked as done
 
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * The specified task is successfully marked as incomplete in the system.
 
@@ -172,18 +172,18 @@ Guarantees:
 Use case ends.
 
 **Extensions:**
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
-1b. User enters an illegal command.
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges and closes the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1b2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC06: Warn on invalid command
 
-Actor(s): Project Manager, System
+Actor(s): Project Manager, System  
 Guarantee(s):
 * No commands will be executed.
 
@@ -196,7 +196,7 @@ Use case ends.
 
 ### UC07: Warn on illegal command
 
-Actor(s): Project Manager, System
+Actor(s): Project Manager, System  
 Guarantee(s):
 * Illegal command will not be executed.
 
@@ -207,21 +207,27 @@ Guarantee(s):
 
 Use case ends.
 
-![diagram](images/CS2103T_dg_use_case_diagram.png)
+![diagram](https://hackmd.io/_uploads/SJJ2cW4lT.png)
 
 ## Non-Functional Requirements
 
-1. Should work on any mainstream OS as long as it has `Java 11` or above installed.
-2. A user should be able to accomplish most of the tasks using commands rather than using mouse.
+1. TaskWise should work on Windows/MacOS/Linux as long as the device has `Java 11` or above installed.
+2. A user should be able to accomplish all of the tasks using commands rather than using a mouse.
+3. The size of the JAR file should not be larger than 100 MB.
+4. TaskWise should work without Internet connectivity.
 
 ## Glossary
 
-* **Argument**: A word or number or a sequence of words or numbers that represent
-* **Command**: A sequence of words that represents an action that TaskWise can understand and execute
-* **System**: The TaskWise program
-
-{More to be added}
+* **Argument**: A word or number or a sequence of words or numbers that represent.
+* **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing commands.
+* **Command**: A sequence of words that represents an action that TaskWise can understand and execute.
+* **Deadline**: A date that the task needs to be completed by.
+* **GUI**: A Graphical User Interface is a visual interface where users can interact with the software through on-screen elements like buttons and windows.
+* **JAR**: A file that contains all the resources needed for TaskWise to run.
+* **Java**: A general-purpose programming language which TextWise is built on.
+* **System**: The TaskWise program.
+* **Task**: A Task is a completable objective with or without deadline.
 
 # Appendix: Instruction for Manual Testing
 
-wow appendix
+Work in Progress...
