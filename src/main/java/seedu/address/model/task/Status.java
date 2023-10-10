@@ -1,4 +1,4 @@
 package seedu.address.model.task;
 
-public class Mark {
+public class Status {
 }

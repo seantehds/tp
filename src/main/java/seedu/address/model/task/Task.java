@@ -2,21 +2,17 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
-
 public class Task {
-    private final Name name;
-    private final Mark mark;
+    private final Description description;
+    private final Status status;
 
-    public Task(Name name, Mark mark) {
-        requireAllNonNull(name, mark);
-        this.name = name;
-        this.mark = mark;
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Description description, Status status) {
+        requireAllNonNull(description, status);
+        this.description = description;
+        this.status = status;
     }
+    // Currently for v1.2, we assume that a task only has a description and a mark status
 }
