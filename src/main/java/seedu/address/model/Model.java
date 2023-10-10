@@ -50,7 +50,7 @@ public interface Model {
     void setTaskWise(ReadOnlyAddressBook taskWise);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyAddressBook getTaskWise();
 
     /**
      * Returns true if a task with the same description as {@code task} exists in task wise.

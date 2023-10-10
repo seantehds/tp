@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TaskWise.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getTaskWise()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyAddressBook getTaskWise();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of tasks */
+    ObservableList<Person> getFilteredTaskList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task wise file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskWiseFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
