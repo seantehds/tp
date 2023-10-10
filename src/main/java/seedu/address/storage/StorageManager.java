@@ -17,14 +17,14 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private TaskWiseStorage addressBookStorage;
+    private TaskWiseStorage taskWiseStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(TaskWiseStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(TaskWiseStorage taskWiseStorage, UserPrefsStorage userPrefsStorage) {
+        this.taskWiseStorage = taskWiseStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,29 +50,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getTaskWiseFilePath() {
-        return addressBookStorage.getTaskWiseFilePath();
+        return taskWiseStorage.getTaskWiseFilePath();
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readTaskWise() throws DataLoadingException {
-        return readTaskWise(addressBookStorage.getTaskWiseFilePath());
+        return readTaskWise(taskWiseStorage.getTaskWiseFilePath());
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readTaskWise(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readTaskWise(filePath);
+        return taskWiseStorage.readTaskWise(filePath);
     }
 
     @Override
-    public void saveTaskWise(ReadOnlyAddressBook addressBook) throws IOException {
-        saveTaskWise(addressBook, addressBookStorage.getTaskWiseFilePath());
+    public void saveTaskWise(ReadOnlyAddressBook taskWise) throws IOException {
+        saveTaskWise(taskWise, taskWiseStorage.getTaskWiseFilePath());
     }
 
     @Override
-    public void saveTaskWise(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveTaskWise(ReadOnlyAddressBook taskWise, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveTaskWise(addressBook, filePath);
+        taskWiseStorage.saveTaskWise(taskWise, filePath);
     }
 
 }

@@ -27,6 +27,6 @@ public interface Storage extends TaskWiseStorage, UserPrefsStorage {
     Optional<ReadOnlyAddressBook> readTaskWise() throws DataLoadingException;
 
     @Override
-    void saveTaskWise(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTaskWise(ReadOnlyAddressBook taskWise) throws IOException;
 
 }
