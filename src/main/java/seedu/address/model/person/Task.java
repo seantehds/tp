@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 public class Task {
 
     // Identity fields
-    private final Name name;
+    private final Description name;
     private final Phone phone;
     private final Email email;
 
@@ -28,7 +28,7 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Task(Description name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -37,7 +37,7 @@ public class Task {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public Description getName() {
         return name;
     }
 
