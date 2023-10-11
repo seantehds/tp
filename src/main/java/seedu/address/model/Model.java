@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a task with the same description as {@code task} exists in task wise.
      */
-    boolean hasTask(Person task);
+    boolean hasTask(Task task);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deleteTask(Person target);
+    void deleteTask(Task target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addTask(Person task);
+    void addTask(Task task);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setTask(Person target, Person editedTask);
+    void setTask(Task target, Task editedTask);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredTaskList();
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredTaskList(Predicate<Person> predicate);
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }
