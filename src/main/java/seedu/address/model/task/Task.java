@@ -11,7 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
@@ -72,8 +72,8 @@ public class Task {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both tasks have the same name.
+     * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
@@ -85,8 +85,8 @@ public class Task {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both tasks have the same identity and data fields.
+     * This defines a stronger notion of equality between two tasks.
      */
     @Override
     public boolean equals(Object other) {
@@ -99,12 +99,12 @@ public class Task {
             return false;
         }
 
-        Task otherPerson = (Task) other;
-        return description.equals(otherPerson.description)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        Task otherTask = (Task) other;
+        return description.equals(otherTask.description)
+                && phone.equals(otherTask.phone)
+                && email.equals(otherTask.email)
+                && address.equals(otherTask.address)
+                && tags.equals(otherTask.tags);
     }
 
     @Override

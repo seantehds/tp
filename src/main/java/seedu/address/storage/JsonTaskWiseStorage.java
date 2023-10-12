@@ -15,15 +15,15 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTaskWise;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TaskWise data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements TaskWiseStorage {
+public class JsonTaskWiseStorage implements TaskWiseStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTaskWiseStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonTaskWiseStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -45,14 +45,14 @@ public class JsonAddressBookStorage implements TaskWiseStorage {
     public Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableTaskWise> jsonTaskWise = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTaskWise.class);
+        if (!jsonTaskWise.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonTaskWise.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -74,7 +74,7 @@ public class JsonAddressBookStorage implements TaskWiseStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaskWise(addressBook), filePath);
     }
 
 }

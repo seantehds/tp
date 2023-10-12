@@ -36,9 +36,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         Description name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-        Task person = new Task(name);
+        Task task = new Task(name);
 
-        return new AddCommand(person);
+        return new AddCommand(task);
     }
 
     /**

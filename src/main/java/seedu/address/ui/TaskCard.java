@@ -10,21 +10,21 @@ import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Task}.
  */
-public class PersonCard extends UiPart<Region> {
+public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TaskWise level 4</a>
      */
 
-    public final Task person;
+    public final Task task;
 
     @FXML
     private HBox cardPane;
@@ -42,17 +42,17 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
-    public PersonCard(Task person, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getDescription().fullDescription);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(task.getDescription().fullDescription);
+        phone.setText(task.getPhone().value);
+        address.setText(task.getAddress().value);
+        email.setText(task.getEmail().value);
+        task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

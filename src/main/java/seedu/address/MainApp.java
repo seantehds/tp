@@ -15,15 +15,15 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskWise;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.TaskWiseStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTaskWiseStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing TaskWise ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TaskWiseStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getTaskWiseFilePath());
+        TaskWiseStorage addressBookStorage = new JsonTaskWiseStorage(userPrefs.getTaskWiseFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
@@ -75,19 +75,19 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getTaskWiseFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskWise> addressBookOptional;
+        ReadOnlyTaskWise initialData;
         try {
             addressBookOptional = storage.readTaskWise();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getTaskWiseFilePath()
-                        + " populated with a sample AddressBook.");
+                        + " populated with a sample TaskWise.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaskWise);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getTaskWiseFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+                    + " Will be starting with an empty TaskWise.");
+            initialData = new TaskWise();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -170,7 +170,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting TaskWise " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

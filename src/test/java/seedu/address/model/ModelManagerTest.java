@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.TaskWiseBuilder;
 
 public class ModelManagerTest {
 
@@ -61,42 +61,42 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setTaskWiseFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setTaskWiseFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTaskWiseFilePath_validPath_setsTaskWiseFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTaskWiseFilePath(path);
         assertEquals(path, modelManager.getTaskWiseFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasTask_taskNotInTaskWise_returnsFalse() {
         assertFalse(modelManager.hasTask(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasTask_taskInTaskWise_returnsTrue() {
         modelManager.addTask(ALICE);
         assertTrue(modelManager.hasTask(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
 
     @Test
     public void equals() {
-        TaskWise addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        TaskWise differentAddressBook = new TaskWise();
+        TaskWise addressBook = new TaskWiseBuilder().withTask(ALICE).withTask(BENSON).build();
+        TaskWise differentTaskWise = new TaskWise();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
@@ -114,7 +114,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentTaskWise, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getDescription().fullDescription.split("\\s+");

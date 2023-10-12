@@ -11,11 +11,11 @@ import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameTask comparison)
  */
 public class TaskWise implements ReadOnlyTaskWise {
 
-    private final UniqueTaskList persons;
+    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,13 +25,13 @@ public class TaskWise implements ReadOnlyTaskWise {
      *   among constructors.
      */
     {
-        persons = new UniqueTaskList();
+        tasks = new UniqueTaskList();
     }
 
     public TaskWise() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an TaskWise using the Tasks in the {@code toBeCopied}
      */
     public TaskWise(ReadOnlyTaskWise toBeCopied) {
         this();
@@ -41,57 +41,57 @@ public class TaskWise implements ReadOnlyTaskWise {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the task list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
      */
-    public void setPersons(List<Task> persons) {
-        this.persons.setPersons(persons);
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TaskWise} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskWise newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
     }
 
-    //// person-level operations
+    //// task-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
      */
-    public boolean hasPerson(Task person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a task to the address book.
+     * The task must not already exist in the address book.
      */
-    public void addPerson(Task p) {
-        persons.add(p);
+    public void addTask(Task p) {
+        tasks.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
      */
-    public void setPerson(Task target, Task editedPerson) {
-        requireNonNull(editedPerson);
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
 
-        persons.setPerson(target, editedPerson);
+        tasks.setTask(target, editedTask);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code TaskWise}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Task key) {
-        persons.remove(key);
+    public void removeTask(Task key) {
+        tasks.remove(key);
     }
 
     //// util methods
@@ -99,13 +99,13 @@ public class TaskWise implements ReadOnlyTaskWise {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
+                .add("tasks", tasks)
                 .toString();
     }
 
     @Override
-    public ObservableList<Task> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override
@@ -119,12 +119,12 @@ public class TaskWise implements ReadOnlyTaskWise {
             return false;
         }
 
-        TaskWise otherAddressBook = (TaskWise) other;
-        return persons.equals(otherAddressBook.persons);
+        TaskWise otherTaskWise = (TaskWise) other;
+        return tasks.equals(otherTaskWise.tasks);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return tasks.hashCode();
     }
 }

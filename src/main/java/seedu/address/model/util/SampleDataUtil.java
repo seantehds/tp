@@ -11,10 +11,10 @@ import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TaskWise} with sample data.
  */
 public class SampleDataUtil {
-    public static Task[] getSamplePersons() {
+    public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new Description("Project meeting")),
             new Task(new Description("User guide")),
@@ -22,10 +22,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyTaskWise getSampleAddressBook() {
+    public static ReadOnlyTaskWise getSampleTaskWise() {
         TaskWise sampleAb = new TaskWise();
-        for (Task samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Task sampleTask : getSampleTasks()) {
+            sampleAb.addTask(sampleTask);
         }
         return sampleAb;
     }
