@@ -7,8 +7,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Task;
+import seedu.address.model.ReadOnlyTaskWise;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -28,7 +28,7 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getTaskWise()
      */
-    ReadOnlyAddressBook getTaskWise();
+    ReadOnlyTaskWise getTaskWise();
 
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();

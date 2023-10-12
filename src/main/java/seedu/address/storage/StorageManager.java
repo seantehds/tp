@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -54,23 +54,23 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readTaskWise() throws DataLoadingException {
+    public Optional<ReadOnlyTaskWise> readTaskWise() throws DataLoadingException {
         return readTaskWise(taskWiseStorage.getTaskWiseFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readTaskWise(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
         return taskWiseStorage.readTaskWise(filePath);
     }
 
     @Override
-    public void saveTaskWise(ReadOnlyAddressBook taskWise) throws IOException {
+    public void saveTaskWise(ReadOnlyTaskWise taskWise) throws IOException {
         saveTaskWise(taskWise, taskWiseStorage.getTaskWiseFilePath());
     }
 
     @Override
-    public void saveTaskWise(ReadOnlyAddressBook taskWise, Path filePath) throws IOException {
+    public void saveTaskWise(ReadOnlyTaskWise taskWise, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         taskWiseStorage.saveTaskWise(taskWise, filePath);
     }

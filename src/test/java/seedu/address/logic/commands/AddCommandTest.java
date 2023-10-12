@@ -18,11 +18,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskWise;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Task;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTaskWise(ReadOnlyAddressBook newData) {
+        public void setTaskWise(ReadOnlyTaskWise newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getTaskWise() {
+        public ReadOnlyTaskWise getTaskWise() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,8 +196,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getTaskWise() {
-            return new AddressBook();
+        public ReadOnlyTaskWise getTaskWise() {
+            return new TaskWise();
         }
     }
 

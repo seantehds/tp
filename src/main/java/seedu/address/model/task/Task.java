@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -41,6 +41,10 @@ public class Task {
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;
+        this.phone = new Phone("00000000");
+        this.email = new Email("test@gmail.com");
+        this.address = new Address("Remark for task");
+        this.tags.addAll(Collections.emptySet());
     }
 
     public Description getDescription() {

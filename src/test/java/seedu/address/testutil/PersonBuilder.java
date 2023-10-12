@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
-import seedu.address.model.person.Task;
+import seedu.address.model.task.*;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -87,7 +87,7 @@ public class PersonBuilder {
     }
 
     public Task build() {
-        return new Task(name, phone, email, address, tags);
+        return new Task(name);
     }
 
 }

@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends TaskWiseStorage, UserPrefsStorage {
     Path getTaskWiseFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readTaskWise() throws DataLoadingException;
+    Optional<ReadOnlyTaskWise> readTaskWise() throws DataLoadingException;
 
     @Override
-    void saveTaskWise(ReadOnlyAddressBook taskWise) throws IOException;
+    void saveTaskWise(ReadOnlyTaskWise taskWise) throws IOException;
 
 }

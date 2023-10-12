@@ -14,8 +14,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TaskWiseParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Task;
+import seedu.address.model.ReadOnlyTaskWise;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -62,7 +62,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getTaskWise() {
+    public ReadOnlyTaskWise getTaskWise() {
         return model.getTaskWise();
     }
 

@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Task;
+import seedu.address.model.TaskWise;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -10,13 +10,13 @@ import seedu.address.model.person.Task;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private TaskWise addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new TaskWise();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(TaskWise addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public TaskWise build() {
         return addressBook;
     }
 }

@@ -21,8 +21,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Task;
+import seedu.address.model.task.*;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,12 +93,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Description updatedName = editPersonDescriptor.getName().orElse(personToEdit.getDescription());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Task(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Task(updatedName);
     }
 
     @Override

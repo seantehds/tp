@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskWise;
 
 /**
@@ -24,23 +23,23 @@ public interface TaskWiseStorage {
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyAddressBook> readTaskWise() throws DataLoadingException;
+    Optional<ReadOnlyTaskWise> readTaskWise() throws DataLoadingException;
 
     /**
      * @see #getTaskWiseFilePath()
      */
-    Optional<ReadOnlyAddressBook> readTaskWise(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyTaskWise} to the storage.
      * @param taskWise cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTaskWise(ReadOnlyAddressBook taskWise) throws IOException;
+    void saveTaskWise(ReadOnlyTaskWise taskWise) throws IOException;
 
     /**
-     * @see #saveTaskWise(ReadOnlyAddressBook)
+     * @see #saveTaskWise(ReadOnlyTaskWise)
      */
-    void saveTaskWise(ReadOnlyAddressBook taskWise, Path filePath) throws IOException;
+    void saveTaskWise(ReadOnlyTaskWise taskWise, Path filePath) throws IOException;
 
 }

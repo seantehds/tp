@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Task;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -47,10 +47,10 @@ public interface Model {
     /**
      * Replaces task wise data with the data in {@code taskwise}.
      */
-    void setTaskWise(ReadOnlyAddressBook taskWise);
+    void setTaskWise(ReadOnlyTaskWise taskWise);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getTaskWise();
+    ReadOnlyTaskWise getTaskWise();
 
     /**
      * Returns true if a task with the same description as {@code task} exists in task wise.
