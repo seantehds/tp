@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Email;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Email;
 import seedu.address.model.task.Phone;
 
 public class JsonAdaptedTaskTest {

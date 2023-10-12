@@ -18,10 +18,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.TaskWise;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TaskWise;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
