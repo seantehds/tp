@@ -192,11 +192,11 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
        Task taskToEdit = lastShownList.get(index.getZeroBased());
        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+           throw new CommandException(MESSAGE_DUPLICATE_TASK);
        }
        model.setTask(taskToEdit, editedTask);
-       model.updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedTask));
+       model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+       return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
    }
    ```
 

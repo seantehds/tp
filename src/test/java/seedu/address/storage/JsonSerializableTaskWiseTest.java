@@ -16,13 +16,13 @@ import seedu.address.testutil.TypicalTasks;
 public class JsonSerializableTaskWiseTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTaskWiseTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalTasksTaskWise.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidTaskTaskWise.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateTaskTaskWise.json");
+    private static final Path TYPICAL_TASKS_FILE = TEST_DATA_FOLDER.resolve("typicalTasksTaskWise.json");
+    private static final Path INVALID_TASK_FILE = TEST_DATA_FOLDER.resolve("invalidTaskTaskWise.json");
+    private static final Path DUPLICATE_TASK_FILE = TEST_DATA_FOLDER.resolve("duplicateTaskTaskWise.json");
 
     @Test
     public void toModelType_typicalTasksFile_success() throws Exception {
-        JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+        JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskWise.class).get();
         TaskWise addressBookFromFile = dataFromFile.toModelType();
         TaskWise typicalTasksTaskWise = TypicalTasks.getTypicalTaskWise();
@@ -31,16 +31,16 @@ public class JsonSerializableTaskWiseTest {
 
     @Test
     public void toModelType_invalidTaskFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+        JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(INVALID_TASK_FILE,
                 JsonSerializableTaskWise.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateTasks_throwsIllegalValueException() throws Exception {
-        JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+        JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TASK_FILE,
                 JsonSerializableTaskWise.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableTaskWise.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableTaskWise.MESSAGE_DUPLICATE_TASK,
                 dataFromFile::toModelType);
     }
 
