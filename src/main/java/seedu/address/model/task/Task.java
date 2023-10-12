@@ -38,6 +38,10 @@ public class Task {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Only description is required.
+     * @param description
+     */
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;
