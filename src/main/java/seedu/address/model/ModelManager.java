@@ -70,9 +70,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTaskWiseFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setTaskWiseFilePath(addressBookFilePath);
+    public void setTaskWiseFilePath(Path taskWiseFilePath) {
+        requireNonNull(taskWiseFilePath);
+        userPrefs.setTaskWiseFilePath(taskWiseFilePath);
     }
 
     //=========== TaskWise ================================================================================

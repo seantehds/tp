@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 /**
  * An Immutable TaskWise that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "taskwise")
 class JsonSerializableTaskWise {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";

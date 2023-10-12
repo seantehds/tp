@@ -114,7 +114,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTaskWiseFilePath(Path addressBookFilePath) {
+        public void setTaskWiseFilePath(Path taskWiseFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
