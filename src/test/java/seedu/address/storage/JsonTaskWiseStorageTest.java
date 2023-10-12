@@ -46,19 +46,16 @@ public class JsonTaskWiseStorageTest {
         assertFalse(readTaskWise("NonExistentFile.json").isPresent());
     }
 
-    @Disabled("RefactorTest: This is skipped for the purpose of refactoring")
     @Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataLoadingException.class, () -> readTaskWise("notJsonFormatTaskWise.json"));
     }
 
-    @Disabled("RefactorTest: This is skipped for the purpose of refactoring")
     @Test
     public void readTaskWise_invalidTaskTaskWise_throwDataLoadingException() {
         assertThrows(DataLoadingException.class, () -> readTaskWise("invalidTaskTaskWise.json"));
     }
 
-    @Disabled("RefactorTest: This is skipped for the purpose of refactoring")
     @Test
     public void readTaskWise_invalidAndValidTaskTaskWise_throwDataLoadingException() {
         assertThrows(DataLoadingException.class, () -> readTaskWise("invalidAndValidTaskTaskWise.json"));
