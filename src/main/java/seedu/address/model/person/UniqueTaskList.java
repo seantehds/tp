@@ -20,9 +20,9 @@ import seedu.address.model.person.exceptions.TaskNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Task#isSamePerson(Task)
+ * @see Task#isSameTask(Task)
  */
-public class UniquePersonList implements Iterable<Task> {
+public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Task> {
      */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameTask);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameTask(editedPerson) && contains(editedPerson)) {
             throw new DuplicateTaskException();
         }
 
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Task> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -116,11 +116,11 @@ public class UniquePersonList implements Iterable<Task> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueTaskList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
+        UniqueTaskList otherUniquePersonList = (UniqueTaskList) other;
         return internalList.equals(otherUniquePersonList.internalList);
     }
 
@@ -140,7 +140,7 @@ public class UniquePersonList implements Iterable<Task> {
     private boolean personsAreUnique(List<Task> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                if (persons.get(i).isSameTask(persons.get(j))) {
                     return false;
                 }
             }

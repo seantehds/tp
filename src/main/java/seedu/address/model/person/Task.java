@@ -65,13 +65,13 @@ public class Task {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Task otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherTask != null
+                && otherTask.getName().equals(getName());
     }
 
     /**

@@ -76,7 +76,7 @@ public class EditCommand extends Command {
         Task personToEdit = lastShownList.get(index.getZeroBased());
         Task editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasTask(editedPerson)) {
+        if (!personToEdit.isSameTask(editedPerson) && model.hasTask(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
