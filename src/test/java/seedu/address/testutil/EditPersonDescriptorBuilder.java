@@ -29,7 +29,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Task person) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
+        descriptor.setName(person.getDescription());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());

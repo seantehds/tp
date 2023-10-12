@@ -47,7 +47,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Task source) {
-        name = source.getName().fullDescription;
+        name = source.getDescription().fullDescription;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;

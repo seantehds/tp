@@ -30,7 +30,7 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Task person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullDescription + " ");
+        sb.append(PREFIX_NAME + person.getDescription().fullDescription + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");

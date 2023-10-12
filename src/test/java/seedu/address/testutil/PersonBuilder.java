@@ -39,7 +39,7 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Task personToCopy) {
-        name = personToCopy.getName();
+        name = personToCopy.getDescription();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
