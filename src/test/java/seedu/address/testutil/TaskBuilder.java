@@ -16,12 +16,12 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_DESCRIPTION = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Description name;
+    private Description description;
     private Phone phone;
     private Email email;
     private Address address;
@@ -31,7 +31,7 @@ public class TaskBuilder {
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
-        name = new Description(DEFAULT_NAME);
+        description = new Description(DEFAULT_DESCRIPTION);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -42,7 +42,7 @@ public class TaskBuilder {
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
     public TaskBuilder(Task taskToCopy) {
-        name = taskToCopy.getDescription();
+        description = taskToCopy.getDescription();
         phone = taskToCopy.getPhone();
         email = taskToCopy.getEmail();
         address = taskToCopy.getAddress();
@@ -52,8 +52,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code Name} of the {@code Task} that we are building.
      */
-    public TaskBuilder withName(String name) {
-        this.name = new Description(name);
+    public TaskBuilder withDescription(String description) {
+        this.description = new Description(description);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name);
+        return new Task(description);
     }
 
 }
