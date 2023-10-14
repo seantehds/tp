@@ -17,7 +17,9 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND_FORMAT = "Oh no! I do not understand the format of "
             + "the command you just entered! Use the \"help\" command to find out what the valid commands are! "
             + "\nUsage: %1$s";
-    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
+    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "Oh no! The task index you provided is out "
+            + "of bounds! Make sure that you are entering in a number that corresponds to a valid index on your "
+            + "task list!";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
