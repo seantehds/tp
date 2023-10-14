@@ -36,14 +36,7 @@ public class Messages {
      */
     public static String format(Task task) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(task.getDescription())
-                .append("; Phone: ")
-                .append(task.getPhone())
-                .append("; Email: ")
-                .append(task.getEmail())
-                .append("; Address: ")
-                .append(task.getAddress())
-                .append("; Tags: ");
+        builder.append(task.getDescription());
         task.getTags().forEach(builder::append);
         return builder.toString();
     }
