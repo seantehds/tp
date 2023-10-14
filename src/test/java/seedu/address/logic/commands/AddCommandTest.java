@@ -55,26 +55,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Task alice = new TaskBuilder().withName("Alice").build();
-        Task bob = new TaskBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Task userGuide = new TaskBuilder().withDescription("Finish User Guide").build();
+        Task developerGuide = new TaskBuilder().withDescription("Finish Developer Guide").build();
+        AddCommand addUserGuideCommand = new AddCommand(userGuide);
+        AddCommand addDeveloperGuideCommand = new AddCommand(developerGuide);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addUserGuideCommand.equals(addUserGuideCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addUserGuideCommandCopy = new AddCommand(userGuide);
+        assertTrue(addUserGuideCommand.equals(addUserGuideCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addUserGuideCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addUserGuideCommand.equals(null));
 
         // different task -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addUserGuideCommand.equals(addDeveloperGuideCommand));
     }
 
     @Test
