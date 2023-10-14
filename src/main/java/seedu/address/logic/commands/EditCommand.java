@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -39,7 +39,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -95,7 +95,7 @@ public class EditCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        Description updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getDescription());
+        Description updatedName = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
 
         return new Task(updatedName);
     }
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private Description name;
+        private Description description;
         private Phone phone;
         private Email email;
         private Address address;
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            setName(toCopy.name);
+            setDescription(toCopy.description);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -153,15 +153,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(description, phone, email, address, tags);
         }
 
-        public void setName(Description name) {
-            this.name = name;
+        public void setDescription(Description name) {
+            this.description = description;
         }
 
-        public Optional<Description> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         public void setPhone(Phone phone) {
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
             }
 
             EditTaskDescriptor otherEditTaskDescriptor = (EditTaskDescriptor) other;
-            return Objects.equals(name, otherEditTaskDescriptor.name)
+            return Objects.equals(description, otherEditTaskDescriptor.description)
                     && Objects.equals(phone, otherEditTaskDescriptor.phone)
                     && Objects.equals(email, otherEditTaskDescriptor.email)
                     && Objects.equals(address, otherEditTaskDescriptor.address)
@@ -227,7 +227,7 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", name)
+                    .add("description", description)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
