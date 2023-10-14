@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.exceptions.DuplicatedPrefixException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,16 +63,16 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Throws a {@code ParseException} if any of the prefixes given in {@code prefixes} appeared more than
+     * Throws a {@code DuplicatedPrefixException} if any of the prefixes given in {@code prefixes} appeared more than
      * once among the arguments.
      */
-    public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
+    public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws DuplicatedPrefixException {
         Prefix[] duplicatedPrefixes = Stream.of(prefixes).distinct()
                 .filter(prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
                 .toArray(Prefix[]::new);
 
         if (duplicatedPrefixes.length > 0) {
-            throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
+            throw new DuplicatedPrefixException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
 }
