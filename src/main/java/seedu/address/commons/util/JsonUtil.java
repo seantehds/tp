@@ -65,16 +65,12 @@ public class JsonUtil {
         }
         logger.info("JSON file " + filePath + " found.");
 
-        T jsonFile;
-
         try {
-            jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
+            return Optional.of(deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize));
         } catch (IOException e) {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
             throw new DataLoadingException(e);
         }
-
-        return Optional.of(jsonFile);
     }
 
     /**

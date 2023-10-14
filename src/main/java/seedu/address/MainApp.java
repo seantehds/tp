@@ -79,7 +79,7 @@ public class MainApp extends Application {
         ReadOnlyTaskWise initialData;
         try {
             addressBookOptional = storage.readTaskWise();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Creating a new data file " + storage.getTaskWiseFilePath()
                         + " populated with a sample TaskWise.");
             }
@@ -117,7 +117,7 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            if (!configOptional.isPresent()) {
+            if (configOptional.isEmpty()) {
                 logger.info("Creating new config file " + configFilePathUsed);
             }
             initializedConfig = configOptional.orElse(new Config());

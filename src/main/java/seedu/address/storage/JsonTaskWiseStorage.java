@@ -47,7 +47,8 @@ public class JsonTaskWiseStorage implements TaskWiseStorage {
 
         Optional<JsonSerializableTaskWise> jsonTaskWise = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTaskWise.class);
-        if (!jsonTaskWise.isPresent()) {
+
+        if (jsonTaskWise.isEmpty()) {
             return Optional.empty();
         }
 
