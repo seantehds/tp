@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Phone;
+import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";

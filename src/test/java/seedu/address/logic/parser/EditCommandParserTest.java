@@ -52,8 +52,8 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        String errString = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD) + "\nUsage: " +
-                EditCommand.MESSAGE_USAGE;
+        String errString = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD) + "\nUsage: "
+                + EditCommand.MESSAGE_USAGE;
 
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, ParserUtil.MESSAGE_INVALID_INDEX);

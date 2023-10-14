@@ -8,9 +8,9 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.TaskWise;
+import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 import seedu.address.testutil.TypicalTasks;
 
 public class JsonSerializableTaskWiseTest {
