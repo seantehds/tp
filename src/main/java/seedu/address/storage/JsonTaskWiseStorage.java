@@ -8,8 +8,8 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.storage.exceptions.storage.FileStorageLoadException;
+import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTaskWise;
@@ -32,7 +32,7 @@ public class JsonTaskWiseStorage implements TaskWiseStorage {
     }
 
     @Override
-    public Optional<ReadOnlyTaskWise> readTaskWise() throws DataLoadingException {
+    public Optional<ReadOnlyTaskWise> readTaskWise() throws FileStorageLoadException {
         return readTaskWise(filePath);
     }
 
@@ -40,9 +40,9 @@ public class JsonTaskWiseStorage implements TaskWiseStorage {
      * Similar to {@link #readTaskWise()}.
      *
      * @param filePath location of the data. Cannot be null.
-     * @throws DataLoadingException if loading the data from storage failed.
+     * @throws FileStorageLoadException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws FileStorageLoadException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableTaskWise> jsonTaskWise = JsonUtil.readJsonFile(
@@ -54,9 +54,9 @@ public class JsonTaskWiseStorage implements TaskWiseStorage {
 
         try {
             return Optional.of(jsonTaskWise.get().toModelType());
-        } catch (IllegalValueException ive) {
+        } catch (IllegalJsonValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataLoadingException(ive);
+            throw new FileStorageLoadException(ive);
         }
     }
 

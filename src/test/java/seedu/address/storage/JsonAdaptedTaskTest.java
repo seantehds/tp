@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
@@ -43,14 +43,14 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
@@ -58,14 +58,14 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
@@ -73,14 +73,14 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
@@ -88,14 +88,14 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
@@ -104,7 +104,7 @@ public class JsonAdaptedTaskTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
-        assertThrows(IllegalValueException.class, task::toModelType);
+        assertThrows(IllegalJsonValueException.class, task::toModelType);
     }
 
 }

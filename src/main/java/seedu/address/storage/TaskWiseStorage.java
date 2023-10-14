@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.storage.exceptions.storage.FileStorageLoadException;
 import seedu.address.model.ReadOnlyTaskWise;
 
 /**
@@ -21,14 +21,14 @@ public interface TaskWiseStorage {
      * Returns TaskWise data as a {@link ReadOnlyTaskWise}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @throws DataLoadingException if loading the data from storage failed.
+     * @throws FileStorageLoadException if loading the data from storage failed.
      */
-    Optional<ReadOnlyTaskWise> readTaskWise() throws DataLoadingException;
+    Optional<ReadOnlyTaskWise> readTaskWise() throws FileStorageLoadException;
 
     /**
      * @see #getTaskWiseFilePath()
      */
-    Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws FileStorageLoadException;
 
     /**
      * Saves the given {@link ReadOnlyTaskWise} to the storage.

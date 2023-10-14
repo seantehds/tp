@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.storage.exceptions.json.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
@@ -60,43 +60,47 @@ class JsonAdaptedTask {
     /**
      * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted task.
+     * @throws IllegalJsonValueException if there were any data constraints violated in the adapted task.
      */
-    public Task toModelType() throws IllegalValueException {
+    public Task toModelType() throws IllegalJsonValueException {
         final List<Tag> taskTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             taskTags.add(tag.toModelType());
         }
 
+
         if (name == null) {
-            throw new IllegalValueException(
+            throw new IllegalJsonNameValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
+
         if (!Description.isValidDescription(name)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalJsonDescriptionValueException(Description.MESSAGE_CONSTRAINTS);
         }
+
         final Description modelName = new Description(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalJsonValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            throw new IllegalJsonPhoneValueException(Phone.MESSAGE_CONSTRAINTS);
         }
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalJsonEmailValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            throw new IllegalJsonEmailValueException(Email.MESSAGE_CONSTRAINTS);
         }
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalJsonAddressValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalJsonAddressValueException(Address.MESSAGE_CONSTRAINTS);
         }
+
         return new Task(modelName);
     }
 
