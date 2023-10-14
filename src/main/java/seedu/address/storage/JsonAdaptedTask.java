@@ -7,13 +7,18 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.storage.exceptions.json.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
+import seedu.address.storage.exceptions.json.IllegalJsonAddressValueException;
+import seedu.address.storage.exceptions.json.IllegalJsonDescriptionValueException;
+import seedu.address.storage.exceptions.json.IllegalJsonEmailValueException;
+import seedu.address.storage.exceptions.json.IllegalJsonNameValueException;
+import seedu.address.storage.exceptions.json.IllegalJsonPhoneValueException;
+import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -81,21 +86,24 @@ class JsonAdaptedTask {
         final Description modelName = new Description(name);
 
         if (phone == null) {
-            throw new IllegalJsonValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalJsonValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalJsonPhoneValueException(Phone.MESSAGE_CONSTRAINTS);
         }
 
         if (email == null) {
-            throw new IllegalJsonEmailValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalJsonEmailValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalJsonEmailValueException(Email.MESSAGE_CONSTRAINTS);
         }
 
         if (address == null) {
-            throw new IllegalJsonAddressValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalJsonAddressValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalJsonAddressValueException(Address.MESSAGE_CONSTRAINTS);

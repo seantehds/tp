@@ -13,13 +13,27 @@ import java.util.function.Supplier;
  * @param <T>
  */
 public abstract class ExOptional<T> {
-
+    /** Empty {@code ExOptional<T>} to be reused. **/
     private static final ExOptional<?> NONE = ExOptional.empty();
 
+    /**
+     * Creates an {@code ExOptional} object.
+     *
+     * @param value Value to encapsulate
+     * @param <T> Type T
+     * @return {@code ExOptional<T>} object
+     */
     public static <T> ExOptional<T> of(T value) {
         return new PresentExOptional<>(value);
     }
 
+    /**
+     * Creates an {@code ExOptional} object. If input is null, an empty ExOptional is returned.
+     *
+     * @param value Value to encapsulate
+     * @param <T> Type T
+     * @return {@code ExOptional<T>} object
+     */
     public static <T> ExOptional<T> ofNullable(T value) {
         if (value == null) {
             return ExOptional.empty();
@@ -28,6 +42,12 @@ public abstract class ExOptional<T> {
         }
     }
 
+    /**
+     * Returns an empty {@code ExOptional} object.
+     *
+     * @param <T> Type T
+     * @return Empty {@code ExOptional<T>} object
+     */
     public static <T> ExOptional<T> empty() {
         @SuppressWarnings("unchecked")
         ExOptional<T> opt = (ExOptional<T>) NONE;
@@ -36,25 +56,93 @@ public abstract class ExOptional<T> {
 
     public abstract T get();
 
+    /**
+     * Maps the stored item of type T to item of type S.
+     *
+     * @param functer {@code ExFunction} object that converts an object of type T to type S
+     * @param <S> Type S
+     * @param <E> Type of exception to be thrown
+     * @return {@code ExOptional<S>}
+     * @throws E Exception thrown
+     */
     public abstract <S, E extends Throwable> ExOptional<S> map(ExFunction<? super T, ? extends S, E> functer) throws E;
 
+    /**
+     * Maps the stored item of type T to item of type S.
+     *
+     * @param functer {@code ExFunction} object that converts an object of type T to type S
+     * @param <S> Type S
+     * @return {@code ExOptional<S>}
+     */
     public abstract <S> ExOptional<S> map(Function<? super T, ? extends S> functer);
 
+    /**
+     * Flat Maps the stored item of type T to item of type S, using a function that generates
+     * {@code ExOptional<S>} objects.
+     *
+     * @param functer {@code ExFunction} object that converts an object of type T to type S
+     * @param <S> Type S
+     * @param <E> Type of exception to be thrown
+     * @return {@code ExOptional<S>}
+     * @throws E Exception thrown
+     */
     public abstract <S, E extends Throwable> ExOptional<S> flatMap(
             ExFunction<? super T, ? extends ExOptional<? extends S>, E> functer) throws E;
 
+    /**
+     * Flat Maps the stored item of type T to item of type S, using a function that generates
+     * {@code ExOptional<S>} objects.
+     *
+     * @param functer {@code ExFunction} object that converts an object of type T to type S
+     * @param <S> Type S
+     * @return {@code ExOptional<S>}
+     */
     public abstract <S> ExOptional<S> flatMap(Function<? super T, ? extends ExOptional<? extends S>> functer);
 
+    /**
+     * Filters the {@code ExOptional} object.
+     *
+     * @param predicate Predicate that checks if contained object meets the predicate criteria
+     * @return true Empty {@code ExOptional} if predicate evaluates to false, else return this object
+     */
     public abstract ExOptional<T> filter(Predicate<? super T> predicate);
 
+    /**
+     * Returns this {@code ExOptional}'s value, or the alternative input value.
+     *
+     * @param other Alternative input value
+     * @return This value or alternative value
+     */
     public abstract T orElse(T other);
 
+    /**
+     * Returns this {@code ExOptional}'s value, or the alternative input value produced by the {@code Supplier}.
+     *
+     * @param supplier Supplier of alternative input value
+     * @return This value or alternative value
+     */
     public abstract T orElseGet(Supplier<? extends T> supplier);
 
+    /**
+     * Check if this {@code ExOptional} is empty, and if not, consume the item stored in it
+     * with the {@code Consumer}.
+     *
+     * @param consumer Consumer that consumes objects of type T
+     */
     public abstract void ifPresent(Consumer<? super T> consumer);
 
+    /**
+     * Checks if a value is present.
+     *
+     * @return true if value is present, else false
+     */
     public abstract boolean isPresent();
 
+    /**
+     * Checks if a value is absent.
+     *
+     * @return true if the value is absent, else false
+     */
     public abstract boolean isEmpty();
 
     /**
@@ -63,9 +151,14 @@ public abstract class ExOptional<T> {
      * @param <T> Type T
      */
     private static final class PresentExOptional<T> extends ExOptional<T> {
-
+        /** Value stored in this {@code PresentExOptional}. */
         private final T value;
 
+        /**
+         * Creates an instance of {@code PresentExOptional}.
+         *
+         * @param value Value to encapsulate
+         */
         private PresentExOptional(T value) {
             this.value = value;
         }
@@ -76,7 +169,7 @@ public abstract class ExOptional<T> {
         }
 
         @Override
-        public <S, E extends Throwable> ExOptional<S> map(ExFunction<? super T, ? extends S, E> functer) throws E{
+        public <S, E extends Throwable> ExOptional<S> map(ExFunction<? super T, ? extends S, E> functer) throws E {
             return ExOptional.of(functer.apply(this.value));
         }
 
@@ -125,7 +218,6 @@ public abstract class ExOptional<T> {
         @Override
         public void ifPresent(Consumer<? super T> consumer) {
             consumer.accept(this.value);
-            return;
         }
 
         @Override

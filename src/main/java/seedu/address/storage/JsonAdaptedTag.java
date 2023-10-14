@@ -3,9 +3,9 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.storage.exceptions.json.IllegalJsonTagValueException;
 import seedu.address.storage.exceptions.json.IllegalJsonValueException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

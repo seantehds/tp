@@ -1,5 +1,8 @@
 package seedu.address.logic.parser.exceptions;
 
+/**
+ * Represents an error that occurs when an input command is not properly formatted.
+ */
 public class InvalidFormatException extends ParseException {
     public InvalidFormatException(String message) {
         super(message);

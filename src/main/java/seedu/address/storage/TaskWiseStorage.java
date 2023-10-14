@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.storage.exceptions.storage.FileStorageLoadException;
 import seedu.address.model.ReadOnlyTaskWise;
+import seedu.address.storage.exceptions.storage.FileStorageLoadException;
 
 /**
  * Represents a storage for {@link seedu.address.model.TaskWise}.

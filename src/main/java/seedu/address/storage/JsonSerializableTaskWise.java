@@ -8,11 +8,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import seedu.address.storage.exceptions.json.IllegalJsonDuplicatedTaskException;
-import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.TaskWise;
 import seedu.address.model.task.Task;
+import seedu.address.storage.exceptions.json.IllegalJsonDuplicatedTaskException;
+import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 /**
  * An Immutable TaskWise that is serializable to JSON format.

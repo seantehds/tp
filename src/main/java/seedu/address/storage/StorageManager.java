@@ -6,10 +6,10 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.storage.exceptions.storage.FileStorageLoadException;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.exceptions.storage.FileStorageLoadException;
 
 /**
  * Manages storage of TaskWise data in local storage.
