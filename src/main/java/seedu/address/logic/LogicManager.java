@@ -17,6 +17,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
+import seedu.address.storage.exceptions.InsufficientStoragePrivilegeException;
+import seedu.address.storage.exceptions.StorageException;
+import seedu.address.storage.exceptions.StorageReadWriteException;
 
 /**
  * The main LogicManager of the app.
@@ -43,7 +46,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, StorageException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -53,9 +56,10 @@ public class LogicManager implements Logic {
         try {
             storage.saveTaskWise(model.getTaskWise());
         } catch (AccessDeniedException e) {
-            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+            throw new InsufficientStoragePrivilegeException(
+                    String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
-            throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
+            throw new StorageReadWriteException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
 
         return commandResult;

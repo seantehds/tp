@@ -31,6 +31,7 @@ import seedu.address.model.task.Task;
 import seedu.address.storage.JsonTaskWiseStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.exceptions.StorageException;
 import seedu.address.testutil.TaskBuilder;
 
 public class LogicManagerTest {
@@ -55,7 +56,8 @@ public class LogicManagerTest {
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        String invalidCommandMessage = String.format(MESSAGE_UNKNOWN_COMMAND, invalidCommand);
+        assertParseException(invalidCommand, invalidCommandMessage);
     }
 
     @Test
@@ -95,7 +97,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+            Model expectedModel) throws CommandException, StorageException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -170,6 +172,6 @@ public class LogicManagerTest {
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addCommand, StorageException.class, expectedMessage, expectedModel);
     }
 }
