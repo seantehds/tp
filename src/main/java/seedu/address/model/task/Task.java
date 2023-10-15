@@ -26,19 +26,6 @@ public class Task {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
-     */
-    @Deprecated
-    public Task(Description description, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(description, phone, email, address, tags);
-        this.description = description;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-    }
-
-    /**
      * Only description is required.
      * @param description
      */
