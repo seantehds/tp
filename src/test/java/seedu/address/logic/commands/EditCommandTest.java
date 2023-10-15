@@ -55,7 +55,7 @@ public class EditCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Task editedTask = taskInList.withDescription(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -87,7 +87,7 @@ public class EditCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_BOB).build();
+        Task editedTask = new TaskBuilder(taskInFilteredList).withDescription(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
