@@ -76,6 +76,20 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
+//    /**
+//     * Replaces the given task {@code target} with {@code markedTask}.
+//     * {@code target} must exist in the address book.
+//     * The task identity of {@code markedTask} must not be the same as another existing task in the address book.
+//     */
+//    void markTask(Task target, Task markedTask);
+//
+//    /**
+//     * Replaces the given task {@code target} with {@code unmarkedTask}.
+//     * {@code target} must exist in the address book.
+//     * The task identity of {@code unmarkedTask} must not be the same as another existing task in the address book.
+//     */
+//    void unmarkTask(Task target, Task unmarkedTask);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
