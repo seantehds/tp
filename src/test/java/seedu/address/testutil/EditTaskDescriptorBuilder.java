@@ -42,7 +42,7 @@ public class EditTaskDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withName(String name) {
+    public EditTaskDescriptorBuilder withDescription(String name) {
         descriptor.setDescription(new Description(name));
         return this;
     }
