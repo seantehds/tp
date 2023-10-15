@@ -19,7 +19,9 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION ";
+            + PREFIX_DESCRIPTION + "DESCRIPTION \n" 
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DESCRIPTION + "Submit User Guide";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
