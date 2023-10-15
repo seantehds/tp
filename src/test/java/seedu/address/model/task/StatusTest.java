@@ -1,9 +1,9 @@
 package seedu.address.model.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class StatusTest {
 
@@ -44,13 +44,13 @@ public class StatusTest {
 
     @Test
     public void stringFormat() {
-       final Status status = new Status();
+        final Status status = new Status();
 
-       assertTrue(status.toString().equals("[Incomplete]"));
+        assertTrue(status.toString().equals("[Incomplete]"));
 
-       final Status updatedStatus = status.updateStatus();
+        final Status updatedStatus = status.updateStatus();
 
-       assertTrue(updatedStatus.toString().equals("[Completed]"));
+        assertTrue(updatedStatus.toString().equals("[Completed]"));
 
     }
 }

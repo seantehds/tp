@@ -5,7 +5,6 @@ package seedu.address.model.task;
  * Guarantees: details are present and not null, immutable.
  */
 public class Status {
-//TODO integrate into Task
     public final boolean isCompleted;
 
     /**
@@ -18,7 +17,7 @@ public class Status {
     /**
      * Constructs a {@code Status} with the specified completion status.
      */
-    private Status(boolean newCompletionStatus) {
+    public Status(boolean newCompletionStatus) {
         this.isCompleted = newCompletionStatus;
     }
 

@@ -54,6 +54,22 @@ public class Task {
         this.status = new Status();
     }
 
+    /**
+     * Constructor for task, to be used in retrieval from storage.
+     *
+     * @param description
+     * @param status
+     */
+    public Task(Description description, Status status) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.phone = new Phone("00000000");
+        this.email = new Email("test@gmail.com");
+        this.address = new Address("Remark for task");
+        this.tags.addAll(Collections.emptySet());
+    }
+
     public Description getDescription() {
         return description;
     }
