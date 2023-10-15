@@ -9,7 +9,7 @@ Given below are my contributions to the project.
 
 * New Feature: Mark Command
   * What it does: Marks a task within the task list as completed.
-  * Justifications: Allows the user to mark tasks as completed to allow the task manager to keep track of 
+  * Justifications: Allows the user to mark tasks as completed to allow the task manager to keep track of
   tasks and whether they are finished or not.
   * Highlights:
   * Credits:

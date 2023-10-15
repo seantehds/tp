@@ -127,7 +127,7 @@ Use case ends.
 
 **Extensions:**
 
-1a. User enters an invalid command.  
+1a. User enters an invalid command.
 &ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
 

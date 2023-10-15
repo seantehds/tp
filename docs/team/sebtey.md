@@ -8,7 +8,7 @@ Interface (GUI) made using JavaFX. It is written in Java, and it has about _____
 Given below are my contributions to the project.
 
 * New Feature: to be added soon
-  * What it does: 
+  * What it does:
   * Justifications:
   * Highlights:
   * Credits:
