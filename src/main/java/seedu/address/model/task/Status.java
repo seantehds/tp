@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 /**
  * Represents the completion status of the task.
+ * Guarantees: details are present and not null, immutable.
  */
 public class Status {
 //TODO integrate into Task
@@ -34,9 +35,15 @@ public class Status {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } else {
+        }
+
+        if (!(other instanceof Status)) {
             return false;
         }
+
+        Status otherStatus = (Status) other;
+
+        return this.isCompleted == otherStatus.isCompleted;
     }
 
     /**
