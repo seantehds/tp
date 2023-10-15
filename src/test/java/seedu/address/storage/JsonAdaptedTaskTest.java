@@ -107,9 +107,9 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, 
-                                                   invalidTags, false);
-        assertThrows(IllegalValueException.class, task::toModelType);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                invalidTags, false);
+        assertThrows(IllegalJsonValueException.class, task::toModelType);
     }
 
 }

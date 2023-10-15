@@ -114,7 +114,7 @@ class JsonAdaptedTask {
         if (!Address.isValidAddress(address)) {
             throw new IllegalJsonAddressValueException(Address.MESSAGE_CONSTRAINTS);
         }
-      
+
         return new Task(modelName, modelStatus);
     }
 
