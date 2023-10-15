@@ -167,7 +167,7 @@ Looking to get started immediately? Here is a summary of the commands that TaskW
 | Commands                                                         | Description |
 |------------------------------------------------------------------|-------------|
 | `help`                                                           | Lists out a brief description of all commands users can use. |
-| `add d/[task_description]` ([more info](#add-tasks))             | Adds a task to the task list. 
+| `add d/[task_description]` ([more info](#add-tasks))             | Adds a task to the task list.
 | `delete [task_index]` ([more info](#delete-tasks))               | Deletes a task from the task list. |
 | `list`                                                           | Displays the task list to the user. |
 | `display`                                                        | Displays the task list to the user. |
