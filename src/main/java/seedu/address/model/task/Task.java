@@ -24,6 +24,7 @@ public class Task {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Status status;
 
     /**
      * Every field must be present and not null.
@@ -36,6 +37,7 @@ public class Task {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.status = new Status();
     }
 
     /**
@@ -45,6 +47,23 @@ public class Task {
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;
+        this.phone = new Phone("00000000");
+        this.email = new Email("test@gmail.com");
+        this.address = new Address("Remark for task");
+        this.tags.addAll(Collections.emptySet());
+        this.status = new Status();
+    }
+
+    /**
+     * Constructor for task, to be used in retrieval from storage.
+     *
+     * @param description
+     * @param status
+     */
+    public Task(Description description, Status status) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
         this.phone = new Phone("00000000");
         this.email = new Email("test@gmail.com");
         this.address = new Address("Remark for task");
@@ -73,6 +92,10 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -108,13 +131,14 @@ public class Task {
                 && phone.equals(otherTask.phone)
                 && email.equals(otherTask.email)
                 && address.equals(otherTask.address)
-                && tags.equals(otherTask.tags);
+                && tags.equals(otherTask.tags)
+                && status.equals(otherTask.status);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, phone, email, address, tags);
+        return Objects.hash(description, phone, email, address, tags, status);
     }
 
     @Override
@@ -125,6 +149,7 @@ public class Task {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("status", status)
                 .toString();
     }
 
