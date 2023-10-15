@@ -11,8 +11,4 @@ public class DuplicatedTaskException extends CommandException {
     public DuplicatedTaskException(String message) {
         super(message);
     }
-
-    public DuplicatedTaskException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

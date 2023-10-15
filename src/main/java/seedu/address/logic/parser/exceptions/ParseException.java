@@ -5,7 +5,6 @@ package seedu.address.logic.parser.exceptions;
  * errors that may arise from using this app.
  */
 public class ParseException extends Exception {
-
     public ParseException(String message) {
         super(message);
     }

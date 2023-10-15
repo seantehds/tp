@@ -8,10 +8,6 @@ public class InvalidFormatException extends ParseException {
         super(message);
     }
 
-    public InvalidFormatException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
     public InvalidFormatException(String message, String commandWord, String usageMessage) {
         super(String.format(message, commandWord) + "\nUsage: " + usageMessage);
     }

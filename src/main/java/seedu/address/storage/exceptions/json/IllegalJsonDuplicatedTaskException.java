@@ -8,8 +8,4 @@ public class IllegalJsonDuplicatedTaskException extends IllegalJsonValueExceptio
     public IllegalJsonDuplicatedTaskException(String message) {
         super(message);
     }
-
-    public IllegalJsonDuplicatedTaskException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

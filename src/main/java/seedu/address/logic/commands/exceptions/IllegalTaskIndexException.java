@@ -8,8 +8,4 @@ public class IllegalTaskIndexException extends IllegalCommandException {
     public IllegalTaskIndexException(String message) {
         super(message);
     }
-
-    public IllegalTaskIndexException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

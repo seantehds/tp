@@ -8,8 +8,4 @@ public class IllegalJsonPhoneValueException extends IllegalJsonValueException {
     public IllegalJsonPhoneValueException(String message) {
         super(message);
     }
-
-    public IllegalJsonPhoneValueException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

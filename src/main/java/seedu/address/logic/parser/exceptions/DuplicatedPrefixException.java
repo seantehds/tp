@@ -7,8 +7,4 @@ public class DuplicatedPrefixException extends ParseException {
     public DuplicatedPrefixException(String message) {
         super(message);
     }
-
-    public DuplicatedPrefixException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

@@ -8,8 +8,4 @@ public class IllegalJsonTagValueException extends IllegalJsonValueException {
     public IllegalJsonTagValueException(String message) {
         super(message);
     }
-
-    public IllegalJsonTagValueException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

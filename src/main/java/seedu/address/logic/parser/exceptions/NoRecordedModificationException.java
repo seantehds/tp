@@ -8,8 +8,4 @@ public class NoRecordedModificationException extends ParseException {
     public NoRecordedModificationException(String message) {
         super(message);
     }
-
-    public NoRecordedModificationException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

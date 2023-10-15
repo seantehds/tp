@@ -7,10 +7,6 @@ import seedu.address.storage.exceptions.StorageException;
  * for some reason.
  */
 public class StorageReadWriteException extends StorageException {
-    public StorageReadWriteException(String message) {
-        super(message);
-    }
-
     public StorageReadWriteException(String message, Throwable cause) {
         super(message, cause);
     }

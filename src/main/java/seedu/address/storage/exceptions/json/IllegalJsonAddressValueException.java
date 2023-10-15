@@ -8,8 +8,4 @@ public class IllegalJsonAddressValueException extends IllegalJsonValueException 
     public IllegalJsonAddressValueException(String message) {
         super(message);
     }
-
-    public IllegalJsonAddressValueException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }
