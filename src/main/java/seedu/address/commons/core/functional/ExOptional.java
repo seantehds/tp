@@ -14,7 +14,7 @@ import java.util.function.Supplier;
  */
 public abstract class ExOptional<T> {
     /** Empty {@code ExOptional<T>} to be reused. **/
-    private static final ExOptional<?> NONE = ExOptional.empty();
+    private static final ExOptional<?> NONE = new EmptyExOptional<>();
 
     /**
      * Creates an {@code ExOptional} object.
@@ -50,8 +50,8 @@ public abstract class ExOptional<T> {
      */
     public static <T> ExOptional<T> empty() {
         @SuppressWarnings("unchecked")
-        ExOptional<T> opt = (ExOptional<T>) NONE;
-        return opt;
+        ExOptional<T> returnOptional = (ExOptional<T>) NONE;
+        return returnOptional;
     }
 
     public abstract T get();
