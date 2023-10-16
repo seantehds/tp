@@ -38,16 +38,16 @@ public class TaskTest {
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new TaskBuilder(ALICE).withDescription(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Task editedBob = new TaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Task editedBob = new TaskBuilder(BOB).withDescription(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameTask(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new TaskBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        editedBob = new TaskBuilder(BOB).withDescription(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameTask(editedBob));
     }
 
@@ -70,7 +70,7 @@ public class TaskTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

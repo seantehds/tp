@@ -164,17 +164,17 @@ Looking to get started immediately? Here is a summary of the commands that TaskW
 
 [[Jump to Features]](#features)
 
-| Commands | Description |
-|----------|-------------|
-| `help` | Lists out a brief description of all commands users can use. |
-| `add [task_name]` ([more info](#add-tasks)) | Adds a task to the task list. 
-| `delete [task_index]` ([more info](#delete-tasks)) | Deletes a task from the task list. |
-| `list` | Displays the task list to the user. |
-| `display` | Displays the task list to the user. |
-| `mark [task_index]` ([more info](#mark-tasks-as-complete)) | Marks a task at a specified index as completed. |
+| Commands                                                         | Description |
+|------------------------------------------------------------------|-------------|
+| `help`                                                           | Lists out a brief description of all commands users can use. |
+| `add d/[task_description]` ([more info](#add-tasks))             | Adds a task to the task list.
+| `delete [task_index]` ([more info](#delete-tasks))               | Deletes a task from the task list. |
+| `list`                                                           | Displays the task list to the user. |
+| `display`                                                        | Displays the task list to the user. |
+| `mark [task_index]` ([more info](#mark-tasks-as-complete))       | Marks a task at a specified index as completed. |
 | `unmark [task_index]` ([more info](#unmark-tasks-as-incomplete)) | Remove the completed status from a task. |
-| `priority [task_index] [priority_level]` (WIP) | Applies specified priotity level label to a task at a specified index. |
-| `assign [task_index] [assignee_name]` (WIP) | Specifies the individual assigned to a task at a specified index. |
+| `priority [task_index] [priority_level]` (WIP)                   | Applies specified priotity level label to a task at a specified index. |
+| `assign [task_index] [assignee_name]` (WIP)                      | Specifies the individual assigned to a task at a specified index. |
 
 ## Add Tasks
 
@@ -186,12 +186,12 @@ Looking to get started immediately? Here is a summary of the commands that TaskW
 
 ### Command
 
-* `add [task name]`
+* `add d/[task description]`
 
 ### Example
 
-* `add` meeting
-* `add` user guide
+* `add` d/meeting
+* `add` d/user guide
 
 ### Acceptable Values for Each Parameter
 

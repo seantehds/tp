@@ -29,7 +29,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label description;
     @FXML
     private Label id;
     @FXML
@@ -50,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(task.getDescription().fullDescription);
+        description.setText(task.getDescription().fullDescription);
         phone.setText(task.getPhone().value);
         address.setText(task.getAddress().value);
         email.setText(task.getEmail().value);

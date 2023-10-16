@@ -32,7 +32,7 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
-        descriptor.setName(task.getDescription());
+        descriptor.setDescription(task.getDescription());
         descriptor.setPhone(task.getPhone());
         descriptor.setEmail(task.getEmail());
         descriptor.setAddress(task.getAddress());
@@ -42,8 +42,8 @@ public class EditTaskDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withName(String name) {
-        descriptor.setName(new Description(name));
+    public EditTaskDescriptorBuilder withDescription(String name) {
+        descriptor.setDescription(new Description(name));
         return this;
     }
 
