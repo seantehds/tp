@@ -37,7 +37,7 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDescription(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
@@ -60,8 +60,8 @@ public class EditTaskDescriptorTest {
     @Test
     public void toStringMethod() {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        String expected = EditTaskDescriptor.class.getCanonicalName() + "{name="
-                + editTaskDescriptor.getName().orElse(null) + ", phone="
+        String expected = EditTaskDescriptor.class.getCanonicalName() + "{description="
+                + editTaskDescriptor.getDescription().orElse(null) + ", phone="
                 + editTaskDescriptor.getPhone().orElse(null) + ", email="
                 + editTaskDescriptor.getEmail().orElse(null) + ", address="
                 + editTaskDescriptor.getAddress().orElse(null) + ", tags="

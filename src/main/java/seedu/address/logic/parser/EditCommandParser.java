@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -34,7 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG);
 
         // check if the preamble is empty, if it is, then it must be malformed
         if (argMultimap.getPreamble().isEmpty()) {
@@ -42,20 +43,23 @@ public class EditCommandParser implements Parser<EditCommand> {
                     EditCommand.MESSAGE_USAGE);
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
+                    .getValue(PREFIX_DESCRIPTION).get()));
+        }
         // now validate the index
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         /*
          * If the bottom calls ato parse*() fail, then the resulting help-string, along with an
          * IllegalArgumentException will be thrown and floated to the caller, without continuing
          * with the parsing
          */
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editTaskDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editTaskDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
