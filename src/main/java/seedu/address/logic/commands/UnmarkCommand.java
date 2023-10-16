@@ -46,10 +46,8 @@ public class UnmarkCommand extends Command {
         }
 
         Task unmarkedTask = new Task(taskToUnmark.getDescription(), status.updateStatus());
-
-        // to change
         model.setTask(taskToUnmark, unmarkedTask);
-        // to change
+        
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.format(taskToUnmark)));
     }

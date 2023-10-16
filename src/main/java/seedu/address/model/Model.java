@@ -11,7 +11,9 @@ import seedu.address.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
@@ -49,7 +51,9 @@ public interface Model {
      */
     void setTaskWise(ReadOnlyTaskWise taskWise);
 
-    /** Returns the TaskWise */
+    /**
+     * Returns the TaskWise
+     */
     ReadOnlyTaskWise getTaskWise();
 
     /**
@@ -76,25 +80,14 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
-//    /**
-//     * Replaces the given task {@code target} with {@code markedTask}.
-//     * {@code target} must exist in the address book.
-//     * The task identity of {@code markedTask} must not be the same as another existing task in the address book.
-//     */
-//    void markTask(Task target, Task markedTask);
-//
-//    /**
-//     * Replaces the given task {@code target} with {@code unmarkedTask}.
-//     * {@code target} must exist in the address book.
-//     * The task identity of {@code unmarkedTask} must not be the same as another existing task in the address book.
-//     */
-//    void unmarkTask(Task target, Task unmarkedTask);
-
-    /** Returns an unmodifiable view of the filtered task list */
+    /**
+     * Returns an unmodifiable view of the filtered task list
+     */
     ObservableList<Task> getFilteredTaskList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);

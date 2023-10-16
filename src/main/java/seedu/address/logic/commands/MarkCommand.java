@@ -46,10 +46,8 @@ public class MarkCommand extends Command {
         }
 
         Task markedTask = new Task(taskToMark.getDescription(), status.updateStatus());
-
-        // to change
         model.setTask(taskToMark, markedTask);
-        // to change
+
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.format(taskToMark)));
     }

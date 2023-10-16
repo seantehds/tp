@@ -30,7 +30,7 @@ public class Status {
         return new Status(!isCompleted);
     }
 
-    public boolean isCompleted(){
+    public boolean isCompleted() {
         return isCompleted;
     }
 
