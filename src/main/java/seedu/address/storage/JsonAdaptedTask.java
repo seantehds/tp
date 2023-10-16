@@ -63,7 +63,7 @@ class JsonAdaptedTask {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        status = source.getStatus().isCompleted;
+        status = source.getStatus().isCompleted();
     }
 
     /**

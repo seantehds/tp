@@ -5,7 +5,7 @@ package seedu.address.model.task;
  * Guarantees: details are present and not null, immutable.
  */
 public class Status {
-    public final boolean isCompleted;
+    private final boolean isCompleted;
 
     /**
      * Constructs a {@code Status}.
@@ -28,6 +28,10 @@ public class Status {
      */
     public Status updateStatus() {
         return new Status(!isCompleted);
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
     }
 
     @Override

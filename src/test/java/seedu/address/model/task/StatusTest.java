@@ -12,17 +12,17 @@ public class StatusTest {
         final Status status = new Status();
 
         //initial status is false, incomplete
-        assertFalse(status.isCompleted);
+        assertFalse(status.isCompleted());
 
         final Status updatedStatus = status.updateStatus();
 
         //updated status is true, completed
-        assertTrue(updatedStatus.isCompleted);
+        assertTrue(updatedStatus.isCompleted());
 
         final Status revertStatus = updatedStatus.updateStatus();
 
         //reverted status back to false, incomplete
-        assertFalse(revertStatus.isCompleted);
+        assertFalse(revertStatus.isCompleted());
     }
 
     @Test

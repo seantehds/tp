@@ -34,11 +34,11 @@ public class Task {
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;
+        this.status = new Status();
         this.phone = new Phone("00000000");
         this.email = new Email("test@gmail.com");
         this.address = new Address("Remark for task");
         this.tags.addAll(Collections.emptySet());
-        this.status = new Status();
     }
 
     /**
