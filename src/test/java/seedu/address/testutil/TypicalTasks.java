@@ -14,7 +14,7 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-
+    // TODO: Change test cases
     public static final Task ALICE = new TaskBuilder().withDescription("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
@@ -41,6 +41,7 @@ public class TypicalTasks {
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
+    // TODO: Add other fields required for test case ie. Deadline, Priority.
     public static final Task AMY = new TaskBuilder().withDescription(VALID_NAME_AMY).build();
     public static final Task BOB = new TaskBuilder().withDescription(VALID_NAME_BOB).build();
 

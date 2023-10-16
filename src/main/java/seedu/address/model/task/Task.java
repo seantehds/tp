@@ -30,6 +30,7 @@ public class Task {
      * Only description is required.
      * @param description
      */
+    // TODO: Fix/Remove the default fields that are unnecessary
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;

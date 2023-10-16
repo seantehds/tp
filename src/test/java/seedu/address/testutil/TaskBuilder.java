@@ -15,7 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
-
+    // TODO: Change task builder's default fields
     public static final String DEFAULT_DESCRIPTION = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
