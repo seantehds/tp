@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.task.Task;
+import seedu.address.storage.exceptions.StorageException;
 
 /**
  * API of the Logic component
@@ -19,9 +20,10 @@ public interface Logic {
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
+     * @throws StorageException If an error occurs with the storage of data during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, StorageException, ParseException;
 
     /**
      * Returns the TaskWise.
