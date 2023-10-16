@@ -27,23 +27,10 @@ public class Task {
     private final Status status;
 
     /**
-     * Every field must be present and not null.
-     */
-    @Deprecated
-    public Task(Description description, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(description, phone, email, address, tags);
-        this.description = description;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.status = new Status();
-    }
-
-    /**
      * Only description is required.
      * @param description
      */
+    // TODO: Fix/Remove the default fields that are unnecessary
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;
