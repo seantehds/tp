@@ -13,6 +13,7 @@ import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Phone;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,6 +27,7 @@ class JsonAdaptedTask {
     private final String phone;
     private final String email;
     private final String address;
+    private final boolean status;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -34,7 +36,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                            @JsonProperty("email") String email, @JsonProperty("address") String address,
-                           @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                           @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("status") boolean status) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -42,6 +44,7 @@ class JsonAdaptedTask {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.status = status;
     }
 
     /**
@@ -55,6 +58,7 @@ class JsonAdaptedTask {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        status = source.getStatus().isCompleted;
     }
 
     /**
@@ -77,6 +81,8 @@ class JsonAdaptedTask {
         }
         final Description modelName = new Description(name);
 
+        final Status modelStatus = new Status(status);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -97,7 +103,7 @@ class JsonAdaptedTask {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Task(modelName);
+        return new Task(modelName, modelStatus);
     }
 
 }
