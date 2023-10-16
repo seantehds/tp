@@ -45,7 +45,7 @@ public class TaskWiseParser {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new InvalidFormatException(
-                    String.format(MESSAGE_UNKNOWN_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE)
+                    MESSAGE_UNKNOWN_COMMAND_FORMAT
             );
         }
 
