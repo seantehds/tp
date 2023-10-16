@@ -6,10 +6,10 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.exceptions.storage.FileStorageLoadException;
 
 /**
  * Manages storage of TaskWise data in local storage.
@@ -36,7 +36,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataLoadingException {
+    public Optional<UserPrefs> readUserPrefs() throws FileStorageLoadException {
         return userPrefsStorage.readUserPrefs();
     }
 
@@ -54,12 +54,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTaskWise> readTaskWise() throws DataLoadingException {
+    public Optional<ReadOnlyTaskWise> readTaskWise() throws FileStorageLoadException {
         return readTaskWise(taskWiseStorage.getTaskWiseFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyTaskWise> readTaskWise(Path filePath) throws FileStorageLoadException {
         logger.fine("Attempting to read data from file: " + filePath);
         return taskWiseStorage.readTaskWise(filePath);
     }

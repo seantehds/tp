@@ -8,9 +8,9 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.TaskWise;
+import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 import seedu.address.testutil.TypicalTasks;
 
 public class JsonSerializableTaskWiseTest {
@@ -33,14 +33,14 @@ public class JsonSerializableTaskWiseTest {
     public void toModelType_invalidTaskFile_throwsIllegalValueException() throws Exception {
         JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(INVALID_TASK_FILE,
                 JsonSerializableTaskWise.class).get();
-        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+        assertThrows(IllegalJsonValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateTasks_throwsIllegalValueException() throws Exception {
         JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TASK_FILE,
                 JsonSerializableTaskWise.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableTaskWise.MESSAGE_DUPLICATE_TASK,
+        assertThrows(IllegalJsonValueException.class, JsonSerializableTaskWise.MESSAGE_DUPLICATE_TASK,
                 dataFromFile::toModelType);
     }
 
