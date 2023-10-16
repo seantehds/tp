@@ -26,6 +26,7 @@ import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Phone;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
 /**
@@ -96,8 +97,9 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Description updatedName = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        Status status = taskToEdit.getStatus(); //Not edited using editCommand
 
-        return new Task(updatedName);
+        return new Task(updatedName, status);
     }
 
     @Override
