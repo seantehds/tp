@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.DuplicatedTaskException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
@@ -36,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TASK = "Oh no! This task already exists in the task list!";
 
     private final Task toAdd;
 
@@ -53,7 +54,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            throw new DuplicatedTaskException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.addTask(toAdd);

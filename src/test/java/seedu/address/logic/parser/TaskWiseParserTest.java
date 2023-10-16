@@ -112,6 +112,9 @@ public class TaskWiseParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        String erroneousCommand = "unknownCommand";
+        String errMessage = String.format(MESSAGE_UNKNOWN_COMMAND, erroneousCommand);
+
+        assertThrows(ParseException.class, errMessage, () -> parser.parseCommand(erroneousCommand));
     }
 }
