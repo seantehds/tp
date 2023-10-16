@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -8,10 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Marks a task as incomplete.
+ */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
@@ -47,7 +50,7 @@ public class UnmarkCommand extends Command {
 
         Task unmarkedTask = new Task(taskToUnmark.getDescription(), status.updateStatus());
         model.setTask(taskToUnmark, unmarkedTask);
-        
+
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, Messages.format(taskToUnmark)));
     }

@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -8,10 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Marks a task as completed.
+ */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
