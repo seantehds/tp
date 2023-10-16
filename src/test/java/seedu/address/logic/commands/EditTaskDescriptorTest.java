@@ -60,7 +60,7 @@ public class EditTaskDescriptorTest {
     @Test
     public void toStringMethod() {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        String expected = EditTaskDescriptor.class.getCanonicalName() + "{name="
+        String expected = EditTaskDescriptor.class.getCanonicalName() + "{description="
                 + editTaskDescriptor.getDescription().orElse(null) + ", phone="
                 + editTaskDescriptor.getPhone().orElse(null) + ", email="
                 + editTaskDescriptor.getEmail().orElse(null) + ", address="

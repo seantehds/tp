@@ -156,7 +156,7 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(description, phone, email, address, tags);
         }
 
-        public void setDescription(Description name) {
+        public void setDescription(Description description) {
             this.description = description;
         }
 
