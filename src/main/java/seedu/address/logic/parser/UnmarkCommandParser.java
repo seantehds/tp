@@ -24,7 +24,7 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
             return new UnmarkCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE), pe);
         }
     }
 
