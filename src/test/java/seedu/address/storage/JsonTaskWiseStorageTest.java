@@ -15,9 +15,9 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.TaskWise;
+import seedu.address.storage.exceptions.storage.FileStorageLoadException;
 
 public class JsonTaskWiseStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTaskWiseStorageTest");
@@ -47,17 +47,17 @@ public class JsonTaskWiseStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readTaskWise("notJsonFormatTaskWise.json"));
+        assertThrows(FileStorageLoadException.class, () -> readTaskWise("notJsonFormatTaskWise.json"));
     }
 
     @Test
     public void readTaskWise_invalidTaskTaskWise_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readTaskWise("invalidTaskTaskWise.json"));
+        assertThrows(FileStorageLoadException.class, () -> readTaskWise("invalidTaskTaskWise.json"));
     }
 
     @Test
     public void readTaskWise_invalidAndValidTaskTaskWise_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readTaskWise("invalidAndValidTaskTaskWise.json"));
+        assertThrows(FileStorageLoadException.class, () -> readTaskWise("invalidAndValidTaskTaskWise.json"));
     }
 
     @Test
