@@ -86,7 +86,7 @@ Use case ends.
 
 **Extensions:**
 1a. User enters an illegal command.  
-&ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+&ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
 
 Use case ends.
