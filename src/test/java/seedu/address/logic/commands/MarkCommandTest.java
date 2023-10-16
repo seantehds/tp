@@ -39,6 +39,17 @@ public class MarkCommandTest {
     }
 
     @Test
+    public void execute_markMarkedTask_throwsCommandException() {
+        Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task markedTask = new Task(taskToMark.getDescription(), taskToMark.getStatus().updateStatus());
+        model.setTask(taskToMark, markedTask);
+
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_TASK);
+
+        assertCommandFailure(markCommand, model, MarkCommand.MESSAGE_MARK_MARKED_TASK);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);

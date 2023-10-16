@@ -41,6 +41,15 @@ public class UnmarkCommandTest {
     }
 
     @Test
+    public void execute_unmarkUnmarkedTask_throwsCommandException() {
+        Task taskToUnmark = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+
+        UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_TASK);
+
+        assertCommandFailure(unmarkCommand, model, UnmarkCommand.MESSAGE_UNMARK_UNMARKED_TASK);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         UnmarkCommand unmarkCommand = new UnmarkCommand(outOfBoundIndex);
