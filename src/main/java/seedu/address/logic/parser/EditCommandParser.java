@@ -50,11 +50,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
-          
+        }
         // now validate the index
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         /*
          * If the bottom calls ato parse*() fail, then the resulting help-string, along with an

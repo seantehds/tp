@@ -43,11 +43,11 @@ public class ParserUtil {
      *
      * @throws IllegalArgumentException if the given {@code name} is invalid.
      */
-    public static Description parseDescription(String description) throws ParseException {
+    public static Description parseDescription(String description) throws IllegalArgumentException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
     }
