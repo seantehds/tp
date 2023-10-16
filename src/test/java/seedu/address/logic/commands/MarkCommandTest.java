@@ -59,7 +59,7 @@ public class MarkCommandTest {
 
         Model expectedModel = new ModelManager(model.getTaskWise(), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), markedTask);
-        showNoTask(expectedModel);
+        showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
@@ -72,47 +72,39 @@ public class MarkCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskWise().getTaskList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_TASK);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_TASK);
+        MarkCommand markFirstCommand = new MarkCommand(INDEX_FIRST_TASK);
+        MarkCommand markSecondCommand = new MarkCommand(INDEX_SECOND_TASK);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(markFirstCommand.equals(markFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_TASK);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        MarkCommand markFirstCommandCopy = new MarkCommand(INDEX_FIRST_TASK);
+        assertTrue(markFirstCommand.equals(markFirstCommand));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(markFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(markFirstCommand.equals(null));
 
         // different task -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(markFirstCommand.equals(markSecondCommand));
     }
 
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
-        assertEquals(expected, deleteCommand.toString());
+        MarkCommand markCommand = new MarkCommand(targetIndex);
+        String expected = MarkCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        assertEquals(expected, markCommand.toString());
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoTask(Model model) {
-        model.updateFilteredTaskList(p -> false);
-
-        assertTrue(model.getFilteredTaskList().isEmpty());
-    }
+    
 }
