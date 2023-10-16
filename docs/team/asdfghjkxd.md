@@ -9,15 +9,15 @@ Given below are my contributions to the project.
 
 * New Feature: Check for Valid Command
   * What it does: Does a regular expression check on input commands to ensure that input commands are valid or legal
-  * Justifications: A user might try to enter an invalid command or accidentally attempt to modify or delete something
+  * Justifications: A user might try to enter an invalid command or accidentally attempt to modify or delete something 
     which they may not intend to due to an error in recognising valid commands
-  * Highlights:
+  * Highlights: 
   * Credits:
 * New Feature:
 
-* Code contributed:
+* Code contributed: 
 
-* Project management: Set up the team organisation on GitHub, created project boards and set up the team's repository
+* Project management: Set up the team organisation on GitHub, created project boards and set up the team's repository 
   with the relevant issue trackers and tags
 * Enhancement to existing features:
 * Documentation:

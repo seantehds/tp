@@ -9,13 +9,13 @@ Given below are my contributions to the project.
 
 * New Feature: Add Tasks
   * What it does: Adds a task to the task list.
-  * Justifications: Allows project managers to be able to add tasks to the list of tasks so that they can
+  * Justifications: Allows project managers to be able to add tasks to the list of tasks so that they can 
     be tracked easily.
-  * Highlights:
+  * Highlights: 
   * Credits:
 * New Feature: See Tasks
   * What it does: Displays task list to the user.
-  * Justifications: Project managers who have to keep track of many tasks can see all the tasks in their list,
+  * Justifications: Project managers who have to keep track of many tasks can see all the tasks in their list, 
     allowing them to better manage the team.
   * Highlights:
   * Credits:
@@ -26,8 +26,8 @@ Given below are my contributions to the project.
   and deliverables.
 * Enhancement to existing features:
 * Documentation:
-  * User Guide: Added the introduction and add feature in the user guide.
+  * User Guide: Added the introduction and add feature in the user guide. 
   * Developer Guide: Added the introduction and some sections at the start in developer guide.
 * Contribution to team-based tasks: Created the UI mockup; Reviewed some PRs on GitHub.
-* Review/mentoring contributions:
+* Review/mentoring contributions: 
 * Contributions to community:

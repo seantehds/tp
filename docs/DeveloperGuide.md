@@ -73,7 +73,7 @@ Our target audience of this application are Project Managers of CS2103T Group Pr
 
 ## Use Cases
 ### UC01: Add a task
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * A task is added into the system list of tasks.
 
@@ -85,14 +85,14 @@ Guarantees:
 Use case ends.
 
 **Extensions:**
-1a. User enters an illegal command.
+1a. User enters an illegal command.  
 &ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC02: Delete a task
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * The specified task is successfully deleted from the system.
 
@@ -105,11 +105,11 @@ Use case ends.
 
 **Extensions:**
 
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
-1b. User enters an illegal command.
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges and closes the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1b2. User acknowledges and closes the warning.
 
 Use case ends.
@@ -127,15 +127,15 @@ Use case ends.
 
 **Extensions:**
 
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC04: Marks a task as done
 
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * The specified task is successfully marked as complete in the system.
 
@@ -149,18 +149,18 @@ Use case ends.
 
 **Extensions:**
 
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
-1b. User enters an illegal command.
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges and closes the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1b2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC05: Unmarks a task that was marked as done
 
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
 * The specified task is successfully marked as incomplete in the system.
 
@@ -172,18 +172,18 @@ Guarantees:
 Use case ends.
 
 **Extensions:**
-1a. User enters an invalid command.
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
-1b. User enters an illegal command.
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges and closes the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1b2. User acknowledges and closes the warning.
 
 Use case ends.
 
 ### UC06: Warn on invalid command
 
-Actor(s): Project Manager, System
+Actor(s): Project Manager, System  
 Guarantee(s):
 * No commands will be executed.
 
@@ -196,7 +196,7 @@ Use case ends.
 
 ### UC07: Warn on illegal command
 
-Actor(s): Project Manager, System
+Actor(s): Project Manager, System  
 Guarantee(s):
 * Illegal command will not be executed.
 
