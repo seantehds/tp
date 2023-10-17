@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.parser.exceptions.InvalidFormatException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -22,8 +23,11 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new UnmarkCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE), pe);
+            throw new InvalidFormatException(
+                    MESSAGE_INVALID_COMMAND_FORMAT,
+                    UnmarkCommand.COMMAND_WORD,
+                    UnmarkCommand.MESSAGE_USAGE
+            );
         }
     }
 
