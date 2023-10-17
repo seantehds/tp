@@ -18,8 +18,10 @@ public class MarkCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkCommand.MESSAGE_USAGE));
+    public void parse_invalidArgs_throwsInvalidFormatException() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MarkCommand.COMMAND_WORD) + "\nUsage: " + MarkCommand.MESSAGE_USAGE;
+
+        assertParseFailure(parser, "a", expectedMessage);
     }
 }
