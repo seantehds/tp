@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -133,5 +134,11 @@ public class ParserUtilTest {
     public void parseTags_collectionWithInvalidTags_returnsTagSet() {
         assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseTags(
                 Arrays.asList(INVALID_TAG, VALID_TAG_1)));
+    }
+
+    @Test
+    public void parseTags_collectionWithTagsDuplicates_returnsTagSet() {
+        assertDoesNotThrow(() -> ParserUtil.parseTags(
+                Arrays.asList(VALID_TAG_1, VALID_TAG_1, VALID_TAG_1)));
     }
 }
