@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.parser.exceptions.InvalidFormatException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -22,8 +23,10 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new MarkCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+            throw new InvalidFormatException(
+                    MESSAGE_INVALID_COMMAND_FORMAT,
+                    MarkCommand.COMMAND_WORD,
+                    MarkCommand.MESSAGE_USAGE);
         }
     }
 

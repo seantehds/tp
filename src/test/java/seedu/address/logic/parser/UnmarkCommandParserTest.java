@@ -19,7 +19,9 @@ public class UnmarkCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UnmarkCommand.MESSAGE_USAGE));
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                UnmarkCommand.COMMAND_WORD) + "\nUsage: " + UnmarkCommand.MESSAGE_USAGE;
+
+        assertParseFailure(parser, "a", expectedMessage);
     }
 }
