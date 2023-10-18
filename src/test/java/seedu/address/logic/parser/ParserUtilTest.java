@@ -13,21 +13,16 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -42,6 +37,12 @@ public class ParserUtilTest {
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseIndex_outOfRangeNegativeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex(Long.toString(Integer.MIN_VALUE)));
     }
 
     @Test
@@ -61,6 +62,12 @@ public class ParserUtilTest {
     @Test
     public void parseName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_NAME));
+    }
+
+    @Test
+    public void parseName_normalValid_throwsParseException() throws Exception {
+        Description expectedName = new Description("this is valid");
+        assertEquals(ParserUtil.parseDescription("this is valid"), expectedName);
     }
 
     @Test
@@ -120,5 +127,11 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTags_collectionWithInvalidTags_returnsTagSet() {
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseTags(
+                Arrays.asList(INVALID_TAG, VALID_TAG_1)));
     }
 }
