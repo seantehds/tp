@@ -24,10 +24,7 @@ import seedu.address.logic.commands.exceptions.DuplicatedTaskException;
 import seedu.address.logic.commands.exceptions.IllegalTaskIndexException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Email;
-import seedu.address.model.task.Phone;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
@@ -134,9 +131,6 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Description description;
-        private Phone phone;
-        private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -147,9 +141,6 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setDescription(toCopy.description);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -157,7 +148,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(description, tags);
         }
 
         public void setDescription(Description description) {
@@ -166,30 +157,6 @@ public class EditCommand extends Command {
 
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -222,9 +189,6 @@ public class EditCommand extends Command {
 
             EditTaskDescriptor otherEditTaskDescriptor = (EditTaskDescriptor) other;
             return Objects.equals(description, otherEditTaskDescriptor.description)
-                    && Objects.equals(phone, otherEditTaskDescriptor.phone)
-                    && Objects.equals(email, otherEditTaskDescriptor.email)
-                    && Objects.equals(address, otherEditTaskDescriptor.address)
                     && Objects.equals(tags, otherEditTaskDescriptor.tags);
         }
 
@@ -232,9 +196,6 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("description", description)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
                     .add("tags", tags)
                     .toString();
         }
