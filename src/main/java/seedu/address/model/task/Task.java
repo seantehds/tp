@@ -18,11 +18,6 @@ public class Task {
 
     // Identity fields
     private final Description description;
-    private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Status status;
 
@@ -35,9 +30,6 @@ public class Task {
         requireAllNonNull(description);
         this.description = description;
         this.status = new Status();
-        this.phone = new Phone("00000000");
-        this.email = new Email("test@gmail.com");
-        this.address = new Address("Remark for task");
         this.tags.addAll(Collections.emptySet());
     }
 
@@ -51,26 +43,11 @@ public class Task {
         requireAllNonNull(description);
         this.description = description;
         this.status = status;
-        this.phone = new Phone("00000000");
-        this.email = new Email("test@gmail.com");
-        this.address = new Address("Remark for task");
         this.tags.addAll(Collections.emptySet());
     }
 
     public Description getDescription() {
         return description;
-    }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -115,9 +92,6 @@ public class Task {
 
         Task otherTask = (Task) other;
         return description.equals(otherTask.description)
-                && phone.equals(otherTask.phone)
-                && email.equals(otherTask.email)
-                && address.equals(otherTask.address)
                 && tags.equals(otherTask.tags)
                 && status.equals(otherTask.status);
     }
@@ -125,16 +99,13 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, phone, email, address, tags, status);
+        return Objects.hash(description, tags, status);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", description)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
                 .add("tags", tags)
                 .add("status", status)
                 .toString();

@@ -3,10 +3,7 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
@@ -33,8 +30,7 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -77,8 +73,7 @@ public class TaskTest {
     @Test
     public void toStringMethod() {
         String expected = Task.class.getCanonicalName()
-                + "{name=" + ALICE.getDescription() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
+                + "{name=" + ALICE.getDescription() + ", tags=" + ALICE.getTags()
                 + ", status=" + ALICE.getStatus() + "}";
         assertEquals(expected, ALICE.toString());
     }

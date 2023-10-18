@@ -43,5 +43,4 @@ public class JsonSerializableTaskWiseTest {
         assertThrows(IllegalJsonValueException.class, JsonSerializableTaskWise.MESSAGE_DUPLICATE_TASK,
                 dataFromFile::toModelType);
     }
-
 }

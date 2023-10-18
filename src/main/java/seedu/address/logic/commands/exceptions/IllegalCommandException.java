@@ -10,8 +10,4 @@ public class IllegalCommandException extends CommandException {
     public IllegalCommandException(String message) {
         super(message);
     }
-
-    public IllegalCommandException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

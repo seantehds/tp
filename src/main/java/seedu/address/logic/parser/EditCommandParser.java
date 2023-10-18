@@ -2,10 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -34,8 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         // check if the preamble is empty, if it is, then it must be malformed
         if (argMultimap.getPreamble().isEmpty()) {
@@ -43,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     EditCommand.MESSAGE_USAGE);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION);
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 
@@ -53,24 +49,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         // now validate the index
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION);
 
         /*
-         * If the bottom calls ato parse*() fail, then the resulting help-string, along with an
+         * If the bottom calls to parse*() fail, then the resulting help-string, along with an
          * IllegalArgumentException will be thrown and floated to the caller, without continuing
          * with the parsing
          */
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editTaskDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editTaskDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editTaskDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
