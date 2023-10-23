@@ -10,10 +10,11 @@ import seedu.address.model.task.Task;
  */
 public abstract class SortUtil {
     private static int sortTaskNameAscending(Task t1, Task t2) {
-        return -1;
+        return t1.getDescription().compareTo(t2.getDescription());
     }
 
     private static int sortTaskNameDescending(Task t1, Task t2) {
+        // invert the conditions from ascending
         return -1 * SortUtil.sortTaskNameAscending(t1, t2);
     }
 
