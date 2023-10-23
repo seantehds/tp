@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   * **Credits:** [TODO]
 
 
-* **Code contributed:** [Link to RepoSense] ()
+* **Code contributed:** [Link to RepoSense](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=maypfv&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=maypfv&tabRepo=AY2324S1-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management:** 
   * Ensures that meetings' discussions are properly documented.
@@ -37,10 +37,13 @@ Given below are my contributions to the project.
       colours in the tags also highlight different significance such as priority levels.
 
 * **Documentation:**
-  * **User Guide:** Added the introduction and add feature in the user guide. 
-  * **Developer Guide:** Added the introduction and some sections at the start in developer guide.
+  * **User Guide:** 
+    * Added the introduction and add feature in the user guide. 
+  * **Developer Guide:** 
+    * Added the introduction and some sections at the start in developer guide.
 * **Contribution to team-based tasks:** 
   * Created the UI mockup
-  * Reviewed some PRs on GitHub (Minor comments): 
-* **Review/mentoring contributions:** 
-* **Contributions to community:**
+* **Review/mentoring contributions:**   
+  * Reviewed some PRs on GitHub (Minor comments): [#62](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/62),
+    [#63](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/63)
+
