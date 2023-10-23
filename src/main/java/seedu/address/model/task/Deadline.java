@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines need to be in the format (DD(- OR /)MM(- OR /)YYYY HH(: or -)MM) " +
-                    "OR (DD(- OR /)MM(- OR /)YYYY).";
+            "Deadlines need to be in the format (DD(- OR /)MM(- OR /)YYYY HH(: or -)MM) "
+                    + "OR (DD(- OR /)MM(- OR /)YYYY).";
 
     //@@author asdfghjkxd-reused
     // Regex strings are reused with some modification from ChatGPT, and is also built and tested with
