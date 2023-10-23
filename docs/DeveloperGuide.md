@@ -3,6 +3,7 @@
 Welcome to the TaskWise Developer Guide!
 
 ## Content
+
 - [Acknowledgements](#acknowledgements)
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
@@ -27,7 +28,8 @@ No acknowledgements.
 
 Welcome to the TaskWise Developer Guide!
 
-Through this guide you will learn more about the vision behind TaskWise, how TaskWise was built and how you as a Developer can use TaskWise and build upon it!
+Through this guide you will learn more about the vision behind TaskWise, how TaskWise was built and how you as a
+Developer can use TaskWise and build upon it!
 
 # Getting Started
 
@@ -51,7 +53,9 @@ Work in Progress...
 
 ### Value Proposition
 
-Provide the project manager of a CS2103T group a fast and intuitive CLI to manage their team project, by providing them a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with deadlines within one project.
+Provide the project manager of a CS2103T group a fast and intuitive CLI to manage their team project, by providing them
+a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with
+deadlines within one project.
 
 ### Target Audience
 
@@ -68,13 +72,15 @@ Our target audience of this application are Project Managers of CS2103T Group Pr
 | :star::star::star: | clumsy project manager | be able to unmark tasks that were marked in case I accidentally marked them | I can undo my mistake                                |
 | :star::star::star: | forgetful manager      | be told that I have entered an invalid command                              | so that I know that the command I entered is invalid |
 
-
 {More to be added soon}
 
 ## Use Cases
+
 ### UC01: Add a task
+
 Actor(s): Project Manager  
 Guarantees:
+
 * A task is added into the system list of tasks.
 
 **MSS**
@@ -92,8 +98,10 @@ Use case ends.
 Use case ends.
 
 ### UC02: Delete a task
+
 Actor(s): Project Manager  
 Guarantees:
+
 * The specified task is successfully deleted from the system.
 
 **MSS**
@@ -137,6 +145,7 @@ Use case ends.
 
 Actor(s): Project Manager  
 Guarantees:
+
 * The specified task is successfully marked as complete in the system.
 
 **MSS**
@@ -162,9 +171,11 @@ Use case ends.
 
 Actor(s): Project Manager  
 Guarantees:
+
 * The specified task is successfully marked as incomplete in the system.
 
 **MSS**
+
 1. User inputs command to unmark certain task.
 2. System updates and marks the task as incomplete.
 3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
@@ -185,6 +196,7 @@ Use case ends.
 
 Actor(s): Project Manager, System  
 Guarantee(s):
+
 * No commands will be executed.
 
 **MSS**
@@ -198,11 +210,13 @@ Use case ends.
 
 Actor(s): Project Manager, System  
 Guarantee(s):
+
 * Illegal command will not be executed.
 
 **MSS**
 
-1. User inputs an illegal command (valid command but the user has no permission to execute the command or argument is invalid).
+1. User inputs an illegal command (valid command but the user has no permission to execute the command or argument is
+   invalid).
 2. System warns user that the command entered is illegal and cannot be completed.
 
 Use case ends.
@@ -219,10 +233,12 @@ Use case ends.
 ## Glossary
 
 * **Argument**: A word or number or a sequence of words or numbers that represent.
-* **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing commands.
+* **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing
+  commands.
 * **Command**: A sequence of words that represents an action that TaskWise can understand and execute.
 * **Deadline**: A date that the task needs to be completed by.
-* **GUI**: A Graphical User Interface is a visual interface where users can interact with the software through on-screen elements like buttons and windows.
+* **GUI**: A Graphical User Interface is a visual interface where users can interact with the software through on-screen
+  elements like buttons and windows.
 * **JAR**: A file that contains all the resources needed for TaskWise to run.
 * **Java**: A general-purpose programming language which TextWise is built on.
 * **System**: The TaskWise program.
