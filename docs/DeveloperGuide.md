@@ -39,7 +39,26 @@ Work in Progress...
 
 # Implementation
 
-Work in Progress...
+## Add Feature
+
+The Add feature is facilitated by `TaskWise` which extends `ReadOnlyTaskWise`, stored internally as `UniqueTaskList`.
+
+It implements the following operations:
+- AddCommand#execute() -- Adds the task to the list in history.
+  `AddCommand` extends `Command`. It allows users to add a task with the command word `add`. It requires users to key in the `PREFIX_DESCRIPTION /t` from the `CliSyntax`.
+  This returns a `CommandResult` instance.
+
+This operation is exposed in the `Model` interface as`Model#addTask()` and `Model#updateFilteredTaskList()`.
+
+---
+
+
+Given below is an example usage scenario and how the Add feature behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TaskWise` will be initialized.
+
+
+
 
 # Documentation, Logging, Testing, Configuration and DevOps
 
@@ -84,7 +103,7 @@ Guarantees:
 
 Use case ends.
 
-**Extensions:**
+**Extensions:**  
 1a. User enters an illegal command.  
 &ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
 &ensp;&ensp;1a2. User acknowledges and closes the warning.
