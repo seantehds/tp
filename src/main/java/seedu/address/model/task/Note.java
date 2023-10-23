@@ -11,11 +11,16 @@ public class Note {
     public static final String MESSAGE_CONSTRAINTS =
             "Notes should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    /**
+     * Regular expression string for validating input strings.
+     * This regular expression matches any string composed of alphanumeric characters and/or spaces,
+     * including an empty string. It ensures the input string does not start with a whitespace,
+     * but allows for an empty string as a valid input.
+     * <p>
+     * Example of valid inputs: "", "Hello", "Hello World", "12345"
+     * Example of invalid inputs: " Hello", "Hello!", "123!"
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum} ]*";
 
     public final String fullNote;
 
