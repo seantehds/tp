@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
  */
 public class Deadline {
     private final LocalDateTime details;
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructs a {@code Deadline} with the current date and time.
@@ -47,7 +49,7 @@ public class Deadline {
      * Format state as text for viewing.
      */
     public String toString() {
-        return details.toString();
+        return details.format(formatter);
     }
 
 }
