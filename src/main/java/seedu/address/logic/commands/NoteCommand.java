@@ -31,12 +31,12 @@ public class NoteCommand extends Command {
     private final Index targetIndex;
     private final Note note;
 
-    public NoteCommand(Index targetIndex, String toNote) {
+    public NoteCommand(Index targetIndex, Note note) {
         requireNonNull(targetIndex);
-        requireNonNull(toNote);
+        requireNonNull(note);
 
         this.targetIndex = targetIndex;
-        this.note = new Note(toNote);
+        this.note = note;
     }
 
     @Override
