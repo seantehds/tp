@@ -1,0 +1,14 @@
+@startuml
+package parser.exceptions;{
+    DuplicatedPrefixException -up-|> ParseException
+    IllegalArgumentException -up-|> ParseException
+    InvalidCommandException -up-|> ParseException
+    InvalidFormatException -up-|> ParseException
+    NoRecordedModificationException -up-|> ParseException
+
+    IllegalArgumentException -[hidden]down-> DuplicatedPrefixException
+    InvalidFormatException -[hidden]down-> NoRecordedModificationException
+
+    hide members
+}
+@end

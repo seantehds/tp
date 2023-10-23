@@ -1,0 +1,21 @@
+@startuml
+package storage.exceptions;{
+    class StorageException
+    class DuplicatedTaskException
+    class IllegalArgumentException
+    class InvalidCommandException
+    class InvalidFormatException
+    class NoRecordedModificationException
+
+    DuplicatedTaskException -up-|> StorageException
+    IllegalArgumentException -up-|> StorageException
+    InvalidCommandException -up-|> StorageException
+    InvalidFormatException -up-|> StorageException
+    NoRecordedModificationException -up-|> StorageException
+
+    IllegalArgumentException -[hidden]down- DuplicatedTaskException
+    InvalidFormatException -[hidden]down- NoRecordedModificationException
+
+    hide members
+}
+@end

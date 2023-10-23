@@ -1,0 +1,7 @@
+@startuml
+CommandException -up-|> Exception
+ParseException -up-|> Exception
+StorageException -up-|> Exception
+
+hide members
+@enduml

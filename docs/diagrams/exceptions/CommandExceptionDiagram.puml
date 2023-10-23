@@ -1,0 +1,14 @@
+@startuml
+package commands.exceptions;{
+    class CommandException
+    class DuplicatedTaskException
+    class IllegalCommandException
+    class IllegalTaskIndexException
+
+    DuplicatedTaskException -up-|> CommandException
+    IllegalCommandException -up-|> CommandException
+    IllegalTaskIndexException -up-|> CommandException
+
+    hide members
+}
+@end
