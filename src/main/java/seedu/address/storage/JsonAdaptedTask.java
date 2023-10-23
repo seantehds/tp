@@ -79,9 +79,7 @@ class JsonAdaptedTask {
 
         final Status modelStatus = new Status(status);
 
-        final Deadline modelDeadline = new Deadline();
-
-        return new Task(modelName, modelStatus, modelDeadline);
+        return new Task(modelName, modelStatus, deadline);
     }
 
 }

@@ -33,7 +33,7 @@ public class Task {
         this.description = description;
         this.status = new Status();
         this.tags.addAll(Collections.emptySet());
-        this.deadline = new Deadline();
+        this.deadline = null;
     }
 
     /**
@@ -47,7 +47,7 @@ public class Task {
         this.description = description;
         this.status = status;
         this.tags.addAll(Collections.emptySet());
-        this.deadline = new Deadline();
+        this.deadline = null;
     }
 
     /**
@@ -133,4 +133,7 @@ public class Task {
                 .toString();
     }
 
+    public Task createNewInstance(Task oldTask) {
+        return new Task(oldTask.description, oldTask.status);
+    }
 }

@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
 
 
 /**
@@ -9,8 +10,34 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: details are present and not null, immutable.
  */
 public class Deadline {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Deadlines need to be in the format (DD(- OR /)MM(- OR /)YYYY HH(: or -)MM) " +
+                    "OR (DD(- OR /)MM(- OR /)YYYY).";
+
+    //@@author asdfghjkxd-reused
+    // Regex strings are reused with some modification from ChatGPT, and is also built and tested with
+    // https://regex101.com/.
+    /**
+     * Regex for recognising DateTime inputs. The regex pattern below are adapted from ChatGPT,
+     * modified to better meet the requirements of Juke.
+     * <p>
+     * <a href="https://regex101.com/">This</a> was used to build and test the new regex patterns.
+     */
+    public static final String DATETIME_REGEX = "^(0?[1-9]|[12][0-9]|3[01])(\\/|-)(0?[1-9]|1[0-2])(\\/|-)\\d{4} "
+            + "([01]?[0-9]|2[0-3])?(-|:)?[0-5][0-9]$";
+
+    /**
+     * Regex for recognising Date inputs. The regex pattern below are adapted from ChatGPT,
+     * modified to better meet the requirements of Juke.
+     * <p>
+     * <a href="https://regex101.com/">This</a> was used to build and test the new regex patterns.
+     */
+    public static final String DATE_REGEX = "^(0?[1-9]|[12][0-9]|3[01])(\\/|-)(0?[1-9]|1[0-2])(\\/|-)\\d{4}";
+    //@@ author
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
     private final LocalDateTime details;
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructs a {@code Deadline} with the current date and time.
@@ -22,8 +49,32 @@ public class Deadline {
     /**
      * Constructs a {@code Deadline} with the current date and time.
      */
-    public Deadline(String wip) {
-        this.details = LocalDateTime.of(2023, 10, 22, 18, 0);
+    public Deadline(LocalDateTime deadline) {
+        this.details = deadline;
+    }
+
+    //@@author asdfghjkxd-reused
+
+    /**
+     * Checks if the input date is of the correct Date format. A Date format is specified by only the date
+     * and does not include the time.
+     *
+     * @param date Input date
+     * @return true if the String is a valid Date format, else false
+     */
+    public static boolean isValidDate(String date) {
+        return Pattern.matches(Deadline.DATE_REGEX, date);
+    }
+
+    /**
+     * Checks if the input date is of the correct DateTime format. A DateTime format specifies both the date
+     * and the time.
+     *
+     * @param datetime Input datetime
+     * @return true if the String is a valid DateTime format, else false
+     */
+    public static boolean isValidDateTime(String datetime) {
+        return Pattern.matches(Deadline.DATETIME_REGEX, datetime);
     }
 
     public LocalDateTime getDetails() {
