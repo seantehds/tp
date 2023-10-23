@@ -80,6 +80,10 @@ public class Task {
         return status;
     }
 
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.

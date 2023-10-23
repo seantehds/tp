@@ -24,15 +24,6 @@ public class Deadline {
         this.details = LocalDateTime.of(2023, 10, 22, 18, 0);
     }
 
-    /**
-     * Update the completion status of the task assigned with this instance of Status.
-     *
-     * @return a new Status object with the updated completion status.
-     */
-    public Deadline updateStatus() {
-        return new Deadline();
-    }
-
     public LocalDateTime getDetails() {
         return this.details;
     }
