@@ -27,7 +27,8 @@ No acknowledgements.
 
 Welcome to the TaskWise Developer Guide!
 
-Through this guide you will learn more about the vision behind TaskWise, how TaskWise was built and how you as a Developer can use TaskWise and build upon it!
+Through this guide you will learn more about the vision behind TaskWise, how TaskWise was built and how you as a 
+Developer can use TaskWise and build upon it!
 
 # Getting Started
 
@@ -35,7 +36,152 @@ Work in Progress...
 
 # Design
 
-Work in Progress...
+## Exception Handling
+
+There are 3 main classes of Exceptions or Errors that are recognised by the application, namely the `CommandException`,
+`ParseException` and `StorageException` Exception classes. Most Exceptions or Errors that are thrown during normal 
+operation of the app should extend from these 3 classes. Any other Exceptions or Errors that are thrown that do not
+extend from the prior 3 classes will **not** be caught and handled, and will instead be thrown back to the user.
+
+Here is a quick overview of the 3 main Exception classes in TaskWise:
+
+![overview](images/exceptions/RecognisableExceptionsDiagram.svg?raw=true&sanitize=true)
+
+We shall now go through the 3 different classes of recognised Exceptions and Errors, before going through the other 
+unrecognised Exceptions and Errors that may be thrown.
+
+### `CommandException`
+
+`CommandException` represents a generic error which occurred when a `Command` object is executed. 
+
+You are strongly discouraged from throwing this Exception class as a general catch-all exception when something went 
+wrong when the user tries to execute a `Command`, as it may lack the necessary information which you need to find out 
+what is wrong with the code and prevent you from debugging later on!
+
+Should you find yourself requiring more Exception classes to handle any new errors that arises when you extend the app,
+create new Exception classes, extend from `CommandException`, and throw the new class instead!
+
+There are *3* other derived classes of `CommandException`, which are the `DuplicatedTaskException`,  
+`IllegalCommandException` and `IllegalTaskIndexException` classes. We shall explore the classes in detail in the next
+few sections.
+
+![overview](images/exceptions/CommandExceptionDiagram.svg?raw=true&sanitize=true)
+
+#### `DuplicatedTaskException`
+
+This Exception is thrown when the user attempts to create a new Task with the same Task name as any Tasks already 
+existing in their Task List. 
+
+This is due to the fact that duplicated Tasks are not permitted in the current version of the application.
+
+#### `IllegalCommandException`
+
+This Exception is thrown when the user attempts to do something that they do not have sufficient permission for,
+or are attempting to invoke undefined behaviour within TaskWise.
+
+This Exception is meant to be a generic error which other Exceptions can extend from, but it may be thrown if necessary.
+
+#### `IllegalTaskIndexException`
+
+This Exception is thrown when the user attempts to input a Task index that is not permitted. This Exception extends 
+from the above `IllegalCommandException`.
+
+Some examples of task indices that are not permitted include: `-1` (negative indices), 
+`10.0` (floating points) and `10` (when there is only `9` tasks in the task list).
+
+### `ParseException`
+
+`ParseException` is another generic error which occurs when there was an issue encountered when a `Parser` tries to 
+parse an input from the user. Usually, this error arises due to user error (e.g. wrong commands, invalid or illegal
+inputs), and should **not** be the result of developer error.
+
+![overview](images/exceptions/ParseExceptionDiagram.svg?raw=true&sanitize=true)
+
+#### `DuplicatedPrefixException`
+
+This Exception is thrown when the same `Prefix` is detected in the same command.
+
+For example, if the command `add t/task t/another task` is entered, the duplicated `t/` `Prefix` will be detected, and
+this Exception will be thrown.
+
+#### `IllegalArgumentException`
+
+This Exception is thrown when the user enters a valid command, but with invalid arguments. This Exception is mainly
+thrown by parsing methods found in `ParserUtil`, which handles the parsing of Task Index, Description, Tag, Sort Order
+and Sort Type.
+
+#### `InvalidCommandException`
+
+This Exception is thrown when the user attempts to execute a command that is not recognised by TaskWise.
+
+Only commands recognised by TaskWise will be parsed and executed. Any unknown command will result in this Exception
+being thrown, alerting users that the input command they have entered is invalid.
+
+#### `InvalidFormatException`
+
+This Exception is thrown when the user inputs a command with essential arguments to the command missing.
+
+An example of this would be the `add` command: `add` is invalid, and will result in this Exception being thrown. 
+
+#### `NoRecordedModificationException`
+
+This Exception is thrown when the user indicates that they would like to edit a certain Task on their Task list, but 
+failed to specify any changes made to said Task, i.e. they failed to properly modify the Task.
+
+### `StorageException`
+
+`StorageException` is the final class of generic error which occurs when there is an issue loading data from the 
+save files of TaskWise. 
+
+![overview](images/exceptions/StorageExceptionDiagram.svg?raw=true&sanitize=true)
+
+#### `IllegalJsonValueException`
+
+This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the 
+Task model.
+
+#### `IllegalJsonDescriptionValueException`
+
+This Exception is thrown when the stored Task Description is corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonNameValueException`
+
+This Exception is thrown when the stored Task Name is corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonTagValueException`
+
+This Exception is thrown when the stored Task Tags are corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonDuplicatedValueException`
+
+This Exception is thrown when the JSON data file is illegally modified or corrupted, resulting in the inclusion of 
+a duplicate Task.
+
+#### `FileStorageLoadException`
+
+This Exception is thrown when there are any issues encountered when loading data from any data files.
+
+#### `InsufficientStoragePrivilegeException`
+
+This Exception is thrown when the user failed to grant TaskWise sufficient access privilege to their file system, 
+resulting in TaskWise being unable to read or write to the data files TaskWise creates while in operation.
+
+#### `StorageReadWriteException`
+
+This Exception is thrown when there is an error encountered when TaskWise is trying to read or write from the 
+data files.
+
+Note that this errors differs from `InsufficientStoragePrivilegeException` in that access is granted, but the data file
+could not be recognised and hence parsed within TaskWise, hence leading to an error being raised.
+
+### Unrecognised Exceptions
+
+Any other Exceptions not mentioned above should not, under most circumstances, be thrown by any method within TaskWise,
+as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application 
+crashing catastrophically.
+
+Developers are recommended to extend on the current Exception classes already provided to specify new Exceptions that 
+they would like to handle, rather than throwing any Exceptions that are not on the list of pre-approved Exceptions.
 
 # Implementation
 

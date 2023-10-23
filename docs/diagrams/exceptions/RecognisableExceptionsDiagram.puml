@@ -1,7 +1,14 @@
 @startuml
-CommandException -up-|> Exception
-ParseException -up-|> Exception
-StorageException -up-|> Exception
+class Exception
+
+note left of Exception: java.lang.Exception, which\nshould not be caught or\nhandled by TaskWise
+
+namespace TaskWise {
+    CommandException -up-|> Exception
+    ParseException -up-|> Exception
+    StorageException -up-|> Exception
+}
+
 
 hide members
 @enduml

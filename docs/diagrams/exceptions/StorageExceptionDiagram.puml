@@ -1,21 +1,37 @@
 @startuml
-package storage.exceptions;{
+class Exception
+hide members
+
+package storage.exceptions; {
     class StorageException
-    class DuplicatedTaskException
-    class IllegalArgumentException
-    class InvalidCommandException
-    class InvalidFormatException
-    class NoRecordedModificationException
-
-    DuplicatedTaskException -up-|> StorageException
-    IllegalArgumentException -up-|> StorageException
-    InvalidCommandException -up-|> StorageException
-    InvalidFormatException -up-|> StorageException
-    NoRecordedModificationException -up-|> StorageException
-
-    IllegalArgumentException -[hidden]down- DuplicatedTaskException
-    InvalidFormatException -[hidden]down- NoRecordedModificationException
 
     hide members
 }
-@end
+
+package storage.exceptions.json; {
+    class IllegalJsonDescriptionValueException
+    class IllegalJsonDuplicatedValueException
+    class IllegalJsonNameValueException
+    class IllegalJsonTagValueException
+    class IllegalJsonValueException
+
+    IllegalJsonDescriptionValueException -up-|> IllegalJsonValueException
+    IllegalJsonDuplicatedValueException -up-|> IllegalJsonValueException
+    IllegalJsonNameValueException -up-|> IllegalJsonValueException
+    IllegalJsonTagValueException -up-|> IllegalJsonValueException
+    IllegalJsonValueException -up-|> StorageException
+
+    IllegalJsonDuplicatedValueException -[hidden]down- IllegalJsonDescriptionValueException
+    IllegalJsonTagValueException -[hidden]down- IllegalJsonNameValueException
+
+    hide members
+}
+
+package storage.exceptions.storage; {
+    InsufficientStoragePrivilegeException -up-|> StorageException
+    StorageReadWriteException -up-|> StorageException
+    FileStorageLoadException -up-|> StorageException
+
+    hide members
+}
+@enduml

@@ -7,8 +7,8 @@ package commands.exceptions;{
 
     DuplicatedTaskException -up-|> CommandException
     IllegalCommandException -up-|> CommandException
-    IllegalTaskIndexException -up-|> CommandException
+    IllegalTaskIndexException -up-|> IllegalCommandException
 
     hide members
 }
-@end
+@enduml
