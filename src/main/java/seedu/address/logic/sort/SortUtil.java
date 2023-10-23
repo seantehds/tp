@@ -1,6 +1,8 @@
 package seedu.address.logic.sort;
 
 import java.util.Comparator;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.model.task.Task;
@@ -10,27 +12,51 @@ import seedu.address.model.task.Task;
  */
 public abstract class SortUtil {
     private static int sortTaskNameAscending(Task t1, Task t2) {
+        if (Stream.of(t1, t2).anyMatch(Objects::isNull)) {
+            throw new AssertionError("Task List should not have null items!");
+        }
+
         return t1.getDescription().compareTo(t2.getDescription());
     }
 
     private static int sortTaskNameDescending(Task t1, Task t2) {
+        if (Stream.of(t1, t2).anyMatch(Objects::isNull)) {
+            throw new AssertionError("Task List should not have null items!");
+        }
+
         // invert the conditions from ascending
         return -1 * SortUtil.sortTaskNameAscending(t1, t2);
     }
 
     private static int sortPriorityAscending(Task t1, Task t2) {
+        if (Stream.of(t1, t2).anyMatch(Objects::isNull)) {
+            throw new AssertionError("Task List should not have null items!");
+        }
+
         return -1;
     }
 
     private static int sortPriorityDescending(Task t1, Task t2) {
+        if (Stream.of(t1, t2).anyMatch(Objects::isNull)) {
+            throw new AssertionError("Task List should not have null items!");
+        }
+
         return -1 * SortUtil.sortPriorityAscending(t1, t2);
     }
 
     private static int sortDeadlineAscending(Task t1, Task t2) {
+        if (Stream.of(t1, t2).anyMatch(Objects::isNull)) {
+            throw new AssertionError("Task List should not have null items!");
+        }
+
         return -1;
     }
 
     private static int sortDeadlineDescending(Task t1, Task t2) {
+        if (Stream.of(t1, t2).anyMatch(Objects::isNull)) {
+            throw new AssertionError("Task List should not have null items!");
+        }
+
         return -1 * SortUtil.sortDeadlineAscending(t1, t2);
     }
 
