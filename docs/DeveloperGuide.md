@@ -39,7 +39,27 @@ Work in Progress...
 
 # Implementation
 
-Work in Progress...
+## [Proposed] Task's Status
+The task's status attribute is implemented as a class encapsulating a boolean field that indicates whether the task 
+containing that status instance as attribute is completed or incomplete.
+
+Status is an immutable class just like the other attributes that compose Task model. Being immutable allows us to be
+consistent across editing a specific task and updating the status of the task through the mark/unmark commands. It also
+helps us to improve the clarity of whether a task is completed or incomplete.
+
+When a task is created through the "Add" command, it will always be instantiated as incomplete. However, if we were to
+retrieve a completed task from the json storage file, taskwise.json, the status of the task when it is being
+instantiated depends on the value of "status" in the file.
+As such, to prevent any possible instantiation of a new task as completed, the Status model will have 2 overloaded
+constructors - one to be used for adding of a new task, and another to be used for retrieving a task from taskwise.json.
+
+![Adding new task](diagrams%2FAddTask.puml)
+![Retrieving task](diagrams%2FRetrieveTask.puml)
+
+
+
+## [Proposed] Assigning members to task
+The members assigned to a task will be encapsulated in an assignee class that is immutable.
 
 # Documentation, Logging, Testing, Configuration and DevOps
 
