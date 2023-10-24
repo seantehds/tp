@@ -82,6 +82,14 @@ public class Task {
     }
 
     /**
+     * Returns the priority level of the task.
+     * @return priority
+     */
+    public Priority getPriority() {
+        return priority;
+    }
+
+    /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
      */
@@ -112,13 +120,14 @@ public class Task {
         Task otherTask = (Task) other;
         return description.equals(otherTask.description)
                 && tags.equals(otherTask.tags)
-                && status.equals(otherTask.status);
+                && status.equals(otherTask.status)
+                && priority.equals(otherTask.priority);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, tags, status);
+        return Objects.hash(description, tags, status, priority);
     }
 
     @Override
@@ -127,6 +136,7 @@ public class Task {
                 .add("name", description)
                 .add("tags", tags)
                 .add("status", status)
+                .add("priority", priority)
                 .toString();
     }
 

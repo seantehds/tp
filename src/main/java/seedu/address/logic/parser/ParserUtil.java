@@ -74,7 +74,6 @@ public class ParserUtil {
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
-
         return tagSet;
     }
 }
