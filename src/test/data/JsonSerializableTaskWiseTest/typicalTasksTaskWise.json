@@ -2,7 +2,7 @@
   "_comment": "TaskWise save file which contains the same Task values as in TypicalTasks#getTypicalTaskWise()",
   "tasks": [
     {
-      "description": "Do OP2 slides",
+      "description": "Fix bug",
       "status": false,
       "note": ""
     },
