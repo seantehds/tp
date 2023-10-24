@@ -40,8 +40,18 @@ Work in Progress...
 Work in Progress...
 
 # Implementation
+This section describes some noteworthy details on how certain features are implemented.
 
 ## Mark/Unmark Command
+
+### Implementation
+
+The mark/unmark mechanism is done through the `MarkCommand` and `UnmarkCommand` classes respectively.
+They both implement the `Command` interface.
+
+Given below is the sequence diagram from when a user enters a Mark command.
+
+![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
 
 # Documentation, Logging, Testing, Configuration and DevOps
 
