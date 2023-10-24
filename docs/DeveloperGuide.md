@@ -40,40 +40,15 @@ Work in Progress...
 # Implementation
 
 ## Add Feature
+The Add feature is facilitated by `TaskWise` which implements`ReadOnlyTaskWise`, stored internally as a `UniqueTaskList`. Additionally, it implements the `AddCommand#execute()` operation.
 
-The Add feature is facilitated by `TaskWise` which extends `ReadOnlyTaskWise`, stored internally as `UniqueTaskList`.
+When a user inputs the`add` command, it is handled in `LogicManager` which implements the `Logic` interface. It gets passed onto `TaskWiseParser` by `LogicManager#parseCommand()` operation. The `TaskWiseParser` creates a `AddCommandParser` which implements the `AddCommandParser#parse()` operation, creating the `AddCommand`.
 
-It implements the following operation:
-- AddCommand#execute() -- Adds the task to the list in history.
+The `AddCommand#execute()` operation is exposed in the `Model` interface as `Model#addTask()`.
 
-`AddCommand` extends `Command`. It allows users to add a task with the command word `add`. It requires users to key in the `PREFIX_DESCRIPTION /t` from the `CliSyntax`.
-This returns a `CommandResult` instance.
+The following sequence diagram shows how the add operation works for `add t/Complete DG`:
 
-This operation is exposed in the `Model` interface as`Model#addTask()` and `Model#updateFilteredTaskList()`.
-
----
-
-
-Given below is an example usage scenario and how the Add feature behaves at each step.
-
-Step 1. The user launches the application for the first time. The `TaskWise` will be initialized with the initial task wise state, and the `CurrentStatePointer` pointing to that single task wise state.
-[Insert State Diagram]
-
-Step 2. The user executes `add t/Do Developer Guide` command to add the task with the description "Do Developer Guide". The `add` calls`Model#addTask()`, causing the modified state of Task Wise to be saved in the UniqueTaskList **(KIV)**.
-
-[Insert State Diagram]
-
-Alternatives of Step 2:
-
-
-| Command | What it does| 
-| -------- | -------- |
-| `add t/Do Developer Guide d/ 24/10/2023`    | Adds a task with description "Do Developer Guide" with a deadline "24/10/2023", which is an optional field|
-| `add t/Do Developer Guide p/high`    | Adds a task with priority level high which is an optional field|
-
-The following sequence diagram shows how the add operation works:
-
-[Insert Sequence Diagram]
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
 ---
 
