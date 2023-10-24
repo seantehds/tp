@@ -59,7 +59,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Task> taskList = model.getFilteredTaskList();
+        ObservableList<Task> taskList = model.getTaskWise().getTaskList();
 
         switch (sortTypeEnum) {
         case TASK_NAME:

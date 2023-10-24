@@ -187,12 +187,15 @@ public class SortCommandTest {
      * A Model stub that contains a single task.
      */
     private static class ModelStubWithTaskAccess extends SortCommandTest.ModelStub {
+        private final static Task t1 = new Task(new Description("oh no"));
+        private final static Task t2 = new Task(new Description("an apple"));
+        private final static Task t3 = new Task(new Description("xylophone"));
         private final List<Task> innerList = new LinkedList<>();
 
         ModelStubWithTaskAccess() {
-            this.addTask(new Task(new Description("oh no")));
-            this.addTask(new Task(new Description("an apple")));
-            this.addTask(new Task(new Description("xylophone")));
+            this.innerList.add(t1);
+            this.innerList.add(t2);
+            this.innerList.add(t3);
         }
 
         @Override
@@ -204,6 +207,22 @@ public class SortCommandTest {
         public void setAllTasks(List<Task> tasks) {
             this.innerList.clear();
             this.innerList.addAll(tasks);
+        }
+
+        @Override
+        public ReadOnlyTaskWise getTaskWise() {
+            return new ReadOnlyTaskWise() {
+                private final UniqueTaskList uniqueTaskList = new UniqueTaskList();
+
+                @Override
+                public ObservableList<Task> getTaskList() {
+                    this.uniqueTaskList.add(t1);
+                    this.uniqueTaskList.add(t2);
+                    this.uniqueTaskList.add(t3);
+
+                    return this.uniqueTaskList.asUnmodifiableObservableList();
+                }
+            };
         }
 
         @Override
