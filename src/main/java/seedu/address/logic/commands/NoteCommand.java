@@ -31,6 +31,9 @@ public class NoteCommand extends Command {
     private final Index targetIndex;
     private final Note note;
 
+    /**
+     * Creates a NoteCommand to add the specified {@code Note}
+     */
     public NoteCommand(Index targetIndex, Note note) {
         requireNonNull(targetIndex);
         requireNonNull(note);

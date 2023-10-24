@@ -1,28 +1,17 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_FORMAT;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.*;
+import seedu.address.logic.parser.exceptions.InvalidCommandException;
+import seedu.address.logic.parser.exceptions.InvalidFormatException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MarkCommand;
-import seedu.address.logic.commands.NoteCommand;
-import seedu.address.logic.commands.UnmarkCommand;
-import seedu.address.logic.parser.exceptions.InvalidCommandException;
-import seedu.address.logic.parser.exceptions.InvalidFormatException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_FORMAT;
 
 /**
  * Parses user input.
@@ -59,43 +48,42 @@ public class TaskWiseParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
 
-            case MarkCommand.COMMAND_WORD:
-                return new MarkCommandParser().parse(arguments);
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
-            case UnmarkCommand.COMMAND_WORD:
-                return new UnmarkCommandParser().parse(arguments);
+        case NoteCommand.COMMAND_WORD:
+            return new NoteCommandParser().parse(arguments);
 
-            case NoteCommand.COMMAND_WORD:
-                return new NoteCommandParser().parse(arguments);
-
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new InvalidCommandException(MESSAGE_UNKNOWN_COMMAND, userInput);
+        default:
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new InvalidCommandException(MESSAGE_UNKNOWN_COMMAND, userInput);
         }
     }
 
