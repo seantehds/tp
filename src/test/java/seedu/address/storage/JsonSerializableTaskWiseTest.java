@@ -24,9 +24,9 @@ public class JsonSerializableTaskWiseTest {
     public void toModelType_typicalTasksFile_success() throws Exception {
         JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskWise.class).get();
-        TaskWise addressBookFromFile = dataFromFile.toModelType();
+        TaskWise taskWiseFromFile = dataFromFile.toModelType();
         TaskWise typicalTasksTaskWise = TypicalTasks.getTypicalTaskWise();
-        assertEquals(addressBookFromFile, typicalTasksTaskWise);
+        assertEquals(taskWiseFromFile, typicalTasksTaskWise);
     }
 
     @Test
