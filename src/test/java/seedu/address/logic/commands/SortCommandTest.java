@@ -187,9 +187,9 @@ public class SortCommandTest {
      * A Model stub that contains a single task.
      */
     private static class ModelStubWithTaskAccess extends SortCommandTest.ModelStub {
-        private final static Task t1 = new Task(new Description("oh no"));
-        private final static Task t2 = new Task(new Description("an apple"));
-        private final static Task t3 = new Task(new Description("xylophone"));
+        private static final Task t1 = new Task(new Description("oh no"));
+        private static final Task t2 = new Task(new Description("an apple"));
+        private static final Task t3 = new Task(new Description("xylophone"));
         private final List<Task> innerList = new LinkedList<>();
 
         ModelStubWithTaskAccess() {
