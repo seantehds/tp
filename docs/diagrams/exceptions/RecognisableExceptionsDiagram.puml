@@ -1,4 +1,9 @@
 @startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
 class Exception
 
 note left of Exception: java.lang.Exception, which\nshould not be caught or\nhandled by TaskWise

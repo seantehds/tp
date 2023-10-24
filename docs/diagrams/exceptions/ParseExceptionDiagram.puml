@@ -1,5 +1,10 @@
 @startuml
-package parser.exceptions;{
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package parser.exceptions as ParseExceptions;{
     DuplicatedPrefixException -up-|> ParseException
     IllegalArgumentException -up-|> ParseException
     InvalidCommandException -up-|> ParseException

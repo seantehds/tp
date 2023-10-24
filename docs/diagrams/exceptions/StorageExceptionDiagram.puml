@@ -1,14 +1,16 @@
 @startuml
-class Exception
-hide members
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
 
-package storage.exceptions; {
+package storage.exceptions as MainStorageException; {
     class StorageException
 
     hide members
 }
 
-package storage.exceptions.json; {
+package storage.exceptions.json as JsonExceptions; {
     class IllegalJsonDescriptionValueException
     class IllegalJsonDuplicatedValueException
     class IllegalJsonNameValueException
@@ -20,6 +22,7 @@ package storage.exceptions.json; {
     IllegalJsonNameValueException -up-|> IllegalJsonValueException
     IllegalJsonTagValueException -up-|> IllegalJsonValueException
     IllegalJsonValueException -up-|> StorageException
+    IllegalJsonValueException -[hidden]up--> StorageException
 
     IllegalJsonDuplicatedValueException -[hidden]down- IllegalJsonDescriptionValueException
     IllegalJsonTagValueException -[hidden]down- IllegalJsonNameValueException
@@ -27,7 +30,7 @@ package storage.exceptions.json; {
     hide members
 }
 
-package storage.exceptions.storage; {
+package storage.exceptions.storage as StorageExceptions; {
     InsufficientStoragePrivilegeException -up-|> StorageException
     StorageReadWriteException -up-|> StorageException
     FileStorageLoadException -up-|> StorageException
