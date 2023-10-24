@@ -107,7 +107,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAllTask_changeListContainsNull_Throw() {
+    public void setAllTask_changeListContainsNull_throwsAssertionError() {
         Task task = new Task(new Description("this should work"));
         List<Task> newList = new ArrayList<>();
         newList.add(null);

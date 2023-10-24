@@ -149,8 +149,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseSortOrder_invalidSortOrder_valid() {
-        assertThrows(IllegalArgumentException.class,
-                () -> ParserUtil.parseSortOrder("this is an error"));
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseSortOrder("this is an error"));
     }
 
     @Test
@@ -160,7 +159,6 @@ public class ParserUtilTest {
 
     @Test
     public void parseSortOrder_validSortOrders_valid() {
-        assertThrows(IllegalArgumentException.class,
-                () -> ParserUtil.parseSortType("this is an error"));
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseSortType("this is an error"));
     }
 }
