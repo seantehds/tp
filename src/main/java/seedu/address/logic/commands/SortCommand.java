@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_TYPE;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,8 +17,6 @@ import seedu.address.logic.sort.enums.SortTypeEnum;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-import java.util.Objects;
-import java.util.stream.Stream;
 
 /**
  * Sorts the task list.

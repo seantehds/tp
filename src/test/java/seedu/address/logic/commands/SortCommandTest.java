@@ -1,14 +1,19 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import javafx.collections.ObservableList;
+import java.nio.file.Path;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
@@ -19,10 +24,6 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
-import java.nio.file.Path;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.function.Predicate;
 
 public class SortCommandTest {
     private static final SortCommand validTaskNameAsc = new SortCommand(SortOrderEnum.ASCENDING,
@@ -33,8 +34,10 @@ public class SortCommandTest {
             SortTypeEnum.PRIORITY);
     private static final SortCommand validPriorityDes = new SortCommand(SortOrderEnum.DESCENDING,
             SortTypeEnum.PRIORITY);
-    private static final SortCommand validDeadlineAsc = new SortCommand(SortOrderEnum.ASCENDING, SortTypeEnum.DEADLINE);
-    private static final SortCommand validDeadlineDes = new SortCommand(SortOrderEnum.DESCENDING, SortTypeEnum.DEADLINE);
+    private static final SortCommand validDeadlineAsc = new SortCommand(SortOrderEnum.ASCENDING,
+            SortTypeEnum.DEADLINE);
+    private static final SortCommand validDeadlineDes = new SortCommand(SortOrderEnum.DESCENDING,
+            SortTypeEnum.DEADLINE);
 
     @Test
     public void constructor_nullTasks_throwsAssertionError() {
