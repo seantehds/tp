@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Priority;
 import seedu.address.model.task.Description;
 
 /**
@@ -75,5 +76,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String} into a {@code Priority}.
+     * @param priority String priority level to parse.
+     * @return Parsed {@code Priority} value.
+     * @throws IllegalArgumentException if {@code String} is not recognized as a priority.
+     */
+    public static Priority parsePriority(String priority) throws IllegalArgumentException {
+        requireNonNull(priority);
+        
+        try {
+            return Priority.of(priority);
+        } catch (java.lang.IllegalArgumentException e) {
+            throw new IllegalArgumentException(Priority.MESSAGE_CONSTRAINTS);
+        }
     }
 }

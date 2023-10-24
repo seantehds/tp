@@ -56,10 +56,10 @@ public class Task {
      * @param description
      * @param priority
      */
-    public Task(Description description, Priority priority) {
+    public Task(Description description, Status status, Priority priority) {
         requireAllNonNull(description);
         this.description = description;
-        this.status = new Status();
+        this.status = status;
         this.priority = priority;
         this.tags.addAll(Collections.emptySet());
     }
