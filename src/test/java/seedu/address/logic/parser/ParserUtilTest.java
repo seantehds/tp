@@ -141,4 +141,26 @@ public class ParserUtilTest {
         assertDoesNotThrow(() -> ParserUtil.parseTags(
                 Arrays.asList(VALID_TAG_1, VALID_TAG_1, VALID_TAG_1)));
     }
+
+    @Test
+    public void parseSortOrder_validSortOrder_valid() {
+        assertDoesNotThrow(() -> ParserUtil.parseSortOrder("a"));
+    }
+
+    @Test
+    public void parseSortOrder_invalidSortOrder_valid() {
+        assertThrows(IllegalArgumentException.class,
+                () -> ParserUtil.parseSortOrder("this is an error"));
+    }
+
+    @Test
+    public void parseSortType_validSortOrder_valid() {
+        assertDoesNotThrow(() -> ParserUtil.parseSortType("dl"));
+    }
+
+    @Test
+    public void parseSortOrder_validSortOrders_valid() {
+        assertThrows(IllegalArgumentException.class,
+                () -> ParserUtil.parseSortType("this is an error"));
+    }
 }
