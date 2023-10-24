@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -14,10 +15,11 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
     // TODO: Change task builder's default fields
-    public static final String DEFAULT_DESCRIPTION = "Do OP2 slides";
-    public static final String DEFAULT_NOTE = "Remember to clarify with the tutor first";
+    public static final String DEFAULT_DESCRIPTION = "Do task";
+    public static final String DEFAULT_NOTE = "";
 
     private Description description;
+    private Status status;
     private Note note;
     private Set<Tag> tags;
 
@@ -26,7 +28,8 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
-        tags = new HashSet<>();
+        status = new Status(false);
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -34,7 +37,8 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         description = taskToCopy.getDescription();
-        tags = new HashSet<>(taskToCopy.getTags());
+        status = taskToCopy.getStatus();
+        note = taskToCopy.getNote();
     }
 
     /**
@@ -42,6 +46,14 @@ public class TaskBuilder {
      */
     public TaskBuilder withDescription(String description) {
         this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withStatus(boolean status) {
+        this.status = new Status(status);
         return this;
     }
 
@@ -62,7 +74,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description);
+        return new Task(description, status, note);
     }
 
 }
