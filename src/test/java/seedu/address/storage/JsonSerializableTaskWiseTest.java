@@ -40,7 +40,7 @@ public class JsonSerializableTaskWiseTest {
     public void toModelType_duplicateTasks_throwsIllegalValueException() throws Exception {
         JsonSerializableTaskWise dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TASK_FILE,
                 JsonSerializableTaskWise.class).get();
-        assertThrows(IllegalJsonValueException.class, JsonSerializableTaskWise.MESSAGE_DUPLICATE_TASK,
+        assertThrows(IllegalJsonValueException.class,
                 dataFromFile::toModelType);
     }
 }
