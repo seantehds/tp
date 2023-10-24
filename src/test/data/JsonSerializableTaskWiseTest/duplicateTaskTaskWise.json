@@ -1,8 +1,10 @@
 {
-  "tasks": [ {
-    "name": "Alice Pauline",
-    "tags": [ "friends" ]
-  }, {
-    "name": "Alice Pauline"
-  } ]
+  "tasks": [
+    {
+      "description": "Do OP2 slides"
+    },
+    {
+      "description": "Do OP2 slides"
+    }
+  ]
 }

@@ -1,7 +1,10 @@
 {
-  "tasks": [ {
-    "name": "Valid Task"
-  }, {
-    "name": "uj4r230n9u40239yub4f[023yq42"
-  } ]
+  "tasks": [
+    {
+      "description": "Valid Task"
+    },
+    {
+      "description": "uj4r230n9u40239yub4f[023yq42"
+    }
+  ]
 }
