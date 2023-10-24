@@ -37,21 +37,95 @@ Work in Progress...
 
 # Design
 
-Work in Progress...
+### UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+![Structure of the UI Component](./images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Task` objects residing in the `Model`.
+
+### Model component
+
+Included inside the Task model are the following attributes:
+* Description
+* Status
+    * Encapsulates a boolean attribute indicating the completion status of the task containing that status instance.
+* Deadline
+    * Encapsulates a LocalDateTime object as an attribute, indicating a certain deadline for the task the Deadline
+is associated with.
+* Note
+* Assignees
+    * A set of assignee instances, each encapsulating the name of the respective members assigned to the task.
+* Priority
 
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
 ## Mark/Unmark Command
-
-### Implementation
-
 The mark/unmark mechanism is done through the `MarkCommand` and `UnmarkCommand` classes respectively.
 They both implement the `Command` interface.
 
-Given below is the sequence diagram from when a user enters a Mark command.
+### Mark Command
+When a user inputs a `mark` command, the Logic class passes it on to the `TaskWiseParser` object. 
+This object then in turn creates a `MarkCommandParser`, as the command received is a `mark` command.  
+The newly created `MarkCommandParser` then parses the incoming command and creates a `MarkCommand` object.
+This newly created `MarkCommand` is then executed by `LogicManager`. The command can modify and change the `Model`  
+currently inside TaskWise to change its contents.  
+Lastly, the result of the execution of the `MarkCommand` is encapsulated as a `CommandResult` object that is returned
+from `Logic`.  
+
+We implemented the `mark` command this way as we wanted to preserve the original architecture that was present in
+AddressBook3. Furthermore, by separating the `mark` command into multiple steps, involving multiple components
+that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
+
+Given below is the sequence diagram from when a user enters a `mark` command.
 
 ![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
+
+Alternatives Considered:
+Instead of having multiple components, we could have just had one `MarkCommand` class and have that class
+be in charge of handling everything, from parsing the inputs from the user to modifying the model when the command
+is executed. However, we did not proceed with that plan, as doing so would create a `MarkCommand` class that
+would have multiple responsibilities, which may lead to the singular `MarkCommand` class requiring multiple changes
+when different, separate requirements change.
+
+### Unmark Command
+When a user inputs an `unmark` command, the Logic class passes it on to the `TaskWiseParser` object.
+This object then in turn creates a `UnmarkCommandParser`, as the command received is a `unmark` command.  
+The newly created `UnmarkCommandParser` then parses the incoming command and creates a `UnmarkCommand` object.
+This newly created `UnmarkCommand` is then executed by `LogicManager`. The command can modify and change the `Model`  
+currently inside TaskWise to change its contents.  
+Lastly, the result of the execution of the `UnmarkCommand` is encapsulated as a `CommandResult` object that is returned
+from `Logic`.
+
+We implemented the `unmark` command this way as we wanted to preserve the original architecture that was present in
+AddressBook3. Furthermore, by separating the `unmark` command into multiple steps, involving multiple components
+that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
+
+Given below is the sequence diagram from when a user enters a `unmark` command.
+
+![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
+
+Alternatives Considered:
+Instead of having multiple components, we could have just had one `UnmarkCommand` class and have that class
+be in charge of handling everything, from parsing the inputs from the user to modifying the model when the command
+is executed. However, we did not proceed with that plan, as doing so would create a `UnmarkCommand` class that
+would have multiple responsibilities, which may lead to the singular `UnmarkCommand` class requiring multiple changes
+when different, separate requirements change.
+
+## Edit Command
+
+### Adding Deadlines to existing Tasks
 
 # Documentation, Logging, Testing, Configuration and DevOps
 
