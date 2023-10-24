@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Note;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -13,12 +14,11 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
     // TODO: Change task builder's default fields
-    public static final String DEFAULT_DESCRIPTION = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DESCRIPTION = "Do OP2 slides";
+    public static final String DEFAULT_NOTE = "Remember to clarify with the tutor first";
 
     private Description description;
+    private Note note;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +38,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Task} that we are building.
+     * Sets the {@code Description} of the {@code Task} that we are building.
      */
     public TaskBuilder withDescription(String description) {
         this.description = new Description(description);
@@ -46,9 +46,17 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Note} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
      */
-    public TaskBuilder withTags(String ... tags) {
+    public TaskBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
