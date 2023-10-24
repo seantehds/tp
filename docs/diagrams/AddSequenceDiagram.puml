@@ -28,7 +28,7 @@ AddCommandParser --> TaskWiseParser
 deactivate AddCommandParser
 
 TaskWiseParser -> AddCommandParser : parse(t/Complete DG)
-activate AddCommandParser 
+activate AddCommandParser
 
 create AddCommand
 AddCommandParser -> AddCommand
@@ -40,7 +40,7 @@ deactivate AddCommand
 AddCommandParser --> TaskWiseParser
 deactivate AddCommandParser
 
-TaskWiseParser --> LogicManager : u
+TaskWiseParser --> LogicManager
 deactivate TaskWiseParser
 destroy AddCommandParser
 
