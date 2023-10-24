@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_TYPE;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.IllegalCommandException;
 import seedu.address.logic.sort.SortUtil;
@@ -12,6 +13,9 @@ import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
+
+import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * Sorts the task list.
@@ -36,6 +40,10 @@ public class SortCommand extends Command {
      * @param sortingType The field to sort the Tasks by
      */
     public SortCommand(SortOrderEnum sortingOrder, SortTypeEnum sortingType) {
+        if (Stream.of(sortingOrder, sortingType).anyMatch(Objects::isNull)) {
+            throw new AssertionError("This should not happen!");
+        }
+
         this.sortOrderEnum = sortingOrder;
         this.sortTypeEnum = sortingType;
     }
@@ -74,5 +82,28 @@ public class SortCommand extends Command {
                 + this.sortOrderEnum
                 + " order!"
         );
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof SortCommand) {
+            SortCommand otherSortCommand = (SortCommand) other;
+            return this.sortOrderEnum.equals(otherSortCommand.sortOrderEnum)
+                    && this.sortTypeEnum.equals(otherSortCommand.sortTypeEnum);
+        }
+
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("order", this.sortOrderEnum)
+                .add("type", this.sortTypeEnum)
+                .toString();
     }
 }
