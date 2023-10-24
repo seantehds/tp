@@ -44,6 +44,5 @@ Given below are my contributions to the project.
 * **Contribution to team-based tasks:** 
   * Created the UI mockup
 * **Review/mentoring contributions:**   
-  * Reviewed some PRs on GitHub (Minor comments): [#62](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/62),
-    [#63](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/63)
+  * Reviewed some PRs on GitHub
 
