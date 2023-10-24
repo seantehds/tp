@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 
 * Code contributed:
 
-1. [Refractored](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/55/files) the underlying code in the AddressBook to
+1. [Refactored](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/55/files) the underlying code in the AddressBook to
    fit the use case of TaskWise.
 
 * Project management: Reviewed teammates' pull requests, give feedback and suggestions for improvements and merge pull
