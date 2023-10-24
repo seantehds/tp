@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Priority;
 
 /**
  * Represents a Task in the address book.
@@ -20,6 +21,7 @@ public class Task {
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
     private final Status status;
+    private final Priority priority;
 
     /**
      * Only description is required.
@@ -30,6 +32,7 @@ public class Task {
         requireAllNonNull(description);
         this.description = description;
         this.status = new Status();
+        this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
     }
 
@@ -43,8 +46,24 @@ public class Task {
         requireAllNonNull(description);
         this.description = description;
         this.status = status;
+        this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
     }
+
+    /**
+     * Constructor for task, to be used in retrieval from storage.
+     *
+     * @param description
+     * @param priority
+     */
+    public Task(Description description, Priority priority) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = new Status();
+        this.priority = priority;
+        this.tags.addAll(Collections.emptySet());
+    }
+    
 
     public Description getDescription() {
         return description;
