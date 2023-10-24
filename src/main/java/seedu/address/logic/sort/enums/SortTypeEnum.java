@@ -19,12 +19,12 @@ public enum SortTypeEnum {
     /**
      * Returns the relevant {@code SortTypeEnum} based on the String input.
      *
-     * @param sortOrder String input to parse
+     * @param sortType String input to parse
      * @return {@code SortTypeEnum} object
      * @throws IllegalArgumentException if the input String is not a valid input String value
      */
-    public static SortTypeEnum of(String sortOrder) {
-        switch (sortOrder) {
+    public static SortTypeEnum of(String sortType) {
+        switch (sortType) {
         case "t":
         case "tn":
         case "task":
