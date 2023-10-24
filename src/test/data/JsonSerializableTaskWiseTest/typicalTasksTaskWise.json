@@ -1,25 +1,54 @@
 {
   "_comment": "TaskWise save file which contains the same Task values as in TypicalTasks#getTypicalTaskWise()",
-  "tasks" : [ {
-    "name" : "Alice Pauline",
-    "tags" : [ "friends" ]
-  }, {
-    "name" : "Benson Meier",
-    "tags" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "tags" : [ ]
-  }, {
-    "name" : "Daniel Meier",
-    "tags" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "tags" : [ ]
-  }, {
-    "name" : "Fiona Kunz",
-    "tags" : [ ]
-  }, {
-    "name" : "George Best",
-    "tags" : [ ]
-  } ]
+  "tasks": [
+    {
+      "name": "Alice Pauline",
+      "tags": [
+        "friends"
+      ],
+      "status": false,
+      "note": ""
+    },
+    {
+      "name": "Benson Meier",
+      "tags": [
+        "owesMoney",
+        "friends"
+      ],
+      "status": false,
+      "note": ""
+    },
+    {
+      "name": "Carl Kurz",
+      "tags": [],
+      "status": false,
+      "note": ""
+    },
+    {
+      "name": "Daniel Meier",
+      "tags": [
+        "friends"
+      ],
+      "status": false,
+      "note": ""
+    },
+    {
+      "name": "Elle Meyer",
+      "tags": [],
+      "status": false,
+      "note": ""
+    },
+    {
+      "name": "Fiona Kunz",
+      "tags": [],
+      "status": false,
+      "note": ""
+    },
+    {
+      "name": "George Best",
+      "tags": [],
+      "status": false,
+      "note": ""
+    }
+  ]
 }

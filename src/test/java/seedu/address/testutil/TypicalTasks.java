@@ -18,7 +18,7 @@ public class TypicalTasks {
     public static final Task ALICE = new TaskBuilder().withDescription("Alice Pauline")
             .withTags("friends").build();
     public static final Task BENSON = new TaskBuilder().withDescription("Benson Meier")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withNote("Remember to clarify with the tutor").build();
     public static final Task CARL = new TaskBuilder().withDescription("Carl Kurz").build();
     public static final Task DANIEL = new TaskBuilder().withDescription("Daniel Meier").withTags("friends").build();
     public static final Task ELLE = new TaskBuilder().withDescription("Elle Meyer").build();
@@ -36,7 +36,8 @@ public class TypicalTasks {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalTasks() {} // prevents instantiation
+    private TypicalTasks() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code TaskWise} with all the typical tasks.
