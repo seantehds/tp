@@ -71,6 +71,9 @@ public class SortCommand extends Command {
         case DEADLINE:
             model.setAllTasks(taskList.sorted(SortUtil.ofDeadline(this.sortOrderEnum)));
             break;
+        case STATUS:
+            model.setAllTasks(taskList.sorted(SortUtil.ofStatus(this.sortOrderEnum)));
+            break;
         default:
             throw new IllegalCommandException("Oh no! I don't seem to understand the command!");
         }

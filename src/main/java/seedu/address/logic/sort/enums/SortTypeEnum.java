@@ -5,6 +5,7 @@ package seedu.address.logic.sort.enums;
  */
 public enum SortTypeEnum {
     TASK_NAME("task name"),
+    STATUS("status"),
     PRIORITY("priority"),
     DEADLINE("deadline");
 
@@ -42,6 +43,11 @@ public enum SortTypeEnum {
         case "deadln":
         case "deadline":
             return SortTypeEnum.DEADLINE;
+        case "s":
+        case "st":
+        case "stat":
+        case "status":
+            return SortTypeEnum.STATUS;
         default:
             throw new IllegalArgumentException("Invalid Enum value");
         }
