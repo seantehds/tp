@@ -5,41 +5,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package "Sort Command" {
-    Class "<<enumeration>>\nSortTypeEnum" as SortTypeEnum
-    Class "<<enumeration>>\nSortOrderEnum" as SortOrderEnum
-    Class "<<interface>>\nCommand" as Command
-    Class SortCommandParser
-    Class SortCommand
-    Class "<<interface>>\nParser<T>" as ParserGeneric
-    Class "<<interface>>\nParser<SortCommand>" as Parser
-    Class ParserUtil
-}
-
-package Model {
+package "Command Execution" as CE; {
     class None #FFFFFF
 }
 
-package Logic {
-    class None #FFFFFF
-}
+None .down....> SortOrderEnum : sorts in order of >
+None .down....> SortTypeEnum : sorts by >
 
-Logic -[hidden]down-> Model
-
-Parser .up.|> ParserGeneric
-
-SortCommand .up.|> Command
-SortCommand .down...> SortOrderEnum : sorts in order of >
-SortCommand .down.> SortTypeEnum : sorts by >
-SortCommandParser .right.> SortCommand : creates >
-SortCommandParser .up.|> Parser
-
-ParserUtil ..> SortOrderEnum : parses >
-ParserUtil ..> SortTypeEnum : parses >
-
-SortCommandParser .left.> ParserUtil : parse using >
-
-SortCommand --left-> Logic : executed by >
-SortCommand --left-> Model : modifies >
 
 @enduml

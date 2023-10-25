@@ -203,7 +203,7 @@ We shall now go through the 3 different classes of recognised Exceptions and Err
 
 You are strongly discouraged from throwing this Exception class as a general catch-all exception when something went wrong when the user tries to execute a `Command`, as it may lack the necessary information which you need to find out what is wrong with the code and prevent you from debugging later on!
 
-Should you find yourself requiring more Exception classes to handle any new errors that arises when you extend the app,create new Exception classes, extend from `CommandException`, and throw the new class instead!
+Should you find yourself requiring more Exception classes to handle any new errors that arises when you extend the app, create new Exception classes, extend from `CommandException`, and throw the new class instead!
 
 There are *3* other derived classes of `CommandException`, which are the `DuplicatedTaskException`, `IllegalCommandException` and `IllegalTaskIndexException` classes. We shall explore the classes in detail in the next few sections.
 
@@ -227,6 +227,12 @@ This Exception is thrown when the user attempts to input a Task index that is no
 
 Some examples of task indices that are not permitted include: `-1` (negative indices), `10.0` (floating points) and `10` (when there is only `9` tasks in the task list).
 
+#### `IllegalTaskStatusModificationException`
+
+This Exception is thrown when the user attempts to mark a Task that is already completed, or unmark a task that is not completed.
+
+For example, if a given Task is already marked as completed, when the user attempts to mark the Task again, this Exception will be thrown.
+
 ### `ParseException`
 
 `ParseException` is another generic error which occurs when there was an issue encountered when a `Parser` tries to parse an input from the user. Usually, this error arises due to user error (e.g. wrong commands, invalid or illegal inputs), and should **not** be the result of developer error.
@@ -235,7 +241,7 @@ Some examples of task indices that are not permitted include: `-1` (negative ind
 
 #### `DuplicatedPrefixException`
 
-This Exception is thrown when the same `Prefix` is detected in the same command.
+This Exception is thrown when the same `Prefix` is detected more than once in the same command.
 
 For example, if the command `add t/task t/another task` is entered, the duplicated `t/` `Prefix` will be detected, and this Exception will be thrown.
 
@@ -261,23 +267,17 @@ This Exception is thrown when the user indicates that they would like to edit a 
 
 ### `StorageException`
 
-`StorageException` is the final class of generic error which occurs when there is an issue loading data from the
-save files of TaskWise.
+`StorageException` is the final class of generic error which occurs when there is an issue loading data from the save files of TaskWise.
 
 ![overview](images/exceptions/StorageExceptionDiagram.png)
 
 #### `IllegalJsonValueException`
 
-This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the
-Task model.
+This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the Task model.
 
 #### `IllegalJsonDescriptionValueException`
 
 This Exception is thrown when the stored Task Description is corrupted and cannot be read from the JSON data file.
-
-#### `IllegalJsonNameValueException`
-
-This Exception is thrown when the stored Task Name is corrupted and cannot be read from the JSON data file.
 
 #### `IllegalJsonTagValueException`
 
@@ -299,13 +299,13 @@ This Exception is thrown when the user failed to grant TaskWise sufficient acces
 
 This Exception is thrown when there is an error encountered when TaskWise is trying to read or write from the data files.
 
-Note that this errors differs from [`InsufficientStoragePrivilegeException`](#insufficientstorageprivilegeexception) in that access is granted, but the data file could not be recognised and hence parsed within TaskWise, hence leading to an error being raised.
+Note that this error differs from [`InsufficientStoragePrivilegeException`](#insufficientstorageprivilegeexception) in that access is granted, but the data file could not be recognised and hence parsed within TaskWise, hence leading to an error being raised.
 
 ### Unrecognised Exceptions
 
-Any other Exceptions not mentioned above should not, under most circumstances, be thrown by any method within TaskWise, as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application crashing catastrophically.
+Any other Exceptions not mentioned above should not, under most circumstances, be thrown and not be handled by any method within TaskWise, as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application crashing catastrophically.
 
-Developers are recommended to extend on the current Exception classes already provided to specify new Exceptions that they would like to handle, rather than throwing any Exceptions that are not on the list of pre-approved Exceptions.
+Developers are recommended to extend the current Exception classes already provided to specify new Exceptions that they would like to handle, rather than throwing any Exceptions directly that are not on the list of pre-approved Exceptions, unless there is a legitimate reason to do so.
 
 # Implementation
 
@@ -420,8 +420,7 @@ Possible enhancement for `Priority` is to allow users to `add` a task to the lis
 
 Some attributes within the Tasks are comparable with each other as they implement the `java.lang.Comparable<T>` interface. These attributes are: `Description`, `Status`, `Deadline` and `Priority`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task is work-in-progress!
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task are work-in-progress!</div>
 
 These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the Task List using these attributes to obtain an ordered representation of the Task List.
 
@@ -479,7 +478,7 @@ The process is given as such:
 
 ### Alternatives Considered
 
-Initially, we were considering whether or not to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However we realized that there is a key different between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
+Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However we realized that there is a key different between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
 
 ### Proposed Enhancements
 
