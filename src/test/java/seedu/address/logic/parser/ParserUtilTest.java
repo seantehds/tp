@@ -166,7 +166,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_validValueWithoutTime_returnsDeadline() throws IllegalArgumentException {
-        Deadline expectedDeadline = new Deadline(LocalDateTime.of(2023, 10, 25 ,0,0));
+        Deadline expectedDeadline = new Deadline(LocalDateTime.of(2023, 10, 25, 0, 0));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITHOUT_TIME));
     }
 
