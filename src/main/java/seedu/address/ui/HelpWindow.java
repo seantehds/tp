@@ -30,9 +30,6 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private Button openButton;
-
-    @FXML
     private Label helpMessage;
 
     /**
@@ -108,23 +105,4 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
-
-    //@@author asdfghjkxd-reused
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     * <p>
-     * Code is reused from
-     * https://stackoverflow.com/questions/16604341/how-can-i-open-the-default-system-browser-from-a-java-fx-application
-     */
-    @FXML
-    private void openUrl() {
-        try {
-            Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
-        } catch (URISyntaxException ex) {
-            logger.log(Level.SEVERE, "Unable to open URL: " + USERGUIDE_URL);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "This machine does not support URL browsers");
-        }
-    }
-    //@@author
 }
