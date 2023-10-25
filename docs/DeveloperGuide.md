@@ -336,3 +336,172 @@ The process is given as such:
 5. If the parse is successful, a new instance of `AddCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `AddCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AddCommand` object.
     1. `AddCommand` will then call the `addTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with the new task added.
+        2. If the `Task` is already in the list, an exception is thrown to inform the user that they are attempting to add a `Task` that already exists.
+    3. If the adding of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AddCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AddCommand` and parses it
+8. The execution of `AddCommand` terminates.
+
+The following sequence diagram shows how the add operation works for `add t/Complete DG`:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+### Proposed Enhancements
+The Add feature could allow for other *optional* attributes in the Task Model such as `deadline`, `priority`, `asignee` and `notes` to be added together with the task `description`.
+
+An example of the enhanced `add` feature is: `add t/Complete DG d/26/10/2023 p/high` which adds the task with `description` Complete DG, `deadline` 26/10/2023 and `priority` high.
+
+### Alternatives Considered:
+We considered allowing the add feature to add `Notes`, `Assignee`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.
+
+Only the `Description` has been made compulsory. The `Edit` feature will allow for users to add and update `Deadline`, `Priority`. The `Note` and `Assignee` features will allow for `assignee` and `note` to be added respectively.
+
+## Mark Feature
+
+The process is given as such:
+1. The user enters a `mark` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `MarkCommandParser`.
+4. The created `MarkCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `MarkCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `MarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `MarkCommand` object.
+    1. `MarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated completed status.
+    2. If the existing `Task` is already marked as completed, an exception is thrown to inform the user that they are attempting to `mark` a `Task` already marked as completed.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `MarkCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
+8. The execution of `MarkCommand` terminates .
+
+We implemented the `mark` command this way as we wanted to preserve the original architecture that was present in AddressBook3. Furthermore, by separating the `mark` command into multiple steps, involving multiple components that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
+
+Given below is the sequence diagram from when a user enters a `mark` command.
+
+![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
+
+## Unmark Feature
+
+The process is given as such:
+
+1. The user enters a `unmark` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `UnmarkCommandParser`.
+4. The created `UnmarkCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `UnmarkCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `UnmarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `UnmarkCommand` object.
+    1. `UnmarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated incomplete status.
+    2. If the existing `Task` is already marked as incomplete, an exception is thrown to inform the user that they are attempting to `unmark` a `Task` already marked as incomplete.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `UnmarkCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
+8. The execution of `UnmarkCommand` terminates.
+
+We implemented the `unmark` command this way as we wanted to preserve the original architecture that was present in AddressBook3. Furthermore, by separating the `unmark` command into multiple steps, involving multiple components that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
+
+Given below is the sequence diagram from when a user enters an `unmark` command.
+
+![Unmark Sequence Diagram](./images/UnmarkSequenceDiagram.png)
+
+### Alternatives Considered:
+Instead of having multiple components, we could have just had one `MarkCommand`/`UnmarkCommand` class and have that class be in charge of handling everything, from parsing the inputs from the user to modifying the model when the command is executed. However, we did not proceed with that plan, as doing so would create a `MarkCommand`/`UnmarkCommand` class that would have multiple responsibilities, which may lead to the singular `MarkCommand`/`UnmarkCommand` class requiring multiple changes when different, separate requirements change.
+
+## [Proposed] Edit Feature - Adding Deadlines
+The Edit feature is facilitated by `EditCommand` which extends `Command`.
+
+The adding of `Deadline` to existing `Task` will be accomplished using the `EditCommand` class. When an `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
+
+### Proposed Enhancements
+Possible enhancements could be allowing the user to add `Deadline` directly when the `Task` is being added.
+
+## [Proposed] Edit Feature - Updating Priority of Existing Tasks
+
+When Tasks are created, they have a `Priority` level of `NONE`. The updating of `Priority` to existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, their default `Priority` level of `NONE` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH`.
+
+### Proposed Enhancements
+Possible enhancement for `Priority` is to allow users to `add` a task to the list with the `Priority` level specified at the `AddCommand` level. This way, users do not have to go through the extra step of updating the default `Priority` level of `NONE`.
+
+## [Proposed] Sort Feature
+
+Some attributes within the Tasks are comparable with each other as they implement the `java.lang.Comparable<T>` interface. These attributes are: `Description`, `Status`, `Deadline` and `Priority`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task is work-in-progress!
+</div>
+
+These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the Task List using these attributes to obtain an ordered representation of the Task List.
+
+The following diagram shows the association between classes necessary to achieving the sort feature:
+
+![overview](images/SortClassDiagram.png)
+
+We can break down the class diagram further by analysing how the Sort Command is executed in TaskWise. Given below is the sequence diagram detailing the overall process of executing a Sort Command:
+
+![overview](images/SortSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a sort command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `SortCommandParser`.
+4. The created `SortCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `SortCommand` with the relevant parsed parameters are created and returned to the caller.
+6. The `SortCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `SortCommand` object.
+    1. Firstly, the `SortCommand` object makes a call to the `Model` using the method `getTaskWise()` and `getTaskList()`, returning the list of Tasks.
+    2. The returned List of Tasks is then sorted using the aforementioned specified parameters.
+    3. After the sort, `SortCommand` invokes the `setAllTasks()` method on `Model`, setting the internal filtered list of `Model` to the sorted Tasks.
+    4. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `SortCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `SortCommand` and parses it.
+8. The execution of `SortCommand` terminates.
+
+### Alternatives Considered
+
+We have considered not implementing this feature due to the overhead in code that we need to write and maintain within the codebase, and that enforcing comparability between different attributes of Task could prove challenging down the line when the project is extended and more attributes need to be considered to get a proper ordering of Tasks.
+
+However, we have decided to implement the feature in the end, as we conclude that the benefits of providing users with a useful feature to help them organise their Tasks far outweighs the challenges we may face in the future when code needs to be maintained or extended.
+
+To mitigate the problems that the extension of code may cause, we decided to implement the sorting parameters as Enums, hence allowing us as maintainers to easily extend the sort feature to new attributes added to Tasks with just a few lines of code.
+
+## [Proposed] Note Feature
+
+The Note feature is facilitated by the `Note Command` which extends `Command`.
+
+Given below is the sequence diagram detailing the overall process of executing a Note Command:
+
+![overview](images/NoteSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a note command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `NoteCommandParser`.
+4. The created `NoteCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `NoteCommand` with the relevant parsed parameters are created and returned to the caller.
+6. The `NoteCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `NoteCommand` object.
+    1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turns invoke the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note.
+    2. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `NoteCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `NoteCommand` and parses it.
+8. The execution of `NoteCommand` terminates.
+
+### Alternatives Considered
+
+Initially, we were considering whether or not to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However we realized that there is a key different between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
+
+### Proposed Enhancements
+
+Possible enhancement for Note is to allow users to add a task to the list with the Note specified at the AddCommand level if users already have something in mind to note. This way, users do not have to do it in separate steps.
+
+
+## [Proposed] Assign Feature
+Each instance of task will contain a set of members instances whereby the Member class will be an immutable class encapsulating the name of a group member.
+
+To assign group members to a task, the project manager can do so using the following assign command as such `assign 1 a/John` which will assign John to the task at index 1.
+
+The process is given as such:
+
+1. The user enters a `assign` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `AssignCommandParser`.
+4. The created `AssignCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `AssignCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `AssignCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AssignCommand` object.
+    1. `AssignCommand` will then call the `assignTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated task list with the task having an updated set of assignees.
+    2. If the assignment to the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AssignCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AssignCommand` and parses it
+8. The execution of `AssignCommand` terminates.
+
+![assign sequence diagram](/images/AssignSequenceDiagram.png)
