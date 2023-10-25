@@ -77,10 +77,6 @@ public class Deadline {
         return Pattern.matches(DATETIME_REGEX, datetime);
     }
 
-    public LocalDateTime getDetails() {
-        return this.details;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
