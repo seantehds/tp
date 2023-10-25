@@ -18,7 +18,7 @@ Class Note
 Class Priority
 Class Description
 Class Deadline
-Class Assignee
+Class Member
 
 Class I #FFFFFF
 }
@@ -37,11 +37,11 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 TaskWise *--> "1" UniqueTaskList
 UniqueTaskList ----> "~* all" Task
-Task *--> Description
+Task *--> "1" Description
 Task *--> "0..1" Deadline
 Task *--> "0..1" Priority
 Task *--> "0..1" Note
-Task *--> "*" Assignee
+Task *--> "*" Member
 
 Task -[hidden]up--> I
 UniqueTaskList -[hidden]right-> I
