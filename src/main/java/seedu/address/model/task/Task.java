@@ -51,10 +51,11 @@ public class Task {
     }
 
     /**
-     * WIP constructor for task for deadline.
+     * Constructor for a task with a deadline and a status.
      *
      * @param description
      * @param status
+     * @param deadline
      */
     public Task(Description description, Status status, Deadline deadline) {
         requireAllNonNull(description);

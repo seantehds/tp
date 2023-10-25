@@ -4,9 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
-
 /**
- * Represents the completion status of the task.
+ * Represents the Deadline of the task.
  * Guarantees: details are present and not null, immutable.
  */
 public class Deadline {
@@ -52,7 +51,6 @@ public class Deadline {
     public Deadline(LocalDateTime deadline) {
         this.details = deadline;
     }
-
     //@@author asdfghjkxd-reused
 
     /**
@@ -63,7 +61,7 @@ public class Deadline {
      * @return true if the String is a valid Date format, else false
      */
     public static boolean isValidDate(String date) {
-        return Pattern.matches(Deadline.DATE_REGEX, date);
+        return Pattern.matches(DATE_REGEX, date);
     }
 
     /**
@@ -74,7 +72,7 @@ public class Deadline {
      * @return true if the String is a valid DateTime format, else false
      */
     public static boolean isValidDateTime(String datetime) {
-        return Pattern.matches(Deadline.DATETIME_REGEX, datetime);
+        return Pattern.matches(DATETIME_REGEX, datetime);
     }
 
     public LocalDateTime getDetails() {

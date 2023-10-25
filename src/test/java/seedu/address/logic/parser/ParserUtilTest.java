@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 
 public class ParserUtilTest {
@@ -28,6 +30,8 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
+    private static final String VALID_DEADLINE = "25-10-2023 16:00";
+    private static final String INVALID_DEADLINE = "";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -140,5 +144,11 @@ public class ParserUtilTest {
     public void parseTags_collectionWithTagsDuplicates_returnsTagSet() {
         assertDoesNotThrow(() -> ParserUtil.parseTags(
                 Arrays.asList(VALID_TAG_1, VALID_TAG_1, VALID_TAG_1)));
+    }
+
+    @Test
+    public void parseDeadline_validValue_returnsDeadline() throws IllegalArgumentException {
+        Deadline expectedDeadline = new Deadline(LocalDateTime.of(2023, 10, 25, 16, 0));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 }

@@ -18,6 +18,6 @@ public class CliSyntaxTest {
     @Test
     public void tagDescription_exists() {
         assertNotNull(CliSyntax.PREFIX_TAG);
-        assertEquals(CliSyntax.PREFIX_TAG.getPrefix(), "tag/");
+        assertEquals(CliSyntax.PREFIX_TAG.getPrefix(), "m/");
     }
 }

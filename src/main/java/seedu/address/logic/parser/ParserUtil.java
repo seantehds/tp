@@ -75,10 +75,17 @@ public class ParserUtil {
             String[] parsedTime = isMatchingRegex
                     ? new String[]{dateTimeSplit[1].substring(0, 2), dateTimeSplit[1].substring(2, 4)}
                     : dateTimeSplit[1].split("-|:");
+            if (parsedDate[1].length() < 2 || parsedDate[0].length() < 2
+                    || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
+                throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+            }
             return new Deadline(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
                     + parsedTime[0] + ":" + parsedTime[1] + ":00"));
         } else if (Deadline.isValidDate(deadline)) {
             String[] date = deadline.split("\\/|-");
+            if (date[1].length() < 2 || date[0].length() < 2) {
+                throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+            }
             return new Deadline(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
         }
 

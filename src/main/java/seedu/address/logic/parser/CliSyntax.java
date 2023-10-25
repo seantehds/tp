@@ -7,7 +7,7 @@ public class CliSyntax {
 
     /* Prefix definitions */
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("t/");
-    public static final Prefix PREFIX_TAG = new Prefix("tag/");
+    public static final Prefix PREFIX_TAG = new Prefix("m/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
 
 }
