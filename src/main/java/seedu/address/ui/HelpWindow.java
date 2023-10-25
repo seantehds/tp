@@ -1,10 +1,5 @@
 package seedu.address.ui;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
