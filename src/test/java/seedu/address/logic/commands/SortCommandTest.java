@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -38,6 +39,10 @@ public class SortCommandTest {
             SortTypeEnum.DEADLINE);
     private static final SortCommand validDeadlineDes = new SortCommand(SortOrderEnum.DESCENDING,
             SortTypeEnum.DEADLINE);
+    private static final SortCommand validStatusAsc = new SortCommand(SortOrderEnum.ASCENDING,
+            SortTypeEnum.STATUS);
+    private static final SortCommand validStatusDes = new SortCommand(SortOrderEnum.DESCENDING,
+            SortTypeEnum.STATUS);
 
     @Test
     public void constructor_nullTasks_throwsAssertionError() {
@@ -48,9 +53,9 @@ public class SortCommandTest {
     public void execute_allTasksSetInModel_success() {
         ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
         assertTrue(modelStub.isSorted(
-                List.of(new Task(new Description("oh no")),
-                        new Task(new Description("an apple")),
-                        new Task(new Description("xylophone")))
+                List.of(new Task(new Description("oh no"), new Status(true)),
+                        new Task(new Description("an apple"), new Status(false)),
+                        new Task(new Description("xylophone"), new Status(true)))
         ));
     }
 
@@ -59,9 +64,9 @@ public class SortCommandTest {
         SortCommandTest.ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
         assertDoesNotThrow(() -> SortCommandTest.validTaskNameAsc.execute(modelStub));
         assertTrue(modelStub.isSorted(
-                List.of(new Task(new Description("an apple")),
-                        new Task(new Description("oh no")),
-                        new Task(new Description("xylophone")))
+                List.of(new Task(new Description("an apple"), new Status(false)),
+                        new Task(new Description("oh no"), new Status(true)),
+                        new Task(new Description("xylophone"), new Status(true)))
         ));
     }
 
@@ -70,13 +75,54 @@ public class SortCommandTest {
         SortCommandTest.ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
         assertDoesNotThrow(() -> SortCommandTest.validTaskNameDes.execute(modelStub));
         assertTrue(modelStub.isSorted(
-                List.of(new Task(new Description("xylophone")),
-                        new Task(new Description("oh no")),
-                        new Task(new Description("an apple")))
+                List.of(new Task(new Description("xylophone"), new Status(true)),
+                        new Task(new Description("oh no"), new Status(true)),
+                        new Task(new Description("an apple"), new Status(false)))
         ));
     }
 
+    @Test
+    public void execute_sortByPriorityAscending_success() {
 
+    }
+
+    @Test
+    public void execute_sortByPriorityDescending_success() {
+
+    }
+
+    @Test
+    public void execute_sortByDeadlineAscending_success() {
+
+    }
+
+    @Test
+    public void execute_sortByDeadlineDescending_success() {
+
+    }
+
+    @Test
+    public void execute_sortByStatusAscending_success() {
+        SortCommandTest.ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
+        assertDoesNotThrow(() -> SortCommandTest.validStatusAsc.execute(modelStub));
+
+        assertTrue(modelStub.isSorted(
+                List.of(new Task(new Description("an apple"), new Status(false)),
+                        new Task(new Description("oh no"), new Status(true)),
+                        new Task(new Description("xylophone"), new Status(true)))
+        ));
+    }
+
+    @Test
+    public void execute_sortByStatusDescending_success() {
+        SortCommandTest.ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
+        assertDoesNotThrow(() -> SortCommandTest.validStatusDes.execute(modelStub));
+        assertTrue(modelStub.isSorted(
+                List.of(new Task(new Description("oh no"), new Status(true)),
+                        new Task(new Description("xylophone"), new Status(true)),
+                        new Task(new Description("an apple"), new Status(false)))
+        ));
+    }
 
     @Test
     public void equals() {
@@ -187,9 +233,9 @@ public class SortCommandTest {
      * A Model stub that contains a single task.
      */
     private static class ModelStubWithTaskAccess extends SortCommandTest.ModelStub {
-        private static final Task t1 = new Task(new Description("oh no"));
-        private static final Task t2 = new Task(new Description("an apple"));
-        private static final Task t3 = new Task(new Description("xylophone"));
+        private static final Task t1 = new Task(new Description("oh no"), new Status(true));
+        private static final Task t2 = new Task(new Description("an apple"), new Status(false));
+        private static final Task t3 = new Task(new Description("xylophone"), new Status(true));
         private final List<Task> innerList = new LinkedList<>();
 
         ModelStubWithTaskAccess() {
