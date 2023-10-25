@@ -7,7 +7,22 @@ Welcome to the TaskWise Developer Guide!
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
 - [Design](#design)
+    - [Architecture](#architecture)
+        - [UI Component](#ui-component)
+        - [Logic Component](#logic-component)
+        - [Model Component](#model-component)
+        - [Storage Component](#storage-component)
+        - [Common Classes](#common-classes)
+    - [Exception Handling](#exception-handling)
 - [Implementation](#implementation)
+    - [Add Feature](#add-task-feature)
+    - [Mark Feature](#mark-task-feature)
+    - [Unmark Feature](#unmark-task-feature)
+    - [Edit Feature - Adding Deadlines](#edit-feature-adding-deadlines)
+    - [Edit Feature - Updating Priority of Existing Tasks](#edit-feature-adding-deadlines)
+    - [Sort Feature](#sort-feature)
+    - [Note Feature](#note-feature)
+    - [Assign Feature](#assign-feature)
 - [Documentation, Logging, Testing, Configuration and DevOps](#documentation-logging-testing-configuration-and-devops)
 - [Appendix: Requirements](#appendix-requirements)
     - [Product Scope](#product-scope)
@@ -17,7 +32,6 @@ Welcome to the TaskWise Developer Guide!
     - [Use Cases](#use-cases)
     - [Non-Functional Requirements](#non-functional-requirements)
     - [Glossary](#glossary)
-- [Appendix: Instruction for Manual Testing](#appendix-instruction-for-manual-testing)
 
 # Acknowledgements
 
@@ -35,199 +49,459 @@ Work in Progress...
 
 # Design
 
-Work in Progress...
+The following segment describes the internal structure of TaskWise.
+
+## Architecture
+
+<img src="images/ArchitectureDiagram.png" width="280" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App.
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S1-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S1-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+* At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
+* At shut down, it shuts down the other components and invokes cleanup methods where necessary.
+
+The bulk of the app's work is done by the following four components:
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+Each of the four main components (also shown in the diagram above),
+
+* defines its *API* in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+
+<img src="images/ComponentManagers.png" width="300" />
+
+The sections below give more details of each component.
+
+### UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Task` objects residing in the `Model`.
+
+### Logic component
+
+**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+
+Here's a (partial) class diagram of the `Logic` component:
+
+<img src="images/LogicClassDiagram.png" width="550"/>
+
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+How the `Logic` component works:
+
+1. When `Logic` is called upon to execute a command, it is passed to a `TaskWiseParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+<img src="images/ParserClasses.png" width="600"/>
+
+How the parsing works:
+
+* When called upon to parse a user command, the `TaskWiseParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Model component
+
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+<img src="images/ModelClassDiagram.png" width="450" />
+
+
+The `Model` component,
+
+* stores the TaskWise data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
+* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
+
+Included inside the Task model are the following attributes:
+* `Description`
+    * Encapsulates a string attribute indicating the description of the task.
+* `Status`
+    * Encapsulates a boolean attribute indicating the completion status of the task containing that status instance.
+* `Deadline`
+    * Encapsulates a LocalDateTime object as an attribute, indicating a certain deadline for the task the Deadline object is associated with.
+* `Note`
+    * Encapsulates a string attribute indicating the additional information of the task containing the task.
+* `Assignees`
+    * A set of assignee instances, each encapsulating the name of the respective members assigned to the task.
+* `Priority`
+    * Encapsulates levels of priority as enumerations, highlighting the importance or urgency of the task it is associated with.
+
+The attributes status, description and deadline are immutable classes.
+Being immutable allows us to be consistent across editing a specific task and updating the status of the task through the mark/unmark commands. It also helps us to improve the clarity of whether a task is completed or incomplete.
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
+### Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+<img src="images/StorageClassDiagram.png" width="550" />
+
+The `Storage` component,
+* can save both TaskWise data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from both `TaskWiseStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.address.commons` package.
+
+## Exception Handling
+
+There are 3 main classes of Exceptions or Errors that are recognised by the application, namely the `CommandException`, `ParseException` and `StorageException` Exception classes. Most Exceptions or Errors that are thrown during normal operation of the app should extend from these 3 classes. Any other Exceptions or Errors that are thrown that do not extend from the prior 3 classes will **not** be caught and handled, and will instead be thrown back to the user.
+
+Here is a quick overview of the 3 main Exception classes in TaskWise:
+
+![overview](images/exceptions/RecognisableExceptionsDiagram.png)
+
+We shall now go through the 3 different classes of recognised Exceptions and Errors, before going through the other unrecognised Exceptions and Errors that may be thrown.
+
+### `CommandException`
+
+`CommandException` represents a generic error which occurred when a `Command` object is executed.
+
+You are strongly discouraged from throwing this Exception class as a general catch-all exception when something went wrong when the user tries to execute a `Command`, as it may lack the necessary information which you need to find out what is wrong with the code and prevent you from debugging later on!
+
+Should you find yourself requiring more Exception classes to handle any new errors that arises when you extend the app,create new Exception classes, extend from `CommandException`, and throw the new class instead!
+
+There are *3* other derived classes of `CommandException`, which are the `DuplicatedTaskException`, `IllegalCommandException` and `IllegalTaskIndexException` classes. We shall explore the classes in detail in the next few sections.
+
+![overview](images/exceptions/CommandExceptionDiagram.png)
+
+#### `DuplicatedTaskException`
+
+This Exception is thrown when the user attempts to create a new Task with the same Task name as any Tasks already existing in their Task list.
+
+This is due to the fact that duplicated Tasks are not permitted in the current version of the application.
+
+#### `IllegalCommandException`
+
+This Exception is thrown when the user attempts to do something that they do not have sufficient permission for, or are attempting to invoke undefined behaviour within TaskWise.
+
+This Exception is meant to be a generic error which other Exceptions can extend from, but it may be thrown if necessary.
+
+#### `IllegalTaskIndexException`
+
+This Exception is thrown when the user attempts to input a Task index that is not permitted. This Exception extends from the above `IllegalCommandException`.
+
+Some examples of task indices that are not permitted include: `-1` (negative indices), `10.0` (floating points) and `10` (when there is only `9` tasks in the task list).
+
+### `ParseException`
+
+`ParseException` is another generic error which occurs when there was an issue encountered when a `Parser` tries to parse an input from the user. Usually, this error arises due to user error (e.g. wrong commands, invalid or illegal inputs), and should **not** be the result of developer error.
+
+![overview](images/exceptions/ParseExceptionDiagram.png)
+
+#### `DuplicatedPrefixException`
+
+This Exception is thrown when the same `Prefix` is detected in the same command.
+
+For example, if the command `add t/task t/another task` is entered, the duplicated `t/` `Prefix` will be detected, and this Exception will be thrown.
+
+#### `IllegalArgumentException`
+
+This Exception is thrown when the user enters a valid command, but with invalid arguments. This Exception is mainly thrown by parsing methods found in `ParserUtil`, which handles the parsing of Task Index, Description, Tag, Sort Order and Sort Type.
+
+#### `InvalidCommandException`
+
+This Exception is thrown when the user attempts to execute a command that is not recognised by TaskWise.
+
+Only commands recognised by TaskWise will be parsed and executed. Any unknown command will result in this Exception being thrown, alerting users that the input command they have entered is invalid.
+
+#### `InvalidFormatException`
+
+This Exception is thrown when the user inputs a command with essential arguments to the command missing.
+
+An example of this would be the `add` command: `add` is invalid, and will result in this Exception being thrown.
+
+#### `NoRecordedModificationException`
+
+This Exception is thrown when the user indicates that they would like to edit a certain Task on their Task list, but failed to specify any changes made to said Task, i.e. they failed to properly modify the Task.
+
+### `StorageException`
+
+`StorageException` is the final class of generic error which occurs when there is an issue loading data from the
+save files of TaskWise.
+
+![overview](images/exceptions/StorageExceptionDiagram.png)
+
+#### `IllegalJsonValueException`
+
+This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the
+Task model.
+
+#### `IllegalJsonDescriptionValueException`
+
+This Exception is thrown when the stored Task Description is corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonNameValueException`
+
+This Exception is thrown when the stored Task Name is corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonTagValueException`
+
+This Exception is thrown when the stored Task Tags are corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonDuplicatedValueException`
+
+This Exception is thrown when the JSON data file is illegally modified or corrupted, resulting in the inclusion of a duplicate Task.
+
+#### `FileStorageLoadException`
+
+This Exception is thrown when there are any issues encountered when loading data from any data files.
+
+#### `InsufficientStoragePrivilegeException`
+
+This Exception is thrown when the user failed to grant TaskWise sufficient access privilege to their file system, resulting in TaskWise being unable to read or write to the data files TaskWise creates while in operation.
+
+#### `StorageReadWriteException`
+
+This Exception is thrown when there is an error encountered when TaskWise is trying to read or write from the data files.
+
+Note that this errors differs from [`InsufficientStoragePrivilegeException`](#insufficientstorageprivilegeexception) in that access is granted, but the data file could not be recognised and hence parsed within TaskWise, hence leading to an error being raised.
+
+### Unrecognised Exceptions
+
+Any other Exceptions not mentioned above should not, under most circumstances, be thrown by any method within TaskWise, as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application crashing catastrophically.
+
+Developers are recommended to extend on the current Exception classes already provided to specify new Exceptions that they would like to handle, rather than throwing any Exceptions that are not on the list of pre-approved Exceptions.
 
 # Implementation
-## [Proposed] Assigning members to task
-The members assigned to a task will be encapsulated in an assignee class that is immutable.
 
-# Documentation, Logging, Testing, Configuration and DevOps
+## General Implementation of Commands In TaskWise
+![General Class Diagram](./images/GeneralClassDiagram)
 
-Work in Progress...
+This class diagram is applicable for the following command: `Add`, `Mark`, `Unmark`, `Delete`, `Edit`, `Note`.
 
-# Appendix: Requirements
+From the diagram, we are able to note some aspects of the command:
 
-## Product Scope
+* `XYZCommand` follows the overall Facade design pattern that is used in TaskWise to dispatch commands to be executed.
+  `XYZCommand` implements the `Command` interface, thereby allowing TaskWise to execute the Command without having to know what Command `XYZCommand` represents.
+* `XYZCommandParser` does most of the heavy-lifting in preparing a XYZ Command for execution.
+* Refer to the [`logic`](#logic-component) diagram and [`model`](#model-component) diagrams for more information regarding the `Logic` and `Model` classes and processes.
 
-### Value Proposition
+We can break down the class diagram further by analysing how XYZ Command is executed in TaskWise. Given below is the sequence diagram detailing the overall process of executing XYZ Command:
 
-Provide the project manager of a CS2103T group a fast and intuitive CLI to manage their team project, by providing them a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with deadlines within one project.
 
-### Target Audience
+## Add Feature
+The Add feature is facilitated by `TaskWise` which implements`ReadOnlyTaskWise`, stored internally as a `UniqueTaskList`. Additionally, it implements the `AddCommand#execute()` operation.
 
-Our target audience of this application are Project Managers of CS2103T Group Projects.
+The process is given as such:
 
-## User Stories
+1. The user enters a `add` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `AddCommandParser`.
+4. The created `AddCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `AddCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `AddCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AddCommand` object.
+    1. `AddCommand` will then call the `addTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with the new task added.
+        2. If the `Task` is already in the list, an exception is thrown to inform the user that they are attempting to add a `Task` that already exists.
+    3. If the adding of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AddCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AddCommand` and parses it
+8. The execution of `AddCommand` terminates.
 
-| Priority           | As a ...               | I want to ...                                                               | So that I can...                                     |
-| ------------------ | ---------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------- |
-| :star::star::star: | user                   | be able to add tasks to my list of tasks                                    | so that tasks can be tracked                         |
-| :star::star::star: | project manager        | be able to delete tasks from my list of tasks                               | remove tasks that are completed or wrongly added     |
-| :star::star::star: | project manager        | be able to view all my tasks                                                | get a high level overview of what needs to be done   |
-| :star::star::star: | project manager        | be able to mark tasks that were unmarked                                    | update the progress of the task                      |
-| :star::star::star: | clumsy project manager | be able to unmark tasks that were marked in case I accidentally marked them | I can undo my mistake                                |
-| :star::star::star: | forgetful manager      | be told that I have entered an invalid command                              | so that I know that the command I entered is invalid |
+The following sequence diagram shows how the add operation works for `add t/Complete DG`:
 
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-{More to be added soon}
+### Proposed Enhancements
+The Add feature could allow for other *optional* attributes in the Task Model such as `deadline`, `priority`, `asignee` and `notes` to be added together with the task `description`.
 
-## Use Cases
-### UC01: Add a task
-Actor(s): Project Manager  
-Guarantees:
-* A task is added into the system list of tasks.
+An example of the enhanced `add` feature is: `add t/Complete DG d/26/10/2023 p/high` which adds the task with `description` Complete DG, `deadline` 26/10/2023 and `priority` high.
 
-**MSS**
+### Alternatives Considered:
+We considered allowing the add feature to add `Notes`, `Assignee`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.
 
-1. User inputs command to add a task.
-2. System adds the task into list of task and <u>[displays the updated task list (UC03)](#UC03-View-all-tasks)</u>.
+Only the `Description` has been made compulsory. The `Edit` feature will allow for users to add and update `Deadline`, `Priority`. The `Note` and `Assignee` features will allow for `assignee` and `note` to be added respectively.
 
-Use case ends.
+## Mark Feature
 
-**Extensions:**
-1a. User enters an illegal command.  
-&ensp;&ensp;1a1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
+The process is given as such:
+1. The user enters a `mark` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `MarkCommandParser`.
+4. The created `MarkCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `MarkCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `MarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `MarkCommand` object.
+    1. `MarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated completed status.
+    2. If the existing `Task` is already marked as completed, an exception is thrown to inform the user that they are attempting to `mark` a `Task` already marked as completed.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `MarkCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
+8. The execution of `MarkCommand` terminates .
 
-Use case ends.
+We implemented the `mark` command this way as we wanted to preserve the original architecture that was present in AddressBook3. Furthermore, by separating the `mark` command into multiple steps, involving multiple components that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
 
-### UC02: Delete a task
-Actor(s): Project Manager  
-Guarantees:
-* The specified task is successfully deleted from the system.
+Given below is the sequence diagram from when a user enters a `mark` command.
 
-**MSS**
+![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
 
-1. User inputs command to delete a certain task.
-2. System deletes the task and <u>[displays the updated task list (UC03)](#UC03-View-all-tasks)</u>.
+## Unmark Feature
 
-Use case ends.
+The process is given as such:
 
-**Extensions:**
+1. The user enters a `unmark` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `UnmarkCommandParser`.
+4. The created `UnmarkCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `UnmarkCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `UnmarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `UnmarkCommand` object.
+    1. `UnmarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated incomplete status.
+    2. If the existing `Task` is already marked as incomplete, an exception is thrown to inform the user that they are attempting to `unmark` a `Task` already marked as incomplete.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `UnmarkCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
+8. The execution of `UnmarkCommand` terminates.
 
-1a. User enters an invalid command.  
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
-&ensp;&ensp;1a2. User acknowledges and closes the warning.  
-1b. User enters an illegal command.  
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
-&ensp;&ensp;1b2. User acknowledges and closes the warning.
+We implemented the `unmark` command this way as we wanted to preserve the original architecture that was present in AddressBook3. Furthermore, by separating the `unmark` command into multiple steps, involving multiple components that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
 
-Use case ends.
+Given below is the sequence diagram from when a user enters an `unmark` command.
 
-### UC03: View all tasks
+![Unmark Sequence Diagram](./images/UnmarkSequenceDiagram.png)
 
-Actor(s): Project Manager
+### Alternatives Considered:
+Instead of having multiple components, we could have just had one `MarkCommand`/`UnmarkCommand` class and have that class be in charge of handling everything, from parsing the inputs from the user to modifying the model when the command is executed. However, we did not proceed with that plan, as doing so would create a `MarkCommand`/`UnmarkCommand` class that would have multiple responsibilities, which may lead to the singular `MarkCommand`/`UnmarkCommand` class requiring multiple changes when different, separate requirements change.
 
-**MSS**
+## [Proposed] Edit Feature - Adding Deadlines
+The Edit feature is facilitated by `EditCommand` which extends `Command`.
 
-1. User opens up the application.
-2. System displays a list of tasks to the user.
+The adding of `Deadline` to existing `Task` will be accomplished using the `EditCommand` class. When an `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
 
-Use case ends.
+### Proposed Enhancements
+Possible enhancements could be allowing the user to add `Deadline` directly when the `Task` is being added.
 
-**Extensions:**
+## [Proposed] Edit Feature - Updating Priority of Existing Tasks
 
-1a. User enters an invalid command.  
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
-&ensp;&ensp;1a2. User acknowledges and closes the warning.
+When Tasks are created, they have a `Priority` level of `NONE`. The updating of `Priority` to existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, their default `Priority` level of `NONE` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH`.
 
-Use case ends.
+### Proposed Enhancements
+Possible enhancement for `Priority` is to allow users to `add` a task to the list with the `Priority` level specified at the `AddCommand` level. This way, users do not have to go through the extra step of updating the default `Priority` level of `NONE`.
 
-### UC04: Marks a task as done
+## [Proposed] Sort Feature
 
-Actor(s): Project Manager  
-Guarantees:
-* The specified task is successfully marked as complete in the system.
+Some attributes within the Tasks are comparable with each other as they implement the `java.lang.Comparable<T>` interface. These attributes are: `Description`, `Status`, `Deadline` and `Priority`.
 
-**MSS**
+<div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task is work-in-progress!
+</div>
 
-1. User inputs command to mark a certain task as done.
-2. System updates and marks the task as done.
-3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the Task List using these attributes to obtain an ordered representation of the Task List.
 
-Use case ends.
+The following diagram shows the association between classes necessary to achieving the sort feature:
 
-**Extensions:**
+![overview](images/SortClassDiagram.png)
 
-1a. User enters an invalid command.  
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
-&ensp;&ensp;1a2. User acknowledges and closes the warning.  
-1b. User enters an illegal command.  
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
-&ensp;&ensp;1b2. User acknowledges and closes the warning.
+We can break down the class diagram further by analysing how the Sort Command is executed in TaskWise. Given below is the sequence diagram detailing the overall process of executing a Sort Command:
 
-Use case ends.
+![overview](images/SortSequenceDiagram.png)
 
-### UC05: Unmarks a task that was marked as done
+The process is given as such:
 
-Actor(s): Project Manager  
-Guarantees:
-* The specified task is successfully marked as incomplete in the system.
+1. The user enters a sort command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `SortCommandParser`.
+4. The created `SortCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `SortCommand` with the relevant parsed parameters are created and returned to the caller.
+6. The `SortCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `SortCommand` object.
+    1. Firstly, the `SortCommand` object makes a call to the `Model` using the method `getTaskWise()` and `getTaskList()`, returning the list of Tasks.
+    2. The returned List of Tasks is then sorted using the aforementioned specified parameters.
+    3. After the sort, `SortCommand` invokes the `setAllTasks()` method on `Model`, setting the internal filtered list of `Model` to the sorted Tasks.
+    4. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `SortCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `SortCommand` and parses it.
+8. The execution of `SortCommand` terminates.
 
-**MSS**
-1. User inputs command to unmark certain task.
-2. System updates and marks the task as incomplete.
-3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+### Alternatives Considered
 
-Use case ends.
+We have considered not implementing this feature due to the overhead in code that we need to write and maintain within the codebase, and that enforcing comparability between different attributes of Task could prove challenging down the line when the project is extended and more attributes need to be considered to get a proper ordering of Tasks.
 
-**Extensions:**
-1a. User enters an invalid command.  
-&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
-&ensp;&ensp;1a2. User acknowledges and closes the warning.  
-1b. User enters an illegal command.  
-&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
-&ensp;&ensp;1b2. User acknowledges and closes the warning.
+However, we have decided to implement the feature in the end, as we conclude that the benefits of providing users with a useful feature to help them organise their Tasks far outweighs the challenges we may face in the future when code needs to be maintained or extended.
 
-Use case ends.
+To mitigate the problems that the extension of code may cause, we decided to implement the sorting parameters as Enums, hence allowing us as maintainers to easily extend the sort feature to new attributes added to Tasks with just a few lines of code.
 
-### UC06: Warn on invalid command
+## [Proposed] Note Feature
 
-Actor(s): Project Manager, System  
-Guarantee(s):
-* No commands will be executed.
+The Note feature is facilitated by the `Note Command` which extends `Command`.
 
-**MSS**
+Given below is the sequence diagram detailing the overall process of executing a Note Command:
 
-1. User inputs an invalid command.
-2. System warns user that the command entered is invalid.
+![overview](images/NoteSequenceDiagram.png)
 
-Use case ends.
+The process is given as such:
 
-### UC07: Warn on illegal command
+1. The user enters a note command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `NoteCommandParser`.
+4. The created `NoteCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `NoteCommand` with the relevant parsed parameters are created and returned to the caller.
+6. The `NoteCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `NoteCommand` object.
+    1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turns invoke the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note.
+    2. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `NoteCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `NoteCommand` and parses it.
+8. The execution of `NoteCommand` terminates.
 
-Actor(s): Project Manager, System  
-Guarantee(s):
-* Illegal command will not be executed.
+### Alternatives Considered
 
-**MSS**
+Initially, we were considering whether or not to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However we realized that there is a key different between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
 
-1. User inputs an illegal command (valid command but the user has no permission to execute the command or argument is invalid).
-2. System warns user that the command entered is illegal and cannot be completed.
+### Proposed Enhancements
 
-Use case ends.
+Possible enhancement for Note is to allow users to add a task to the list with the Note specified at the AddCommand level if users already have something in mind to note. This way, users do not have to do it in separate steps.
 
-![diagram](https://hackmd.io/_uploads/SJJ2cW4lT.png)
 
-## Non-Functional Requirements
+## [Proposed] Assign Feature
+Each instance of task will contain a set of members instances whereby the Member class will be an immutable class encapsulating the name of a group member.
 
-1. TaskWise should work on Windows/MacOS/Linux as long as the device has `Java 11` or above installed.
-2. A user should be able to accomplish all of the tasks using commands rather than using a mouse.
-3. The size of the JAR file should not be larger than 100 MB.
-4. TaskWise should work without Internet connectivity.
+To assign group members to a task, the project manager can do so using the following assign command as such `assign 1 a/John` which will assign John to the task at index 1.
 
-## Glossary
+The process is given as such:
 
-* **Argument**: A word or number or a sequence of words or numbers that represent.
-* **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing commands.
-* **Command**: A sequence of words that represents an action that TaskWise can understand and execute.
-* **Deadline**: A date that the task needs to be completed by.
-* **GUI**: A Graphical User Interface is a visual interface where users can interact with the software through on-screen elements like buttons and windows.
-* **JAR**: A file that contains all the resources needed for TaskWise to run.
-* **Java**: A general-purpose programming language which TextWise is built on.
-* **System**: The TaskWise program.
-* **Task**: A Task is a completable objective with or without deadline.
+1. The user enters a `assign` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `AssignCommandParser`.
+4. The created `AssignCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `AssignCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `AssignCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AssignCommand` object.
+    1. `AssignCommand` will then call the `assignTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated task list with the task having an updated set of assignees.
+    2. If the assignment to the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AssignCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AssignCommand` and parses it
+8. The execution of `AssignCommand` terminates.
 
-# Appendix: Instruction for Manual Testing
-
-Work in Progress...
+![assign sequence diagram](/images/AssignSequenceDiagram.png)
