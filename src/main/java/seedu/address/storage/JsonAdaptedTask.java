@@ -12,7 +12,6 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.storage.exceptions.json.IllegalJsonDescriptionValueException;
-import seedu.address.storage.exceptions.json.IllegalJsonNameValueException;
 import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 /**
@@ -22,7 +21,7 @@ class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
-    private final String name;
+    private final String description;
     private final boolean status;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -30,9 +29,9 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+    public JsonAdaptedTask(@JsonProperty("name") String description, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                            @JsonProperty("status") boolean status) {
-        this.name = name;
+        this.description = description;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -43,7 +42,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        name = source.getDescription().fullDescription;
+        description = source.getDescription().fullDescription;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -61,17 +60,16 @@ class JsonAdaptedTask {
             taskTags.add(tag.toModelType());
         }
 
-
-        if (name == null) {
-            throw new IllegalJsonNameValueException(
+        if (description == null) {
+            throw new IllegalJsonDescriptionValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
 
-        if (!Description.isValidDescription(name)) {
+        if (!Description.isValidDescription(description)) {
             throw new IllegalJsonDescriptionValueException(Description.MESSAGE_CONSTRAINTS);
         }
 
-        final Description modelName = new Description(name);
+        final Description modelName = new Description(description);
 
         final Status modelStatus = new Status(status);
 

@@ -8,6 +8,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.IllegalTaskIndexException;
+import seedu.address.logic.commands.exceptions.IllegalTaskStatusModificationException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
@@ -38,14 +40,14 @@ public class UnmarkCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new IllegalTaskIndexException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
 
         Status status = taskToUnmark.getStatus();
         if (!status.isCompleted()) {
-            throw new CommandException(MESSAGE_UNMARK_UNMARKED_TASK);
+            throw new IllegalTaskStatusModificationException(MESSAGE_UNMARK_UNMARKED_TASK);
         }
 
         Task unmarkedTask = new Task(taskToUnmark.getDescription(), status.updateStatus());
