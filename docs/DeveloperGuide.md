@@ -15,19 +15,19 @@ Welcome to the TaskWise Developer Guide!
         - [Common Classes](#common-classes)
     - [Exception Handling](#exception-handling)
 - [Implementation](#implementation)
-    - [Add Feature](#add-task-feature)
-    - [Mark Feature](#mark-task-feature)
-    - [Unmark Feature](#unmark-task-feature)
+    - [Add Feature](#add-feature)
+    - [Mark Feature](#mark-feature)
+    - [Unmark Feature](#unmark-feature)
     - [Edit Feature - Adding Deadlines](#edit-feature-adding-deadlines)
-    - [Edit Feature - Updating Priority of Existing Tasks](#edit-feature-adding-deadlines)
+    - [Edit Feature - Updating Priority of Existing Tasks](#edit-feature-updating-priority-of-existing-tasks)
     - [Sort Feature](#sort-feature)
     - [Note Feature](#note-feature)
     - [Assign Feature](#assign-feature)
 - [Documentation, Logging, Testing, Configuration and DevOps](#documentation-logging-testing-configuration-and-devops)
 - [Appendix: Requirements](#appendix-requirements)
     - [Product Scope](#product-scope)
-        - [Value Proposition](#Value-Proposition)
-        - [Target Audience](#Target-Audience)
+        - [Value Proposition](#value-proposition)
+        - [Target Audience](#target-audience)
     - [User Stories](#user-stories)
     - [Use Cases](#use-cases)
     - [Non-Functional Requirements](#non-functional-requirements)
@@ -110,7 +110,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -136,12 +136,12 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `TaskWiseParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TaskWiseParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaskWiseParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -199,7 +199,7 @@ We shall now go through the 3 different classes of recognised Exceptions and Err
 
 ### `CommandException`
 
-`CommandException` represents a generic error which occurred when a `Command` object is executed. 
+`CommandException` represents a generic error which occurred when a `Command` object is executed.
 
 You are strongly discouraged from throwing this Exception class as a general catch-all exception when something went wrong when the user tries to execute a `Command`, as it may lack the necessary information which you need to find out what is wrong with the code and prevent you from debugging later on!
 
@@ -253,7 +253,7 @@ Only commands recognised by TaskWise will be parsed and executed. Any unknown co
 
 This Exception is thrown when the user inputs a command with essential arguments to the command missing.
 
-An example of this would be the `add` command: `add` is invalid, and will result in this Exception being thrown. 
+An example of this would be the `add` command: `add` is invalid, and will result in this Exception being thrown.
 
 #### `NoRecordedModificationException`
 
@@ -261,14 +261,14 @@ This Exception is thrown when the user indicates that they would like to edit a 
 
 ### `StorageException`
 
-`StorageException` is the final class of generic error which occurs when there is an issue loading data from the 
-save files of TaskWise. 
+`StorageException` is the final class of generic error which occurs when there is an issue loading data from the
+save files of TaskWise.
 
 ![overview](images/exceptions/StorageExceptionDiagram.png)
 
 #### `IllegalJsonValueException`
 
-This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the 
+This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the
 Task model.
 
 #### `IllegalJsonDescriptionValueException`
@@ -317,7 +317,7 @@ This class diagram is applicable for the following command: `Add`, `Mark`, `Unma
 From the diagram, we are able to note some aspects of the command:
 
 * `XYZCommand` follows the overall Facade design pattern that is used in TaskWise to dispatch commands to be executed.
-`XYZCommand` implements the `Command` interface, thereby allowing TaskWise to execute the Command without having to know what Command `XYZCommand` represents.
+  `XYZCommand` implements the `Command` interface, thereby allowing TaskWise to execute the Command without having to know what Command `XYZCommand` represents.
 * `XYZCommandParser` does most of the heavy-lifting in preparing a XYZ Command for execution.
 * Refer to the [`logic`](#logic-component) diagram and [`model`](#model-component) diagrams for more information regarding the `Logic` and `Model` classes and processes.
 
@@ -325,7 +325,7 @@ We can break down the class diagram further by analysing how XYZ Command is exec
 
 
 ## Add Feature
-The Add feature is facilitated by `TaskWise` which implements`ReadOnlyTaskWise`, stored internally as a `UniqueTaskList`. Additionally, it implements the `AddCommand#execute()` operation.  
+The Add feature is facilitated by `TaskWise` which implements`ReadOnlyTaskWise`, stored internally as a `UniqueTaskList`. Additionally, it implements the `AddCommand#execute()` operation.
 
 The process is given as such:
 
@@ -335,23 +335,23 @@ The process is given as such:
 4. The created `AddCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `AddCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `AddCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AddCommand` object.
-   1. `AddCommand` will then call the `addTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with the new task added.
-   2. If the `Task` is already in the list, an exception is thrown to inform the user that they are attempting to add a `Task` that already exists.
-   3. If the adding of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AddCommand::execute()` method.
+    1. `AddCommand` will then call the `addTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with the new task added.
+    2. If the `Task` is already in the list, an exception is thrown to inform the user that they are attempting to add a `Task` that already exists.
+    3. If the adding of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AddCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AddCommand` and parses it
-8. The execution of `AddCommand` terminates.   
+8. The execution of `AddCommand` terminates.
 
 The following sequence diagram shows how the add operation works for `add t/Complete DG`:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-### Proposed Enhancements 
-The Add feature could allow for other *optional* attributes in the Task Model such as `deadline`, `priority`, `asignee` and `notes` to be added together with the task `description`.  
+### Proposed Enhancements
+The Add feature could allow for other *optional* attributes in the Task Model such as `deadline`, `priority`, `asignee` and `notes` to be added together with the task `description`.
 
 An example of the enhanced `add` feature is: `add t/Complete DG d/26/10/2023 p/high` which adds the task with `description` Complete DG, `deadline` 26/10/2023 and `priority` high.
 
 ### Alternatives Considered:
-We considered allowing the add feature to add `Notes`, `Assignee`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.  
+We considered allowing the add feature to add `Notes`, `Assignee`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.
 
 Only the `Description` has been made compulsory. The `Edit` feature will allow for users to add and update `Deadline`, `Priority`. The `Note` and `Assignee` features will allow for `assignee` and `note` to be added respectively.
 
@@ -364,9 +364,9 @@ The process is given as such:
 4. The created `MarkCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `MarkCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `MarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `MarkCommand` object.
-   1. `MarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated completed status.
-   2. If the existing `Task` is already marked as completed, an exception is thrown to inform the user that they are attempting to `mark` a `Task` already marked as completed.
-   3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `MarkCommand::execute()` method.
+    1. `MarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated completed status.
+    2. If the existing `Task` is already marked as completed, an exception is thrown to inform the user that they are attempting to `mark` a `Task` already marked as completed.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `MarkCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
 8. The execution of `MarkCommand` terminates .
 
@@ -386,9 +386,9 @@ The process is given as such:
 4. The created `UnmarkCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `UnmarkCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `UnmarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `UnmarkCommand` object.
-   1. `UnmarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated incomplete status.
-   2. If the existing `Task` is already marked as incomplete, an exception is thrown to inform the user that they are attempting to `unmark` a `Task` already marked as incomplete.
-   3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `UnmarkCommand::execute()` method.
+    1. `UnmarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated incomplete status.
+    2. If the existing `Task` is already marked as incomplete, an exception is thrown to inform the user that they are attempting to `unmark` a `Task` already marked as incomplete.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `UnmarkCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
 8. The execution of `UnmarkCommand` terminates.
 
@@ -401,22 +401,22 @@ Given below is the sequence diagram from when a user enters an `unmark` command.
 ### Alternatives Considered:
 Instead of having multiple components, we could have just had one `MarkCommand`/`UnmarkCommand` class and have that class be in charge of handling everything, from parsing the inputs from the user to modifying the model when the command is executed. However, we did not proceed with that plan, as doing so would create a `MarkCommand`/`UnmarkCommand` class that would have multiple responsibilities, which may lead to the singular `MarkCommand`/`UnmarkCommand` class requiring multiple changes when different, separate requirements change.
 
-## [Proposed] Edit Feature - Adding Deadlines
-The Edit feature is facilitated by `EditCommand` which extends `Command`. 
+## Edit Feature - Adding Deadlines
+The Edit feature is facilitated by `EditCommand` which extends `Command`.
 
 The adding of `Deadline` to existing `Task` will be accomplished using the `EditCommand` class. When an `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
 
 ### Proposed Enhancements
 Possible enhancements could be allowing the user to add `Deadline` directly when the `Task` is being added.
 
-## [Proposed] Edit Feature - Updating Priority of Existing Tasks
+## Edit Feature - Updating Priority of Existing Tasks
 
 When Tasks are created, they have a `Priority` level of `NONE`. The updating of `Priority` to existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, their default `Priority` level of `NONE` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH`.
 
 ### Proposed Enhancements
 Possible enhancement for `Priority` is to allow users to `add` a task to the list with the `Priority` level specified at the `AddCommand` level. This way, users do not have to go through the extra step of updating the default `Priority` level of `NONE`.
 
-## [Proposed] Sort Feature
+## Sort Feature
 
 Some attributes within the Tasks are comparable with each other as they implement the `java.lang.Comparable<T>` interface. These attributes are: `Description`, `Status`, `Deadline` and `Priority`.
 
@@ -441,10 +441,10 @@ The process is given as such:
 4. The created `SortCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `SortCommand` with the relevant parsed parameters are created and returned to the caller.
 6. The `SortCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `SortCommand` object.
-   1. Firstly, the `SortCommand` object makes a call to the `Model` using the method `getTaskWise()` and `getTaskList()`, returning the list of Tasks.
-   2. The returned List of Tasks is then sorted using the aforementioned specified parameters.
-   3. After the sort, `SortCommand` invokes the `setAllTasks()` method on `Model`, setting the internal filtered list of `Model` to the sorted Tasks.
-   4. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `SortCommand::execute()` method.
+    1. Firstly, the `SortCommand` object makes a call to the `Model` using the method `getTaskWise()` and `getTaskList()`, returning the list of Tasks.
+    2. The returned List of Tasks is then sorted using the aforementioned specified parameters.
+    3. After the sort, `SortCommand` invokes the `setAllTasks()` method on `Model`, setting the internal filtered list of `Model` to the sorted Tasks.
+    4. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `SortCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `SortCommand` and parses it.
 8. The execution of `SortCommand` terminates.
 
@@ -456,7 +456,7 @@ However, we have decided to implement the feature in the end, as we conclude tha
 
 To mitigate the problems that the extension of code may cause, we decided to implement the sorting parameters as Enums, hence allowing us as maintainers to easily extend the sort feature to new attributes added to Tasks with just a few lines of code.
 
-## [Proposed] Note Feature
+## Note Feature
 
 The Note feature is facilitated by the `Note Command` which extends `Command`.
 
@@ -472,8 +472,8 @@ The process is given as such:
 4. The created `NoteCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `NoteCommand` with the relevant parsed parameters are created and returned to the caller.
 6. The `NoteCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `NoteCommand` object.
-   1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turns invoke the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note.
-   2. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `NoteCommand::execute()` method.
+    1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turns invoke the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note.
+    2. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `NoteCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `NoteCommand` and parses it.
 8. The execution of `NoteCommand` terminates.
 
@@ -486,8 +486,8 @@ Initially, we were considering whether or not to make the requirement for `Note`
 Possible enhancement for Note is to allow users to add a task to the list with the Note specified at the AddCommand level if users already have something in mind to note. This way, users do not have to do it in separate steps.
 
 
-## [Proposed] Assign Feature
-Each instance of task will contain a set of members instances whereby the Member class will be an immutable class encapsulating the name of a group member. 
+## Assign Feature
+Each instance of task will contain a set of members instances whereby the Member class will be an immutable class encapsulating the name of a group member.
 
 To assign group members to a task, the project manager can do so using the following assign command as such `assign 1 a/John` which will assign John to the task at index 1.
 
@@ -499,8 +499,8 @@ The process is given as such:
 4. The created `AssignCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `AssignCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `AssignCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AssignCommand` object.
-   1. `AssignCommand` will then call the `assignTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated task list with the task having an updated set of assignees.
-   2. If the assignment to the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AssignCommand::execute()` method.
+    1. `AssignCommand` will then call the `assignTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated task list with the task having an updated set of assignees.
+    2. If the assignment to the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AssignCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AssignCommand` and parses it
 8. The execution of `AssignCommand` terminates.
 
@@ -823,7 +823,7 @@ Use case ends.
 
 ## Glossary
 
-* **Argument**: A word or number or a sequence of words or numbers that represent. 
+* **Argument**: A word or number or a sequence of words or numbers that represent.
 * **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing commands.
 * **Command**: A sequence of words that represents an action that TaskWise can understand and execute.
 * **Deadline**: A class that represents the date that the task needs to be completed by.
