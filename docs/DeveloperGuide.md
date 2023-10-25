@@ -162,8 +162,8 @@ Included inside the Task model are the following attributes:
     * Encapsulates a LocalDateTime object as an attribute, indicating a certain deadline for the task the Deadline object is associated with.
 * `Note`
     * Encapsulates a string attribute indicating the additional information of the task containing the task.
-* `Assignees`
-    * A set of assignee instances, each encapsulating the name of the respective members assigned to the task.
+* `Member`
+    * A set of member instances, each encapsulating the name of the respective members assigned to the task.
 * `Priority`
     * Encapsulates levels of priority as enumerations, highlighting the importance or urgency of the task it is associated with.
 
