@@ -455,6 +455,10 @@ However, we have decided to implement the feature in the end, as we conclude tha
 
 To mitigate the problems that the extension of code may cause, we decided to implement the sorting parameters as Enums, hence allowing us as maintainers to easily extend the sort feature to new attributes added to Tasks with just a few lines of code.
 
+### Proposed Enhancements
+
+A possible enhancement for Sort would be to create new subclasses that extend directly from SortCommand, which represents the various specific sort sequences used to sort the Task List. While this may increase the amount of code written, it helps to increase extensibility of the sort feature and permit special sort sequences that cannot be defined by simple Enums.
+
 ## Note Feature
 
 The Note feature is facilitated by the `Note Command` which extends `Command`.
