@@ -14,6 +14,8 @@ public class Deadline {
             "Deadlines need to be in the format (DD(- OR /)MM(- OR /)YYYY HH(: or -)MM) "
                     + "OR (DD(- OR /)MM(- OR /)YYYY).";
 
+    public static final String INVALID_DATE = "Please input a valid date/time!";
+
     //@@author asdfghjkxd-reused
     // Regex strings are reused with some modification from ChatGPT, and is also built and tested with
     // https://regex101.com/.

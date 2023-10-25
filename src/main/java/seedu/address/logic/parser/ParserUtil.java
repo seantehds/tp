@@ -89,7 +89,7 @@ public class ParserUtil {
             return new Deadline(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
         }
 
-        throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+        throw new IllegalArgumentException(Deadline.INVALID_DATE);
     }
 
     /**
