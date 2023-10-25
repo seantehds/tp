@@ -18,8 +18,8 @@ Welcome to the TaskWise Developer Guide!
     - [Add Feature](#add-feature)
     - [Mark Feature](#mark-feature)
     - [Unmark Feature](#unmark-feature)
-    - [Edit Feature - Adding Deadlines](#edit-feature-adding-deadlines)
-    - [Edit Feature - Updating Priority of Existing Tasks](#edit-feature-updating-priority-of-existing-tasks)
+    - [Edit Feature - Adding Deadlines](#edit-feature---adding-deadlines)
+    - [Edit Feature - Updating Priority of Existing Tasks](#edit-feature---updating-priority-of-existing-tasks)
     - [Sort Feature](#sort-feature)
     - [Note Feature](#note-feature)
     - [Assign Feature](#assign-feature)
@@ -310,7 +310,7 @@ Developers are recommended to extend the current Exception classes already provi
 # Implementation
 
 ## General Implementation of Commands In TaskWise
-![General Class Diagram](./images/GeneralClassDiagram)
+![General Class Diagram](./images/GeneralClassDiagram.png)
 
 This class diagram is applicable for the following command: `Add`, `Mark`, `Unmark`, `Delete`, `Edit`, `Note`.
 
