@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -20,6 +21,7 @@ public class Task {
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
     private final Status status;
+    private final Note note;
     private final Deadline deadline;
 
     /**
@@ -33,6 +35,7 @@ public class Task {
         this.description = description;
         this.status = new Status();
         this.tags.addAll(Collections.emptySet());
+        this.note = new Note("");
         this.deadline = null;
     }
 
@@ -47,6 +50,23 @@ public class Task {
         this.description = description;
         this.status = status;
         this.tags.addAll(Collections.emptySet());
+        this.note = new Note("");
+        this.deadline = null;
+    }
+
+    /**
+     * Constructor for task, to be used in retrieval from storage.
+     *
+     * @param description
+     * @param status
+     * @param note
+     */
+    public Task(Description description, Status status, Note note) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.note = note;
         this.deadline = null;
     }
 
@@ -62,6 +82,24 @@ public class Task {
         this.description = description;
         this.status = status;
         this.tags.addAll(Collections.emptySet());
+        this.deadline = deadline;
+        this.note = new Note("");
+    }
+
+    /**
+     * Constructor for a task with a deadline, status and note.
+     *
+     * @param description
+     * @param status
+     * @param deadline
+     * @param note
+     */
+    public Task(Description description, Status status, Note note, Deadline deadline) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.note = note;
         this.deadline = deadline;
     }
 
@@ -81,6 +119,9 @@ public class Task {
         return status;
     }
 
+    public Note getNote() {
+        return note;
+    }
     public Deadline getDeadline() {
         return deadline;
     }
