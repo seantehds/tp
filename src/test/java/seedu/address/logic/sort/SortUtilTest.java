@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Note;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
 public class SortUtilTest {
