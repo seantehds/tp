@@ -21,10 +21,11 @@ public class Task {
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
     private final Status status;
+    private final Deadline deadline;
     private final Priority priority;
-
     /**
      * Only description is required.
+     *
      * @param description
      */
     // TODO: Fix/Remove the default fields that are unnecessary
@@ -34,6 +35,7 @@ public class Task {
         this.status = new Status();
         this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
+        this.deadline = null;
     }
 
     /**
@@ -48,6 +50,23 @@ public class Task {
         this.status = status;
         this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
+        this.deadline = null;
+    }
+
+    /**
+     * Constructor for a task with a deadline and a status.
+     *
+     * @param description
+     * @param status
+     * @param deadline
+     */
+    public Task(Description description, Status status, Deadline deadline) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.deadline = deadline;
+        this.priority = Priority.NONE;
     }
 
     /**
@@ -62,6 +81,7 @@ public class Task {
         this.status = status;
         this.priority = priority;
         this.tags.addAll(Collections.emptySet());
+        this.deadline = null;
     }
     
 
@@ -79,6 +99,10 @@ public class Task {
 
     public Status getStatus() {
         return status;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     /**
@@ -140,4 +164,7 @@ public class Task {
                 .toString();
     }
 
+    public Task createNewInstance(Task oldTask) {
+        return new Task(oldTask.description, oldTask.status);
+    }
 }
