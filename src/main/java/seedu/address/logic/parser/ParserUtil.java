@@ -16,6 +16,7 @@ import seedu.address.logic.sort.enums.SortTypeEnum;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Note;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -41,10 +42,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalArgumentException if the given {@code name} is invalid.
+     * @throws IllegalArgumentException if the given {@code description} is invalid.
      */
     public static Description parseDescription(String description) throws IllegalArgumentException {
         requireNonNull(description);
@@ -56,10 +57,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalArgumentException if the given {@code name} is invalid.
+     * @throws IllegalArgumentException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws IllegalArgumentException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!seedu.address.model.task.Note.isValidNote(trimmedNote)) {
+            throw new IllegalArgumentException(seedu.address.model.task.Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalArgumentException if the given {@code deadline} is invalid.
      */
     public static Deadline parseDeadline(String deadline) throws IllegalArgumentException {
         requireNonNull(deadline);

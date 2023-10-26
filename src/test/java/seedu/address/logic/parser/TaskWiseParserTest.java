@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
@@ -115,6 +117,13 @@ public class TaskWiseParserTest {
         assertEquals(new SortCommand(SortOrderEnum.ASCENDING, SortTypeEnum.PRIORITY), command);
     }
 
+    @Test
+    public void parseCommand_note() throws Exception {
+        Task task = new TaskBuilder().build();
+        NoteCommand command = (NoteCommand) parser.parseCommand(NoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TASK.getOneBased() + " " + PREFIX_NOTE + task.getNote().fullNote);
+        assertEquals(new NoteCommand(INDEX_FIRST_TASK, task.getNote()), command);
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND_FORMAT, ()
