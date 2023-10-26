@@ -21,9 +21,9 @@ public class Task {
     // Identity fields
     private final Description description;
     private final Status status;
-    private final Priority priority;
     private final Note note;
     private final Deadline deadline;
+    private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
 
     
@@ -37,97 +37,31 @@ public class Task {
         requireAllNonNull(description);
         this.description = description;
         this.status = new Status();
-        this.priority = Priority.NONE;
         this.note = new Note("");
         this.deadline = null;
-        this.tags.addAll(Collections.emptySet());
-    }
-
-    /**
-     * Constructor for task, to be used in retrieval from storage.
-     *
-     * @param description
-     * @param status
-     */
-    public Task(Description description, Status status) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
         this.priority = Priority.NONE;
-        this.tags.addAll(Collections.emptySet());
-        this.note = new Note("");
-        this.deadline = null;
-    }
-
-    /**
-     * Constructor for task, to be used in retrieval from storage.
-     *
-     * @param description
-     * @param status
-     * @param note
-     */
-    public Task(Description description, Status status, Note note) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.note = note;
-        this.deadline = null;
-        this.priority = Priority.NONE;
-    }
-
-    /**
-     * Constructor for a task with a deadline and a status.
-     *
-     * @param description
-     * @param status
-     * @param deadline
-     */
-    public Task(Description description, Status status, Deadline deadline) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.deadline = deadline;
-        this.priority = Priority.NONE;
-        this.note = new Note("");
-    }
-
-    /**
-     * Constructor for a task with a deadline, status and note.
-     *
-     * @param description
-     * @param status
-     * @param deadline
-     * @param note
-     */
-    public Task(Description description, Status status, Note note, Deadline deadline) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.note = note;
-        this.deadline = deadline;
-        this.priority = Priority.NONE;
-    }
-
-    /**
-     * Constructor for task, to be used in retrieval from storage.
-     *
-     * @param description
-     * @param priority
-     */
-    public Task(Description description, Status status, Priority priority, Note note, Deadline deadline) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.priority = priority;
-        this.deadline = deadline;
-        this.note = note;
         this.tags.addAll(Collections.emptySet());
     }
     
 
+    /**
+     * Constructor for a task with a description, status, note, deadline and priority.
+     *
+     * @param description
+     * @param status
+     * @param deadline
+     * @param note
+     */
+    public Task(Description description, Status status, Note note, Deadline deadline, Priority priority) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.note = note;
+        this.deadline = deadline;
+        this.priority = Priority.NONE;
+        this.tags.addAll(Collections.emptySet());
+    }
+    
     public Description getDescription() {
         return description;
     }
@@ -197,7 +131,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, tags, status, priority);
+        return Objects.hash(description, tags, status, note, deadline, priority);
     }
 
     @Override
@@ -206,11 +140,9 @@ public class Task {
                 .add("name", description)
                 .add("tags", tags)
                 .add("status", status)
+                .add("note", note)
+                .add("deadline", deadline)
                 .add("priority", priority)
                 .toString();
-    }
-
-    public Task createNewInstance(Task oldTask) {
-        return new Task(oldTask.description, oldTask.status);
     }
 }

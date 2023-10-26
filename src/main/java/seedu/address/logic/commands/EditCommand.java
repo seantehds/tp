@@ -26,6 +26,7 @@ import seedu.address.model.tag.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Note;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
@@ -97,8 +98,10 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
+        Note note = taskToEdit.getNote(); //Not edited using editCommand
 
-        return new Task(updatedDescription, status, updatedDeadline);
+        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority);
+        
     }
 
     @Override

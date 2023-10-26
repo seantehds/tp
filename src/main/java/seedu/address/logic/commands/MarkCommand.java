@@ -48,13 +48,8 @@ public class MarkCommand extends Command {
             throw new CommandException(MESSAGE_MARK_MARKED_TASK);
         }
 
-
-        Task markedTask;
-        if (taskToMark.getDeadline() == null) {
-            markedTask = new Task(taskToMark.getDescription(), status.updateStatus());
-        } else {
-            markedTask = new Task(taskToMark.getDescription(), status.updateStatus(), taskToMark.getDeadline());
-        }
+        Task markedTask = new Task(taskToMark.getDescription(), status.updateStatus(),
+                taskToMark.getNote(), taskToMark.getDeadline(), taskToMark.getPriority());
         model.setTask(taskToMark, markedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.format(taskToMark)));

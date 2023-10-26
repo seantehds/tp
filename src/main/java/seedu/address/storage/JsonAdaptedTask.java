@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.logic.parser.exceptions.IllegalArgumentException;
+import seedu.address.model.tag.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -26,9 +28,10 @@ class JsonAdaptedTask {
 
     private final String description;
     private final boolean status;
-    private final Deadline deadline;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String note;
+    private final Deadline deadline;
+    private final Priority priority;
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -36,7 +39,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                            @JsonProperty("status") boolean status, @JsonProperty("note") String note,
-                           @JsonProperty("deadline") Deadline deadline) {
+                           @JsonProperty("deadline") Deadline deadline, @JsonProperty("priority") Priority priority) {
         this.description = name;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -44,6 +47,7 @@ class JsonAdaptedTask {
         this.status = status;
         this.note = note;
         this.deadline = deadline;
+        this.priority = priority;
     }
 
     /**
@@ -57,6 +61,7 @@ class JsonAdaptedTask {
         status = source.getStatus().isCompleted();
         note = source.getNote().fullNote;
         deadline = source.getDeadline();
+        priority = source.getPriority();
     }
 
     /**
@@ -70,7 +75,6 @@ class JsonAdaptedTask {
             taskTags.add(tag.toModelType());
         }
 
-
         if (description == null) {
             throw new IllegalJsonNameValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
@@ -83,12 +87,12 @@ class JsonAdaptedTask {
         if (!Note.isValidNote(note)) {
             throw new IllegalJsonValueException(Note.MESSAGE_CONSTRAINTS);
         }
-
-        final Description modelName = new Description(description);
+        
+        final Description modelDescription = new Description(description);
 
         final Status modelStatus = new Status(status);
 
-        return new Task(modelName, modelStatus, new Note(note), deadline);
+        return new Task(modelDescription, modelStatus, new Note(note), deadline, priority);
     }
 
 }
