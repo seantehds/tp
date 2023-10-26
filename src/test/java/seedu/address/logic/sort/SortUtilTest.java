@@ -69,7 +69,7 @@ public class SortUtilTest {
     @Test
     public void ofTaskName_descendingEqual_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION);
-        Task t2 = new Task(SECOND_DESCRIPTION);
+        Task t2 = new Task(FIRST_DESCRIPTION);
         assertEquals(taskComparatorDescending.compare(t1, t2), 0);
     }
 
