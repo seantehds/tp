@@ -71,7 +71,7 @@ class JsonAdaptedTask {
 
 
         if (description == null) {
-            throw new IllegalJsonNameValueException(
+            throw new IllegalJsonDescriptionValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
 

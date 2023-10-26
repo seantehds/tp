@@ -117,5 +117,10 @@ public class Deadline implements Comparable<Deadline> {
         private NullDeadline() {
             super(LocalDateTime.MAX);
         }
+
+        @Override
+        public String toString() {
+            return "No Deadline";
+        }
     }
 }
