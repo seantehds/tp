@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
 import seedu.address.model.task.Status;
@@ -16,10 +17,12 @@ public class TaskBuilder {
     // TODO: Change task builder's default fields
     public static final String DEFAULT_DESCRIPTION = "Do task";
     public static final String DEFAULT_NOTE = "";
-
+    public static final boolean DEFAULT_STATUS = false;
+    public static final Deadline DEFAULT_DEADLINE = null;
     private Description description;
     private Status status;
     private Note note;
+    private Deadline deadline;
     private Set<Tag> tags;
 
     /**
@@ -27,8 +30,9 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
-        status = new Status(false);
+        status = new Status(DEFAULT_STATUS);
         note = new Note(DEFAULT_NOTE);
+        deadline = null;
     }
 
     /**
@@ -38,6 +42,7 @@ public class TaskBuilder {
         description = taskToCopy.getDescription();
         status = taskToCopy.getStatus();
         note = taskToCopy.getNote();
+        deadline = taskToCopy.getDeadline();
     }
 
     /**
@@ -73,7 +78,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, status, note);
+        return new Task(description, status, note, deadline);
     }
 
 }

@@ -40,53 +40,6 @@ public class Task {
     }
 
     /**
-     * Constructor for task, to be used in retrieval from storage.
-     *
-     * @param description
-     * @param status
-     */
-    public Task(Description description, Status status) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.note = new Note("");
-        this.deadline = null;
-    }
-
-    /**
-     * Constructor for task, to be used in retrieval from storage.
-     *
-     * @param description
-     * @param status
-     * @param note
-     */
-    public Task(Description description, Status status, Note note) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.note = note;
-        this.deadline = null;
-    }
-
-    /**
-     * Constructor for a task with a deadline and a status.
-     *
-     * @param description
-     * @param status
-     * @param deadline
-     */
-    public Task(Description description, Status status, Deadline deadline) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.deadline = deadline;
-        this.note = new Note("");
-    }
-
-    /**
      * Constructor for a task with a deadline, status and note.
      *
      * @param description
@@ -163,7 +116,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, tags, status);
+        return Objects.hash(description, tags, status, note, deadline);
     }
 
     @Override
@@ -173,9 +126,5 @@ public class Task {
                 .add("tags", tags)
                 .add("status", status)
                 .toString();
-    }
-
-    public Task createNewInstance(Task oldTask) {
-        return new Task(oldTask.description, oldTask.status);
     }
 }

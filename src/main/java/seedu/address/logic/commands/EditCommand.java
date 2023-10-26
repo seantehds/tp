@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Note;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
@@ -91,8 +92,9 @@ public class EditCommand extends Command {
         Description updatedName = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
+        Note note = taskToEdit.getNote();
 
-        return new Task(updatedName, status, updatedDeadline);
+        return new Task(updatedName, status, note, updatedDeadline);
     }
 
     @Override
