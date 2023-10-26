@@ -50,13 +50,8 @@ public class UnmarkCommand extends Command {
             throw new IllegalTaskStatusModificationException(MESSAGE_UNMARK_UNMARKED_TASK);
         }
 
-        Task markedTask;
-        if (taskToUnmark.getDeadline() == null) {
-            markedTask = new Task(taskToUnmark.getDescription(), status.updateStatus());
-        } else {
-            markedTask = new Task(taskToUnmark.getDescription(), status.updateStatus(),
+        Task markedTask = new Task(taskToUnmark.getDescription(), status.updateStatus(), taskToUnmark.getNote(),
                     taskToUnmark.getDeadline());
-        }
         model.setTask(taskToUnmark, markedTask);
 
 

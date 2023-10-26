@@ -175,7 +175,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, tags, status);
+        return Objects.hash(description, tags, status, note, deadline);
     }
 
     @Override
@@ -185,9 +185,5 @@ public class Task {
                 .add("tags", tags)
                 .add("status", status)
                 .toString();
-    }
-
-    public Task createNewInstance(Task oldTask) {
-        return new Task(oldTask.description, oldTask.status);
     }
 }
