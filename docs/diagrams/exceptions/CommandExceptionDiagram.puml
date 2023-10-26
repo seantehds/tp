@@ -9,10 +9,12 @@ package commands.exceptions as CommandExceptions;{
     class DuplicatedTaskException
     class IllegalCommandException
     class IllegalTaskIndexException
+    class IllegalTaskStatusModificationException
 
     DuplicatedTaskException -up-|> CommandException
     IllegalCommandException -up-|> CommandException
     IllegalTaskIndexException -up-|> IllegalCommandException
+    IllegalTaskStatusModificationException -up-|>IllegalCommandException
 
     hide members
 }

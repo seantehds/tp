@@ -50,9 +50,14 @@ public class MarkCommand extends Command {
             throw new IllegalTaskStatusModificationException(MESSAGE_MARK_MARKED_TASK);
         }
 
-        Task markedTask = new Task(taskToMark.getDescription(), status.updateStatus());
-        model.setTask(taskToMark, markedTask);
 
+        Task markedTask;
+        if (taskToMark.getDeadline() == null) {
+            markedTask = new Task(taskToMark.getDescription(), status.updateStatus());
+        } else {
+            markedTask = new Task(taskToMark.getDescription(), status.updateStatus(), taskToMark.getDeadline());
+        }
+        model.setTask(taskToMark, markedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.format(taskToMark)));
     }

@@ -98,6 +98,10 @@ deactivate CommandResult
 SortCommand --> LogicManager : result
 deactivate SortCommand
 
+SortCommand -[hidden]-> ObservableList
+destroy ObservableList
+
+
 [<--LogicManager
 deactivate LogicManager
 @enduml

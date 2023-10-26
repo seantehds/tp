@@ -13,19 +13,17 @@ package storage.exceptions as MainStorageException; {
 package storage.exceptions.json as JsonExceptions; {
     class IllegalJsonDescriptionValueException
     class IllegalJsonDuplicatedValueException
-    class IllegalJsonNameValueException
     class IllegalJsonTagValueException
     class IllegalJsonValueException
 
     IllegalJsonDescriptionValueException -up-|> IllegalJsonValueException
     IllegalJsonDuplicatedValueException -up-|> IllegalJsonValueException
-    IllegalJsonNameValueException -up-|> IllegalJsonValueException
     IllegalJsonTagValueException -up-|> IllegalJsonValueException
+
     IllegalJsonValueException -up-|> StorageException
     IllegalJsonValueException -[hidden]up--> StorageException
 
     IllegalJsonDuplicatedValueException -[hidden]down- IllegalJsonDescriptionValueException
-    IllegalJsonTagValueException -[hidden]down- IllegalJsonNameValueException
 
     hide members
 }

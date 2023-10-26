@@ -18,8 +18,8 @@ Welcome to the TaskWise Developer Guide!
     - [Add Feature](#add-feature)
     - [Mark Feature](#mark-feature)
     - [Unmark Feature](#unmark-feature)
-    - [Edit Feature - Adding Deadlines](#edit-feature-adding-deadlines)
-    - [Edit Feature - Updating Priority of Existing Tasks](#edit-feature-updating-priority-of-existing-tasks)
+    - [Edit Feature - Adding Deadlines](#edit-feature---adding-deadlines)
+    - [Edit Feature - Updating Priority of Existing Tasks](#edit-feature---updating-priority-of-existing-tasks)
     - [Sort Feature](#sort-feature)
     - [Note Feature](#note-feature)
     - [Assign Feature](#assign-feature)
@@ -162,8 +162,8 @@ Included inside the Task model are the following attributes:
     * Encapsulates a LocalDateTime object as an attribute, indicating a certain deadline for the task the Deadline object is associated with.
 * `Note`
     * Encapsulates a string attribute indicating the additional information of the task containing the task.
-* `Assignees`
-    * A set of assignee instances, each encapsulating the name of the respective members assigned to the task.
+* `Members`
+    * A set of member instances, each encapsulating the name of the respective members assigned to the task.
 * `Priority`
     * Encapsulates levels of priority as enumerations, highlighting the importance or urgency of the task it is associated with.
 
@@ -203,7 +203,7 @@ We shall now go through the 3 different classes of recognised Exceptions and Err
 
 You are strongly discouraged from throwing this Exception class as a general catch-all exception when something went wrong when the user tries to execute a `Command`, as it may lack the necessary information which you need to find out what is wrong with the code and prevent you from debugging later on!
 
-Should you find yourself requiring more Exception classes to handle any new errors that arises when you extend the app,create new Exception classes, extend from `CommandException`, and throw the new class instead!
+Should you find yourself requiring more Exception classes to handle any new errors that arises when you extend the app, create new Exception classes, extend from `CommandException`, and throw the new class instead!
 
 There are *3* other derived classes of `CommandException`, which are the `DuplicatedTaskException`, `IllegalCommandException` and `IllegalTaskIndexException` classes. We shall explore the classes in detail in the next few sections.
 
@@ -227,6 +227,12 @@ This Exception is thrown when the user attempts to input a Task index that is no
 
 Some examples of task indices that are not permitted include: `-1` (negative indices), `10.0` (floating points) and `10` (when there is only `9` tasks in the task list).
 
+#### `IllegalTaskStatusModificationException`
+
+This Exception is thrown when the user attempts to mark a Task that is already completed, or unmark a task that is not completed.
+
+For example, if a given Task is already marked as completed, when the user attempts to mark the Task again, this Exception will be thrown.
+
 ### `ParseException`
 
 `ParseException` is another generic error which occurs when there was an issue encountered when a `Parser` tries to parse an input from the user. Usually, this error arises due to user error (e.g. wrong commands, invalid or illegal inputs), and should **not** be the result of developer error.
@@ -235,7 +241,7 @@ Some examples of task indices that are not permitted include: `-1` (negative ind
 
 #### `DuplicatedPrefixException`
 
-This Exception is thrown when the same `Prefix` is detected in the same command.
+This Exception is thrown when the same `Prefix` is detected more than once in the same command.
 
 For example, if the command `add t/task t/another task` is entered, the duplicated `t/` `Prefix` will be detected, and this Exception will be thrown.
 
@@ -261,23 +267,17 @@ This Exception is thrown when the user indicates that they would like to edit a 
 
 ### `StorageException`
 
-`StorageException` is the final class of generic error which occurs when there is an issue loading data from the
-save files of TaskWise.
+`StorageException` is the final class of generic error which occurs when there is an issue loading data from the save files of TaskWise.
 
 ![overview](images/exceptions/StorageExceptionDiagram.png)
 
 #### `IllegalJsonValueException`
 
-This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the
-Task model.
+This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the Task model.
 
 #### `IllegalJsonDescriptionValueException`
 
 This Exception is thrown when the stored Task Description is corrupted and cannot be read from the JSON data file.
-
-#### `IllegalJsonNameValueException`
-
-This Exception is thrown when the stored Task Name is corrupted and cannot be read from the JSON data file.
 
 #### `IllegalJsonTagValueException`
 
@@ -299,18 +299,18 @@ This Exception is thrown when the user failed to grant TaskWise sufficient acces
 
 This Exception is thrown when there is an error encountered when TaskWise is trying to read or write from the data files.
 
-Note that this errors differs from [`InsufficientStoragePrivilegeException`](#insufficientstorageprivilegeexception) in that access is granted, but the data file could not be recognised and hence parsed within TaskWise, hence leading to an error being raised.
+Note that this error differs from [`InsufficientStoragePrivilegeException`](#insufficientstorageprivilegeexception) in that access is granted, but the data file could not be recognised and hence parsed within TaskWise, hence leading to an error being raised.
 
 ### Unrecognised Exceptions
 
-Any other Exceptions not mentioned above should not, under most circumstances, be thrown by any method within TaskWise, as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application crashing catastrophically.
+Any other Exceptions not mentioned above should not, under most circumstances, be thrown and not be handled by any method within TaskWise, as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application crashing catastrophically.
 
-Developers are recommended to extend on the current Exception classes already provided to specify new Exceptions that they would like to handle, rather than throwing any Exceptions that are not on the list of pre-approved Exceptions.
+Developers are recommended to extend the current Exception classes already provided to specify new Exceptions that they would like to handle, rather than throwing any Exceptions directly that are not on the list of pre-approved Exceptions, unless there is a legitimate reason to do so.
 
 # Implementation
 
 ## General Implementation of Commands In TaskWise
-![General Class Diagram](./images/GeneralClassDiagram)
+![General Class Diagram](./images/GeneralClassDiagram.png)
 
 This class diagram is applicable for the following command: `Add`, `Mark`, `Unmark`, `Delete`, `Edit`, `Note`.
 
@@ -346,14 +346,14 @@ The following sequence diagram shows how the add operation works for `add t/Comp
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
 ### Proposed Enhancements
-The Add feature could allow for other *optional* attributes in the Task Model such as `deadline`, `priority`, `asignee` and `notes` to be added together with the task `description`.
+The Add feature could allow for other *optional* attributes in the Task Model such as `deadline`, `priority`, `member` and `notes` to be added together with the task `description`.
 
 An example of the enhanced `add` feature is: `add t/Complete DG d/26/10/2023 p/high` which adds the task with `description` Complete DG, `deadline` 26/10/2023 and `priority` high.
 
 ### Alternatives Considered:
-We considered allowing the add feature to add `Notes`, `Assignee`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.
+We considered allowing the add feature to add `Notes`, `Member`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.
 
-Only the `Description` has been made compulsory. The `Edit` feature will allow for users to add and update `Deadline`, `Priority`. The `Note` and `Assignee` features will allow for `assignee` and `note` to be added respectively.
+Only the `Description` has been made compulsory. The `Edit` feature will allow for users to add and update `Deadline`, `Priority`. The `Note` and `Assign` features will allow for `note` and `member` to be added respectively.
 
 ## Mark Feature
 
@@ -420,8 +420,7 @@ Possible enhancement for `Priority` is to allow users to `add` a task to the lis
 
 Some attributes within the Tasks are comparable with each other as they implement the `java.lang.Comparable<T>` interface. These attributes are: `Description`, `Status`, `Deadline` and `Priority`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task is work-in-progress!
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task are work-in-progress!</div>
 
 These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the Task List using these attributes to obtain an ordered representation of the Task List.
 
@@ -456,6 +455,10 @@ However, we have decided to implement the feature in the end, as we conclude tha
 
 To mitigate the problems that the extension of code may cause, we decided to implement the sorting parameters as Enums, hence allowing us as maintainers to easily extend the sort feature to new attributes added to Tasks with just a few lines of code.
 
+### Proposed Enhancements
+
+A possible enhancement for Sort would be to create new subclasses that extend directly from SortCommand, which represents the various specific sort sequences used to sort the Task List. While this may increase the amount of code written, it helps to increase extensibility of the sort feature and permit special sort sequences that cannot be defined by simple Enums.
+
 ## Note Feature
 
 The Note feature is facilitated by the `Note Command` which extends `Command`.
@@ -479,7 +482,7 @@ The process is given as such:
 
 ### Alternatives Considered
 
-Initially, we were considering whether or not to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However we realized that there is a key different between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
+Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However we realized that there is a key different between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
 
 ### Proposed Enhancements
 
@@ -499,25 +502,34 @@ The process is given as such:
 4. The created `AssignCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `AssignCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `AssignCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AssignCommand` object.
-    1. `AssignCommand` will then call the `assignTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated task list with the task having an updated set of assignees.
+    1. `AssignCommand` will then call the `assignTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`
+   , replacing the old `Task` with a new instance of the `Task` having an updated set of members.
     2. If the assignment to the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AssignCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AssignCommand` and parses it
 8. The execution of `AssignCommand` terminates.
 
 ![assign sequence diagram](/images/AssignSequenceDiagram.png)
 
-To remove the assigned members to a task, the project manager can use the edit command `edit 1 a/` whereby it will remove all assignees to the task at index 1.
+To remove the assigned members to a task, the project manager can use the edit command `edit 1 a/` whereby it will remove all assigned members of the task at index 1.
 
-The implementation of the attribute assignees to task is done using the Set data structure as it will help us handle the scenario where the project manager accidentally assign the same member to the task again. The group members' name will be encapsulated under the Member class as the sole attribute to ensure consistency with the other attributes.
+The implementation of the attribute `members` to task is done using the Set data structure as it handles the scenario where the project manager accidentally assign the same member to the task again. The group members' name will be encapsulated under the Member class as the sole attribute to ensure consistency with the other attributes.
 
 
 ### Alternatives considered
-An alternative that was thought of for the Member class was to have an enum class containing the name of the different members. However, implementing this idea would make it difficult for us to handle the case where there are at least 2 group members of the exact same name, which would be deemed as duplicates in the enum class. Therefore, as an enhancement to this feature, we plan to store the group members in a json file, updating the json file when members are added into the group or left the group, retrieving the data the moment the application starts up.
+An alternative that was thought of for the Member class was to have an enum class containing the name of the different members.
+However, implementing this idea would make it difficult for us to handle the case where there are at least 2 group members of the exact same name, 
+which would be deemed as duplicates in the enum class. 
+
+Therefore, as an enhancement to this feature, we plan to store the group members in a json file, 
+updating the json file when members are added into the group or left the group, 
+retrieving the data the moment the application starts up.
 
 ### Proposed enhancement
 1) Stores group member in a json file.
+
 2) Assigning member based on index in json file.
-3) Assignee class to also track the task that the member is assigned to.
+
+3) Member class to also track the task that the member is assigned to.
 
 
 # Documentation, Logging, Testing, Configuration and DevOps
