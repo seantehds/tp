@@ -20,20 +20,10 @@ public enum Priority {
      */
     public static Priority of(String priority) throws IllegalArgumentException {
         switch (priority) {
-        case "l":
-        case "lo":
-        case "lw":
         case "low":
             return Priority.LOW;
-        case "m":
-        case "me":
-        case "med":
-        case "mediu":
         case "medium":
             return Priority.MEDIUM;
-        case "h":
-        case "hi":
-        case "hig":
         case "high":
             return Priority.HIGH;
         default:
