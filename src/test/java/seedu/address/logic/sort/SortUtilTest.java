@@ -116,27 +116,27 @@ public class SortUtilTest {
     @Test
     public void ofDeadline_ascendingLessThan_valid() {
         Task t1 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         Task t2 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 22, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 22, 0)));
         assertEquals(deadlineComparatorAscending.compare(t1, t2), -1);
     }
 
     @Test
     public void ofDeadline_ascendingEqual_valid() {
         Task t1 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         Task t2 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         assertEquals(deadlineComparatorAscending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofDeadline_ascendingMoreThan_valid() {
         Task t1 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 22, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 22, 0)));
         Task t2 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         assertEquals(deadlineComparatorAscending.compare(t1, t2), 1);
     }
 
@@ -148,27 +148,27 @@ public class SortUtilTest {
     @Test
     public void ofDeadline_descendingLessThan_valid() {
         Task t1 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         Task t2 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 22, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 22, 0)));
         assertEquals(deadlineComparatorDescending.compare(t1, t2), 1);
     }
 
     @Test
     public void ofDeadline_descendingEqual_valid() {
         Task t1 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         Task t2 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         assertEquals(deadlineComparatorDescending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofDeadline_descendingMoreThan_valid() {
         Task t1 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 22, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 22, 0)));
         Task t2 = new Task(new Description("a"),
-                new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0)));
+                Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0)));
         assertEquals(deadlineComparatorDescending.compare(t1, t2), -1);
     }
 

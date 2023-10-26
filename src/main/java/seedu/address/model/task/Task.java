@@ -36,7 +36,7 @@ public class Task {
         this.status = new Status();
         this.tags.addAll(Collections.emptySet());
         this.note = new Note("");
-        this.deadline = Deadline.noDeadline();
+        this.deadline = Deadline.ofNull();
     }
 
     /**
@@ -51,7 +51,7 @@ public class Task {
         this.status = status;
         this.tags.addAll(Collections.emptySet());
         this.note = new Note("");
-        this.deadline = Deadline.noDeadline();
+        this.deadline = Deadline.ofNull();
     }
 
     /**
@@ -67,7 +67,7 @@ public class Task {
         this.status = status;
         this.tags.addAll(Collections.emptySet());
         this.note = note;
-        this.deadline = Deadline.noDeadline();
+        this.deadline = Deadline.ofNull();
     }
 
     /**
