@@ -13,8 +13,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.Priority;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -173,12 +173,10 @@ public class ParserUtil {
      */
     public static Priority parsePriority(String priority) throws IllegalArgumentException {
         requireNonNull(priority);
-
         try {
             return Priority.of(priority);
         } catch (java.lang.IllegalArgumentException e) {
-            throw new IllegalArgumentException(Priority.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(e.getMessage() + Priority.MESSAGE_CONSTRAINTS);
         }
     }
 }
-

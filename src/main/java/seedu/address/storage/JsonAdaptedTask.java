@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.model.tag.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;

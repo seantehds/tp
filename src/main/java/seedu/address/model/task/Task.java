@@ -8,9 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.Priority;
-
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Task in the address book.
@@ -25,14 +24,12 @@ public class Task {
     private final Deadline deadline;
     private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
-
     
     /**
      * Only description is required.
      *
      * @param description
      */
-    // TODO: Fix/Remove the default fields that are unnecessary
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;
@@ -41,7 +38,7 @@ public class Task {
         this.deadline = Deadline.noDeadline();
         this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
-    }    
+    }
 
     /**
      * Constructor for a task with a description, status, note, deadline and priority.
@@ -57,7 +54,7 @@ public class Task {
         this.status = status;
         this.note = note;
         this.deadline = deadline;
-        this.priority = Priority.NONE;
+        this.priority = priority;
         this.tags.addAll(Collections.emptySet());
     }
     

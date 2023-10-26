@@ -12,7 +12,13 @@ public enum Priority {
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should only be LOW, MEDIUM or HIGH, and it should not be blank";
 
-    
+    /**
+     * Returns the relevant {@code Priority} based on String input.
+     * 
+     * @param priority String input to parse
+     * @return {@code Priority} object
+     * @throws IllegalArgumentException if the String input is not a valid {@code Priority} value
+     */
     public static Priority of(String priority) throws IllegalArgumentException {
         switch (priority) {
         case "l":
@@ -32,7 +38,7 @@ public enum Priority {
         case "high":
             return Priority.HIGH;
         default:
-            throw new IllegalArgumentException("Invalid Priority Value");
+            throw new IllegalArgumentException("Invalid Priority Value: ");
         }
     }
 }

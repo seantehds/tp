@@ -40,6 +40,8 @@ public class TaskCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label note;
+    @FXML
+    private Label priority;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -51,6 +53,7 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().fullDescription);
         status.setText(task.getStatus().toString());
         note.setText(task.getNote().fullNote);
+        priority.setText(task.getPriority().toString());
         if (task.getDeadline() == null) {
             deadline.setText("");
         } else {

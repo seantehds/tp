@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -45,7 +45,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DEADLINE + "DEADLINE]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DESCRIPTION + "Finalise features"
+            + PREFIX_PRIORITY + "high";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -101,7 +103,6 @@ public class EditCommand extends Command {
         Note note = taskToEdit.getNote(); //Not edited using editCommand
 
         return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority);
-        
     }
 
     @Override
@@ -223,6 +224,8 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("description", description)
                     .add("tags", tags)
+                    .add("deadline", deadline)
+                    .add("priority", priority)
                     .toString();
         }
     }
