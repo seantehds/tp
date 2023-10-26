@@ -205,13 +205,13 @@ public class ParserUtilTest {
     }
 
     public void parseDeadline_validValueWithTime_returnsDeadline() throws IllegalArgumentException {
-        Deadline expectedDeadline = new Deadline(LocalDateTime.of(2023, 10, 25, 16, 0));
+        Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 16, 0));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITH_TIME));
     }
 
     @Test
     public void parseDeadline_validValueWithoutTime_returnsDeadline() throws IllegalArgumentException {
-        Deadline expectedDeadline = new Deadline(LocalDateTime.of(2023, 10, 25, 0, 0));
+        Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 0, 0));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITHOUT_TIME));
     }
 
