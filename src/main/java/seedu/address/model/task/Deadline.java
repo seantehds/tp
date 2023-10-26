@@ -9,12 +9,10 @@ import java.util.regex.Pattern;
  * Guarantees: details are present and not null, immutable.
  */
 public class Deadline implements Comparable<Deadline> {
-    private static final Deadline NULL = new NullDeadline();
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines need to be in the format (DD(- OR /)MM(- OR /)YYYY HH(: or -)MM) "
                     + "OR (DD(- OR /)MM(- OR /)YYYY).";
-
     public static final String INVALID_DATE = "Please input a valid date/time!";
 
     //@@author asdfghjkxd-reused
@@ -36,6 +34,8 @@ public class Deadline implements Comparable<Deadline> {
      * <a href="https://regex101.com/">This</a> was used to build and test the new regex patterns.
      */
     public static final String DATE_REGEX = "^(0?[1-9]|[12][0-9]|3[01])(\\/|-)(0?[1-9]|1[0-2])(\\/|-)\\d{4}";
+
+    private static final Deadline NULL = new NullDeadline();
     //@@ author
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
