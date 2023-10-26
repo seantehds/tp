@@ -35,7 +35,8 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                           @JsonProperty("status") boolean status, @JsonProperty("note") String note, @JsonProperty("deadline") Deadline deadline) {
+                           @JsonProperty("status") boolean status, @JsonProperty("note") String note,
+                           @JsonProperty("deadline") Deadline deadline) {
         this.description = name;
         if (tags != null) {
             this.tags.addAll(tags);

@@ -86,6 +86,14 @@ public class Task {
         this.note = new Note("");
     }
 
+    /**
+     * Constructor for a task with a deadline, status and note.
+     *
+     * @param description
+     * @param status
+     * @param deadline
+     * @param note
+     */
     public Task(Description description, Status status, Note note, Deadline deadline) {
         requireAllNonNull(description);
         this.description = description;
