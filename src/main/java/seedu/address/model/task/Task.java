@@ -38,11 +38,10 @@ public class Task {
         this.description = description;
         this.status = new Status();
         this.note = new Note("");
-        this.deadline = null;
+        this.deadline = Deadline.noDeadline();
         this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
-    }
-    
+    }    
 
     /**
      * Constructor for a task with a description, status, note, deadline and priority.

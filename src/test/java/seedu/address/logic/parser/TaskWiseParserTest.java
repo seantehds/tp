@@ -25,8 +25,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NoteCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.sort.enums.SortOrderEnum;
+import seedu.address.logic.sort.enums.SortTypeEnum;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -104,6 +107,14 @@ public class TaskWiseParserTest {
         UnmarkCommand command = (UnmarkCommand) parser.parseCommand(
                 UnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new UnmarkCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " o/asc ty/pr"
+        );
+        assertEquals(new SortCommand(SortOrderEnum.ASCENDING, SortTypeEnum.PRIORITY), command);
     }
 
     @Test

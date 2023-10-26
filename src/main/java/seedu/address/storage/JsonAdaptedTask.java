@@ -16,7 +16,6 @@ import seedu.address.model.task.Note;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.storage.exceptions.json.IllegalJsonDescriptionValueException;
-import seedu.address.storage.exceptions.json.IllegalJsonNameValueException;
 import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 /**
@@ -76,7 +75,7 @@ class JsonAdaptedTask {
         }
 
         if (description == null) {
-            throw new IllegalJsonNameValueException(
+            throw new IllegalJsonDescriptionValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
 

@@ -66,7 +66,7 @@ public class ParserUtil {
     public static Note parseNote(String note) throws IllegalArgumentException {
         requireNonNull(note);
         String trimmedNote = note.trim();
-        if (!seedu.address.model.task.Note.isValidNote(trimmedNote)) {
+        if (!Note.isValidNote(trimmedNote)) {
             throw new IllegalArgumentException(seedu.address.model.task.Note.MESSAGE_CONSTRAINTS);
         }
         return new Note(trimmedNote);
