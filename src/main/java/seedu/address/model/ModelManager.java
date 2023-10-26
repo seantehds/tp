@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -80,8 +78,8 @@ public class ModelManager implements Model {
     //=========== TaskWise ================================================================================
 
     @Override
-    public void setTaskWise(ReadOnlyTaskWise addressBook) {
-        this.taskWise.resetData(addressBook);
+    public void setTaskWise(ReadOnlyTaskWise taskWise) {
+        this.taskWise.resetData(taskWise);
     }
 
     @Override
@@ -114,12 +112,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setAllTasks(List<Task> tasks) {
-        if (!tasks.stream().allMatch(Objects::nonNull)) {
+    public void setAllTasks(java.util.List<seedu.address.model.task.Task> tasks) {
+        if (!tasks.stream().allMatch(java.util.Objects::nonNull)) {
             throw new AssertionError("Task List cannot contain null");
         }
 
-        addressBook.setTasks(tasks);
+        taskWise.setTasks(tasks);
     }
 
     //=========== Filtered Task List Accessors =============================================================
