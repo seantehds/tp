@@ -93,12 +93,12 @@ public class EditCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        Description updatedName = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
 
-        return new Task(updatedName, status, updatedDeadline);
+        return new Task(updatedDescription, status, updatedDeadline);
     }
 
     @Override
@@ -210,7 +210,8 @@ public class EditCommand extends Command {
             EditTaskDescriptor otherEditTaskDescriptor = (EditTaskDescriptor) other;
             return Objects.equals(description, otherEditTaskDescriptor.description)
                     && Objects.equals(tags, otherEditTaskDescriptor.tags)
-                    && Objects.equals(deadline, otherEditTaskDescriptor.deadline);
+                    && Objects.equals(deadline, otherEditTaskDescriptor.deadline)
+                    && Objects.equals(priority, otherEditTaskDescriptor.priority);
         }
 
         @Override

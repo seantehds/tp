@@ -11,6 +11,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.Priority;
 
+
 /**
  * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -19,10 +20,13 @@ public class Task {
 
     // Identity fields
     private final Description description;
-    private final Set<Tag> tags = new HashSet<>();
     private final Status status;
-    private final Deadline deadline;
     private final Priority priority;
+    private final Note note;
+    private final Deadline deadline;
+    private final Set<Tag> tags = new HashSet<>();
+
+    
     /**
      * Only description is required.
      *
@@ -34,8 +38,9 @@ public class Task {
         this.description = description;
         this.status = new Status();
         this.priority = Priority.NONE;
-        this.tags.addAll(Collections.emptySet());
+        this.note = new Note("");
         this.deadline = null;
+        this.tags.addAll(Collections.emptySet());
     }
 
     /**
@@ -50,7 +55,25 @@ public class Task {
         this.status = status;
         this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
+        this.note = new Note("");
         this.deadline = null;
+    }
+
+    /**
+     * Constructor for task, to be used in retrieval from storage.
+     *
+     * @param description
+     * @param status
+     * @param note
+     */
+    public Task(Description description, Status status, Note note) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.note = note;
+        this.deadline = null;
+        this.priority = Priority.NONE;
     }
 
     /**
@@ -67,6 +90,25 @@ public class Task {
         this.tags.addAll(Collections.emptySet());
         this.deadline = deadline;
         this.priority = Priority.NONE;
+        this.note = new Note("");
+    }
+
+    /**
+     * Constructor for a task with a deadline, status and note.
+     *
+     * @param description
+     * @param status
+     * @param deadline
+     * @param note
+     */
+    public Task(Description description, Status status, Note note, Deadline deadline) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.note = note;
+        this.deadline = deadline;
+        this.priority = Priority.NONE;
     }
 
     /**
@@ -75,13 +117,14 @@ public class Task {
      * @param description
      * @param priority
      */
-    public Task(Description description, Status status, Priority priority) {
+    public Task(Description description, Status status, Priority priority, Note note, Deadline deadline) {
         requireAllNonNull(description);
         this.description = description;
         this.status = status;
         this.priority = priority;
+        this.deadline = deadline;
+        this.note = note;
         this.tags.addAll(Collections.emptySet());
-        this.deadline = null;
     }
     
 
@@ -101,6 +144,9 @@ public class Task {
         return status;
     }
 
+    public Note getNote() {
+        return note;
+    }
     public Deadline getDeadline() {
         return deadline;
     }

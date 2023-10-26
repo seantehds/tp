@@ -38,6 +38,8 @@ public class TaskCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label note;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -48,6 +50,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(task.getDescription().fullDescription);
         status.setText(task.getStatus().toString());
+        note.setText(task.getNote().fullNote);
         if (task.getDeadline() == null) {
             deadline.setText("");
         } else {
