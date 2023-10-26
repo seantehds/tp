@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.TaskWise;
-import seedu.address.model.tag.Priority;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
 /**

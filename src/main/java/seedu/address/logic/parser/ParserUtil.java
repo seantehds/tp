@@ -13,11 +13,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
-import seedu.address.model.tag.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
+import seedu.address.model.task.Priority;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import java.util.Set;
 
-import seedu.address.model.tag.Priority;
+import seedu.address.model.task.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;

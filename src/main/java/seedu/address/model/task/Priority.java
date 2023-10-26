@@ -1,4 +1,4 @@
-package seedu.address.model.tag;
+package seedu.address.model.task;
 
 /**
  * An enum class that contains the priority levels LOW, MEDIUM, HIGH and NONE for no priority of a task.
