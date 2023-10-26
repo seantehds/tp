@@ -26,7 +26,6 @@ public class SortUtilTest {
     private static final Priority DEFAULT_PRIORITY = Priority.NONE;
     private static final Priority FIRST_PRIORITY = Priority.HIGH;
     private static final Priority SECOND_PRIORITY = Priority.LOW;
-    
     private final Comparator<Task> taskComparatorAscending = SortUtil.ofTaskName(SortOrderEnum.ASCENDING);
     private final Comparator<Task> taskComparatorDescending = SortUtil.ofTaskName(SortOrderEnum.DESCENDING);
     private final Comparator<Task> priorityComparatorAscending = SortUtil.ofPriority(SortOrderEnum.ASCENDING);
@@ -129,7 +128,7 @@ public class SortUtilTest {
     @Test
     public void ofDeadline_ascendingLessThan_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION,DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
         assertEquals(deadlineComparatorAscending.compare(t1, t2), -1);
     }
 
@@ -155,7 +154,7 @@ public class SortUtilTest {
     @Test
     public void ofDeadline_descendingLessThan_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION,DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
         assertEquals(deadlineComparatorDescending.compare(t1, t2), 1);
     }
 

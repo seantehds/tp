@@ -48,7 +48,6 @@ public class ParserUtilTest {
     private static final String INVALID_DAY_DEADLINE_NO_TIME = "32-10-2023";
     private static final String INVALID_MONTH_DEADLINE_NO_TIME = "25-13-2023";
     private static final String INVALID_YEAR_DEADLINE_NO_TIME = "32-10-10000";
-    
     private static final String VALID_PRIORITY = "high";
     private static final String INVALID_PRIORITY = "hiiii";
 
@@ -264,17 +263,14 @@ public class ParserUtilTest {
     public void parseDeadline_invalidDayInputNoTime_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_DAY_INPUT_NO_TIME));
     }
-
     @Test
     public void parseDeadline_invalidMonthInputNoTime_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_MONTH_INPUT_NO_TIME));
     }
-    
     @Test
     public void parsePriority_validValue_success() throws Exception {
         assertEquals(Priority.HIGH, ParserUtil.parsePriority(VALID_PRIORITY));
     }
-    
     @Test
     public void parsePriority_invalidValue_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> ParserUtil.parsePriority(INVALID_PRIORITY));
