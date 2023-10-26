@@ -176,6 +176,8 @@ public class ParserUtilTest {
     @Test
     public void parseSortOrder_validSortOrders_valid() {
         assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseSortType("this is an error"));
+    }
+
     public void parseDeadline_validValueWithTime_returnsDeadline() throws IllegalArgumentException {
         Deadline expectedDeadline = new Deadline(LocalDateTime.of(2023, 10, 25, 16, 0));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITH_TIME));

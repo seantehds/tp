@@ -9,7 +9,7 @@ public enum SortTypeEnum {
     PRIORITY("priority"),
     DEADLINE("deadline");
 
-    public static final String MESSAGE_CONSTRAINTS = "Oh no! I cannot understand the sort order: ";
+    public static final String MESSAGE_CONSTRAINTS = "Oh no! I cannot understand the sort type: ";
 
     private final String representation;
 

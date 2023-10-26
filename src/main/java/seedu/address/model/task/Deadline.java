@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
  * Represents the Deadline of the task.
  * Guarantees: details are present and not null, immutable.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
+    private static final Deadline NULL = new NullDeadline();
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines need to be in the format (DD(- OR /)MM(- OR /)YYYY HH(: or -)MM) "
@@ -53,6 +54,14 @@ public class Deadline {
     public Deadline(LocalDateTime deadline) {
         this.details = deadline;
     }
+
+    /**
+     * Constructor to create a {@code NullDeadline} object.
+     */
+    public static Deadline noDeadline() {
+        return Deadline.NULL;
+    }
+
     //@@author asdfghjkxd-reused
 
     /**
@@ -99,4 +108,14 @@ public class Deadline {
         return details.format(formatter);
     }
 
+    @Override
+    public int compareTo(Deadline o) {
+        return this.details.compareTo(o.details);
+    }
+
+    private static final class NullDeadline extends Deadline {
+        private NullDeadline() {
+            super(LocalDateTime.MAX);
+        }
+    }
 }

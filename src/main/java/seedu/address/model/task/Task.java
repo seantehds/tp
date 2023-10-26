@@ -51,6 +51,17 @@ public class Task {
     }
 
     /**
+     * Constructor for a task with a specified deadline.
+     */
+    public Task(Description description, Deadline deadline) {
+        requireAllNonNull(description, deadline);
+        this.description = description;
+        this.status = new Status(false);
+        this.tags.addAll(Collections.emptySet());
+        this.deadline = deadline;
+    }
+
+    /**
      * Constructor for a task with a deadline and a status.
      *
      * @param description

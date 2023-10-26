@@ -39,7 +39,7 @@ public abstract class SortUtil {
     private static int sortDeadlineAscending(Task t1, Task t2) {
         assertAllTasksNotNull(t1, t2);
 
-        return -1;
+        return t1.getDeadline().compareTo(t2.getDeadline());
     }
 
     private static int sortDeadlineDescending(Task t1, Task t2) {
