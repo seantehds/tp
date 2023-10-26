@@ -36,7 +36,66 @@ public class Task {
         this.status = new Status();
         this.tags.addAll(Collections.emptySet());
         this.note = new Note("");
-        this.deadline = null;
+        this.deadline = Deadline.noDeadline();
+    }
+
+    /**
+     * Constructor for task, to be used in retrieval from storage.
+     *
+     * @param description
+     * @param status
+     */
+    public Task(Description description, Status status) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.note = new Note("");
+        this.deadline = Deadline.noDeadline();
+    }
+
+    /**
+     * Constructor for task, to be used in retrieval from storage.
+     *
+     * @param description
+     * @param status
+     * @param note
+     */
+    public Task(Description description, Status status, Note note) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.note = note;
+        this.deadline = Deadline.noDeadline();
+    }
+
+    /**
+     * Constructor for a task with a specified deadline.
+     */
+    public Task(Description description, Deadline deadline) {
+        requireAllNonNull(description, deadline);
+        this.description = description;
+        this.status = new Status(false);
+        this.tags.addAll(Collections.emptySet());
+        this.note = new Note("");
+        this.deadline = deadline;
+    }
+
+    /**
+     * Constructor for a task with a deadline and a status.
+     *
+     * @param description
+     * @param status
+     * @param deadline
+     */
+    public Task(Description description, Status status, Deadline deadline) {
+        requireAllNonNull(description);
+        this.description = description;
+        this.status = status;
+        this.tags.addAll(Collections.emptySet());
+        this.deadline = deadline;
+        this.note = new Note("");
     }
 
     /**
