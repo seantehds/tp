@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -20,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.DuplicatedTaskException;
 import seedu.address.logic.commands.exceptions.IllegalTaskIndexException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -38,6 +41,8 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE]"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
@@ -49,7 +54,7 @@ public class EditCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index              of the task in the filtered task list to edit
+     * @param index of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
     public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
@@ -90,6 +95,7 @@ public class EditCommand extends Command {
 
         Description updatedName = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
 
         return new Task(updatedName, status, updatedDeadline);
@@ -126,6 +132,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Description description;
         private Deadline deadline;
+        private Priority priority;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {
@@ -139,6 +146,7 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setTags(toCopy.tags);
             setDeadline(toCopy.deadline);
+            setPriority(toCopy.priority);
         }
 
         /**
@@ -162,6 +170,13 @@ public class EditCommand extends Command {
 
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
+        }
+        
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+        public Optional<Priority> getPriority(Priority priority) {
+            return Optional.ofNullable(priority);
         }
 
         /**
