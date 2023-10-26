@@ -24,7 +24,6 @@ public class Task {
     private final Deadline deadline;
     private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
-    
     /**
      * Only description is required.
      *
@@ -57,7 +56,6 @@ public class Task {
         this.priority = priority;
         this.tags.addAll(Collections.emptySet());
     }
-    
     public Description getDescription() {
         return description;
     }

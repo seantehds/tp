@@ -175,11 +175,9 @@ public class EditCommand extends Command {
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
-        
         public void setPriority(Priority priority) {
             this.priority = priority;
         }
-        
         public Optional<Priority> getPriority() {
             return Optional.ofNullable(priority);
         }

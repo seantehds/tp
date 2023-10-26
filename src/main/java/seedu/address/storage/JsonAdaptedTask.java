@@ -85,7 +85,6 @@ class JsonAdaptedTask {
         if (!Note.isValidNote(note)) {
             throw new IllegalJsonValueException(Note.MESSAGE_CONSTRAINTS);
         }
-        
         final Description modelDescription = new Description(description);
 
         final Status modelStatus = new Status(status);

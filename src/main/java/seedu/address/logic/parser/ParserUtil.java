@@ -138,7 +138,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
-    
     /**
      * Parses {@code String} into a {@code SortOrderEnum}
      * @param enumValue String enum value to parse

@@ -14,7 +14,6 @@ public enum Priority {
 
     /**
      * Returns the relevant {@code Priority} based on String input.
-     * 
      * @param priority String input to parse
      * @return {@code Priority} object
      * @throws IllegalArgumentException if the String input is not a valid {@code Priority} value
