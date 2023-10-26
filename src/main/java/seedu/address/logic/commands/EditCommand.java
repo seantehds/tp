@@ -156,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, tags, deadline);
+            return CollectionUtil.isAnyNonNull(description, tags, deadline, priority);
         }
 
         public void setDeadline(Deadline deadline) {
@@ -178,6 +178,7 @@ public class EditCommand extends Command {
         public void setPriority(Priority priority) {
             this.priority = priority;
         }
+        
         public Optional<Priority> getPriority() {
             return Optional.ofNullable(priority);
         }
