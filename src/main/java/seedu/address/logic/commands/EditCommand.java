@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.DuplicatedTaskException;
 import seedu.address.logic.commands.exceptions.IllegalTaskIndexException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
@@ -48,7 +49,7 @@ public class EditCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the task in the filtered task list to edit
+     * @param index              of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
     public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
@@ -88,9 +89,10 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Description updatedName = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
 
-        return new Task(updatedName, status);
+        return new Task(updatedName, status, updatedDeadline);
     }
 
     @Override
@@ -123,9 +125,11 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Description description;
+        private Deadline deadline;
         private Set<Tag> tags;
 
-        public EditTaskDescriptor() {}
+        public EditTaskDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -134,13 +138,22 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setDescription(toCopy.description);
             setTags(toCopy.tags);
+            setDeadline(toCopy.deadline);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, tags);
+            return CollectionUtil.isAnyNonNull(description, tags, deadline);
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
         }
 
         public void setDescription(Description description) {
@@ -181,7 +194,8 @@ public class EditCommand extends Command {
 
             EditTaskDescriptor otherEditTaskDescriptor = (EditTaskDescriptor) other;
             return Objects.equals(description, otherEditTaskDescriptor.description)
-                    && Objects.equals(tags, otherEditTaskDescriptor.tags);
+                    && Objects.equals(tags, otherEditTaskDescriptor.tags)
+                    && Objects.equals(deadline, otherEditTaskDescriptor.deadline);
         }
 
         @Override

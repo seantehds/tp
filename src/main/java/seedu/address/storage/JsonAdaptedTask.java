@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
 import seedu.address.model.task.Status;
@@ -25,6 +26,7 @@ class JsonAdaptedTask {
 
     private final String description;
     private final boolean status;
+    private final Deadline deadline;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String note;
 
@@ -33,13 +35,14 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                           @JsonProperty("status") boolean status, @JsonProperty("note") String note) {
+                           @JsonProperty("status") boolean status, @JsonProperty("note") String note, @JsonProperty("deadline") Deadline deadline) {
         this.description = name;
         if (tags != null) {
             this.tags.addAll(tags);
         }
         this.status = status;
         this.note = note;
+        this.deadline = deadline;
     }
 
     /**
@@ -52,6 +55,7 @@ class JsonAdaptedTask {
                 .collect(Collectors.toList()));
         status = source.getStatus().isCompleted();
         note = source.getNote().fullNote;
+        deadline = source.getDeadline();
     }
 
     /**
@@ -83,7 +87,7 @@ class JsonAdaptedTask {
 
         final Status modelStatus = new Status(status);
 
-        return new Task(modelName, modelStatus, new Note(note));
+        return new Task(modelName, modelStatus, new Note(note), deadline);
     }
 
 }
