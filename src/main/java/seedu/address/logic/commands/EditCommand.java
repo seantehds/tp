@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PRIORITY + "PRIORITY]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "Finalise features"
+            + PREFIX_DESCRIPTION + "Finalise features "
             + PREFIX_PRIORITY + "high";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
