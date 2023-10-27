@@ -19,7 +19,6 @@ public class TaskBuilder {
     public static final String DEFAULT_DESCRIPTION = "Do task";
     public static final String DEFAULT_NOTE = "";
     public static final boolean DEFAULT_STATUS = false;
-    public static final Deadline DEFAULT_DEADLINE = null;
     public static final Priority DEFAULT_PRIORITY = Priority.NONE;
     private Description description;
     private Status status;
@@ -47,6 +46,7 @@ public class TaskBuilder {
         status = taskToCopy.getStatus();
         note = taskToCopy.getNote();
         deadline = taskToCopy.getDeadline();
+        priority = taskToCopy.getPriority();
     }
 
     /**

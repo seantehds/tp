@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -91,10 +90,8 @@ class JsonAdaptedTask {
         final Description modelDescription = new Description(description);
 
         final Status modelStatus = new Status(status);
-        
-        final Priority modelPriority = Priority.NONE;
 
-        return new Task(modelDescription, modelStatus, new Note(note), deadline, modelPriority);
+        return new Task(modelDescription, modelStatus, new Note(note), deadline, priority);
     }
 
 }
