@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -27,8 +28,8 @@ class JsonAdaptedTask {
     private final String description;
     private final boolean status;
     private final String note;
-    private final Deadline deadline;
-    private final Priority priority;
+    private final String deadline;
+    private final String priority;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -37,7 +38,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                            @JsonProperty("status") boolean status, @JsonProperty("note") String note,
-                           @JsonProperty("deadline") Deadline deadline, @JsonProperty("priority") Priority priority) {
+                           @JsonProperty("deadline") String deadline, @JsonProperty("priority") String priority) {
         this.description = name;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -58,8 +59,8 @@ class JsonAdaptedTask {
                 .collect(Collectors.toList()));
         status = source.getStatus().isCompleted();
         note = source.getNote().fullNote;
-        deadline = source.getDeadline();
-        priority = source.getPriority();
+        deadline = source.getDeadline().toString();
+        priority = source.getPriority().toString();
     }
 
     /**
@@ -85,11 +86,19 @@ class JsonAdaptedTask {
         if (!Note.isValidNote(note)) {
             throw new IllegalJsonValueException(Note.MESSAGE_CONSTRAINTS);
         }
+        
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalJsonValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        
         final Description modelDescription = new Description(description);
 
         final Status modelStatus = new Status(status);
+        
+        
+        final Priority modelPriority = Priority.of(priority);
 
-        return new Task(modelDescription, modelStatus, new Note(note), deadline, priority);
+        return new Task(modelDescription, modelStatus, new Note(note), modeldeadline, modelPriority);
     }
 
 }

@@ -42,9 +42,9 @@ public class TypicalTasks {
     // Manually added - Task's details found in {@code CommandTestUtil}
     // TODO: Add other fields required for test case ie. Deadline, Priority.
     public static final Task AMY = new TaskBuilder()
-            .withDescription(VALID_NAME_AMY).withStatus(false).withNote("").build();
+            .withDescription(VALID_NAME_AMY).withStatus(false).withNote("").withPriority(Priority.NONE).build();
     public static final Task BOB = new TaskBuilder()
-            .withDescription(VALID_NAME_BOB).withStatus(false).withNote("").build();
+            .withDescription(VALID_NAME_BOB).withStatus(false).withNote("").withPriority(Priority.NONE).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "OP2"; // A keyword that matches MEIER
 

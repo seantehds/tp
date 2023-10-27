@@ -172,10 +172,9 @@ public class ParserUtil {
      */
     public static Priority parsePriority(String priority) throws IllegalArgumentException {
         requireNonNull(priority);
-        try {
-            return Priority.of(priority);
-        } catch (java.lang.IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage() + Priority.MESSAGE_CONSTRAINTS);
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalArgumentException(Priority.MESSAGE_CONSTRAINTS);
         }
+        return Priority.of(priority);
     }
 }
