@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -86,7 +85,6 @@ class JsonAdaptedTask {
         if (!Note.isValidNote(note)) {
             throw new IllegalJsonValueException(Note.MESSAGE_CONSTRAINTS);
         }
-        
         final Description modelDescription = new Description(description);
 
         final Status modelStatus = new Status(status);

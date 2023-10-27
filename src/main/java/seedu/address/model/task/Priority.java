@@ -30,7 +30,12 @@ public enum Priority {
             throw new IllegalArgumentException("Invalid Priority Value: ");
         }
     }
-    
+
+    /**
+     * Returns true if a given string is a valid priority.
+     * @param priority String input to parse
+     * @return boolean
+     */
     public static boolean isValidPriority(String priority) {
         switch (priority.trim().toLowerCase()) {
         case "low":
