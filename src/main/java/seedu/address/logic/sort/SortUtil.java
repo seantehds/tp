@@ -27,7 +27,7 @@ public abstract class SortUtil {
     private static int sortPriorityAscending(Task t1, Task t2) {
         assertAllTasksNotNull(t1, t2);
 
-        return -1;
+        return t1.getPriority().compareTo(t2.getPriority());
     }
 
     private static int sortPriorityDescending(Task t1, Task t2) {
