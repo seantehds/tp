@@ -2,12 +2,17 @@ package seedu.address.model.task;
 
 /**
  * An enum class that contains the priority levels LOW, MEDIUM, HIGH and NONE for no priority of a task.
+ * Note that the enum does not need to implement the {@code Comparable<T>} interface, as enums are naturally
+ * ordered in the order of declaration.
  */
 public enum Priority {
     /**
      * 3 levels for priority, and 1 level for no priority.
      */
-    LOW, MEDIUM, HIGH, NONE;
+    NONE,
+    LOW,
+    MEDIUM,
+    HIGH;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should only be LOW, MEDIUM or HIGH, and it should not be blank";
