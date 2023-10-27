@@ -38,8 +38,8 @@ public class SortCommandTest {
     private static final Status COMPLETE_STATUS = new Status(true);
     private static final Status INCOMPLETE_STATUS = new Status(false);
     private static final Note DEFAULT_NOTE = new Note("");
-    private static final Deadline FIRST_DEADLINE = new Deadline(LocalDateTime.of(2023, 1, 1, 18, 0));
-    private static final Deadline SECOND_DEADLINE = new Deadline(LocalDateTime.of(2023, 1, 1, 22, 0));
+    private static final Deadline FIRST_DEADLINE = Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0));
+    private static final Deadline SECOND_DEADLINE = Deadline.of(LocalDateTime.of(2023, 1, 1, 22, 0));
     private static final Priority DEFAULT_PRIORITY = Priority.NONE;
     private static final Priority FIRST_PRIORITY = Priority.HIGH;
     private static final Priority SECOND_PRIORITY = Priority.LOW;

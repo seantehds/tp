@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Represents the Deadline of the task.
  * Guarantees: details are present and not null, immutable.
@@ -35,31 +37,41 @@ public class Deadline implements Comparable<Deadline> {
      */
     public static final String DATE_REGEX = "^(0?[1-9]|[12][0-9]|3[01])(\\/|-)(0?[1-9]|1[0-2])(\\/|-)\\d{4}";
 
-    private static final Deadline NULL = new NullDeadline();
     //@@ author
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private final LocalDateTime details;
+    private final boolean isNull;
 
     /**
-     * Constructs a {@code Deadline} with the current date and time.
+     * Constructor used by Jackson to help create an instance of {@code Deadline}
+     *
+     * @param localDateTime {@code LocalDateTime} object
+     * @param isNull boolean representing if the Deadline is indeed a null deadline (infinitely late deadline)
      */
-    public Deadline() {
-        this.details = LocalDateTime.now();
+    public Deadline(@JsonProperty("details") LocalDateTime localDateTime, @JsonProperty("isNull") boolean isNull) {
+        this.isNull = isNull;
+        this.details = localDateTime;
     }
 
     /**
      * Constructs a {@code Deadline} with the current date and time.
      */
-    public Deadline(LocalDateTime deadline) {
+    private Deadline(boolean isNull, LocalDateTime deadline) {
+        this.isNull = isNull;
         this.details = deadline;
     }
 
-    /**
-     * Constructor to create a {@code NullDeadline} object.
-     */
-    public static Deadline noDeadline() {
-        return Deadline.NULL;
+    public static Deadline of(LocalDateTime localDateTime) {
+        return new Deadline(false, localDateTime);
+    }
+
+    public static Deadline ofNull() {
+        return new Deadline(true, LocalDateTime.MAX);
+    }
+
+    public static Deadline now() {
+        return new Deadline(false, LocalDateTime.now());
     }
 
     //@@author asdfghjkxd-reused
@@ -86,6 +98,10 @@ public class Deadline implements Comparable<Deadline> {
         return Pattern.matches(DATETIME_REGEX, datetime);
     }
 
+    public boolean isNullDeadline() {
+        return this.isNull;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -98,29 +114,37 @@ public class Deadline implements Comparable<Deadline> {
 
         Deadline otherStatus = (Deadline) other;
 
-        return this.details.equals(otherStatus.details);
+        return this.details.equals(otherStatus.details) && this.isNull == otherStatus.isNull;
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
+        if (this.isNull) {
+            return "No Deadline";
+        }
+
         return details.format(formatter);
     }
 
+    /**
+     * Compares two {@code Deadline} objects. Tasks with no deadlines are always assumed to have an infinitely
+     * late deadline, and hence will always be greater than a task with deadline.
+     *
+     * @param o the object to be compared.
+     * @return 0 if both {@code Deadline} objects are equal, 1 if this {@code Deadline} object is greater than
+     *     the other, and -1 if this {@code Deadline} object is smaller than the other
+     */
     @Override
     public int compareTo(Deadline o) {
+        if (this.isNull && !o.isNull) {
+            return 1;
+        } else if (o.isNull && !this.isNull) {
+            return -1;
+        }
+
         return this.details.compareTo(o.details);
-    }
 
-    private static final class NullDeadline extends Deadline {
-        private NullDeadline() {
-            super(LocalDateTime.MAX);
-        }
-
-        @Override
-        public String toString() {
-            return "No Deadline";
-        }
     }
 }

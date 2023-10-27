@@ -21,10 +21,9 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DESCRIPTION = "Do OP2 @ Slides";
     private static final String INVALID_NOTE = "clarify ^&with tutor";
     private static final String INVALID_TAG = "#friend";
-
     private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
     private static final String VALID_NOTE = BENSON.getNote().toString();
-    private static final Deadline TEST_DEADLINE = new Deadline();
+    private static final Deadline TEST_DEADLINE = Deadline.now();
     private static final Priority TEST_PRIORITY = Priority.NONE;
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)

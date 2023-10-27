@@ -33,7 +33,7 @@ public class Task {
         this.description = description;
         this.status = new Status();
         this.note = new Note("");
-        this.deadline = Deadline.noDeadline();
+        this.deadline = Deadline.ofNull();
         this.priority = Priority.NONE;
         this.tags.addAll(Collections.emptySet());
     }
@@ -43,8 +43,9 @@ public class Task {
      *
      * @param description
      * @param status
-     * @param deadline
      * @param note
+     * @param deadline
+     * @param priority
      */
     public Task(Description description, Status status, Note note, Deadline deadline, Priority priority) {
         requireAllNonNull(description);

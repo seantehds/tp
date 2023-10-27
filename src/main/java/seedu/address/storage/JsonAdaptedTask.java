@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,8 +29,8 @@ class JsonAdaptedTask {
     private final String description;
     private final boolean status;
     private final String note;
-    private final String deadline;
-    private final String priority;
+    private final Deadline deadline;
+    private final Priority priority;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,7 +39,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                            @JsonProperty("status") boolean status, @JsonProperty("note") String note,
-                           @JsonProperty("deadline") String deadline, @JsonProperty("priority") String priority) {
+                           @JsonProperty("deadline") Deadline deadline, @JsonProperty("priority") Priority priority) {
         this.description = name;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -59,8 +60,8 @@ class JsonAdaptedTask {
                 .collect(Collectors.toList()));
         status = source.getStatus().isCompleted();
         note = source.getNote().fullNote;
-        deadline = source.getDeadline().toString();
-        priority = source.getPriority().toString();
+        deadline = source.getDeadline();
+        priority = source.getPriority();
     }
 
     /**
@@ -87,18 +88,13 @@ class JsonAdaptedTask {
             throw new IllegalJsonValueException(Note.MESSAGE_CONSTRAINTS);
         }
         
-        if (!Priority.isValidPriority(priority)) {
-            throw new IllegalJsonValueException(Priority.MESSAGE_CONSTRAINTS);
-        }
-        
         final Description modelDescription = new Description(description);
 
         final Status modelStatus = new Status(status);
         
-        
-        final Priority modelPriority = Priority.of(priority);
+        final Priority modelPriority = Priority.NONE;
 
-        return new Task(modelDescription, modelStatus, new Note(note), modeldeadline, modelPriority);
+        return new Task(modelDescription, modelStatus, new Note(note), deadline, modelPriority);
     }
 
 }

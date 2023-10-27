@@ -11,22 +11,22 @@ public class DeadlineTest {
 
     @Test
     public void stringFormat() {
-        final Deadline originalDeadline = new Deadline(LocalDateTime.of(2024, 10, 25, 10, 0));
+        final Deadline originalDeadline = Deadline.of(LocalDateTime.of(2024, 10, 25, 10, 0));
 
         assertTrue(originalDeadline.toString().equals("2024-10-25 10:00"));
     }
 
     @Test
     public void equals() {
-        final Deadline originalDeadline = new Deadline(LocalDateTime.of(2024, 10, 24, 10, 0));
+        final Deadline originalDeadline = Deadline.of(LocalDateTime.of(2024, 10, 24, 10, 0));
 
         assertTrue(originalDeadline.equals(originalDeadline));
 
-        final Deadline otherDeadline = new Deadline(LocalDateTime.of(2024, 10, 24, 10, 0));
+        final Deadline otherDeadline = Deadline.of(LocalDateTime.of(2024, 10, 24, 10, 0));
 
         assertTrue(originalDeadline.equals(otherDeadline));
 
-        final Deadline notEquals = new Deadline(LocalDateTime.of(2024, 10, 24, 10, 10));
+        final Deadline notEquals = Deadline.of(LocalDateTime.of(2024, 10, 24, 10, 10));
 
         assertFalse(originalDeadline.equals(notEquals));
 

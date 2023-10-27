@@ -98,14 +98,14 @@ public class ParserUtil {
                     || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
                 throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
             }
-            return new Deadline(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
+            return Deadline.of(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
                     + parsedTime[0] + ":" + parsedTime[1] + ":00"));
         } else if (Deadline.isValidDate(deadline)) {
             String[] date = deadline.split("\\/|-");
             if (date[1].length() < 2 || date[0].length() < 2) {
                 throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
             }
-            return new Deadline(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
+            return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
         }
 
         throw new IllegalArgumentException(Deadline.INVALID_DATE);
