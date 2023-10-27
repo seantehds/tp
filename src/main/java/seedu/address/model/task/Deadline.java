@@ -98,10 +98,6 @@ public class Deadline implements Comparable<Deadline> {
         return Pattern.matches(DATETIME_REGEX, datetime);
     }
 
-    public boolean isNullDeadline() {
-        return this.isNull;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

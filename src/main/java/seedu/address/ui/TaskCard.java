@@ -54,11 +54,7 @@ public class TaskCard extends UiPart<Region> {
         status.setText(task.getStatus().toString());
         note.setText(task.getNote().fullNote);
         priority.setText(task.getPriority().toString());
-        if (task.getDeadline() == null) {
-            deadline.setText("");
-        } else {
-            deadline.setText(task.getDeadline().toString());
-        }
+        deadline.setText(task.getDeadline().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
