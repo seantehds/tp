@@ -8,7 +8,8 @@
       "deadline" : {
         "details" : "+999999999-12-31T23:59:59.999999999",
         "isNull" : true
-      }
+      },
+      "priority": "NONE"
     },
     {
       "description": "Do OP2 report",
@@ -17,7 +18,8 @@
       "deadline" : {
         "details" : "+999999999-12-31T23:59:59.999999999",
         "isNull" : true
-      }
+      },
+      "priority": "NONE"
     },
     {
       "description": "Do OP2 presentation",
@@ -26,7 +28,8 @@
       "deadline" : {
         "details" : "2023-12-31T23:59:59.999999999",
         "isNull" : false
-      }
+      },
+      "priority": "NONE"
     },
     {
       "description": "Do user guide",
@@ -35,7 +38,8 @@
       "deadline" : {
         "details" : "2024-12-31T23:59:59.999999999",
         "isNull" : false
-      }
+      },
+      "priority": "NONE"
     },
     {
       "description": "Do developer guide",
@@ -44,7 +48,8 @@
       "deadline" : {
         "details" : "1990-12-31T23:59:59.999999999",
         "isNull" : false
-      }
+      },
+      "priority": "NONE"
     },
     {
       "description": "Meeting to discuss OP2",
@@ -53,7 +58,8 @@
       "deadline" : {
         "details" : "+999999999-12-31T23:59:59.999999999",
         "isNull" : true
-      }
+      },
+      "priority": "NONE"
     },
     {
       "description": "Rehearse OP2 presentation",
@@ -62,7 +68,8 @@
       "deadline" : {
         "details" : "+999999999-12-31T23:59:59.999999999",
         "isNull" : true
-      }
+      },
+      "priority": "NONE"
     }
   ]
 }

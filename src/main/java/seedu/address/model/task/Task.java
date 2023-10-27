@@ -10,7 +10,6 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
-
 /**
  * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -19,102 +18,44 @@ public class Task {
 
     // Identity fields
     private final Description description;
-    private final Set<Tag> tags = new HashSet<>();
     private final Status status;
     private final Note note;
     private final Deadline deadline;
-
+    private final Priority priority;
+    private final Set<Tag> tags = new HashSet<>();
     /**
      * Only description is required.
      *
      * @param description
      */
-    // TODO: Fix/Remove the default fields that are unnecessary
     public Task(Description description) {
         requireAllNonNull(description);
         this.description = description;
         this.status = new Status();
-        this.tags.addAll(Collections.emptySet());
         this.note = new Note("");
         this.deadline = Deadline.ofNull();
+        this.priority = Priority.NONE;
+        this.tags.addAll(Collections.emptySet());
     }
 
     /**
-     * Constructor for task, to be used in retrieval from storage.
-     *
-     * @param description
-     * @param status
-     */
-    public Task(Description description, Status status) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.note = new Note("");
-        this.deadline = Deadline.ofNull();
-    }
-
-    /**
-     * Constructor for task, to be used in retrieval from storage.
+     * Constructor for a task with a description, status, note, deadline and priority.
      *
      * @param description
      * @param status
      * @param note
-     */
-    public Task(Description description, Status status, Note note) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.note = note;
-        this.deadline = Deadline.ofNull();
-    }
-
-    /**
-     * Constructor for a task with a specified deadline.
-     */
-    public Task(Description description, Deadline deadline) {
-        requireAllNonNull(description, deadline);
-        this.description = description;
-        this.status = new Status(false);
-        this.tags.addAll(Collections.emptySet());
-        this.note = new Note("");
-        this.deadline = deadline;
-    }
-
-    /**
-     * Constructor for a task with a deadline and a status.
-     *
-     * @param description
-     * @param status
      * @param deadline
+     * @param priority
      */
-    public Task(Description description, Status status, Deadline deadline) {
+    public Task(Description description, Status status, Note note, Deadline deadline, Priority priority) {
         requireAllNonNull(description);
         this.description = description;
         this.status = status;
-        this.tags.addAll(Collections.emptySet());
-        this.deadline = deadline;
-        this.note = new Note("");
-    }
-
-    /**
-     * Constructor for a task with a deadline, status and note.
-     *
-     * @param description
-     * @param status
-     * @param deadline
-     * @param note
-     */
-    public Task(Description description, Status status, Note note, Deadline deadline) {
-        requireAllNonNull(description);
-        this.description = description;
-        this.status = status;
-        this.tags.addAll(Collections.emptySet());
         this.note = note;
         this.deadline = deadline;
+        this.priority = priority;
+        this.tags.addAll(Collections.emptySet());
     }
-
     public Description getDescription() {
         return description;
     }
@@ -136,6 +77,14 @@ public class Task {
     }
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    /**
+     * Returns the priority level of the task.
+     * @return priority
+     */
+    public Priority getPriority() {
+        return priority;
     }
 
     /**
@@ -169,13 +118,14 @@ public class Task {
         Task otherTask = (Task) other;
         return description.equals(otherTask.description)
                 && tags.equals(otherTask.tags)
-                && status.equals(otherTask.status);
+                && status.equals(otherTask.status)
+                && priority.equals(otherTask.priority);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, tags, status, note, deadline);
+        return Objects.hash(description, tags, status, note, deadline, priority);
     }
 
     @Override
@@ -184,6 +134,9 @@ public class Task {
                 .add("name", description)
                 .add("tags", tags)
                 .add("status", status)
+                .add("note", note)
+                .add("deadline", deadline)
+                .add("priority", priority)
                 .toString();
     }
 }

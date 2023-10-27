@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -33,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_DEADLINE, PREFIX_PRIORITY);
 
         // check if the preamble is empty, if it is, then it must be malformed
         if (argMultimap.getPreamble().isEmpty()) {
@@ -49,14 +50,20 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
         }
+        // TODO: Add tests for deadline and priority in EditCommandParserTest
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap
                     .getValue(PREFIX_DEADLINE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            editTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap
+                    .getValue(PREFIX_PRIORITY).get()));
         }
         // now validate the index
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DEADLINE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PRIORITY);
 
         /*
          * If the bottom calls to parse*() fail, then the resulting help-string, along with an

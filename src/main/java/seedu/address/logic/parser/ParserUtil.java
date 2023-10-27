@@ -17,6 +17,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
+import seedu.address.model.task.Priority;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -135,10 +136,8 @@ public class ParserUtil {
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
-
         return tagSet;
     }
-
     /**
      * Parses {@code String} into a {@code SortOrderEnum}
      * @param enumValue String enum value to parse
@@ -163,5 +162,19 @@ public class ParserUtil {
         } catch (java.lang.IllegalArgumentException exception) {
             throw new IllegalArgumentException(SortTypeEnum.MESSAGE_CONSTRAINTS + enumValue + "!");
         }
+    }
+
+    /**
+     * Parses {@code String} into a {@code Priority}.
+     * @param priority String priority level to parse.
+     * @return Parsed {@code Priority} value.
+     * @throws IllegalArgumentException if {@code String} is not recognized as a priority.
+     */
+    public static Priority parsePriority(String priority) throws IllegalArgumentException {
+        requireNonNull(priority);
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalArgumentException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        return Priority.of(priority);
     }
 }

@@ -20,4 +20,9 @@ public class CliSyntaxTest {
         assertNotNull(CliSyntax.PREFIX_TAG);
         assertEquals(CliSyntax.PREFIX_TAG.getPrefix(), "m/");
     }
+    @Test
+    public void priorityPrefix_exists() {
+        assertNotNull(CliSyntax.PREFIX_PRIORITY);
+        assertEquals(CliSyntax.PREFIX_PRIORITY.getPrefix(), "p/");
+    }
 }

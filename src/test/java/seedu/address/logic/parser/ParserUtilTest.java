@@ -22,12 +22,13 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
+import seedu.address.model.task.Priority;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_DESCRIPTION = "Do Use@r Guide.";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_DESCRIPTION = "Do User Guide";
     private static final String VALID_NOTE = "This is a valid note";
     private static final String INVALID_NOTE = "Do TaskWise v1.2"; // contains ".", which is not alphanumeric
     private static final String VALID_TAG_1 = "friend";
@@ -47,6 +48,8 @@ public class ParserUtilTest {
     private static final String INVALID_DAY_DEADLINE_NO_TIME = "32-10-2023";
     private static final String INVALID_MONTH_DEADLINE_NO_TIME = "25-13-2023";
     private static final String INVALID_YEAR_DEADLINE_NO_TIME = "32-10-10000";
+    private static final String VALID_PRIORITY = "high";
+    private static final String INVALID_PRIORITY = "hiiii";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -81,7 +84,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
@@ -92,14 +95,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Description expectedName = new Description(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseDescription(VALID_NAME));
+        Description expectedName = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedName, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Description expectedName = new Description(VALID_NAME);
+        String nameWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        Description expectedName = new Description(VALID_DESCRIPTION);
         assertEquals(expectedName, ParserUtil.parseDescription(nameWithWhitespace));
     }
 
@@ -204,6 +207,7 @@ public class ParserUtilTest {
         assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseSortType("this is an error"));
     }
 
+    @Test
     public void parseDeadline_validValueWithTime_returnsDeadline() throws IllegalArgumentException {
         Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 16, 0));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITH_TIME));
@@ -259,9 +263,16 @@ public class ParserUtilTest {
     public void parseDeadline_invalidDayInputNoTime_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_DAY_INPUT_NO_TIME));
     }
-
     @Test
     public void parseDeadline_invalidMonthInputNoTime_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_MONTH_INPUT_NO_TIME));
+    }
+    @Test
+    public void parsePriority_validValue_success() throws Exception {
+        assertEquals(Priority.HIGH, ParserUtil.parsePriority(VALID_PRIORITY));
+    }
+    @Test
+    public void parsePriority_invalidValue_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parsePriority(INVALID_PRIORITY));
     }
 }
