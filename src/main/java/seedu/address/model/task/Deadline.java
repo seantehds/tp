@@ -97,7 +97,6 @@ public class Deadline implements Comparable<Deadline> {
     public static boolean isValidDateTime(String datetime) {
         return Pattern.matches(DATETIME_REGEX, datetime);
     }
-
     public boolean isNullDeadline() {
         return this.isNull;
     }
