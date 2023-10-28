@@ -92,22 +92,28 @@ public class SortUtilTest {
 
     @Test
     public void ofPriority_ascendingLessThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.HIGH);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorAscending.compare(t1, t2), -2);
     }
 
     @Test
     public void ofPriority_ascendingEqual_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorAscending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofPriority_ascendingMoreThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.HIGH);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorAscending.compare(t1, t2), 2);
     }
 
@@ -118,22 +124,28 @@ public class SortUtilTest {
 
     @Test
     public void ofPriority_descendingLessThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.HIGH);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorDescending.compare(t1, t2), 2);
     }
 
     @Test
     public void ofPriority_descendingEqual_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorDescending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofPriority_descendingMoreThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.HIGH);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, Priority.LOW);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorDescending.compare(t1, t2), -2);
     }
 
