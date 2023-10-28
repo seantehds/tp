@@ -28,9 +28,18 @@
                     <Label fx:id="description" text="\$first" styleClass="cell_big_label"/>
                 </HBox>
                 <FlowPane fx:id="tags"/>
-                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline"/>
-                <Label fx:id="priority" styleClass="cell_small_label" text="\$priority"/>
-                <Label fx:id="status" styleClass="cell_small_label" text="\$status"/>
+                <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline"/>
+                <HBox styleClass="priority_and_status" spacing="10">
+                    <Label fx:id="defaultPriority" styleClass="default_priority_cell_small_label"
+                           text="\$priority" visible="false" managed="false"/>
+                    <Label fx:id="lowPriority" styleClass="low_priority_cell_small_label"
+                           text="\$priority" visible="false" managed="false"/>
+                    <Label fx:id="mediumPriority" styleClass="medium_priority_cell_small_label"
+                           text="\$priority" visible="false" managed="false"/>
+                    <Label fx:id="highPriority" styleClass="high_priority_cell_small_label"
+                           text="\$priority" visible="false" managed="false"/>
+                    <Label fx:id="status" styleClass="status_cell_small_label" text="\$status"/>
+                </HBox>
             </VBox>
             <VBox alignment="CENTER_RIGHT" minHeight="105">
                 <padding>

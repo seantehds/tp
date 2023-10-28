@@ -41,7 +41,13 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label note;
     @FXML
-    private Label priority;
+    private Label defaultPriority;
+    @FXML
+    private Label lowPriority;
+    @FXML
+    private Label mediumPriority;
+    @FXML
+    private Label highPriority;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -53,10 +59,34 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().fullDescription);
         status.setText(task.getStatus().toString());
         note.setText(task.getNote().fullNote);
-        priority.setText(task.getPriority().toString());
+        setPriority(task.getPriority().toString());
         deadline.setText(task.getDeadline().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+    public void setPriority(String priorityText) {
+        switch (priorityText.toLowerCase()) {
+        case "low":
+            lowPriority.setVisible(true);
+            lowPriority.setManaged(true);
+            lowPriority.setText(priorityText);
+            break;
+        case "medium":
+            mediumPriority.setVisible(true);
+            mediumPriority.setManaged(true);
+            mediumPriority.setText(priorityText);
+            break;
+        case "high":
+            highPriority.setVisible(true);
+            highPriority.setManaged(true);
+            highPriority.setText(priorityText);
+            break;
+        default:
+            defaultPriority.setVisible(true);
+            defaultPriority.setManaged(true);
+            defaultPriority.setText(priorityText);
+        }
+    }
+
 }
