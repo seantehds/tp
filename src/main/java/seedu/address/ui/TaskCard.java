@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
 
 /**
@@ -37,8 +39,6 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private FlowPane tags;
-    @FXML
     private Label note;
     @FXML
     private Label defaultPriority;
@@ -63,15 +63,7 @@ public class TaskCard extends UiPart<Region> {
         note.setText(task.getNote().fullNote);
         setPriority(task.getPriority().toString());
         deadline.setText(task.getDeadline().toString());
-
-        task.getMembers().stream()
-                .sorted(Comparator.comparing(member -> member.memberName))
-                .forEach(member -> members.getChildren().add(new Label(member.memberName)));
-
-        task.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
+        setMembers(task.getMembers());
     }
     public void setPriority(String priorityText) {
         switch (priorityText.toLowerCase()) {
@@ -95,6 +87,19 @@ public class TaskCard extends UiPart<Region> {
             defaultPriority.setManaged(true);
             defaultPriority.setText(priorityText);
         }
+    }
+
+    private void setMembers(Set<Member> source) {
+        if (source == null || source.isEmpty()) {
+            return;
+        }
+
+        source.stream()
+                .sorted(Comparator.comparing(member -> member.memberName))
+                .forEach(member -> members.getChildren().add(new Label(member.memberName)));
+        members.setHgap(5.00);
+
+        members.getChildren().forEach(label -> label.getStyleClass().add("member_cell_label"));
     }
 
 }

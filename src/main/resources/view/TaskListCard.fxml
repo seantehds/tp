@@ -29,19 +29,15 @@
                     </Label>
                     <Label fx:id="description" styleClass="cell_big_label" text="\$first" />
                 </HBox>
-                <FlowPane fx:id="members" prefHeight="19.0" prefWidth="102.0" />
-                <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline"/>
-                <HBox styleClass="priority_and_status" spacing="10">
-                    <Label fx:id="defaultPriority" styleClass="default_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="lowPriority" styleClass="low_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="mediumPriority" styleClass="medium_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="highPriority" styleClass="high_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="status" styleClass="status_cell_small_label" text="\$status"/>
+                <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline" />
+                <HBox spacing="10" styleClass="priority_and_status">
+                    <Label fx:id="defaultPriority" managed="false" styleClass="default_priority_cell_small_label" text="\$priority" visible="false" />
+                    <Label fx:id="lowPriority" managed="false" styleClass="low_priority_cell_small_label" text="\$priority" visible="false" />
+                    <Label fx:id="mediumPriority" managed="false" styleClass="medium_priority_cell_small_label" text="\$priority" visible="false" />
+                    <Label fx:id="highPriority" managed="false" styleClass="high_priority_cell_small_label" text="\$priority" visible="false" />
+                    <Label fx:id="status" styleClass="status_cell_small_label" text="\$status" />
                 </HBox>
+                <FlowPane fx:id="members" styleClass="members_pane"/>
             </VBox>
             <VBox alignment="CENTER_RIGHT" minHeight="105">
                 <padding>
