@@ -29,6 +29,10 @@ public class JsonAdaptedTaskTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
+    private static final List<JsonAdaptedMember> VALID_MEMBERS = BENSON.getMembers().stream()
+            .map(JsonAdaptedMember::new)
+            .collect(Collectors.toList());
+
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
         JsonAdaptedTask task = new JsonAdaptedTask(BENSON);
@@ -39,7 +43,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(INVALID_DESCRIPTION, VALID_TAGS, false, VALID_NOTE, TEST_DEADLINE,
-                        TEST_PRIORITY);
+                        TEST_PRIORITY, VALID_MEMBERS);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
@@ -47,7 +51,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_TAGS, false, VALID_NOTE, TEST_DEADLINE,
-                TEST_PRIORITY);
+                TEST_PRIORITY, VALID_MEMBERS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }
@@ -57,7 +61,7 @@ public class JsonAdaptedTaskTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, invalidTags, false, VALID_NOTE,
-                TEST_DEADLINE, TEST_PRIORITY);
+                TEST_DEADLINE, TEST_PRIORITY, VALID_MEMBERS);
         assertThrows(IllegalJsonValueException.class, task::toModelType);
     }
 
@@ -65,7 +69,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidNote_throwsIllegalValueException() {
         JsonAdaptedTask task =
                new JsonAdaptedTask(VALID_DESCRIPTION, VALID_TAGS, false, INVALID_NOTE, TEST_DEADLINE,
-                       TEST_PRIORITY);
+                       TEST_PRIORITY, VALID_MEMBERS);
         String expectedMessage = Note.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalJsonValueException.class, expectedMessage, task::toModelType);
     }

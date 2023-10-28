@@ -1,17 +1,13 @@
 package seedu.address.model.tag;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Member in taskwise.
- * Guarantees: immutable; name is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Member {
+public class Member extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Member names should be non-empty.";
 
-    public final String memberName;
 
     /**
      * Constructs a {@code Member}.
@@ -19,9 +15,7 @@ public class Member {
      * @param memberName A valid member name.
      */
     public Member(String memberName) {
-        requireNonNull(memberName);
-        checkArgument(isValidName(memberName), MESSAGE_CONSTRAINTS);
-        this.memberName = memberName;
+        super(memberName);
     }
 
     /**
@@ -43,19 +37,19 @@ public class Member {
         }
 
         Member otherTag = (Member) other;
-        return memberName.equals(otherTag.memberName);
+        return super.tagName.equals(otherTag.tagName);
     }
 
     @Override
     public int hashCode() {
-        return memberName.hashCode();
+        return super.tagName.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + memberName + ']';
+        return '[' + tagName + ']';
     }
 
 }

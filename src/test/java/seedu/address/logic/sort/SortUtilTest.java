@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.sort.enums.SortOrderEnum;
+import seedu.address.model.tag.Member;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -26,6 +30,7 @@ public class SortUtilTest {
     private static final Priority DEFAULT_PRIORITY = Priority.NONE;
     private static final Priority FIRST_PRIORITY = Priority.HIGH;
     private static final Priority SECOND_PRIORITY = Priority.LOW;
+    private static final Set<Member> DEFAULT_MEMBERS = new HashSet<>(List.of(new Member("John")));
     private final Comparator<Task> taskComparatorAscending = SortUtil.ofTaskName(SortOrderEnum.ASCENDING);
     private final Comparator<Task> taskComparatorDescending = SortUtil.ofTaskName(SortOrderEnum.DESCENDING);
     private final Comparator<Task> priorityComparatorAscending = SortUtil.ofPriority(SortOrderEnum.ASCENDING);
@@ -127,22 +132,28 @@ public class SortUtilTest {
 
     @Test
     public void ofDeadline_ascendingLessThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                SECOND_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(deadlineComparatorAscending.compare(t1, t2), -1);
     }
 
     @Test
     public void ofDeadline_ascendingEqual_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(deadlineComparatorAscending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofDeadline_ascendingMoreThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                SECOND_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(deadlineComparatorAscending.compare(t1, t2), 1);
     }
 
@@ -153,22 +164,28 @@ public class SortUtilTest {
 
     @Test
     public void ofDeadline_descendingLessThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                SECOND_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(deadlineComparatorDescending.compare(t1, t2), 1);
     }
 
     @Test
     public void ofDeadline_descendingEqual_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(deadlineComparatorDescending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofDeadline_descendingMoreThan_valid() {
-        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, SECOND_DEADLINE, DEFAULT_PRIORITY);
-        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY);
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                SECOND_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(deadlineComparatorDescending.compare(t1, t2), -1);
     }
 

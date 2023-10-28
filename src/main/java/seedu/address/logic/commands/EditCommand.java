@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.DuplicatedTaskException;
 import seedu.address.logic.commands.exceptions.IllegalTaskIndexException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Member;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -102,7 +103,9 @@ public class EditCommand extends Command {
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
         Note note = taskToEdit.getNote(); //Not edited using editCommand
 
-        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority);
+        Set<Member> members = editTaskDescriptor.getMembers().orElse(taskToEdit.getMembers());
+
+        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, members);
     }
 
     @Override
@@ -138,6 +141,7 @@ public class EditCommand extends Command {
         private Deadline deadline;
         private Priority priority;
         private Set<Tag> tags;
+        private Set<Member> members;
 
         public EditTaskDescriptor() {
         }
@@ -197,6 +201,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return Optional.ofNullable(tags).map(x -> Collections.unmodifiableSet(tags));
+        }
+
+        /**
+         * Sets {@code members} to this object's {@code members}.
+         * A defensive copy of {@code members} is used internally.
+         */
+        public void setMembers(Set<Member> members) {
+            this.members = (members != null) ? new HashSet<>(members) : null;
+        }
+
+        /**
+         * Returns an unmodifiable member set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code members} is null.
+         */
+        public Optional<Set<Member>> getMembers() {
+            return Optional.ofNullable(members).map(x -> Collections.unmodifiableSet(members));
         }
 
         @Override

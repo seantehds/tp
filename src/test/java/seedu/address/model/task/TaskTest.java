@@ -19,6 +19,7 @@ public class TaskTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Task task = new TaskBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> task.getMembers().remove(0));
     }
 
     @Test
@@ -75,7 +76,8 @@ public class TaskTest {
         String expected = Task.class.getCanonicalName()
                 + "{name=" + ALICE.getDescription() + ", tags=" + ALICE.getTags()
                 + ", status=" + ALICE.getStatus() + ", note=" + ALICE.getNote()
-                + ", deadline=" + ALICE.getDeadline() + ", priority=" + ALICE.getPriority() + "}";
+                + ", deadline=" + ALICE.getDeadline() + ", priority=" + ALICE.getPriority()
+                + ", members=" + ALICE.getMembers() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
