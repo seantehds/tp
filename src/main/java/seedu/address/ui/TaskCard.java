@@ -65,6 +65,7 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+    // TODO: Create tests for the setPriorityMethod
     public void setPriority(String priorityText) {
         switch (priorityText.toLowerCase()) {
         case "low":
