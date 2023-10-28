@@ -62,7 +62,7 @@ public class TaskCard extends UiPart<Region> {
         }
 
         task.getMembers().stream()
-                .sorted(Comparator.comparing(member -> member.tagName))
-                .forEach(member -> members.getChildren().add(new Label(member.tagName)));
+                .sorted(Comparator.comparing(member -> member.memberName))
+                .forEach(member -> members.getChildren().add(new Label(member.memberName)));
     }
 }

@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -45,7 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DEADLINE + "DEADLINE]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]..."
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MEMBER + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Finalise features "
             + PREFIX_PRIORITY + "high";
@@ -100,12 +100,11 @@ public class EditCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
+        Set<Member> updatedMembers = editTaskDescriptor.getMembers().orElse(taskToEdit.getMembers());
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
         Note note = taskToEdit.getNote(); //Not edited using editCommand
 
-        Set<Member> members = editTaskDescriptor.getMembers().orElse(taskToEdit.getMembers());
-
-        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, members);
+        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, updatedMembers);
     }
 
     @Override
@@ -155,13 +154,14 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setDeadline(toCopy.deadline);
             setPriority(toCopy.priority);
+            setMembers(toCopy.members);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, tags, deadline, priority);
+            return CollectionUtil.isAnyNonNull(description, tags, deadline, priority, members);
         }
 
         public void setDeadline(Deadline deadline) {
@@ -203,6 +203,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tags).map(x -> Collections.unmodifiableSet(tags));
         }
 
+
         /**
          * Sets {@code members} to this object's {@code members}.
          * A defensive copy of {@code members} is used internally.
@@ -235,7 +236,8 @@ public class EditCommand extends Command {
             return Objects.equals(description, otherEditTaskDescriptor.description)
                     && Objects.equals(tags, otherEditTaskDescriptor.tags)
                     && Objects.equals(deadline, otherEditTaskDescriptor.deadline)
-                    && Objects.equals(priority, otherEditTaskDescriptor.priority);
+                    && Objects.equals(priority, otherEditTaskDescriptor.priority)
+                    && Objects.equals(members, otherEditTaskDescriptor.members);
         }
 
         @Override
@@ -245,6 +247,7 @@ public class EditCommand extends Command {
                     .add("tags", tags)
                     .add("deadline", deadline)
                     .add("priority", priority)
+                    .add("members", members)
                     .toString();
         }
     }

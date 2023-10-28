@@ -27,7 +27,7 @@ class JsonAdaptedMember {
      * Converts a given {@code Member} into this class for Jackson use.
      */
     public JsonAdaptedMember(Member source) {
-        memberName = source.tagName;
+        memberName = source.memberName;
     }
 
     @JsonValue
