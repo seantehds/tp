@@ -40,6 +40,14 @@ class MemberTest {
     }
 
     @Test
+    public void equals_differentType_invalid() {
+        Member member = new Member("John");
+        Tag tag = new Tag("John");
+
+        assertFalse(member.equals(tag));
+    }
+
+    @Test
     public void toString_member_valid() {
         Member tag = new Member("John");
         assertEquals(tag.toString(), "[John]");
