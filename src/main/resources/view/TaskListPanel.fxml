@@ -2,7 +2,23 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
-</VBox>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" maxHeight="Infinity">
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS" percentWidth="65.0"/>
+    <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0"/>
+  </columnConstraints>
+
+  <rowConstraints>
+    <RowConstraints vgrow="ALWAYS"/>
+  </rowConstraints>
+
+  <children>
+    <ListView fx:id="taskListView" GridPane.columnIndex="0"/>
+    <VBox fx:id="taskInformationView" GridPane.columnIndex="1" spacing="10"/>
+  </children>
+</GridPane>

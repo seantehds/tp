@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="TaskWise" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -34,7 +36,14 @@
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <children>
+            <Label text="Tasks" VBox.vgrow="ALWAYS" style="-fx-font-family: Glacial Indifference Bold; -fx-font-size: 26; -fx-text-fill: black; -fx-graphic-text-gap: 10;-fx-graphic: url(/images/tick.png)">
+              <padding>
+                <Insets top="5" bottom="5" right="10" left="10"/>
+              </padding>
+            </Label>
+            <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </children>
         </VBox>
         <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" minHeight="105" prefHeight="105" maxHeight="105">
           <padding>
