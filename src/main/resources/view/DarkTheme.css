@@ -131,10 +131,15 @@
 
 .cell_big_label {
     -fx-font-family: "Glacial Indifference Bold";
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
     -fx-text-fill: #010504;
     -fx-padding: -25 0 0 -5;
+}
 
+.cell_medium_label {
+    -fx-font-family: "Glacial Indifference";
+    -fx-font-size: 14px;
+    -fx-text-fill: #010504;
 }
 
 .cell_small_label {
