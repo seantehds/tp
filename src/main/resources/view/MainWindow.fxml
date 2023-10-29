@@ -11,7 +11,6 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="TaskWise" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -45,7 +44,7 @@
             <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </children>
         </VBox>
-        <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" minHeight="105" prefHeight="105" maxHeight="105">
+        <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" minHeight="105" prefHeight="105" maxHeight="105" VBox.vgrow="NEVER">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
