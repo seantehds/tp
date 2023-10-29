@@ -26,10 +26,12 @@ public class UnmarkCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Task taskToUnmark = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task markedTask = new Task(taskToUnmark.getDescription(), taskToUnmark.getStatus().updateStatus(),
-                taskToUnmark.getNote(), taskToUnmark.getDeadline(), taskToUnmark.getPriority());
+                taskToUnmark.getNote(), taskToUnmark.getDeadline(),
+                taskToUnmark.getPriority(), taskToUnmark.getMembers());
         model.setTask(taskToUnmark, markedTask);
         Task unmarkedTask = new Task(markedTask.getDescription(), markedTask.getStatus().updateStatus(),
-                markedTask.getNote(), markedTask.getDeadline(), taskToUnmark.getPriority());
+                markedTask.getNote(), markedTask.getDeadline(),
+                taskToUnmark.getPriority(), taskToUnmark.getMembers());
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_TASK);
 
@@ -65,10 +67,12 @@ public class UnmarkCommandTest {
 
         Task taskToUnmark = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task markedTask = new Task(taskToUnmark.getDescription(), taskToUnmark.getStatus().updateStatus(),
-                taskToUnmark.getNote(), taskToUnmark.getDeadline(), taskToUnmark.getPriority());
+                taskToUnmark.getNote(), taskToUnmark.getDeadline(),
+                taskToUnmark.getPriority(), taskToUnmark.getMembers());
         model.setTask(taskToUnmark, markedTask);
         Task unmarkedTask = new Task(markedTask.getDescription(), markedTask.getStatus().updateStatus(),
-                markedTask.getNote(), markedTask.getDeadline(), taskToUnmark.getPriority());
+                markedTask.getNote(), markedTask.getDeadline(),
+                taskToUnmark.getPriority(), markedTask.getMembers());
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_TASK);
 

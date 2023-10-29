@@ -422,3 +422,16 @@
 .priority_and_status {
     -fx-padding: 4 0 0 15;
 }
+
+.members_pane {
+    -fx-padding: 5 0 5 15
+}
+
+.member_cell_label {
+    -fx-text-fill: black;
+        -fx-background-color: #7CD1E8;
+        -fx-padding: 1 4 1 4;
+        -fx-border-radius: 2;
+        -fx-background-radius: 0 10 0 10;
+        -fx-font-size: 11;
+}
