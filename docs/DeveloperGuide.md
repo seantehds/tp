@@ -492,23 +492,25 @@ Possible enhancement for Note is to allow users to add a task to the list with t
 ## Assign Feature
 Each instance of task will contain a set of members instances whereby the Member class will be an immutable class encapsulating the name of a group member.
 
-To assign group members to a task, the project manager can do so using the following assign command as such `assign 1 a/John` which will assign John to the task at index 1.
+To assign group members to a task, the project manager can do so using the edit command such as `edit 1 m/John` which will assign John to the task at index 1.
 
 The process is given as such:
 
-1. The user enters a `assign` command into the CLI.
+1. The user enters a `edit` command into the CLI.
 2. `LogicManager` receives the call to execute the input command via the `execute()` method.
-3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `AssignCommandParser`.
-4. The created `AssignCommandParser` then parses the parameters of the command via the `parse()` method.
-5. If the parse is successful, a new instance of `AssignCommand` with the relevant parsed parameters is created and returned to the caller.
-6. The `AssignCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AssignCommand` object.
-    1. `AssignCommand` will then call the `assignTask()` method on `Model`, which will in turn call the `Task()` method on `TaskWise`
-   , replacing the old `Task` with a new instance of the `Task` having an updated set of members.
-    2. If the assignment to the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `AssignCommand::execute()` method.
-7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AssignCommand` and parses it
-8. The execution of `AssignCommand` terminates.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `EditCommandParser`.
+4. The created `EditCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `EditCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `EditCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `EditCommand` object.
+    1. `EditCommand` will then call the `getFilteredTaskList()` method on `Model`, retrieving the filtered task lists before which calling the `get(Index)` method on the task lists
+   to retrieve the task to edit.
+    2. `EditCommand` will then call its `createEditedTask(Task, EditTaskDescriptor)` method which will create a new instance of `Task` with the updated set of members.
+    3.  After which, it will replace the old `Task` with the new instance of `Task` in the task list.
+    4. If the edit is successful, a new `CommandResult` object is then created and returned to the caller of the `EditCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `EditCommand` and parses it
+8. The execution of `EditCommand` terminates.
 
-![assign sequence diagram](/images/AssignSequenceDiagram.png)
+![edit members sequence diagram](/images/AssignSequenceDiagram.png)
 
 To remove the assigned members to a task, the project manager can use the edit command `edit 1 a/` whereby it will remove all assigned members of the task at index 1.
 
