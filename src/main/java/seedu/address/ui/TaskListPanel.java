@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.tag.Member;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
@@ -80,11 +81,11 @@ public class TaskListPanel extends UiPart<Region> {
         HBox statusView = this.getStatusField(task);
         Label deadlineView = this.getDeadlineField(task);
         HBox priorityView = this.getPriorityField(task);
-        HBox assigneeView = this.getAssigneeField(task);
+        HBox memberField = this.getAssigneeField(task);
         Label noteView = this.getNoteField(task);
 
         this.taskInformationView.getChildren().addAll(
-                descriptionView, statusView, deadlineView, priorityView, assigneeView, noteView
+                descriptionView, statusView, deadlineView, priorityView, memberField, noteView
         );
     }
 
@@ -179,10 +180,12 @@ public class TaskListPanel extends UiPart<Region> {
         Label title = new Label("Members: ");
         title.setStyle("-fx-text-fill: black");
 
-        for (int i = 0; i < 10; i++) {
-            members.getChildren().add(
-                    new Label("Member " + i)
-            );
+        for (Member m : task.getMembers()) {
+            Label label = new Label(m.memberName);
+            label.setStyle("-fx-text-fill: black; "
+                    + "-fx-background-color: #7CD1E8; -fx-padding: 1 4 1 4; -fx-border-radius: 2;\n"
+                    + "-fx-background-radius: 0 10 0 10; -fx-font-size: 11;");
+            members.getChildren().add(label);
         }
 
         box.getChildren().addAll(title, members);

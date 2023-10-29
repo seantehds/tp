@@ -35,9 +35,9 @@
                 </Label>
                 <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tags"/>
+            <FlowPane fx:id="tags" alignment="CENTER_LEFT"/>
             <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline"/>
-            <HBox styleClass="priority_and_status" spacing="10">
+            <HBox styleClass="priority_and_status" spacing="10" alignment="CENTER_LEFT">
                 <Label fx:id="defaultPriority" styleClass="default_priority_cell_small_label"
                        text="\$priority" visible="false" managed="false"/>
                 <Label fx:id="lowPriority" styleClass="low_priority_cell_small_label"
@@ -48,6 +48,7 @@
                        text="\$priority" visible="false" managed="false"/>
                 <Label fx:id="status" styleClass="status_cell_small_label" text="\$status"/>
             </HBox>
+            <FlowPane fx:id="members" styleClass="members_pane" VBox.vgrow="NEVER" alignment="CENTER_LEFT"/>
         </VBox>
 
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="1">
