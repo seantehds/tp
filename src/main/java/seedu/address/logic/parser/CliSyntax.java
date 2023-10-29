@@ -8,7 +8,7 @@ public class CliSyntax {
     /* Prefix definitions */
 
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("t/");
-    public static final Prefix PREFIX_TAG = new Prefix("m/");
+    public static final Prefix PREFIX_MEMBER = new Prefix("m/");
     public static final Prefix PREFIX_NOTE = new Prefix("n/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_SORT_ORDER = new Prefix("o/");

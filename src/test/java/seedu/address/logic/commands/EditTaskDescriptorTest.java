@@ -49,7 +49,8 @@ public class EditTaskDescriptorTest {
                 + editTaskDescriptor.getDescription().orElse(null) + ", tags="
                 + editTaskDescriptor.getTags().orElse(null) + ", deadline="
                 + editTaskDescriptor.getDeadline().orElse(null) + ", priority="
-                + editTaskDescriptor.getPriority().orElse(null) + "}";
+                + editTaskDescriptor.getPriority().orElse(null) + ", members="
+                + editTaskDescriptor.getMembers().orElse(null) + "}";
         assertEquals(expected, editTaskDescriptor.toString());
     }
 }

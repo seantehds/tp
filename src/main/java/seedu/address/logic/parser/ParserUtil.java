@@ -13,6 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
+import seedu.address.model.tag.Member;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -109,6 +110,34 @@ public class ParserUtil {
         }
 
         throw new IllegalArgumentException(Deadline.INVALID_DATE);
+    }
+
+    /**
+     * Parses a {@code String memberName} into a {@code Member}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalArgumentException if the given {@code memberName} is invalid.
+     */
+    public static Member parseMember(String memberName) throws IllegalArgumentException {
+        requireNonNull(memberName);
+        String trimmedName = memberName.trim();
+        if (!Member.isValidName(trimmedName)) {
+            throw new IllegalArgumentException(Member.MESSAGE_CONSTRAINTS);
+        }
+        return new Member(trimmedName);
+    }
+
+    /**
+     * Parses {@code Collection<String> members} into a {@code Set<Tag>}.
+     */
+    public static Set<Member> parseMembers(Collection<String> members) throws IllegalArgumentException {
+        requireNonNull(members);
+
+        final Set<Member> memberSet = new HashSet<>();
+        for (String memberName : members) {
+            memberSet.add(parseMember(memberName));
+        }
+        return memberSet;
     }
 
     /**

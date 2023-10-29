@@ -1,7 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.tag.Member;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
@@ -20,12 +22,14 @@ public class TaskBuilder {
     public static final String DEFAULT_NOTE = "";
     public static final boolean DEFAULT_STATUS = false;
     public static final Priority DEFAULT_PRIORITY = Priority.NONE;
+    public static final Set<Member> DEFAULT_MEMBERS = new HashSet<>();
     private Description description;
     private Status status;
     private Note note;
     private Deadline deadline;
     private Priority priority;
     private Set<Tag> tags;
+    private Set<Member> members;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -36,6 +40,7 @@ public class TaskBuilder {
         note = new Note(DEFAULT_NOTE);
         deadline = null;
         priority = DEFAULT_PRIORITY;
+        members = DEFAULT_MEMBERS;
     }
 
     /**
@@ -47,6 +52,7 @@ public class TaskBuilder {
         note = taskToCopy.getNote();
         deadline = taskToCopy.getDeadline();
         priority = taskToCopy.getPriority();
+        members = taskToCopy.getMembers();
     }
 
     /**
@@ -90,7 +96,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, status, note, deadline, priority);
+        return new Task(description, status, note, deadline, priority, members);
     }
 
 }

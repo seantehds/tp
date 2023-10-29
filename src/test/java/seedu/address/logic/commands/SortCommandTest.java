@@ -8,8 +8,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,7 @@ import seedu.address.logic.sort.enums.SortTypeEnum;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.tag.Member;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -43,6 +46,7 @@ public class SortCommandTest {
     private static final Priority DEFAULT_PRIORITY = Priority.NONE;
     private static final Priority FIRST_PRIORITY = Priority.HIGH;
     private static final Priority SECOND_PRIORITY = Priority.LOW;
+    private static final Set<Member> DEFAULT_MEMBERS = new HashSet<>(List.of(new Member("John")));
     private static final SortCommand validTaskNameAsc = new SortCommand(SortOrderEnum.ASCENDING,
             SortTypeEnum.TASK_NAME);
     private static final SortCommand validTaskNameDes = new SortCommand(SortOrderEnum.DESCENDING,
@@ -69,9 +73,12 @@ public class SortCommandTest {
     public void execute_allTasksSetInModel_success() {
         ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
         assertTrue(modelStub.isSorted(
-                List.of(new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY))
+                List.of(new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS))
         ));
     }
 
@@ -80,9 +87,12 @@ public class SortCommandTest {
         SortCommandTest.ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
         assertDoesNotThrow(() -> SortCommandTest.validTaskNameAsc.execute(modelStub));
         assertTrue(modelStub.isSorted(
-                List.of(new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY))
+                List.of(new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS))
         ));
     }
 
@@ -91,9 +101,12 @@ public class SortCommandTest {
         SortCommandTest.ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
         assertDoesNotThrow(() -> SortCommandTest.validTaskNameDes.execute(modelStub));
         assertTrue(modelStub.isSorted(
-                List.of(new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY))
+                List.of(new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS))
         ));
     }
 
@@ -123,9 +136,12 @@ public class SortCommandTest {
         assertDoesNotThrow(() -> SortCommandTest.validStatusAsc.execute(modelStub));
 
         assertTrue(modelStub.isSorted(
-                List.of(new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY))
+                List.of(new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS))
         ));
     }
 
@@ -134,9 +150,12 @@ public class SortCommandTest {
         SortCommandTest.ModelStubWithTaskAccess modelStub = new ModelStubWithTaskAccess();
         assertDoesNotThrow(() -> SortCommandTest.validStatusDes.execute(modelStub));
         assertTrue(modelStub.isSorted(
-                List.of(new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY),
-                        new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE, FIRST_DEADLINE, DEFAULT_PRIORITY))
+                List.of(new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS),
+                        new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE,
+                                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS))
         ));
     }
 
@@ -250,11 +269,11 @@ public class SortCommandTest {
      */
     private static class ModelStubWithTaskAccess extends SortCommandTest.ModelStub {
         private static final Task t1 = new Task(FIRST_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, DEFAULT_PRIORITY);
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         private static final Task t2 = new Task(SECOND_DESCRIPTION, INCOMPLETE_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, DEFAULT_PRIORITY);
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         private static final Task t3 = new Task(THIRD_DESCRIPTION, COMPLETE_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, DEFAULT_PRIORITY);
+                FIRST_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
         private final List<Task> innerList = new LinkedList<>();
 
         ModelStubWithTaskAccess() {

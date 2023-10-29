@@ -23,7 +23,7 @@ public class NoteCommandTest {
         Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Note validNote = new Note("Remember to clarify with the tutor first");
         Task notedTask = new Task(taskToMark.getDescription(), taskToMark.getStatus(),
-                validNote, taskToMark.getDeadline(), taskToMark.getPriority());
+                validNote, taskToMark.getDeadline(), taskToMark.getPriority(), taskToMark.getMembers());
 
         NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_TASK, validNote);
 

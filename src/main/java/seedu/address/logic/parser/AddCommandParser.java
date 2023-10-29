@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 
 import java.util.stream.Stream;
 
@@ -25,7 +25,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         // TODO: Remove/Refactor unnecessary fields taken in for add command
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MEMBER);
 
         // TODO: Allow more compulsory fields to be parsed
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)

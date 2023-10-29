@@ -51,7 +51,7 @@ public class UnmarkCommand extends Command {
         }
 
         Task markedTask = new Task(taskToUnmark.getDescription(), status.updateStatus(), taskToUnmark.getNote(),
-                    taskToUnmark.getDeadline(), taskToUnmark.getPriority());
+                    taskToUnmark.getDeadline(), taskToUnmark.getPriority(), taskToUnmark.getMembers());
         model.setTask(taskToUnmark, markedTask);
 
 
