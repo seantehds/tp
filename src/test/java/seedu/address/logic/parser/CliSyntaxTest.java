@@ -17,8 +17,8 @@ public class CliSyntaxTest {
 
     @Test
     public void tagDescription_exists() {
-        assertNotNull(CliSyntax.PREFIX_TAG);
-        assertEquals(CliSyntax.PREFIX_TAG.getPrefix(), "m/");
+        assertNotNull(CliSyntax.PREFIX_MEMBER);
+        assertEquals(CliSyntax.PREFIX_MEMBER.getPrefix(), "m/");
     }
     @Test
     public void priorityPrefix_exists() {
