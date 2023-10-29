@@ -8,45 +8,74 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" style="-fx-border-color: transparent">
-    <GridPane HBox.hgrow="ALWAYS" >
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
-        </columnConstraints>
-        <HBox>
-            <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-                <padding>
-                    <Insets top="5" right="5" bottom="5" left="15"/>
-                </padding>
-                <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label fx:id="id" styleClass="cell_big_label">
-                        <minWidth>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE"/>
-                        </minWidth>
-                    </Label>
-                    <Label fx:id="description" text="\$first" styleClass="cell_big_label"/>
-                </HBox>
-                <FlowPane fx:id="tags"/>
-                <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline"/>
-                <HBox styleClass="priority_and_status" spacing="10">
-                    <Label fx:id="defaultPriority" styleClass="default_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="lowPriority" styleClass="low_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="mediumPriority" styleClass="medium_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="highPriority" styleClass="high_priority_cell_small_label"
-                           text="\$priority" visible="false" managed="false"/>
-                    <Label fx:id="status" styleClass="status_cell_small_label" text="\$status"/>
-                </HBox>
-            </VBox>
-            <VBox alignment="CENTER_RIGHT" minHeight="105">
-                <padding>
-                    <Insets top="5" right="5" bottom="5" left="15"/>
-                </padding>
-                <Label fx:id="note" styleClass="cell_medium_label" text="\$note"/>
-            </VBox>
-        </HBox>
-    </GridPane>
-</HBox>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" style="-fx-border-color: transparent">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" prefWidth="170"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" prefWidth="170"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER" prefHeight="105"/>
+    </rowConstraints>
+
+    <children>
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="15"/>
+            </padding>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE"/>
+                    </minWidth>
+                </Label>
+                <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
+            </HBox>
+            <FlowPane fx:id="tags"/>
+            <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline"/>
+            <HBox styleClass="priority_and_status" spacing="10">
+                <Label fx:id="defaultPriority" styleClass="default_priority_cell_small_label"
+                       text="\$priority" visible="false" managed="false"/>
+                <Label fx:id="lowPriority" styleClass="low_priority_cell_small_label"
+                       text="\$priority" visible="false" managed="false"/>
+                <Label fx:id="mediumPriority" styleClass="medium_priority_cell_small_label"
+                       text="\$priority" visible="false" managed="false"/>
+                <Label fx:id="highPriority" styleClass="high_priority_cell_small_label"
+                       text="\$priority" visible="false" managed="false"/>
+                <Label fx:id="status" styleClass="status_cell_small_label" text="\$status"/>
+            </HBox>
+        </VBox>
+
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="1">
+            <padding>
+                <Insets top="5" right="15" bottom="5" left="5" />
+            </padding>
+            <children>
+                <GridPane>
+                    <rowConstraints>
+                        <RowConstraints percentHeight="20.0"/>
+                        <RowConstraints percentHeight="80.0"/>
+                    </rowConstraints>
+
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="100"/>
+                    </columnConstraints>
+
+                    <children>
+                        <Label text="Notes:" style="-fx-font-family: Glacial Indifference Bold" GridPane.rowIndex="0"/>
+                        <HBox style="-fx-border-color: #563c0b; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-insets: 5;" GridPane.rowIndex="1">
+                            <padding>
+                                <Insets top="5" right="15" bottom="5" left="5" />
+                            </padding>
+                            <Label fx:id="note" styleClass="cell_medium_label" text="\$note" wrapText="true" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+    </children>
+
+</GridPane>
