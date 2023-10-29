@@ -9,8 +9,8 @@
 
 <GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" maxHeight="Infinity">
   <columnConstraints>
-    <ColumnConstraints hgrow="ALWAYS" percentWidth="100.0"/>
-    <ColumnConstraints hgrow="ALWAYS" minWidth="0" percentWidth="0.0"/>
+    <ColumnConstraints hgrow="ALWAYS" percentWidth="65.0"/>
+    <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0"/>
   </columnConstraints>
 
   <rowConstraints>
