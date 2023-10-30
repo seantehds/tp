@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -37,34 +36,34 @@ public class TaskListPanel extends UiPart<Region> {
 
     @FXML
     private VBox scrollableBox;
-    
+
     @FXML
     private Label selectLabel;
-    
+
     @FXML
     private Label descriptionLabel;
-    
+
     @FXML
     private HBox statusView;
-    
+
     @FXML
     private Label statusText;
-    
+
     @FXML
     private Label deadlineView;
-    
+
     @FXML
     private HBox priorityView;
-    
+
     @FXML
     private Label priorityText;
-    
+
     @FXML
     private HBox memberView;
-    
+
     @FXML
     private VBox memberList;
-    
+
     @FXML
     private Label noteView;
 
