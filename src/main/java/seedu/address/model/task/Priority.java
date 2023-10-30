@@ -31,6 +31,8 @@ public enum Priority {
             return Priority.MEDIUM;
         case "high":
             return Priority.HIGH;
+        case "none":
+            return Priority.NONE;
         default:
             throw new IllegalArgumentException("Invalid Priority Value: ");
         }
@@ -46,6 +48,7 @@ public enum Priority {
         case "low":
         case "medium":
         case "high":
+        case "none":
             return true;
         default:
             return false;
