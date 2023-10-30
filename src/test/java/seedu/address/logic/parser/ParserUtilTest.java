@@ -182,7 +182,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_collectionWithTagsDuplicates_returnsTagSet() {
+    public void parseTags_collectionwithMembersDuplicates_returnsTagSet() {
         assertDoesNotThrow(() -> ParserUtil.parseTags(
                 Arrays.asList(VALID_TAG_1, VALID_TAG_1, VALID_TAG_1)));
     }

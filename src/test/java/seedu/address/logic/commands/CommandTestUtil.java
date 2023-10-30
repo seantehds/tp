@@ -45,9 +45,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withMembers(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withMembers(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

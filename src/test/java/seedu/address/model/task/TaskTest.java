@@ -31,7 +31,7 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false

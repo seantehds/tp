@@ -29,7 +29,7 @@ import seedu.address.testutil.TaskBuilder;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
-    AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
 
     private void setUpDesc(Task validTask) {
         desc.setDescription(validTask.getDescription());
@@ -47,7 +47,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Task expectedTask = new TaskBuilder(BOB).withMembers(VALID_TAG_FRIEND).build();
 
         setUpDesc(expectedTask);
 
@@ -57,7 +57,7 @@ public class AddCommandParserTest {
 
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withMembers(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
 
         setUpDesc(expectedTaskMultipleTags);
@@ -97,7 +97,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Task expectedTask = new TaskBuilder(AMY).withTags().build();
+        Task expectedTask = new TaskBuilder(AMY).withMembers().build();
 
         setUpDesc(expectedTask);
 
