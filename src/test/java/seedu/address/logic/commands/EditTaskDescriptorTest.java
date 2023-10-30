@@ -46,7 +46,8 @@ public class EditTaskDescriptorTest {
     public void toStringMethod() {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         String expected = EditTaskDescriptor.class.getCanonicalName() + "{description="
-                + editTaskDescriptor.getDescription().orElse(null) + ", tags="
+                + editTaskDescriptor.getDescription().orElse(null) + ", note="
+                + editTaskDescriptor.getNote().orElse(null) + ", tags="
                 + editTaskDescriptor.getTags().orElse(null) + ", deadline="
                 + editTaskDescriptor.getDeadline().orElse(null) + ", priority="
                 + editTaskDescriptor.getPriority().orElse(null) + ", members="
