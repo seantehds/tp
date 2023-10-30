@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -43,6 +44,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_NOTE + "NOTE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]..."
             + "[" + PREFIX_MEMBER + "TAG]...\n"
@@ -98,13 +100,13 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        Note updatedNote = editTaskDescriptor.getNote().orElse(taskToEdit.getNote());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         Set<Member> updatedMembers = editTaskDescriptor.getMembers().orElse(taskToEdit.getMembers());
         Status status = taskToEdit.getStatus(); //Not edited using editCommand
-        Note note = taskToEdit.getNote(); //Not edited using editCommand
 
-        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, updatedMembers);
+        return new Task(updatedDescription, status, updatedNote, updatedDeadline, updatedPriority, updatedMembers);
     }
 
     @Override
@@ -137,6 +139,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Description description;
+        private Note note;
         private Deadline deadline;
         private Priority priority;
         private Set<Tag> tags;
@@ -151,6 +154,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setDescription(toCopy.description);
+            setNote(toCopy.note);
             setTags(toCopy.tags);
             setDeadline(toCopy.deadline);
             setPriority(toCopy.priority);
@@ -161,7 +165,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, tags, deadline, priority, members);
+            return CollectionUtil.isAnyNonNull(description, note, tags, deadline, priority, members);
+        }
+
+        public void setNote (Note note) {
+            this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
         }
 
         public void setDeadline(Deadline deadline) {
@@ -234,6 +246,7 @@ public class EditCommand extends Command {
 
             EditTaskDescriptor otherEditTaskDescriptor = (EditTaskDescriptor) other;
             return Objects.equals(description, otherEditTaskDescriptor.description)
+                    && Objects.equals(note, otherEditTaskDescriptor.note)
                     && Objects.equals(tags, otherEditTaskDescriptor.tags)
                     && Objects.equals(deadline, otherEditTaskDescriptor.deadline)
                     && Objects.equals(priority, otherEditTaskDescriptor.priority)
@@ -244,6 +257,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("description", description)
+                    .add("note", note)
                     .add("tags", tags)
                     .add("deadline", deadline)
                     .add("priority", priority)
