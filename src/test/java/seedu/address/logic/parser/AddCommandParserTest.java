@@ -29,7 +29,7 @@ import seedu.address.testutil.TaskBuilder;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
-    AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
 
     private void setUpDesc(Task validTask) {
         desc.setDescription(validTask.getDescription());

@@ -21,7 +21,7 @@ import seedu.address.testutil.TaskBuilder;
 public class AddCommandIntegrationTest {
 
     private Model model;
-    AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
 
     private void setUpDesc(Task validTask) {
         desc.setDescription(validTask.getDescription());

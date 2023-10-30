@@ -42,14 +42,6 @@ public class AddCommand extends Command {
     private final Task toAdd;
     private AddTaskDescriptor desc;
 
-//    /**
-//     * Creates an AddCommand to add the specified {@code Task}
-//     */
-//    public AddCommand(Task task) {
-//        requireNonNull(task);
-//        toAdd = task;
-//    }
-
     /**
      * Creates an AddCommand with the specified {@code AddTaskDescriptor}
      */
@@ -85,8 +77,9 @@ public class AddCommand extends Command {
         Priority updatedPriority = addTaskDescriptor.getPriority().orElse(Priority.NONE);
         Status status = new Status(); //Not edited using editCommand
         Note note = new Note(""); //Not edited using editCommand
+        Set<Member> members = addTaskDescriptor.getMembers().orElse(new HashSet<>());
 
-        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, new HashSet<>());
+        return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, members);
     }
 
     @Override
@@ -179,11 +172,20 @@ public class AddCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code members} to this object's {@code members}.
+         * A defensive copy of {@code members} is used internally.
          */
         public void setMembers(Set<Member> members) {
             this.members = (members != null) ? new HashSet<>(members) : null;
+        }
+
+        /**
+         * Returns an unmodifiable member set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code members} is null.
+         */
+        public Optional<Set<Member>> getMembers() {
+            return Optional.ofNullable(members).map(x -> Collections.unmodifiableSet(members));
         }
 
         /**

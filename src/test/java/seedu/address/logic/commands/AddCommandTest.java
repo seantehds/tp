@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandTest {
 
-    AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
 
     private void setUpDesc(Task validTask) {
         desc.setDescription(validTask.getDescription());
@@ -108,14 +107,6 @@ public class AddCommandTest {
         // different task -> returns false
         assertFalse(addUserGuideCommand.equals(addDeveloperGuideCommand));
     }
-
-//    @Test
-//    public void toStringMethod() {
-//
-//        AddCommand addCommand = new AddCommand(desc);
-//        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + addCommand + "}";
-//        assertEquals(expected, addCommand.toString());
-//    }
 
     /**
      * A default model stub that have all of the methods failing.
