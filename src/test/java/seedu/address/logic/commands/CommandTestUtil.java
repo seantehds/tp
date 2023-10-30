@@ -25,17 +25,16 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_MEMBER_DAVID = "David";
+    public static final String VALID_MEMBER_CHARLIE = "Charlie";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_NAME_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_MEMBER + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_MEMBER + VALID_TAG_HUSBAND;
+    public static final String MEMBER_DESC_CHARLIE = " " + PREFIX_MEMBER + VALID_MEMBER_CHARLIE;
+    public static final String MEMBER_DESC_DAVID = " " + PREFIX_MEMBER + VALID_MEMBER_DAVID;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "James&"; // '&' not allowed in names
-    public static final String INVALID_TAG_DESC = " " + PREFIX_MEMBER + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "";
+    public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + ""; // "" is not allowed as a member name
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -45,9 +44,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withMembers(VALID_MEMBER_CHARLIE).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withMembers(VALID_MEMBER_DAVID, VALID_MEMBER_CHARLIE).build();
     }
 
     /**

@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import seedu.address.model.tag.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Task;
 
 /**

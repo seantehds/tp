@@ -3,8 +3,8 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DAVID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
 import static seedu.address.testutil.TypicalTasks.BOB;
@@ -18,7 +18,6 @@ public class TaskTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Task task = new TaskBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
         assertThrows(UnsupportedOperationException.class, () -> task.getMembers().remove(0));
     }
 
@@ -31,7 +30,7 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_MEMBER_DAVID).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -74,10 +73,9 @@ public class TaskTest {
     @Test
     public void toStringMethod() {
         String expected = Task.class.getCanonicalName()
-                + "{name=" + ALICE.getDescription() + ", tags=" + ALICE.getTags()
-                + ", status=" + ALICE.getStatus() + ", note=" + ALICE.getNote()
-                + ", deadline=" + ALICE.getDeadline() + ", priority=" + ALICE.getPriority()
-                + ", members=" + ALICE.getMembers() + "}";
+                + "{name=" + ALICE.getDescription() + ", status=" + ALICE.getStatus()
+                + ", note=" + ALICE.getNote() + ", deadline=" + ALICE.getDeadline()
+                + ", priority=" + ALICE.getPriority() + ", members=" + ALICE.getMembers() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

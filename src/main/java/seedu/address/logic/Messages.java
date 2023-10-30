@@ -42,7 +42,6 @@ public class Messages {
     public static String format(Task task) {
         final StringBuilder builder = new StringBuilder();
         builder.append(task.getDescription());
-        task.getTags().forEach(builder::append);
         return builder.toString();
     }
 

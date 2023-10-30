@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DAVID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withDescription(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMembers(VALID_MEMBER_DAVID).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMembers(VALID_MEMBER_DAVID).build();
         EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, Messages.format(editedTask));

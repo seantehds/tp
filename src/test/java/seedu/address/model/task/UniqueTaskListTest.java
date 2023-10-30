@@ -3,7 +3,7 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DAVID;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
 import static seedu.address.testutil.TypicalTasks.BOB;
@@ -41,7 +41,7 @@ public class UniqueTaskListTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_MEMBER_DAVID)
                 .build();
         assertTrue(uniqueTaskList.contains(editedAlice));
     }
@@ -84,7 +84,7 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_MEMBER_DAVID).build();
         uniqueTaskList.setTask(ALICE, editedAlice);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(editedAlice);

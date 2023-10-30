@@ -13,8 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
-import seedu.address.model.tag.Member;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -128,44 +127,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> members} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> members} into a {@code Set<Member>}.
      */
     public static Set<Member> parseMembers(Collection<String> members) throws IllegalArgumentException {
         requireNonNull(members);
 
         final Set<Member> memberSet = new HashSet<>();
-        for (String memberName : members) {
-            memberSet.add(parseMember(memberName));
+        for (String tagName : members) {
+            memberSet.add(parseMember(tagName));
         }
         return memberSet;
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws IllegalArgumentException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws IllegalArgumentException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new IllegalArgumentException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws IllegalArgumentException {
-        requireNonNull(tags);
-
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
     /**
      * Parses {@code String} into a {@code SortOrderEnum}

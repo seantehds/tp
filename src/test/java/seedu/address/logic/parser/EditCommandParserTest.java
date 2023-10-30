@@ -2,13 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_CHARLIE;
+import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_DAVID;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_CHARLIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DAVID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -23,7 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
-import seedu.address.model.tag.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Description;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
@@ -66,13 +66,13 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Description.MESSAGE_CONSTRAINTS); // invalid name
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + MEMBER_EMPTY,
+        // while parsing {@code PREFIX_MEMBER} alone will reset the members of the {@code Task} being edited,
+        // parsing it together with a valid member results in error
+        assertParseFailure(parser, "1" + MEMBER_DESC_CHARLIE + MEMBER_DESC_DAVID + MEMBER_EMPTY,
                 Member.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + MEMBER_EMPTY + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + MEMBER_DESC_CHARLIE + MEMBER_EMPTY + MEMBER_DESC_DAVID,
                 Member.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MEMBER_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + MEMBER_EMPTY + MEMBER_DESC_CHARLIE + MEMBER_DESC_DAVID,
                 Member.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
@@ -83,11 +83,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
-        String userInput = targetIndex.getOneBased() + TAG_DESC_HUSBAND
-                + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + MEMBER_DESC_DAVID
+                + NAME_DESC_AMY + MEMBER_DESC_CHARLIE;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_AMY)
-                .withMembers(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withMembers(VALID_MEMBER_DAVID, VALID_MEMBER_CHARLIE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -114,9 +114,9 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditTaskDescriptorBuilder().withMembers(VALID_TAG_FRIEND).build();
+        // members
+        userInput = targetIndex.getOneBased() + MEMBER_DESC_CHARLIE;
+        descriptor = new EditTaskDescriptorBuilder().withMembers(VALID_MEMBER_CHARLIE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

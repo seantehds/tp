@@ -1,10 +1,10 @@
-package seedu.address.model.tag;
+package seedu.address.model.member;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Member in taskwise.
+ * Represents a Member in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidName(String)}
  */
 public class Member {
@@ -13,11 +13,10 @@ public class Member {
 
     public final String memberName;
 
-
     /**
      * Constructs a {@code Member}.
      *
-     * @param memberName A valid member name.
+     * @param memberName A valid Member name.
      */
     public Member(String memberName) {
         requireNonNull(memberName);

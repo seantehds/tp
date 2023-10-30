@@ -23,7 +23,7 @@ import seedu.address.logic.sort.enums.SortTypeEnum;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.tag.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;

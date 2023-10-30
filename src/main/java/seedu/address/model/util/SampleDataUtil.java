@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyTaskWise;
 import seedu.address.model.TaskWise;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
@@ -31,11 +31,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a member set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Member> getMemberSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Member::new)
                 .collect(Collectors.toSet());
     }
 

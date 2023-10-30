@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.model.tag.Member;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -32,21 +31,17 @@ class JsonAdaptedTask {
     private final String note;
     private final Deadline deadline;
     private final Priority priority;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedMember> members = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                           @JsonProperty("status") boolean status, @JsonProperty("note") String note,
-                           @JsonProperty("deadline") Deadline deadline, @JsonProperty("priority") Priority priority,
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("status") boolean status,
+                           @JsonProperty("note") String note, @JsonProperty("deadline") Deadline deadline,
+                           @JsonProperty("priority") Priority priority,
                            @JsonProperty("members") List<JsonAdaptedMember> members) {
         this.description = name;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
         this.status = status;
         this.note = note;
         this.deadline = deadline;
@@ -62,9 +57,6 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         description = source.getDescription().fullDescription;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         status = source.getStatus().isCompleted();
         note = source.getNote().fullNote;
         deadline = source.getDeadline();
@@ -81,11 +73,6 @@ class JsonAdaptedTask {
      * @throws IllegalJsonValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalJsonValueException {
-        final List<Tag> taskTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            taskTags.add(tag.toModelType());
-        }
-
         if (description == null) {
             throw new IllegalJsonDescriptionValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));

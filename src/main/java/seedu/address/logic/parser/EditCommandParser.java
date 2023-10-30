@@ -19,8 +19,7 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.InvalidFormatException;
 import seedu.address.logic.parser.exceptions.NoRecordedModificationException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Member;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.member.Member;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -90,9 +89,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> members} into a {@code Set<Member>} if {@code members} is non-empty.
+     * Parses {@code Collection<String> members} into a {@code Set<Tag>} if {@code members} is non-empty.
      * If {@code members} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Member>} containing zero Members.
+     * {@code Set<Tag>} containing zero members.
      */
     private Optional<Set<Member>> parseMembersForEdit(Collection<String> members) throws ParseException {
         requireNonNull(members);
@@ -101,24 +100,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
 
-        Collection<String> memberSet = members.size() == 1 && members.contains("") ? Collections.emptySet() : members;
-        return Optional.of(ParserUtil.parseMembers(memberSet));
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> tagSet = members.size() == 1 && members.contains("") ? Collections.emptySet() : members;
+        return Optional.of(ParserUtil.parseMembers(tagSet));
     }
 
 }

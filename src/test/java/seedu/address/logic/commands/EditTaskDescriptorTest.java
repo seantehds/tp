@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DAVID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,8 +37,8 @@ public class EditTaskDescriptorTest {
         EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDescription(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        // different members -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withMembers(VALID_MEMBER_DAVID).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
@@ -47,8 +47,7 @@ public class EditTaskDescriptorTest {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         String expected = EditTaskDescriptor.class.getCanonicalName() + "{description="
                 + editTaskDescriptor.getDescription().orElse(null) + ", note="
-                + editTaskDescriptor.getNote().orElse(null) + ", tags="
-                + editTaskDescriptor.getTags().orElse(null) + ", deadline="
+                + editTaskDescriptor.getNote().orElse(null) + ", deadline="
                 + editTaskDescriptor.getDeadline().orElse(null) + ", priority="
                 + editTaskDescriptor.getPriority().orElse(null) + ", members="
                 + editTaskDescriptor.getMembers().orElse(null) + "}";

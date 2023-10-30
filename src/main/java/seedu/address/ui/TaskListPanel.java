@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.tag.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
