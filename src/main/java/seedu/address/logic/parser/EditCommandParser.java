@@ -36,7 +36,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_NOTE, PREFIX_MEMBER, PREFIX_DEADLINE, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_NOTE,
+                        PREFIX_MEMBER, PREFIX_DEADLINE, PREFIX_PRIORITY);
 
         // check if the preamble is empty, if it is, then it must be malformed
         if (argMultimap.getPreamble().isEmpty()) {
