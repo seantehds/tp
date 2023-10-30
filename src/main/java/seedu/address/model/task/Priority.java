@@ -48,7 +48,7 @@ public enum Priority {
         case "low":
         case "medium":
         case "high":
-        case "none":    
+        case "none":
             return true;
         default:
             return false;
