@@ -31,12 +31,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        // TODO: Remove/Refactor unnecessary fields taken in for add command
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_DEADLINE, PREFIX_MEMBER);
 
 
-        // TODO: Allow more compulsory fields to be parsed
+        // Only description is the compulsory field to be parsed
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new InvalidFormatException(
