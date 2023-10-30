@@ -5,6 +5,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Collection;
@@ -35,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MEMBER, PREFIX_DEADLINE, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_NOTE, PREFIX_MEMBER, PREFIX_DEADLINE, PREFIX_PRIORITY);
 
         // check if the preamble is empty, if it is, then it must be malformed
         if (argMultimap.getPreamble().isEmpty()) {
@@ -51,7 +52,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
         }
-        // TODO: Add tests for deadline, members and priority in EditCommandParserTest
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            editTaskDescriptor.setNote(ParserUtil.parseNote(argMultimap
+                    .getValue(PREFIX_NOTE).get()));
+        }
+        // TODO: Add tests for deadline, note, members and priority in EditCommandParserTest
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap
                     .getValue(PREFIX_DEADLINE).get()));
@@ -64,6 +69,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         // now validate the index
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DEADLINE);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PRIORITY);
 

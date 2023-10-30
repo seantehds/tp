@@ -168,7 +168,7 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(description, note, tags, deadline, priority, members);
         }
 
-        public void setNote (Note note) {
+        public void setNote(Note note) {
             this.note = note;
         }
 
