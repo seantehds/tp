@@ -63,9 +63,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         // now validate the index
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION);
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DEADLINE);
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PRIORITY);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_PRIORITY);
 
         /*
          * If the bottom calls to parse*() fail, then the resulting help-string, along with an

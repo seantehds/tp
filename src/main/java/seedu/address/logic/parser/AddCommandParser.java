@@ -1,8 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.stream.Stream;
 
@@ -10,7 +13,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.InvalidFormatException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -25,7 +27,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         // TODO: Remove/Refactor unnecessary fields taken in for add command
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MEMBER);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MEMBER, PREFIX_DEADLINE, PREFIX_MEMBER);
 
         // TODO: Allow more compulsory fields to be parsed
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
@@ -36,12 +38,31 @@ public class AddCommandParser implements Parser<AddCommand> {
                     AddCommand.MESSAGE_USAGE);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_DEADLINE);
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Task task = new Task(description);
+        AddCommand.AddTaskDescriptor addTaskDescriptor = new AddCommand.AddTaskDescriptor();
 
-        return new AddCommand(task);
+        addTaskDescriptor.setDescription(description);
+        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            addTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap
+                    .getValue(PREFIX_DEADLINE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            addTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap
+                    .getValue(PREFIX_PRIORITY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            addTaskDescriptor.setNote(ParserUtil.parseNote(argMultimap
+                    .getValue(PREFIX_NOTE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MEMBER).isPresent()) {
+            addTaskDescriptor.setMembers(ParserUtil.parseMembers(argMultimap
+                    .getAllValues(PREFIX_MEMBER)));
+        }
+
+
+        return new AddCommand(addTaskDescriptor);
     }
 
     /**

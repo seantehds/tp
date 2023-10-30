@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -38,13 +39,26 @@ import seedu.address.testutil.TaskUtil;
 
 public class TaskWiseParserTest {
 
+    AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+
+    private void setUpDesc(Task validTask) {
+        desc.setDescription(validTask.getDescription());
+        desc.setDeadline(validTask.getDeadline());
+        desc.setPriority(validTask.getPriority());
+        desc.setMembers(validTask.getMembers());
+        desc.setNote(validTask.getNote());
+        desc.setStatus(validTask.getStatus());
+    }
     private final TaskWiseParser parser = new TaskWiseParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Task task = new TaskBuilder().build();
+
+        setUpDesc(task);
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
-        assertEquals(new AddCommand(task), command);
+
+        assertEquals(new AddCommand(desc), command);
     }
 
     @Test
