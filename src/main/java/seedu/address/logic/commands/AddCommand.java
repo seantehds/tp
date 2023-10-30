@@ -116,7 +116,14 @@ public class AddCommand extends Command {
         private Status status;
         private Note note;
 
+        /**
+         * Basic constructor.
+         * Priority, Note and Members are initialised with default, non-null values
+         */
         public AddTaskDescriptor() {
+            this.priority = Priority.NONE;
+            this.note = new Note("");
+            this.members = new HashSet<>();
         }
 
         /**

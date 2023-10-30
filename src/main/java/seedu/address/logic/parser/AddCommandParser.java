@@ -33,7 +33,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         // TODO: Remove/Refactor unnecessary fields taken in for add command
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_MEMBER, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_DEADLINE, PREFIX_MEMBER);
+
 
         // TODO: Allow more compulsory fields to be parsed
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
@@ -68,7 +69,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         parseMembersForEdit(argMultimap.getAllValues(PREFIX_MEMBER)).ifPresent(addTaskDescriptor::setMembers);
-
 
         return new AddCommand(addTaskDescriptor);
     }
