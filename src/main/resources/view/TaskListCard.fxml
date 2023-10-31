@@ -33,9 +33,8 @@
                         <Region fx:constant="USE_PREF_SIZE"/>
                     </minWidth>
                 </Label>
-                <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="description" text="" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tags" alignment="CENTER_LEFT"/>
             <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline"/>
             <HBox styleClass="priority_and_status" spacing="10" alignment="CENTER_LEFT">
                 <Label fx:id="defaultPriority" styleClass="default_priority_cell_small_label"

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
 
@@ -57,14 +58,24 @@ public class TaskCard extends UiPart<Region> {
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
+
         id.setText(displayedIndex + ". ");
-        description.setText(task.getDescription().fullDescription);
+        setDescription(task.getDescription().fullDescription);
         status.setText(task.getStatus().toString());
         note.setText(task.getNote().fullNote);
         setPriority(task.getPriority().toString());
         deadline.setText(task.getDeadline().toString());
         setMembers(task.getMembers());
     }
+
+    private void setDescription(String fullDescription) {
+        Text descripionText = new Text(fullDescription);
+
+        descripionText.setStrikethrough(task.getStatus().isCompleted());
+
+        description.setGraphic(descripionText);
+    }
+
     public void setPriority(String priorityText) {
         switch (priorityText.toLowerCase()) {
         case "low":
