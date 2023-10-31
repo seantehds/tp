@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.tag.Member;
@@ -18,6 +19,8 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    private static final double COMPLETED_OPACITY_VALUE = 0.1;
+    private static final double INCOMPLETE_OPACITY_VALUE = 1.0;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -28,6 +31,9 @@ public class TaskCard extends UiPart<Region> {
      */
 
     public final Task task;
+
+    @FXML
+    private Pane overlay;
 
     @FXML
     private GridPane cardPane;
@@ -59,6 +65,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
 
+        setOverlay(task.getStatus().isCompleted());
         id.setText(displayedIndex + ". ");
         setDescription(task.getDescription().fullDescription);
         status.setText(task.getStatus().toString());
@@ -69,11 +76,32 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private void setDescription(String fullDescription) {
-        Text descripionText = new Text(fullDescription);
+        Text description = new Text(fullDescription);
 
-        descripionText.setStrikethrough(task.getStatus().isCompleted());
+        description.setStrikethrough(task.getStatus().isCompleted());
 
-        description.setGraphic(descripionText);
+        this.description.setGraphic(description);
+    }
+
+    private void setMembers(Set<Member> source) {
+        if (source == null || source.isEmpty()) {
+            return;
+        }
+
+        source.stream()
+                .sorted(Comparator.comparing(member -> member.memberName))
+                .forEach(member -> members.getChildren().add(new Label(member.memberName)));
+        members.setHgap(5.00);
+
+        members.getChildren().forEach(label -> label.getStyleClass().add("member_cell_label"));
+    }
+
+    private void setOverlay(boolean isCompleted) {
+        if (isCompleted) {
+            overlay.setOpacity(COMPLETED_OPACITY_VALUE);
+        } else {
+            overlay.setOpacity(INCOMPLETE_OPACITY_VALUE);
+        }
     }
 
     public void setPriority(String priorityText) {
@@ -100,17 +128,5 @@ public class TaskCard extends UiPart<Region> {
         }
     }
 
-    private void setMembers(Set<Member> source) {
-        if (source == null || source.isEmpty()) {
-            return;
-        }
-
-        source.stream()
-                .sorted(Comparator.comparing(member -> member.memberName))
-                .forEach(member -> members.getChildren().add(new Label(member.memberName)));
-        members.setHgap(5.00);
-
-        members.getChildren().forEach(label -> label.getStyleClass().add("member_cell_label"));
-    }
 
 }
