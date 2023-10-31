@@ -18,11 +18,9 @@
               <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" prefWidth="170" />
               <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" prefWidth="170" />
           </columnConstraints>
-      
           <rowConstraints>
               <RowConstraints prefHeight="105" vgrow="NEVER" />
           </rowConstraints>
-      
           <children>
               <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
                   <padding>
@@ -46,7 +44,6 @@
                   </HBox>
                   <FlowPane fx:id="members" alignment="CENTER_LEFT" styleClass="members_pane" VBox.vgrow="NEVER" />
               </VBox>
-      
               <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="1">
                   <padding>
                       <Insets bottom="5" left="5" right="15" top="5" />
@@ -57,11 +54,9 @@
                               <RowConstraints percentHeight="20.0" />
                               <RowConstraints percentHeight="80.0" />
                           </rowConstraints>
-      
                           <columnConstraints>
                               <ColumnConstraints percentWidth="100" />
                           </columnConstraints>
-      
                           <children>
                               <Label style="-fx-font-family: Glacial Indifference Bold" text="Notes:" GridPane.rowIndex="0" />
                               <HBox style="-fx-border-color: #563c0b; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-insets: 5;" GridPane.rowIndex="1">
@@ -75,7 +70,6 @@
                   </children>
               </VBox>
           </children>
-      
       </GridPane>
    </children>
 </Pane>
