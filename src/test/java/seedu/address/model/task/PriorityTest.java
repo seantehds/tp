@@ -18,7 +18,6 @@ public class PriorityTest {
         assertTrue(Priority.LOW.equals(Priority.of("low")));
         assertTrue(Priority.LOW.equals(Priority.of("LOW")));
         assertFalse(Priority.LOW.equals(Priority.of("medium")));
-        
         assertTrue(Priority.MEDIUM.equals(Priority.of("medium")));
         assertTrue(Priority.MEDIUM.equals(Priority.of("Medium")));
         assertTrue(Priority.MEDIUM.equals(Priority.of("MediUM")));
@@ -26,10 +25,8 @@ public class PriorityTest {
     }
     @Test
     public void isValidPriority_success() {
-        
     }
     @Test
     public void isValidPriority_failure() {
-        
     }
 }
