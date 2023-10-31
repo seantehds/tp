@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -98,7 +99,9 @@ public class TaskCard extends UiPart<Region> {
 
         members.getChildren().clear();
         members.setHgap(5.00);
+        members.setVgap(5.00);
         List<Member> sourceMembers = new ArrayList<>(source);
+        sourceMembers.sort(Comparator.comparing(x -> x.memberName));
         int excessCount = 0;
 
         for (Member m : sourceMembers) {
@@ -107,7 +110,7 @@ public class TaskCard extends UiPart<Region> {
                 Label label = new Label(truncatedName);
                 label.getStyleClass().add("member_cell_label");
 
-                Tooltip tooltip = new Tooltip(m.memberName);
+                Tooltip tooltip = new Tooltip(m.memberName.substring(0, Math.min(m.memberName.length(), 99)));
                 tooltip.setShowDelay(new Duration(500));
                 Tooltip.install(label, tooltip);
                 members.getChildren().add(label);
@@ -121,8 +124,8 @@ public class TaskCard extends UiPart<Region> {
         }
 
         if (excessCount > 0) {
-            Label excessLabel = new Label("+" + excessCount);
-            excessLabel.getStyleClass().add("member_cell_label");
+            Label excessLabel = new Label("+" + Math.min(excessCount, 99));
+            excessLabel.getStyleClass().add("member_cell_overflow");
             members.getChildren().add(excessLabel);
         }
     }

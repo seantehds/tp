@@ -436,6 +436,15 @@
         -fx-font-size: 11;
 }
 
+.member_cell_overflow {
+    -fx-text-fill: black;
+    -fx-background-color: #56c5e3;
+    -fx-padding: 1 4 1 4;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 11;
+}
+
 .note_pane {
     -fx-background-color: #FFF3BB;
     -fx-text-fill: black;

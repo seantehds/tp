@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -9,14 +10,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
+
+import javax.tools.Tool;
 
 /**
  * Panel containing the list of tasks.
@@ -207,18 +212,23 @@ public class TaskListPanel extends UiPart<Region> {
     private void getMemberField(Task task) {
         this.memberList.getChildren().clear();
 
-        for (Member m : task.getMembers()) {
-            if (m.memberName.length() > 30) {
-                String truncatedName = m.memberName.substring(0, 6) + "...";
-                Label label = new Label(truncatedName);
-                label.getStyleClass().add("member_cell_label");
-                this.memberList.getChildren().add(label);
-            } else {
-                Label label = new Label(m.memberName);
-                label.getStyleClass().add("member_cell_label");
-                this.memberList.getChildren().add(label);
-            }
-        }
+        task.getMembers().stream().sorted(Comparator.comparing(x -> x.memberName))
+                .forEach(x -> {
+                    if (x.memberName.length() > 25) {
+                        String truncatedName = x.memberName.substring(0, 25) + "...";
+                        Label label = new Label(truncatedName);
+                        label.getStyleClass().add("member_cell_label");
+
+                        Tooltip tooltip = new Tooltip(x.memberName.substring(0, Math.min(x.memberName.length(), 99)));
+                        tooltip.setShowDelay(new Duration(500));
+                        Tooltip.install(label, tooltip);
+                        this.memberList.getChildren().add(label);
+                    } else {
+                        Label label = new Label(x.memberName);
+                        label.getStyleClass().add("member_cell_label");
+                        this.memberList.getChildren().add(label);
+                    }
+                });
     }
 
     private void getNoteField(Task task) {
