@@ -41,8 +41,8 @@ public class TypicalTasks {
 
 
     // Manually added
-    public static final Task HOON = new TaskBuilder().withDescription("task one").build();
-    public static final Task IDA = new TaskBuilder().withDescription("task two").build();
+    public static final Task TASK_ONE = new TaskBuilder().withDescription("task one").build();
+    public static final Task TASK_TWO = new TaskBuilder().withDescription("task two").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     // TODO: Add other fields required for test case ie. Deadline, Priority.
