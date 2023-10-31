@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.FIX_BUG;
+import static seedu.address.testutil.TypicalTasks.OP2_MEETING;
+import static seedu.address.testutil.TypicalTasks.OP2_PRESENTATION;
+import static seedu.address.testutil.TypicalTasks.OP2_REHEARSAL;
+import static seedu.address.testutil.TypicalTasks.OP2_REPORT;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskWise;
 
 import java.util.Arrays;
@@ -64,12 +67,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Fix");
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 4);
+        NameContainsKeywordsPredicate predicate = preparePredicate("OP2");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIX_BUG), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(OP2_REPORT, OP2_PRESENTATION, OP2_MEETING, OP2_REHEARSAL),
+                model.getFilteredTaskList());
     }
 
     @Test

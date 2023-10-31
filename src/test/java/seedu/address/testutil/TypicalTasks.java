@@ -15,22 +15,27 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-    // TODO: Change test cases
-    // TODO: Change test cases
+    //Alice
     public static final Task FIX_BUG = new TaskBuilder()
             .withDescription("Fix bug").withStatus(false).withNote("").withPriority(Priority.NONE).build();
+    //Benson
     public static final Task OP2_REPORT = new TaskBuilder()
             .withDescription("Do OP2 report").withStatus(false).withNote("").withPriority(Priority.NONE).build();
-    public static final Task CARL = new TaskBuilder()
+    //Carl
+    public static final Task OP2_PRESENTATION = new TaskBuilder()
             .withDescription("Do OP2 presentation").withStatus(false).withNote("").withPriority(Priority.NONE).build();
-    public static final Task DANIEL = new TaskBuilder()
+    //Daniel
+    public static final Task UG = new TaskBuilder()
             .withDescription("Do user guide").withStatus(false).withNote("").withPriority(Priority.NONE).build();
-    public static final Task ELLE = new TaskBuilder()
+    //Elle
+    public static final Task DG = new TaskBuilder()
             .withDescription("Do developer guide").withStatus(false).withNote("").withPriority(Priority.NONE).build();
-    public static final Task FIONA = new TaskBuilder()
+    //Fiona
+    public static final Task OP2_MEETING = new TaskBuilder()
             .withDescription("Meeting to discuss OP2").withStatus(false).withNote("")
             .withPriority(Priority.NONE).build();
-    public static final Task GEORGE = new TaskBuilder()
+    //George
+    public static final Task OP2_REHEARSAL = new TaskBuilder()
             .withDescription("Rehearse OP2 presentation").withStatus(false).withNote("")
             .withPriority(Priority.NONE).build();
 
@@ -63,6 +68,7 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(FIX_BUG, OP2_REPORT, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(FIX_BUG, OP2_REPORT, OP2_PRESENTATION, UG, DG,
+                OP2_MEETING, OP2_REHEARSAL));
     }
 }
