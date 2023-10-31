@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.BENSON;
+import static seedu.address.testutil.TypicalTasks.OP2_REPORT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +21,18 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DESCRIPTION = "Do OP2 @ Slides";
     private static final String INVALID_NOTE = "clarify ^&with tutor";
     private static final String INVALID_TAG = "";
-    private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
-    private static final String VALID_NOTE = BENSON.getNote().toString();
+    private static final String VALID_DESCRIPTION = OP2_REPORT.getDescription().toString();
+    private static final String VALID_NOTE = OP2_REPORT.getNote().toString();
     private static final Deadline TEST_DEADLINE = Deadline.now();
     private static final Priority TEST_PRIORITY = Priority.NONE;
-    private static final List<JsonAdaptedMember> VALID_MEMBERS = BENSON.getMembers().stream()
+    private static final List<JsonAdaptedMember> VALID_MEMBERS = OP2_REPORT.getMembers().stream()
             .map(JsonAdaptedMember::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
-        JsonAdaptedTask task = new JsonAdaptedTask(BENSON);
-        assertEquals(BENSON, task.toModelType());
+        JsonAdaptedTask task = new JsonAdaptedTask(OP2_REPORT);
+        assertEquals(OP2_REPORT, task.toModelType());
     }
 
     @Test

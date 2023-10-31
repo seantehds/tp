@@ -19,7 +19,7 @@ public class TypicalTasks {
     // TODO: Change test cases
     public static final Task FIX_BUG = new TaskBuilder()
             .withDescription("Fix bug").withStatus(false).withNote("").withPriority(Priority.NONE).build();
-    public static final Task BENSON = new TaskBuilder()
+    public static final Task OP2_REPORT = new TaskBuilder()
             .withDescription("Do OP2 report").withStatus(false).withNote("").withPriority(Priority.NONE).build();
     public static final Task CARL = new TaskBuilder()
             .withDescription("Do OP2 presentation").withStatus(false).withNote("").withPriority(Priority.NONE).build();
@@ -63,6 +63,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(FIX_BUG, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(FIX_BUG, OP2_REPORT, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

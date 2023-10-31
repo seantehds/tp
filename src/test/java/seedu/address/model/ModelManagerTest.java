@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.FIX_BUG;
-import static seedu.address.testutil.TypicalTasks.BENSON;
+import static seedu.address.testutil.TypicalTasks.OP2_REPORT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TaskWise taskWise = new TaskWiseBuilder().withTask(FIX_BUG).withTask(BENSON).build();
+        TaskWise taskWise = new TaskWiseBuilder().withTask(FIX_BUG).withTask(OP2_REPORT).build();
         TaskWise differentTaskWise = new TaskWise();
         UserPrefs userPrefs = new UserPrefs();
 
