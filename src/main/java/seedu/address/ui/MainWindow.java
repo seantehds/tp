@@ -124,6 +124,11 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    private void clearTaskListPanel() {
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -164,10 +169,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -192,6 +193,9 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } finally {
+            // Refresh task list panel everytime a command is entered
+            clearTaskListPanel();
         }
     }
 }
