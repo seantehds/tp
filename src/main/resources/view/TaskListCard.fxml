@@ -43,7 +43,6 @@
                       <Label fx:id="lowPriority" managed="false" styleClass="low_priority_cell_small_label" text="\$priority" visible="false" />
                       <Label fx:id="mediumPriority" managed="false" styleClass="medium_priority_cell_small_label" text="\$priority" visible="false" />
                       <Label fx:id="highPriority" managed="false" styleClass="high_priority_cell_small_label" text="\$priority" visible="false" />
-                      <Label fx:id="status" styleClass="status_cell_small_label" text="\$status" />
                   </HBox>
                   <FlowPane fx:id="members" alignment="CENTER_LEFT" styleClass="members_pane" VBox.vgrow="NEVER" />
               </VBox>
