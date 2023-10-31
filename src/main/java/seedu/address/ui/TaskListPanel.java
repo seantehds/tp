@@ -18,10 +18,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
-
-import javax.tools.Tool;
 
 /**
  * Panel containing the list of tasks.
