@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.FIX_BUG;
 import static seedu.address.testutil.TypicalTasks.HOON;
 import static seedu.address.testutil.TypicalTasks.IDA;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskWise;
@@ -73,7 +73,7 @@ public class JsonTaskWiseStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addTask(HOON);
-        original.removeTask(ALICE);
+        original.removeTask(FIX_BUG);
         jsonTaskWiseStorage.saveTaskWise(original, filePath);
         readBack = jsonTaskWiseStorage.readTaskWise(filePath).get();
         assertEquals(original, new TaskWise(readBack));

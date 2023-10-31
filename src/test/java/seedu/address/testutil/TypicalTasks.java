@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
     // TODO: Change test cases
     // TODO: Change test cases
-    public static final Task ALICE = new TaskBuilder()
+    public static final Task FIX_BUG = new TaskBuilder()
             .withDescription("Fix bug").withStatus(false).withNote("").withPriority(Priority.NONE).build();
     public static final Task BENSON = new TaskBuilder()
             .withDescription("Do OP2 report").withStatus(false).withNote("").withPriority(Priority.NONE).build();
@@ -63,6 +63,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(FIX_BUG, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

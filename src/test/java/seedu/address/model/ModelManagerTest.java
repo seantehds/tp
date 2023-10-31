@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.FIX_BUG;
 import static seedu.address.testutil.TypicalTasks.BENSON;
 
 import java.nio.file.Path;
@@ -84,13 +84,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskNotInTaskWise_returnsFalse() {
-        assertFalse(modelManager.hasTask(ALICE));
+        assertFalse(modelManager.hasTask(FIX_BUG));
     }
 
     @Test
     public void hasTask_taskInTaskWise_returnsTrue() {
-        modelManager.addTask(ALICE);
-        assertTrue(modelManager.hasTask(ALICE));
+        modelManager.addTask(FIX_BUG);
+        assertTrue(modelManager.hasTask(FIX_BUG));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TaskWise taskWise = new TaskWiseBuilder().withTask(ALICE).withTask(BENSON).build();
+        TaskWise taskWise = new TaskWiseBuilder().withTask(FIX_BUG).withTask(BENSON).build();
         TaskWise differentTaskWise = new TaskWise();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -140,7 +140,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTaskWise, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getDescription().fullDescription.split("\\s+");
+        String[] keywords = FIX_BUG.getDescription().fullDescription.split("\\s+");
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskWise, userPrefs)));
 

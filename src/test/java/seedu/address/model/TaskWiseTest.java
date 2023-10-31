@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DAVID;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.FIX_BUG;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskWise;
 
 import java.util.Arrays;
@@ -45,9 +45,9 @@ public class TaskWiseTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_MEMBER_DAVID)
+        Task editedAlice = new TaskBuilder(FIX_BUG).withMembers(VALID_MEMBER_DAVID)
                 .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        List<Task> newTasks = Arrays.asList(FIX_BUG, editedAlice);
         TaskWiseStub newData = new TaskWiseStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
@@ -60,19 +60,19 @@ public class TaskWiseTest {
 
     @Test
     public void hasTask_taskNotInTaskWise_returnsFalse() {
-        assertFalse(addressBook.hasTask(ALICE));
+        assertFalse(addressBook.hasTask(FIX_BUG));
     }
 
     @Test
     public void hasTask_taskInTaskWise_returnsTrue() {
-        addressBook.addTask(ALICE);
-        assertTrue(addressBook.hasTask(ALICE));
+        addressBook.addTask(FIX_BUG);
+        assertTrue(addressBook.hasTask(FIX_BUG));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskWise_returnsTrue() {
-        addressBook.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_MEMBER_DAVID)
+        addressBook.addTask(FIX_BUG);
+        Task editedAlice = new TaskBuilder(FIX_BUG).withMembers(VALID_MEMBER_DAVID)
                 .build();
         assertTrue(addressBook.hasTask(editedAlice));
     }
