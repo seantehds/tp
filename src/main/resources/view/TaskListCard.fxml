@@ -29,16 +29,11 @@
             </HBox>
             <FlowPane fx:id="tags" alignment="CENTER_LEFT"/>
             <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline" />
-            <HBox styleClass="priority_and_status" spacing="10" alignment="CENTER_LEFT">
-                <Label fx:id="defaultPriority" styleClass="default_priority_cell_small_label"
-                       text="\$priority" visible="false" managed="false"/>
-                <Label fx:id="lowPriority" styleClass="low_priority_cell_small_label"
-                       text="\$priority" visible="false" managed="false"/>
-                <Label fx:id="mediumPriority" styleClass="medium_priority_cell_small_label"
-                       text="\$priority" visible="false" managed="false"/>
-                <Label fx:id="highPriority" styleClass="high_priority_cell_small_label"
-                       text="\$priority" visible="false" managed="false"/>
-                <Label fx:id="status" styleClass="status_cell_small_label" text="\$status"/>
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="priority_and_status">
+              <Label fx:id="defaultPriority" managed="false" styleClass="default_priority_cell_small_label" text="\$priority" visible="false" />
+              <Label fx:id="lowPriority" managed="false" styleClass="low_priority_cell_small_label" text="\$priority" visible="false" />
+              <Label fx:id="mediumPriority" managed="false" styleClass="medium_priority_cell_small_label" text="\$priority" visible="false" />
+              <Label fx:id="highPriority" managed="false" styleClass="high_priority_cell_small_label" text="\$priority" visible="false" />
             </HBox>
             <FlowPane fx:id="members" maxHeight="20" styleClass="members_pane" alignment="CENTER_LEFT"/>
         </VBox>

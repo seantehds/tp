@@ -73,7 +73,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private void setDescription(String fullDescription, int displayedIndex) {
-        Text description = new Text(displayedIndex + ", " + fullDescription);
+        Text description = new Text(displayedIndex + ". " + fullDescription);
 
         description.setStrikethrough(task.getStatus().isCompleted());
 
