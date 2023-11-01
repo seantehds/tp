@@ -1,13 +1,17 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.util.Duration;
 import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
 
@@ -31,9 +35,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private GridPane cardPane;
     @FXML
-    private Label description;
-    @FXML
-    private Label id;
+    private Label idAndDescription;
     @FXML
     private Label status;
     @FXML
@@ -56,13 +58,14 @@ public class TaskCard extends UiPart<Region> {
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
+
         this.task = task;
-        id.setText(displayedIndex + ". ");
-        description.setText(task.getDescription().fullDescription);
+        idAndDescription.setText(displayedIndex + ". " + task.getDescription().fullDescription);
         status.setText(task.getStatus().toString());
         note.setText(task.getNote().fullNote);
         setPriority(task.getPriority().toString());
         deadline.setText(task.getDeadline().toString());
+        this.members.prefHeightProperty().bind(this.cardPane.heightProperty().divide(4));
         setMembers(task.getMembers());
     }
     public void setPriority(String priorityText) {
@@ -94,12 +97,37 @@ public class TaskCard extends UiPart<Region> {
             return;
         }
 
-        source.stream()
-                .sorted(Comparator.comparing(member -> member.memberName))
-                .forEach(member -> members.getChildren().add(new Label(member.memberName)));
+        members.getChildren().clear();
         members.setHgap(5.00);
+        members.setVgap(5.00);
+        List<Member> sourceMembers = new ArrayList<>(source);
+        sourceMembers.sort(Comparator.comparing(x -> x.memberName));
+        int excessCount = 0;
 
-        members.getChildren().forEach(label -> label.getStyleClass().add("member_cell_label"));
+        for (Member m : sourceMembers) {
+            if (m.memberName.length() > 6 && members.getChildren().size() < 3) {
+                String truncatedName = m.memberName.substring(0, 6) + "...";
+                Label label = new Label(truncatedName);
+                label.getStyleClass().add("member_cell_label");
+
+                Tooltip tooltip = new Tooltip(m.memberName.substring(0, Math.min(m.memberName.length(), 99)));
+                tooltip.setShowDelay(new Duration(500));
+                Tooltip.install(label, tooltip);
+                members.getChildren().add(label);
+            } else if (m.memberName.length() <= 6) {
+                Label label = new Label(m.memberName);
+                label.getStyleClass().add("member_cell_label");
+                members.getChildren().add(label);
+            } else if (members.getChildren().size() == 3) {
+                excessCount++;
+            }
+        }
+
+        if (excessCount > 0) {
+            Label excessLabel = new Label("+" + Math.min(excessCount, 99));
+            excessLabel.getStyleClass().add("member_cell_overflow");
+            members.getChildren().add(excessLabel);
+        }
     }
 
 }
