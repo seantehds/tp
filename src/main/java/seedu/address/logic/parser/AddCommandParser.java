@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Collection;
@@ -57,10 +56,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             addTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap
                     .getValue(PREFIX_PRIORITY).get()));
-        }
-        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
-            addTaskDescriptor.setNote(ParserUtil.parseNote(argMultimap
-                    .getValue(PREFIX_NOTE).get()));
         }
         if (argMultimap.getValue(PREFIX_MEMBER).isPresent()) {
             addTaskDescriptor.setMembers(ParserUtil.parseMembers(argMultimap

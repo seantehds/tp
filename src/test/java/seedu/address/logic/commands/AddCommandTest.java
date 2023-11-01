@@ -36,8 +36,6 @@ public class AddCommandTest {
         desc.setDeadline(validTask.getDeadline());
         desc.setPriority(validTask.getPriority());
         desc.setMembers(validTask.getMembers());
-        desc.setNote(validTask.getNote());
-        desc.setStatus(validTask.getStatus());
     }
     @AfterEach
     public void reset() {
@@ -85,8 +83,6 @@ public class AddCommandTest {
         desc2.setDeadline(developerGuide.getDeadline());
         desc2.setPriority(developerGuide.getPriority());
         desc2.setMembers(developerGuide.getMembers());
-        desc2.setNote(developerGuide.getNote());
-        desc2.setStatus(developerGuide.getStatus());
 
         setUpDesc(userGuide);
         AddCommand addUserGuideCommand = new AddCommand(desc);

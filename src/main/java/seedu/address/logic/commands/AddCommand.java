@@ -112,8 +112,6 @@ public class AddCommand extends Command {
         private Deadline deadline;
         private Priority priority;
         private Set<Member> members;
-        private Status status;
-        private Note note;
 
         /**
          * Basic constructor.
@@ -121,7 +119,6 @@ public class AddCommand extends Command {
          */
         public AddTaskDescriptor() {
             this.priority = Priority.NONE;
-            this.note = new Note("");
             this.members = new HashSet<>();
         }
 
@@ -163,18 +160,6 @@ public class AddCommand extends Command {
         }
         public Optional<Priority> getPriority() {
             return Optional.ofNullable(priority);
-        }
-        public void setStatus(Status status) {
-            this.status = status;
-        }
-        public Optional<Status> getStatus() {
-            return Optional.ofNullable(status);
-        }
-        public void setNote(Note note) {
-            this.note = note;
-        }
-        public Optional<Note> getNote() {
-            return Optional.ofNullable(note);
         }
 
         /**

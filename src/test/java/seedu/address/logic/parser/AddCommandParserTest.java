@@ -36,8 +36,6 @@ public class AddCommandParserTest {
         desc.setDeadline(validTask.getDeadline());
         desc.setPriority(validTask.getPriority());
         desc.setMembers(validTask.getMembers());
-        desc.setNote(validTask.getNote());
-        desc.setStatus(validTask.getStatus());
     }
 
     @AfterEach
