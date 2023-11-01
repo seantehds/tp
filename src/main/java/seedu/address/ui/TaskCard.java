@@ -10,7 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
@@ -21,6 +23,8 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    private static final double COMPLETED_OPACITY_VALUE = 0.1;
+    private static final double INCOMPLETE_OPACITY_VALUE = 1.0;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,11 +37,12 @@ public class TaskCard extends UiPart<Region> {
     public final Task task;
 
     @FXML
+    private Pane overlay;
+
+    @FXML
     private GridPane cardPane;
     @FXML
     private Label idAndDescription;
-    @FXML
-    private Label status;
     @FXML
     private Label deadline;
     @FXML
@@ -60,36 +65,23 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
 
         this.task = task;
-        idAndDescription.setText(displayedIndex + ". " + task.getDescription().fullDescription);
-        status.setText(task.getStatus().toString());
+
+        setOverlay(task.getStatus().isCompleted());
+        setDescription(task.getDescription().fullDescription, displayedIndex);
+
         note.setText(task.getNote().fullNote);
         setPriority(task.getPriority().toString());
         deadline.setText(task.getDeadline().toString());
         this.members.prefHeightProperty().bind(this.cardPane.heightProperty().divide(4));
-        setMembers(task.getMembers());
+        setMembers(this.task.getMembers());
     }
-    public void setPriority(String priorityText) {
-        switch (priorityText.toLowerCase()) {
-        case "low":
-            lowPriority.setVisible(true);
-            lowPriority.setManaged(true);
-            lowPriority.setText(priorityText);
-            break;
-        case "medium":
-            mediumPriority.setVisible(true);
-            mediumPriority.setManaged(true);
-            mediumPriority.setText(priorityText);
-            break;
-        case "high":
-            highPriority.setVisible(true);
-            highPriority.setManaged(true);
-            highPriority.setText(priorityText);
-            break;
-        default:
-            defaultPriority.setVisible(true);
-            defaultPriority.setManaged(true);
-            defaultPriority.setText(priorityText);
-        }
+
+    private void setDescription(String fullDescription, int displayedIndex) {
+        Text description = new Text(displayedIndex + ", " + fullDescription);
+
+        description.setStrikethrough(task.getStatus().isCompleted());
+
+        this.idAndDescription.setGraphic(description);
     }
 
     private void setMembers(Set<Member> source) {
@@ -127,6 +119,38 @@ public class TaskCard extends UiPart<Region> {
             Label excessLabel = new Label("+" + Math.min(excessCount, 99));
             excessLabel.getStyleClass().add("member_cell_overflow");
             members.getChildren().add(excessLabel);
+        }
+    }
+
+    private void setOverlay(boolean isCompleted) {
+        if (isCompleted) {
+            overlay.setOpacity(COMPLETED_OPACITY_VALUE);
+        } else {
+            overlay.setOpacity(INCOMPLETE_OPACITY_VALUE);
+        }
+    }
+
+    public void setPriority(String priorityText) {
+        switch (priorityText.toLowerCase()) {
+        case "low":
+            lowPriority.setVisible(true);
+            lowPriority.setManaged(true);
+            lowPriority.setText(priorityText);
+            break;
+        case "medium":
+            mediumPriority.setVisible(true);
+            mediumPriority.setManaged(true);
+            mediumPriority.setText(priorityText);
+            break;
+        case "high":
+            highPriority.setVisible(true);
+            highPriority.setManaged(true);
+            highPriority.setText(priorityText);
+            break;
+        default:
+            defaultPriority.setVisible(true);
+            defaultPriority.setManaged(true);
+            defaultPriority.setText(priorityText);
         }
     }
 
