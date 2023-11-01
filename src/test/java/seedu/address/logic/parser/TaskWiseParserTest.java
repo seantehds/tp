@@ -27,6 +27,7 @@ import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
@@ -124,6 +125,14 @@ public class TaskWiseParserTest {
                 + INDEX_FIRST_TASK.getOneBased() + " " + PREFIX_NOTE + task.getNote().fullNote);
         assertEquals(new NoteCommand(INDEX_FIRST_TASK, task.getNote()), command);
     }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new ViewCommand(INDEX_FIRST_TASK), command);
+    }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND_FORMAT, ()
