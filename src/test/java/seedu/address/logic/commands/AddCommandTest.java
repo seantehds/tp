@@ -26,6 +26,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskWise;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
+import seedu.address.ui.MainWindow;
 
 public class AddCommandTest {
 
@@ -190,6 +191,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public MainWindow getMainWindow() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMainWindow(MainWindow mainWindow) {
             throw new AssertionError("This method should not be called.");
         }
     }

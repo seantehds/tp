@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
+import seedu.address.ui.MainWindow;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final TaskWise taskWise;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private MainWindow mainWindow;
 
     /**
      * Initializes a ModelManager with the given taskWise and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.taskWise = new TaskWise(taskWise);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskWise.getTaskList());
+        this.mainWindow = null;
     }
 
     public ModelManager() {
@@ -152,6 +155,16 @@ public class ModelManager implements Model {
         return taskWise.equals(otherModelManager.taskWise)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredTasks.equals(otherModelManager.filteredTasks);
+    }
+
+    @Override
+    public MainWindow getMainWindow() {
+        return mainWindow;
+    }
+
+    @Override
+    public void setMainWindow(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
     }
 
 }

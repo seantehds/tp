@@ -1,13 +1,19 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
 
@@ -17,6 +23,8 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    private static final double COMPLETED_OPACITY_VALUE = 0.1;
+    private static final double INCOMPLETE_OPACITY_VALUE = 1.0;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -29,13 +37,12 @@ public class TaskCard extends UiPart<Region> {
     public final Task task;
 
     @FXML
+    private Pane overlay;
+
+    @FXML
     private GridPane cardPane;
     @FXML
-    private Label description;
-    @FXML
-    private Label id;
-    @FXML
-    private Label status;
+    private Label idAndDescription;
     @FXML
     private Label deadline;
     @FXML
@@ -56,15 +63,73 @@ public class TaskCard extends UiPart<Region> {
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
+
         this.task = task;
-        id.setText(displayedIndex + ". ");
-        description.setText(task.getDescription().fullDescription);
-        status.setText(task.getStatus().toString());
+
+        setOverlay(task.getStatus().isCompleted());
+        setDescription(task.getDescription().fullDescription, displayedIndex);
+
         note.setText(task.getNote().fullNote);
         setPriority(task.getPriority().toString());
         deadline.setText(task.getDeadline().toString());
-        setMembers(task.getMembers());
+        this.members.prefHeightProperty().bind(this.cardPane.heightProperty().divide(4));
+        setMembers(this.task.getMembers());
     }
+
+    private void setDescription(String fullDescription, int displayedIndex) {
+        Text description = new Text(displayedIndex + ", " + fullDescription);
+
+        description.setStrikethrough(task.getStatus().isCompleted());
+
+        this.idAndDescription.setGraphic(description);
+    }
+
+    private void setMembers(Set<Member> source) {
+        if (source == null || source.isEmpty()) {
+            return;
+        }
+
+        members.getChildren().clear();
+        members.setHgap(5.00);
+        members.setVgap(5.00);
+        List<Member> sourceMembers = new ArrayList<>(source);
+        sourceMembers.sort(Comparator.comparing(x -> x.memberName));
+        int excessCount = 0;
+
+        for (Member m : sourceMembers) {
+            if (m.memberName.length() > 6 && members.getChildren().size() < 3) {
+                String truncatedName = m.memberName.substring(0, 6) + "...";
+                Label label = new Label(truncatedName);
+                label.getStyleClass().add("member_cell_label");
+
+                Tooltip tooltip = new Tooltip(m.memberName.substring(0, Math.min(m.memberName.length(), 99)));
+                tooltip.setShowDelay(new Duration(500));
+                Tooltip.install(label, tooltip);
+                members.getChildren().add(label);
+            } else if (m.memberName.length() <= 6) {
+                Label label = new Label(m.memberName);
+                label.getStyleClass().add("member_cell_label");
+                members.getChildren().add(label);
+            } else if (members.getChildren().size() == 3) {
+                excessCount++;
+            }
+        }
+
+        if (excessCount > 0) {
+            Label excessLabel = new Label("+" + Math.min(excessCount, 99));
+            excessLabel.getStyleClass().add("member_cell_overflow");
+            members.getChildren().add(excessLabel);
+        }
+    }
+
+    private void setOverlay(boolean isCompleted) {
+        if (isCompleted) {
+            overlay.setOpacity(COMPLETED_OPACITY_VALUE);
+        } else {
+            overlay.setOpacity(INCOMPLETE_OPACITY_VALUE);
+        }
+    }
+
     public void setPriority(String priorityText) {
         switch (priorityText.toLowerCase()) {
         case "low":
@@ -87,19 +152,6 @@ public class TaskCard extends UiPart<Region> {
             defaultPriority.setManaged(true);
             defaultPriority.setText(priorityText);
         }
-    }
-
-    private void setMembers(Set<Member> source) {
-        if (source == null || source.isEmpty()) {
-            return;
-        }
-
-        source.stream()
-                .sorted(Comparator.comparing(member -> member.memberName))
-                .forEach(member -> members.getChildren().add(new Label(member.memberName)));
-        members.setHgap(5.00);
-
-        members.getChildren().forEach(label -> label.getStyleClass().add("member_cell_label"));
     }
 
 }
