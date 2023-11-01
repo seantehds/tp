@@ -44,6 +44,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label note;
     @FXML
+    private Label status;
+    @FXML
     private Label defaultPriority;
     @FXML
     private Label lowPriority;
@@ -68,6 +70,7 @@ public class TaskCard extends UiPart<Region> {
         note.setText(task.getNote().fullNote);
         setPriority(task.getPriority().toString());
         deadline.setText(task.getDeadline().toString());
+        status.setText(task.getStatus().toString());
         this.members.prefHeightProperty().bind(this.cardPane.heightProperty().divide(4));
         setMembers(this.task.getMembers());
     }
