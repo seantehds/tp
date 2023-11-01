@@ -200,7 +200,9 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         } finally {
             // Refresh task list panel everytime a command is entered
-            clearTaskListPanel();
+            if (!commandText.trim().startsWith("view")) {
+                clearTaskListPanel();
+            }
         }
     }
 }
