@@ -27,8 +27,7 @@
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="idAndDescription" style="-fx-font-family: Glacial Indifference Bold; -fx-font-size: 16px;
-                -fx-text-fill: #010504;" HBox.hgrow="NEVER" minWidth="170"/>
+                <Label fx:id="idAndDescription" HBox.hgrow="NEVER" minWidth="170"/>
             </HBox>
             <FlowPane fx:id="tags" alignment="CENTER_LEFT"/>
             <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline" />
