@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Task;
 import seedu.address.storage.exceptions.StorageException;
 
 /**
@@ -71,6 +72,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public void setTaskToTaskListPanel(Task task) {
+        taskListPanel.setTaskInformation(task);
     }
 
     private void setAccelerators() {

@@ -31,6 +31,7 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
+import seedu.address.ui.MainWindow;
 
 
 public class SortCommandTest {
@@ -262,6 +263,16 @@ public class SortCommandTest {
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public MainWindow getMainWindow() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMainWindow(MainWindow mainWindow) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -320,4 +331,5 @@ public class SortCommandTest {
             return this.innerList.equals(expected);
         }
     }
+
 }
