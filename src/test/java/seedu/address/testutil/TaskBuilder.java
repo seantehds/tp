@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Member;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -28,7 +27,6 @@ public class TaskBuilder {
     private Note note;
     private Deadline deadline;
     private Priority priority;
-    private Set<Tag> tags;
     private Set<Member> members;
 
     /**
@@ -90,8 +88,8 @@ public class TaskBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
      */
-    public TaskBuilder withTags(String... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public TaskBuilder withMembers(String... members) {
+        this.members = SampleDataUtil.getMemberSet(members);
         return this;
     }
 

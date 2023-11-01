@@ -25,7 +25,7 @@ import seedu.address.model.task.Note;
 import seedu.address.model.task.Priority;
 
 public class ParserUtilTest {
-    private static final String INVALID_DESCRIPTION = "Do Use@r Guide.";
+    private static final String INVALID_DESCRIPTION = "Do Use/r Guide.";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_DESCRIPTION = "Do User Guide";
@@ -182,7 +182,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_collectionWithTagsDuplicates_returnsTagSet() {
+    public void parseTags_collectionwithMembersDuplicates_returnsTagSet() {
         assertDoesNotThrow(() -> ParserUtil.parseTags(
                 Arrays.asList(VALID_TAG_1, VALID_TAG_1, VALID_TAG_1)));
     }

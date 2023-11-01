@@ -39,13 +39,26 @@ import seedu.address.testutil.TaskUtil;
 
 public class TaskWiseParserTest {
 
+    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+
     private final TaskWiseParser parser = new TaskWiseParser();
+
+    private void setUpDesc(Task validTask) {
+        desc.setDescription(validTask.getDescription());
+        desc.setDeadline(validTask.getDeadline());
+        desc.setPriority(validTask.getPriority());
+        desc.setMembers(validTask.getMembers());
+    }
+
 
     @Test
     public void parseCommand_add() throws Exception {
         Task task = new TaskBuilder().build();
+
+        setUpDesc(task);
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
-        assertEquals(new AddCommand(task), command);
+
+        assertEquals(new AddCommand(desc), command);
     }
 
     @Test
