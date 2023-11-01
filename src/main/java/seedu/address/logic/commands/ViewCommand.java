@@ -48,4 +48,26 @@ public class ViewCommand extends Command {
 
         return new CommandResult(String.format(SHOWING_VIEW_MESSAGE, Messages.format(taskToView)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ViewCommand)) {
+            return false;
+        }
+
+        ViewCommand otherViewCommand = (ViewCommand) other;
+        return targetIndex.equals(otherViewCommand.targetIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new seedu.address.commons.util.ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
+    }
 }
