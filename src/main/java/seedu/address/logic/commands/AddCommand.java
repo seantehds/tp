@@ -179,15 +179,6 @@ public class AddCommand extends Command {
             return Optional.ofNullable(members).map(x -> Collections.unmodifiableSet(members));
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Member>> getTags() {
-            return Optional.ofNullable(members).map(x -> Collections.unmodifiableSet(members));
-        }
-
         @Override
         public boolean equals(Object other) {
             if (other == this) {
