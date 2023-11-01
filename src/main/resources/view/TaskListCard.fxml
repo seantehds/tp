@@ -6,69 +6,64 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane id="overlay" fx:id="overlay" opacity="0.5" style="-fx-background-color: 808080;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" style="-fx-border-color: transparent">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" prefWidth="170"/>
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" prefWidth="170"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER" prefHeight="115" valignment="CENTER"/>
+    </rowConstraints>
+
     <children>
-        <GridPane id="cardPane" fx:id="cardPane" style="-fx-border-color: transparent" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-            <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" prefWidth="170" />
-                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" prefWidth="170" />
-            </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" spacing="2">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="idAndDescription" HBox.hgrow="NEVER" minWidth="170"/>
+            </HBox>
+            <FlowPane fx:id="tags" alignment="CENTER_LEFT"/>
+            <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline" />
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="priority_and_status">
+              <Label fx:id="defaultPriority" managed="false" styleClass="default_priority_cell_small_label" text="\$priority" visible="false" />
+              <Label fx:id="lowPriority" managed="false" styleClass="low_priority_cell_small_label" text="\$priority" visible="false" />
+              <Label fx:id="mediumPriority" managed="false" styleClass="medium_priority_cell_small_label" text="\$priority" visible="false" />
+              <Label fx:id="highPriority" managed="false" styleClass="high_priority_cell_small_label" text="\$priority" visible="false" />
+            </HBox>
+            <FlowPane fx:id="members" maxHeight="20" styleClass="members_pane" alignment="CENTER_LEFT"/>
+        </VBox>
 
-            <rowConstraints>
-                <RowConstraints prefHeight="115" valignment="CENTER" vgrow="NEVER" />
-            </rowConstraints>
-
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="1">
+            <padding>
+                <Insets top="5" right="15" bottom="5" left="15" />
+            </padding>
             <children>
-                <VBox alignment="CENTER_LEFT" minHeight="105" spacing="2" GridPane.columnIndex="0">
-                    <padding>
-                        <Insets bottom="15" left="15" right="15" top="15" />
-                    </padding>
-                    <HBox alignment="CENTER_LEFT" spacing="5">
-                        <Label fx:id="idAndDescription" minWidth="170" HBox.hgrow="NEVER" />
-                    </HBox>
-                    <FlowPane fx:id="tags" alignment="CENTER_LEFT" />
-                    <Label fx:id="deadline" styleClass="deadline_cell_small_label" text="\$deadline" />
-                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="priority_and_status">
-                        <Label fx:id="defaultPriority" managed="false" styleClass="default_priority_cell_small_label" text="\$priority" visible="false" />
-                        <Label fx:id="lowPriority" managed="false" styleClass="low_priority_cell_small_label" text="\$priority" visible="false" />
-                        <Label fx:id="mediumPriority" managed="false" styleClass="medium_priority_cell_small_label" text="\$priority" visible="false" />
-                        <Label fx:id="highPriority" managed="false" styleClass="high_priority_cell_small_label" text="\$priority" visible="false" />
-                    </HBox>
-                    <FlowPane fx:id="members" alignment="CENTER_LEFT" maxHeight="20" styleClass="members_pane" />
-                </VBox>
+                <GridPane>
+                    <rowConstraints>
+                        <RowConstraints percentHeight="20.0"/>
+                        <RowConstraints percentHeight="80.0"/>
+                    </rowConstraints>
 
-                <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="1">
-                    <padding>
-                        <Insets bottom="5" left="15" right="15" top="5" />
-                    </padding>
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="100"/>
+                    </columnConstraints>
+
                     <children>
-                        <GridPane>
-                            <rowConstraints>
-                                <RowConstraints percentHeight="20.0" />
-                                <RowConstraints percentHeight="80.0" />
-                            </rowConstraints>
-
-                            <columnConstraints>
-                                <ColumnConstraints percentWidth="100" />
-                            </columnConstraints>
-
-                            <children>
-                                <Label minWidth="0" style="-fx-font-family: Glacial Indifference Bold" text="Notes:" GridPane.rowIndex="0" />
-                                <HBox minWidth="0" style="-fx-border-color: #563c0b; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-insets: 5;" GridPane.rowIndex="1">
-                                    <padding>
-                                        <Insets bottom="5" left="5" right="15" top="5" />
-                                    </padding>
-                                    <Label fx:id="note" styleClass="cell_medium_label" text="\$note" wrapText="true" HBox.hgrow="ALWAYS" />
-                                </HBox>
-                            </children>
-                        </GridPane>
+                        <Label text="Notes:" style="-fx-font-family: Glacial Indifference Bold" GridPane.rowIndex="0" minWidth="0"/>
+                        <HBox style="-fx-border-color: #563c0b; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-insets: 5;" GridPane.rowIndex="1" minWidth="0">
+                            <padding>
+                                <Insets top="5" right="15" bottom="5" left="5" />
+                            </padding>
+                            <Label fx:id="note" styleClass="cell_medium_label" text="\$note" wrapText="true" HBox.hgrow="ALWAYS"/>
+                        </HBox>
                     </children>
-                </VBox>
+                </GridPane>
             </children>
-        </GridPane>
+        </VBox>
     </children>
-</Pane>
+</GridPane>
