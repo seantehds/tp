@@ -72,9 +72,9 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private void setDescription(String fullDescription, int displayedIndex) {
-        String descriptionString = displayedIndex + ". " + fullDescription;
+        String description = displayedIndex + ". " + fullDescription;
 
-        this.idAndDescription.setText(descriptionString);
+        this.idAndDescription.setText(description);
     }
 
     private void setMembers(Set<Member> source) {
