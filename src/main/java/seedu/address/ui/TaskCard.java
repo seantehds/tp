@@ -11,7 +11,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import seedu.address.model.tag.Member;
 import seedu.address.model.task.Task;
@@ -76,11 +75,9 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private void setDescription(String fullDescription, int displayedIndex) {
-        Text description = new Text(displayedIndex + ". " + fullDescription);
+        String description = displayedIndex + ". " + fullDescription;
 
-        description.setStrikethrough(task.getStatus().isCompleted());
-
-        this.idAndDescription.setGraphic(description);
+        this.idAndDescription.setText(description);
     }
 
     private void setMembers(Set<Member> source) {
