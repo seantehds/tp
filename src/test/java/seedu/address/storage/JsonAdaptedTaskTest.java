@@ -18,7 +18,7 @@ import seedu.address.model.task.Priority;
 import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 public class JsonAdaptedTaskTest {
-    private static final String INVALID_DESCRIPTION = "Do OP2 @ Slides";
+    private static final String INVALID_DESCRIPTION = "Do OP2 // Slides";
     private static final String INVALID_NOTE = "clarify ^&with tutor";
     private static final String INVALID_TAG = "#friend";
     private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();

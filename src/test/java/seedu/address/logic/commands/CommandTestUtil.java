@@ -33,7 +33,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_MEMBER + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_MEMBER + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "James/";
+    // '/' not allowed in descriptions
     public static final String INVALID_TAG_DESC = " " + PREFIX_MEMBER + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "";
 
