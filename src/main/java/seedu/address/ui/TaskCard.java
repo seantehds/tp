@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -35,9 +34,6 @@ public class TaskCard extends UiPart<Region> {
      */
 
     public final Task task;
-
-    @FXML
-    private Pane overlay;
 
     @FXML
     private GridPane cardPane;
@@ -124,9 +120,9 @@ public class TaskCard extends UiPart<Region> {
 
     private void setOverlay(boolean isCompleted) {
         if (isCompleted) {
-            overlay.setOpacity(COMPLETED_OPACITY_VALUE);
+            this.cardPane.setOpacity(COMPLETED_OPACITY_VALUE);
         } else {
-            overlay.setOpacity(INCOMPLETE_OPACITY_VALUE);
+            this.cardPane.setOpacity(INCOMPLETE_OPACITY_VALUE);
         }
     }
 
