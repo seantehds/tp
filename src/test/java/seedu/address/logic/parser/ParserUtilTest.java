@@ -30,7 +30,7 @@ public class ParserUtilTest {
 
     private static final String VALID_DESCRIPTION = "Do User Guide";
     private static final String VALID_NOTE = "This is a valid note";
-    private static final String INVALID_NOTE = "Do TaskWise v1.2"; // contains ".", which is not alphanumeric
+    private static final String INVALID_NOTE = "Do TaskWise v1/2"; // contains "/"
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
