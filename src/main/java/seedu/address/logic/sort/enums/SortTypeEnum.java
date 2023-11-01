@@ -25,7 +25,9 @@ public enum SortTypeEnum {
      * @throws IllegalArgumentException if the input String is not a valid input String value
      */
     public static SortTypeEnum of(String sortType) {
-        switch (sortType) {
+        String strippedSortType = sortType.strip();
+
+        switch (strippedSortType) {
         case "t":
         case "tn":
         case "task":
