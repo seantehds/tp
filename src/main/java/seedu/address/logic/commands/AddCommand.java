@@ -74,8 +74,8 @@ public class AddCommand extends Command {
         Description updatedDescription = addTaskDescriptor.getDescription().get();
         Deadline updatedDeadline = addTaskDescriptor.getDeadline().orElse(Deadline.ofNull());
         Priority updatedPriority = addTaskDescriptor.getPriority().orElse(Priority.NONE);
-        Status status = new Status(); //Not edited using editCommand
-        Note note = new Note(""); //Not edited using editCommand
+        Status status = new Status();
+        Note note = new Note("");
         Set<Member> members = addTaskDescriptor.getMembers().orElse(new HashSet<>());
 
         return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, members);
