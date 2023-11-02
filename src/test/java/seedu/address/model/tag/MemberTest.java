@@ -15,15 +15,39 @@ class MemberTest {
     }
 
     @Test
-    public void constructor_invalidMemberName_throwsIllegalArgumentException() {
-        String invalidMemberName = "";
+    public void constructor_emptyName_throwsIllegalArgumentException() {
+        final String invalidMemberName = "";
         assertThrows(IllegalArgumentException.class, () -> new Member(invalidMemberName));
     }
 
     @Test
-    public void isValidMemberName() {
+    public void constructor_whitespaceName_throwsIllegalArgumentException() {
+        final String invalidMemberNameTwo = "    ";
+        assertThrows(IllegalArgumentException.class, () -> new Member(invalidMemberNameTwo));
+    }
+
+    @Test
+    public void constructor_nameWithSlash_throwsIllegalArgumentException() {
+        final String invalidMemberNameThree = "mary/";
+        assertThrows(IllegalArgumentException.class, () -> new Member(invalidMemberNameThree));
+    }
+
+    @Test
+    public void isValidName_null_throwsNullPointerException() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Member.isValidName(null));
+    }
+
+    @Test
+    public void isValidName_whitespaceName_false() {
+        final String invalidMemberNameTwo = "    ";
+        assertFalse(Member.isValidName(invalidMemberNameTwo));
+    }
+
+    @Test
+    public void isValidName_nameWithSlash_false() {
+        final String invalidMemberNameThree = "mary/";
+        assertFalse(Member.isValidName(invalidMemberNameThree));
     }
 
     @Test
