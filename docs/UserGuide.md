@@ -314,3 +314,321 @@ Now that you have learnt about adding tasks in TaskWise, let's take it to the ne
 **Format**
 
 Adding of tasks consist of 1 compulsory parameter (`TASK_DESCRIPTION`) and 3 optional parameters (`DEADLINE`, `PRIORITY`, `MEMBER`)!
+
+|                            Add Command                            |
+|:-----------------------------------------------------------------:|
+|        <img src="images/user_guide/AddCommandParam.png"/>         |
+| `add t/[TASK_DESCRIPTION] {d/[DEADLINE] p/[PRIORITY] m/[MEMBER]}` |
+
+<div markdown="span" class="alert alert-info">
+:information_source: The parameters in { curly braces } such as d/[deadline], p/[priority] and m/[member] are OPTIONAL! They are not necessary for the task to be added, and can be arranged in ANY order.
+
+You can always edit the default values of these optional parameters using the [****edit command****](#edit-tasks).
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can add a maximum of 1 deadline and 1 priority but more than 1 member to a task!
+</div>
+
+### Parameter(s)
+
+**TASK_DESCRIPTION**
+
+This is all you really need to add a task! It is the description of your task that you want to keep track of, and it is compulsory for it to be filled before your task successfully gets added to TaskWise.
+
+ANY character is allowed, except for blanks and `/`.
+
+**DEADLINE**
+
+This is optional to include when you add a task. However, if you would like to add the deadline of a task, refer to the following formats:
+
+| Format             | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `dd-mm-yyyy`       | The date, month, and year of your deadline                                           |
+| `dd-mm-yyyy HH:mm` | The date, month and year as well as the hour and minute in 24 hours of your deadline |
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can use the - OR / between the date, month and year inputs.
+You can use the : OR - OR nothing between the hour and minute of your time inputs. Lastly, your date, month, hour and minute must be 2 digits, while your year must be 4 digits long. 
+</div>
+
+**PRIORITY**
+
+This is also an optional field! Your tasks will have a default priority of None, if you do not assign a priority. However, if you wish to assign a priority to a task, you can simply enter 1 of the 4 priority levels:
+
+- `none`
+- `low`
+- `medium`
+- `high`
+
+**MEMBER**
+
+This is the last optional field of the `add` command. You can assign 1 or more member to a task. ANY character is allowed, except for blanks and `/`.
+
+**Examples of correct usage**
+
+* `add t/Fix User Interface`
+* `add t/Developer Guide p/medium`
+* `add t/OP2 Meeting d/01-01-2023 m/ALL p/high`
+* `add t/User Guide d/04-11-2023 2100 m/may m/sean m/justin m/george m/seb p/high`
+
+**Expected Output**
+
+Click [here](#adding-your-first-task) to refer to the quick start guide for `add` command to see an example of the expected output!
+
+**Common Mistakes**
+
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+[[Jump to Features]](#features)
+
+## Mark Tasks As Complete
+
+If you need a quick recap on what you can do with the `mark` command, refer to [here](#marking-your-first-task).
+
+**Format**
+
+The `mark` command only consists of 1 parameter, the `TASK_NUMBER`, which is the number that you see associated with each task in the task list.
+
+|                    Mark Command                     |
+|:---------------------------------------------------:|
+| <img src="images/user_guide/MarkCommandParam.png"/> |
+|                `mark [TASK_NUMBER]`                 |
+
+### Parameters
+
+**TASK_NUMBER**
+
+Acceptable values to use with the `mark` command will therefore be integers within a range from 1 to the total number of tasks you currently have in TaskWise!
+
+**Examples of correct usage**
+
+- `mark 1`
+
+**Expected Output**
+
+Click [here](#marking-your-first-task) to refer to the quick start guide for `mark` command to see an example of the expected output.
+
+**Common Mistakes**
+
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+[[Jump to Features]](#features)
+
+## Mark Tasks as Incomplete
+
+Oh dear, it seems like there remains some additional parts that were left out while you were completed task? Well, let's get back to tracking that task by simply marking it back as incomplete!
+
+**Format**
+
+The unmark command only consists of 1 parameter, the `TASK_NUMBER`, which is the number that you see associated with each task in the task list.
+
+|                    Unmark Command                     |
+|:-----------------------------------------------------:|
+| <img src="images/user_guide/UnmarkCommandParam.png"/> |
+|                `unmark [TASK_NUMBER]`                 |
+
+### Parameters
+
+**TASK_NUMBER**
+
+Acceptable values to use with the `unmark` command will therefore be integers within a range from 1 to the total number of tasks you currently have in TaskWise!
+
+**Examples of correct usage**
+
+- `unmark 1`
+
+**Expected output**
+
+To unmark the first task in the list using the example stated above, key in `unmark 1`.
+
+
+| Before                                        | After                                       |
+|-----------------------------------------------|---------------------------------------------|
+| ![before](images/user_guide/UnmarkBefore.png) | ![after](images/user_guide/UnmarkAfter.png) |
+
+**Common Mistakes**
+
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+[[Jump to Features]](#features)
+
+## Add Notes to Tasks
+If you might have additional information about the tasks that you want to note down, TaskWise has got you covered! With the `note` command, you can attach a note to a task, which can be short or looooong, it's completely up to you!
+
+**Format**
+The `note` command is simple, just key in the following format:
+
+![image of note command params](images/user_guide/NoteCommandParam.png)
+
+### Parameters
+
+**TASK_NUMBER**
+
+Acceptable values for `TASK_NUMBER` would be integers within a range of 1 to the number of tasks that you have in TaskWise.
+
+**NOTE**
+
+You should also make sure the `NOTE` does not contain the `/` symbol, as it might be confused with the prefix command. TaskWise believes in keeping things simple after all!
+
+**Example**
+
+- note 1 n/check the rubrics
+- note 4 n/make sure that all the deliverables are included in the team directory before the final submission
+
+**Common Mistakes**
+
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+![UI screenshot of failed note command](to-be-inserted)
+
+[[Jump to Features]](#features)
+
+## Edit Tasks
+
+Oopsie! It seems that you might have made a mistake with the details of an already created task, or have new updates for that task! Fret not, you also have the power to edit those tasks with new details with the `edit` command!
+
+**Format**
+
+Here is how you can make use of edit!
+
+There is 1 compulsory parameter (`TASK_NUMBER`) and 5 optional parameters (`NEW_TASK_DESCRIPTION`, `NEW_DEADLINE`, `NEW_PRIORITY_LEVEL`, `MEMBER_NAME`, `NOTE`) whereby at least 1 of these parameters is required to be present.
+
+|                                                    Edit Command                                                    |
+|:------------------------------------------------------------------------------------------------------------------:|
+|                                <img src="images/user_guide/EditCommandParam.png"/>                                 |
+| `edit [TASK_NUMBER] { t/[NEW_TASK_DESCRIPTION] d/[NEW_DEADLINE] p/[NEW_PRIORITY_LEVEL] m/[MEMBER_NAME] n/[NOTE] }` |
+
+<div markdown="span" class="alert alert-info">
+:information_source: The parameters in { curly braces } such as d/[deadline], p/[priority] and m/[member] are OPTIONAL! The ordering does not matter at all!
+
+For fields that you omit, taskWise will retain the original information from the original task.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can edit a maximum of 1 deadline and 1 priority but assign more than 1 member to a task!
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:warning: Editing members will overwrite any current members attached to your task. 
+</div>
+
+### Parameter(s)
+
+Unsure about the format to key in for each parameter? We got you!
+
+**TASK_DESCRIPTION**
+
+This is the description of your task that you want to keep track of. You may wish to change its details using this command.
+
+ANY character is allowed, except for blanks and `/`.
+
+**DEADLINE**
+
+If you would like to edit the deadline of your task, refer to the following formats:
+
+| Format             | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `dd-mm-yyyy`       | The date, month, and year of your deadline                                           |
+| `dd-mm-yyyy HH:mm` | The date, month and year as well as the hour and minute in 24 hours of your deadline |
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can use the - or / between the date, month and year inputs.
+You can use the : or - or nothing between the hour and minute of your time inputs. Lastly, your date, month, hour and minute must be 2 digits, while your year must be 4 digits long. 
+</div>
+
+**PRIORITY**
+
+Your tasks will have a default priority of None, if you have not assigned a priority. However, if you want to change its level of importance, you can simply enter 1 of the 4 priority levels to the edit command:
+- `none`
+- `low`
+- `medium`
+- `high`
+
+Priority is not case-sensitive!
+
+**MEMBER**
+
+You can assign 1 or more member to a task. ANY character is allowed, except for blanks and `/`.
+
+Do note that editing members using this command will overwrite any existing members, if any, previously associated with the task.
+
+**NOTE**
+
+This is the last field of the `edit` command that you can handle. ANY character is allowed, except for `/`.
+
+**Examples of correct usage**
+
+* `edit 1 t/New Task Description`
+* `edit 1 m/John m/Jane m/Mary`
+* `edit 1 p/Medium`
+* `edit 1 d/09-09-2023 0900`
+* `edit 1 n/Check rubrics`
+* `edit 2 t/Another Task Description m/Janet m/Harry p/high d/08-09-2023 19:00 n/Check rubrics`
+* `edit 1 t/Complete OP2 Presentatation d/02-11-2023 m/may m/sean m/justin m/george m/seb m/harry p/high`
+
+**Expected Output**
+
+If all goes well, you should see your specified task being edited and replaced with the new information.
+
+This will be what you will see displayed for the following command when you edit the first task in your list: `edit 1 t/Complete OP2 Presentatation d/02-11-2023 m/may m/sean m/justin m/george m/seb m/harry p/high`
+
+| Before                                      | After                                     |
+|---------------------------------------------|-------------------------------------------|
+| ![before](images/user_guide/EditBefore.png) | ![after](images/user_guide/EditAfter.png) |
+
+<div markdown="span" class="alert alert-info">
+:information_source: Unable to view the full description of your task? That may be because the description is way too long! You could fix this by resizing your window to make it bigger, or clicking on the task of interest to view it on the side panel, or using the [`view` command](#view-a-task)!
+</div>
+
+**Common Mistakes**
+
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+[[Jump to Features]](#features)
+
+## View a Task
+In some cases, you can be so productive that the `note` you added to a task is so long that it is cut off from the display, or you assign so many `member`(s) to a task that some are being cut off from the display. In that case, you can use the `view` command to see the full information of task task with this simple command:
+
+**Format**
+
+Viewing a task has one and only one parameter that is compulsory (`TASK_NUMBER`).
+
+|                    View Command                     |
+|:---------------------------------------------------:|
+| <img src="images/user_guide/ViewCommandParam.png"/> |
+|                `view [TASK_NUMBER]`                 |
+
+### Parameter
+
+The only parameter here is your task number! Do ensure that your task number exists here and is amongst those task number that the task list has!
+
+**Expected Output**
+
+Say, you wish to view the information of the first task on your task list! Key in the command `view 1` into the command box and hit Enter or Return! You should see the following changes made to your GUI!
+
+| Before                                      | After                                     |
+|---------------------------------------------|-------------------------------------------|
+| ![before](images/user_guide/ViewBefore.png) | ![after](images/user_guide/ViewAfter.png) |
+
+_Voilà_, now you get to view the full complete information on the side panel!
+
+**Common Mistakes**
+
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+[[Jump to Features]](#features)
+
+## Find a Task
