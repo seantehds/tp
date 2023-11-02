@@ -106,7 +106,7 @@ public class Deadline implements Comparable<Deadline> {
      */
     public static boolean isValidDateTime(String datetime) {
 
-        boolean isError = Pattern.matches(DATE_REGEX, datetime);
+        boolean isError = Pattern.matches(DATETIME_REGEX, datetime);
 
         try {
             formatter.parse(datetime);
