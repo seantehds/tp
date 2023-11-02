@@ -22,7 +22,7 @@ public class Deadline implements Comparable<Deadline> {
     // https://regex101.com/.
     /**
      * Regex for recognising DateTime inputs. The regex pattern below are adapted from ChatGPT,
-     * modified to better meet the requirements of Juke.
+     * modified to better meet the requirements of TaskWise.
      * <p>
      * <a href="https://regex101.com/">This</a> was used to build and test the new regex patterns.
      */
@@ -31,7 +31,7 @@ public class Deadline implements Comparable<Deadline> {
 
     /**
      * Regex for recognising Date inputs. The regex pattern below are adapted from ChatGPT,
-     * modified to better meet the requirements of Juke.
+     * modified to better meet the requirements of TaskWise.
      * <p>
      * <a href="https://regex101.com/">This</a> was used to build and test the new regex patterns.
      */
