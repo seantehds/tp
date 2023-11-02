@@ -90,8 +90,7 @@ public class TaskListPanel extends UiPart<Region> {
         taskListView.setOnKeyPressed(
                 x -> {
                     if (x.getCode() == KeyCode.ESCAPE) {
-                        taskListView.getSelectionModel().clearSelection();
-                        this.destroyTaskInformationView();
+                        clearSidePanel();
                     }
 
                     x.consume();
@@ -99,6 +98,11 @@ public class TaskListPanel extends UiPart<Region> {
         );
         //@@author
 
+        this.destroyTaskInformationView();
+    }
+
+    public void clearSidePanel() {
+        this.taskListView.getSelectionModel().clearSelection();
         this.destroyTaskInformationView();
     }
 
@@ -137,6 +141,12 @@ public class TaskListPanel extends UiPart<Region> {
         this.getNoteField(task);
 
         this.taskInfoView.setFitToHeight(false);
+
+    }
+
+    public void selectAndSetTaskInformation(Task task) {
+        this.taskListView.getSelectionModel().select(task);
+        this.setTaskInformation(task);
     }
 
     private void destroyTaskInformationView() {
