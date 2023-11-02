@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines need to be in the format (DD(- OR /)MM(- OR /)YYYY HH(: or -)MM) "
-                    + "OR (DD(- OR /)MM(- OR /)YYYY).";
+            "Deadlines need to be in the format [ DD(- OR /)MM(- OR /)YYYY HHMM OR HH(: OR /)MM ] "
+                    + "OR [ DD(- OR /)MM(- OR /)YYYY ].";
     public static final String INVALID_DATE = "Please input a valid date/time!";
 
     //@@author asdfghjkxd-reused
