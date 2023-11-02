@@ -33,11 +33,11 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             switch (event.getCode()) {
-                case ESCAPE:
-                    taskListPanel.clearSidePanel();
-                    break;
-                default:
-                    break;
+            case ESCAPE:
+                taskListPanel.clearSidePanel();
+                break;
+            default:
+                break;
             }
         });
     }
