@@ -86,7 +86,8 @@ public class TaskListPanel extends UiPart<Region> {
         });
 
         //@@author asdfgjkxd-reused
-        // reused from https://copyprogramming.com/howto/implementing-a-global-key-press-for-javafx-methods
+        // reused from https://copyprogramming.com/howto/implementing-a-global-key-press-for-javafx-methods with
+        // minor updates
         taskListView.setOnKeyPressed(
                 x -> {
                     if (x.getCode() == KeyCode.ESCAPE) {
