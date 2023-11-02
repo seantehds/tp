@@ -16,14 +16,29 @@ class MemberTest {
 
     @Test
     public void constructor_invalidMemberName_throwsIllegalArgumentException() {
-        String invalidMemberName = "";
+        final String invalidMemberName = "";
         assertThrows(IllegalArgumentException.class, () -> new Member(invalidMemberName));
+
+        final String invalidMemberNameTwo = "    ";
+        assertThrows(IllegalArgumentException.class, () -> new Member(invalidMemberNameTwo));
+
+        final String invalidMemberNameThree = "mary/";
+        assertThrows(IllegalArgumentException.class, () -> new Member(invalidMemberNameThree));
     }
 
     @Test
-    public void isValidMemberName() {
+    public void isValidName_null_throwsNullPointerException() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Member.isValidName(null));
+    }
+
+    @Test
+    public void isValidName_invalidMemberName_false() {
+        final String invalidMemberNameTwo = "    ";
+        assertFalse(Member.isValidName(invalidMemberNameTwo));
+
+        final String invalidMemberNameThree = "mary/";
+        assertFalse(Member.isValidName(invalidMemberNameThree));
     }
 
     @Test
