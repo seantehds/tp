@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Member {
 
-    public static final String MESSAGE_CONSTRAINTS = "Member names should be non-empty.";
+    public static final String MESSAGE_CONSTRAINTS = "Member names should not be blank or contain /";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[^/]*$";
 
     public final String memberName;
 
@@ -29,7 +30,7 @@ public class Member {
      * Returns true if a given string is a valid member name.
      */
     public static boolean isValidName(String test) {
-        return !(test.isEmpty());
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
