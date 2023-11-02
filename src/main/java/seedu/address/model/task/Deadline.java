@@ -36,8 +36,8 @@ public class Deadline implements Comparable<Deadline> {
      * <a href="https://regex101.com/">This</a> was used to build and test the new regex patterns.
      */
     public static final String DATE_REGEX = "^(0?[1-9]|[12][0-9]|3[01])(\\/|-)(0?[1-9]|1[0-2])(\\/|-)\\d{4}";
-
     //@@ author
+
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private final LocalDateTime details;
@@ -73,8 +73,6 @@ public class Deadline implements Comparable<Deadline> {
     public static Deadline now() {
         return new Deadline(false, LocalDateTime.now());
     }
-
-    //@@author asdfghjkxd-reused
 
     /**
      * Checks if the input date is of the correct Date format. A Date format is specified by only the date
