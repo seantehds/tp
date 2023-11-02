@@ -13,31 +13,31 @@ Here's a quick summary of what TaskWise can do for you:
 ## Table of Content
 
 - [Introduction](#introduction)
-    - [Usage of User Guide](#usage-of-user-guide)
+  - [Usage of User Guide](#usage-of-user-guide)
 - [Installation Guide](#installation-guide)
 - [GUI Interface](#gui-interface)
 - [Tutorial](#tutorial)
-    - [Adding Your First Task](#adding-your-first-task)
-    - [Marking Your First Task](#marking-your-first-task)
-    - [Clearing Default Tasks](#clearing-default-tasks)
+  - [Adding Your First Task](#adding-your-first-task)
+  - [Marking Your First Task](#marking-your-first-task)
+  - [Clearing Default Tasks](#clearing-default-tasks)
 - [Features](#features)
-    - [Prefixes](#prefixes)
-    - [Getting Help](#getting-help)
-    - [Add Tasks](#add-tasks)
-    - [Mark Tasks as Complete](#mark-tasks-as-complete)
-    - [Mark Tasks as Incomplete](#mark-tasks-as-incomplete)
-    - [Add Notes to Tasks](#add-notes-to-tasks)
-    - [Edit Tasks](#edit-tasks)
-    - [View a Task](#view-a-task)
-    - [Find a Task](#find-a-task)
-    - [See All Tasks](#see-all-tasks)
-    - [Sort Tasks](#sort-tasks)
-    - [Delete Tasks](#delete-tasks)
-    - [Clear All Tasks](#clear-all-tasks)
-    - [Command Summary](#command-summary)
+  - [Prefixes](#prefixes)
+  - [Getting Help](#getting-help)
+  - [Add Tasks](#add-tasks)
+  - [Mark Tasks as Complete](#mark-tasks-as-complete)
+  - [Mark Tasks as Incomplete](#mark-tasks-as-incomplete)
+  - [Add Notes to Tasks](#add-notes-to-tasks)
+  - [Edit Tasks](#edit-tasks)
+  - [View a Task](#view-a-task)
+  - [Find a Task](#find-a-task)
+  - [See All Tasks](#see-all-tasks)
+  - [Sort Tasks](#sort-tasks)
+  - [Delete Tasks](#delete-tasks)
+  - [Clear All Tasks](#clear-all-tasks)
+  - [Command Summary](#command-summary)
 - [FAQ](#faq)
-    - [General Questions](#general-questions)
-    - [Task-Related Questions](#task---related-questions)
+  - [General Questions](#general-questions)
+  - [Task-Related Questions](#task---related-questions)
 
 # Introduction
 
@@ -834,3 +834,119 @@ Head over to the [Task-Related Questions](#task---related-questions) section to 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
 [[Jump to Features]](#features)
+
+## Clear All Tasks
+
+At the end of your project, you are finally free of all its tasks! You may wish to put it all behind you.
+
+With the `clear` command, you can do just that!
+
+**Format**
+
+Enter in the `clear` command in the command box to clear out your task list and delete all saved tasks!
+
+|                    Clear Command                     |
+|:----------------------------------------------------:|
+| <img src="images/user_guide/ClearCommandParam.png"/> |
+|                       `clear`                        |
+
+<div markdown="span" class="alert alert-danger">
+:bangbang: Please note that clearing tasks from TaskWise is permanent. It will clear ALL your tasks.
+</div>
+
+### Parameters
+
+This feature has no parameters involved! Simply type the `clear` command. It is case-sensitive (i.e. `Clear` and `CLEAR` will not be recognised as valid commands!).
+
+**Example**
+
+* `clear`
+
+**Expected Output**
+
+Click [here](#clearing-default-tasks) to refer to the quick start guide for `clear` command to see an example of the expected output.
+
+[[Jump to Features]](#features)
+
+## Command Summary
+
+| Commands                                                                                                                                   | Description                                                                                                                                             |
+|--------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `help` ([more info](#getting-help))                                                                                                        | Open a popup that shows where users can get a link to this user guide.                                                                                  |
+| `add t/[TASK_DESCRIPTION] {d/[DEADLINE] p/[PRIORITY] m/[MEMBER]}` ([more info](#add-tasks))                                                | Adds a task to the task list.                                                                                                                           |
+| `mark [TASK_NUMBER]` ([more info](#mark-tasks-as-complete))                                                                                | Marks the task at a specified task number as completed.                                                                                                 |
+| `unmark [TASK_NUMBER]` ([more info](#mark-tasks-as-incomplete))                                                                            | Remove the completed status from the task.                                                                                                              |
+| `note [TASK_NUMBER] n/ [NOTE_VALUE]` ([more info](#add-notes-to-tasks))                                                                    | Adds a note to the task at the specified task number.                                                                                                   |
+| `edit [TASK_NUMBER] {t/[NEW_TASK_DESCRIPTION] d/[NEW_DEADLINE p/[NEW_PRIORITY_LEVEL] m/[MEMBER_NAME] n/[NOTE]}` ([more info](#edit-tasks)) | Edits the task at the specified task number with the new task description, new deadline, new priority level, new member(s) and new note assigned to it. |
+| `view [TASK_NUMBER]` ([more info](#view-a-task))                                                                                           | Display the full complete information about the task on the side panel.                                                                                 |
+| `find [KEYWORD]` ([more info](#find-a-task))                                                                                               | Displays all tasks that contains the specified keyword.                                                                                                 |
+| `list` ([more info](#see-all-tasks))                                                                                                       | Displays the entire task list to the user.                                                                                                              |
+| `sort o/[SORT_ORDER] ty/[SORT_TYPE]` ([more info](#sort-tasks))                                                                            | Sort tasks by a certain order and by a certain task attribute.                                                                                          |
+| `delete [TASK_NUMBER]` ([more info](#delete-tasks))                                                                                        | Deletes the task from the task list.                                                                                                                    |
+| `clear` ([more info](#clear-tasks))                                                                                                        | Clears the current task list.                                                                                                                           |
+
+[[Jump to Features]](#features)
+
+
+# FAQ
+
+Have some burning questions which you need answered? Here are the answers to some of the common questions that you may have!
+
+## General Questions
+**Q**: Is there a way for me to report a bug?  
+**A**: Of course! You can create an issue about the bug [here](https://github.com/AY2324S1-CS2103T-T17-1/tp/issues). Don't forget to include details about the bug and how to reproduce it. We really appreciate your contribution!
+
+**Q**: Is there a way for us to customise the font and the colour of the app?  
+**A**: Unfortunately, we do not offer customisable features for now. However, do keep a look up for potential updates in the future!
+
+**Q**: Can I still use this app without an internet connection?  
+**A**: Definitely! This app is designed to be used without an internet connection! Your tasks and progress would be saved on your local computer.
+
+## Task-Related Questions
+
+**Task Description**  
+**Q**: What if I typed in the invalid task description?  
+**A**: Simply ensure that your task description is non-empty and does not contain the `/` symbol.
+
+**Deadline**  
+**Q**: What if I typed in an invalid deadline?  
+**A**: First, ensure that your deadline is in the right format and it is NOT empty.
+
+| Format                                              | Description                                                                              |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------|
+| `dd(- OR /)mm(- OR /)yyyy`                          | The date(dd), month(mm) and year(yyyy) of your task                                      |
+| `dd(- OR /)mm(- OR /)yyyy [ HHmm OR HH(: OR -)mm ]` | The date(dd), month(mm) and year(yyyy) and hour(HH), minute(mm) in 24 hours of your task |
+
+Here are some examples that are valid:
+- `20-01-2023`
+- `20-01/2023`
+- `20/01-2023 0910`
+- `20-01-2023 09:10`
+
+Note that date(dd), month(mm), hour(HH) and minute(mm) should be 2 digits, this means that instead of 1, you should key in 01 instead. The year(yyyy) should be 4 digits.
+
+Next, ensure that your dates and times are VALID dates and times. For example, the 32/12/2023 is an invalid date as it does not exist.
+
+Lastly, check that the characters between each number is only the valid ones (refer to the format table and examples above!)
+
+**Member**  
+**Q**: What if I typed in an invalid member?  
+**A**: Use the `edit` command to re-enter the members you wish to assign to the task! Do note that using `edit` will not add members to the task, but will overwrite all existing members, so do make sure you take note of existing members first, and remember to add them back when you use the `edit` command!
+
+**Note**  
+**Q**: What if I typed in an invalid note?  
+**A**: Simply ensure that your note does not contain the `/` symbol.
+
+**Priority**  
+**Q**: What if I typed in an invalid priority?  
+**A**: Simple ensure that the priority you input is within the set of available options - `none`, `low`, `medium`, `high`. It not case sensitive.
+
+**Task Number**  
+**Q**: What if I typed in an invalid task number?  
+**A**: Simply ensure that your task number is within the number of tasks that you have. You can locate the task number beside the task description!
+
+For example, if there are `10` items in your task list, then make sure that you enter in a number between `1` and `10` inclusive! If you enter in any other number, an error will occur!
+
+Decimal point numbers such as `1.0`, while not exactly wrong, is also not recognised by TaskWise!
+
+[[Jump to Table of Content]](#table-of-content)
