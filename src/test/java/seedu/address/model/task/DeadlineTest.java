@@ -13,7 +13,7 @@ public class DeadlineTest {
     public void stringFormat() {
         final Deadline originalDeadline = Deadline.of(LocalDateTime.of(2024, 10, 25, 10, 0));
 
-        assertTrue(originalDeadline.toString().equals("2024-10-25 10:00"));
+        assertTrue(originalDeadline.toString().equals("25-10-2024 10:00"));
     }
 
     @Test

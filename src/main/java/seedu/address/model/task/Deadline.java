@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
@@ -38,7 +39,8 @@ public class Deadline implements Comparable<Deadline> {
     public static final String DATE_REGEX = "^(0?[1-9]|[12][0-9]|3[01])(\\/|-)(0?[1-9]|1[0-2])(\\/|-)\\d{4}";
 
     //@@ author
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
     private final LocalDateTime details;
     private final boolean isNull;
@@ -84,7 +86,15 @@ public class Deadline implements Comparable<Deadline> {
      * @return true if the String is a valid Date format, else false
      */
     public static boolean isValidDate(String date) {
-        return Pattern.matches(DATE_REGEX, date);
+        boolean isError = Pattern.matches(DATE_REGEX, date);
+
+        try {
+            dateFormatter.parse(date);
+        } catch (DateTimeException ex) {
+            isError = false;
+        }
+
+        return isError;
     }
 
     /**
@@ -95,7 +105,16 @@ public class Deadline implements Comparable<Deadline> {
      * @return true if the String is a valid DateTime format, else false
      */
     public static boolean isValidDateTime(String datetime) {
-        return Pattern.matches(DATETIME_REGEX, datetime);
+
+        boolean isError = Pattern.matches(DATE_REGEX, datetime);
+
+        try {
+            formatter.parse(datetime);
+        } catch (DateTimeException ex) {
+            isError = false;
+        }
+
+        return isError;
     }
 
     @Override
