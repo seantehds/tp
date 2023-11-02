@@ -77,9 +77,7 @@ public class TaskCard extends UiPart<Region> {
 
     private void setDescription(String fullDescription, int displayedIndex) {
         Text description = new Text(displayedIndex + ". " + fullDescription);
-
         description.setStrikethrough(task.getStatus().isCompleted());
-
         this.idAndDescription.setGraphic(description);
     }
 
@@ -96,20 +94,22 @@ public class TaskCard extends UiPart<Region> {
         int excessCount = 0;
 
         for (Member m : sourceMembers) {
-            if (m.memberName.length() > 6 && members.getChildren().size() < 3) {
-                String truncatedName = m.memberName.substring(0, 6) + "...";
-                Label label = new Label(truncatedName);
-                label.getStyleClass().add("member_cell_label");
+            if (members.getChildren().size() < 3) {
+                if (m.memberName.length() > 6) {
+                    String truncatedName = m.memberName.substring(0, 6) + "...";
+                    Label label = new Label(truncatedName);
+                    label.getStyleClass().add("member_cell_label");
 
-                Tooltip tooltip = new Tooltip(m.memberName.substring(0, Math.min(m.memberName.length(), 99)));
-                tooltip.setShowDelay(new Duration(500));
-                Tooltip.install(label, tooltip);
-                members.getChildren().add(label);
-            } else if (m.memberName.length() <= 6) {
-                Label label = new Label(m.memberName);
-                label.getStyleClass().add("member_cell_label");
-                members.getChildren().add(label);
-            } else if (members.getChildren().size() == 3) {
+                    Tooltip tooltip = new Tooltip(m.memberName.substring(0, Math.min(m.memberName.length(), 99)));
+                    tooltip.setShowDelay(new Duration(500));
+                    Tooltip.install(label, tooltip);
+                    members.getChildren().add(label);
+                } else {
+                    Label label = new Label(m.memberName);
+                    label.getStyleClass().add("member_cell_label");
+                    members.getChildren().add(label);
+                }
+            } else {
                 excessCount++;
             }
         }
