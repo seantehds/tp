@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
 <GridPane id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" style="-fx-border-color: transparent">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" prefWidth="170"/>
