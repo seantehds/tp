@@ -37,7 +37,7 @@ Here's a quick summary of what TaskWise can do for you:
   - [Command Summary](#command-summary)
 - [FAQ](#faq)
   - [General Questions](#general-questions)
-  - [Task-Related Questions](#task---related-questions)
+  - [Task-Related Questions](#task-related-questions)
 
 # Introduction
 
@@ -109,7 +109,7 @@ Now that we got the basics out of the way, let's jump right into the guide!
 :information_source: In this installation guide, you'll see the term "JDK" being used. Don't worry! JDK stands for "Java Development Kit", and you can treat it as the same as Java!
 </div>
 
-3. Download the latest `taskwise.jar` from [this page](https://github.com/orgs/AY2324S1-CS2103T-T17-1/packages?repo_name=tp/latest).
+3. Download the latest `taskwise.jar` from [this page](https://github.com/AY2324S1-CS2103T-T17-1/tp/releases/tag/V1.3.1).
 4. Drag and drop the file from your computer's downloads into any folder you want.
 5. Open up the [terminal](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac) (Mac) or [command prompt](https://support.kaspersky.com/common/windows/14637#block0) (Windows).
 6. Type `cd` followed by the directory path to the folder where you have downloaded TaskWise to navigate there and press `Enter`. For example, if you have downloaded TaskWise to your desktop, you can type the following command:
@@ -151,7 +151,7 @@ Now that you have learnt the different components of the GUI/CLI interface throu
 
 # Tutorial
 
-Picture this: it is the middle of the semester and your midterms are here! However, you realise that your CS2103T project deliverables are starting to pile up, and it is up to you as your group's Project Manager to distribute the work out and track these deliverables to ensure that the task is completed on time!
+Picture this: it is the middle of the semester and your midterms are here! However, you realise that your CS2103T project deliverables are starting to pile up, and it is up to you as your group's Project Manager to distribute the work among your members and track these deliverables to ensure that the task is completed on time!
 
 Feeling overwhelmed? Don't fret, for TaskWise is here to the rescue!
 
@@ -184,9 +184,9 @@ If successful, you should be able to see the following task entry in your window
 
 Congratulations! You have just added your first task to track into TaskWise!
 
-[[Jump to Quick Start Guide]](#quick-start-guide)
+[[Jump to Tutorial]](#tutorial)
 
-[[Jump to Add Task Feature]](#add-a-task)
+[[Jump to Add Task Feature]](#add-tasks)
 
 ## Marking Your First Task
 
@@ -204,7 +204,7 @@ If successful, you should be able to see the following on your window after you 
 
 Nice job! You have just marked the first of many tasks in TaskWise!
 
-[[Jump to Quick Start Guide]](#quick-start-guide)
+[[Jump to Tutorial]](#tutorial)
 
 [[Jump to Mark Task Feature]](#mark-tasks-as-complete)
 
@@ -222,9 +222,9 @@ Rejoice! You have completed the Tutorial on TaskWise.
 
 You are now officially a TaskWise Wizard, ready to use TaskWise to enhance your workflows and manage your project tasks in CS2103T!
 
-[[Jump to Quick Start Guide]](#quick-start-guide)
+[[Jump to Tutorial]](#tutorial)
 
-[[Jump to Clear Task Feature]](#clear-tasks)
+[[Jump to Clear Task Feature]](#clear-all-tasks)
 
 # Features
 
@@ -378,7 +378,7 @@ Click [here](#adding-your-first-task) to refer to the quick start guide for `add
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -413,7 +413,7 @@ Click [here](#marking-your-first-task) to refer to the quick start guide for `ma
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -453,7 +453,7 @@ To unmark the first task in the list using the example stated above, key in `unm
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -484,7 +484,7 @@ You should also make sure the `NOTE` does not contain the `/` symbol, as it migh
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -591,14 +591,14 @@ This will be what you will see displayed for the following command when you edit
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
 [[Jump to Features]](#features)
 
 ## View a Task
-In some cases, you can be so productive that the `note` you added to a task is so long that it is cut off from the display, or you assign so many `member`(s) to a task that some are being cut off from the display. In that case, you can use the `view` command to see the full information of task task with this simple command:
+In some cases, you can be so productive that the `note` you added to a task is so long that it is cut off from the display, or you assign so many `member`(s) to a task that some are being cut off from the display. In that case, you can use the `view` command to see the full information of task with this simple command:
 
 **Format**
 
@@ -625,7 +625,7 @@ _Voilà_, now you get to view the full complete information on the side panel!
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -646,7 +646,7 @@ The only parameter you will have here is the keywords that you are trying to fin
 
 **Example**
 
-* `find OP2
+* `find OP2`
 * `find meeting`
 * `find todo`
 
@@ -684,7 +684,7 @@ This feature has no parameters involved! Simply type the `list` command. It is c
 
 **Expected Output**
 
-Following from the [example given above](#find-task) in the `find` command, say you are done looking for the "`OP2`" task, but you realise: "Where are the rest of my tasks?????". Well, simply key in the command `list` into the command box and hit Enter or Return to bring back the rest of the tasks to your view!
+Following from the [example given above](#find-a-task) in the `find` command, say you are done looking for the "`OP2`" task, but you realise: "Where are the rest of my tasks?????". Well, simply key in the command `list` into the command box and hit Enter or Return to bring back the rest of the tasks to your view!
 
 | Before                                      | After                                     |
 |---------------------------------------------|-------------------------------------------|
@@ -717,11 +717,11 @@ So, how can you sort your task list?
 
 Firstly, you would need to define the `SORT_ORDER`! `SORT_ORDER` is used to refer to whether the task list will be sorted in _ascending_ or _descending_ order!
 
-Currently the recognised `SORT_ORDER` parameters are as follow:
+Currently, the recognised `SORT_ORDER` parameters are as follows:
 
 | Parameter                     | Description                                           |
 |-------------------------------|-------------------------------------------------------|
-| `a` OR `asc` OR `descending`  | Causes the task list to be sorted in ascending order  |
+| `a` OR `asc` OR `ascending`   | Causes the task list to be sorted in ascending order  |
 | `d` OR `desc` OR `descending` | Causes the task list to eb sorted in descending order |
 
 <div markdown="span" class="alert alert-info">
@@ -732,7 +732,7 @@ Currently the recognised `SORT_ORDER` parameters are as follow:
 
 Next, you need to define the `SORT_TYPE`! `SORT_TYPE` is used to refer to the field in which you wish to sort your task list by!
 
-The recognised `SORT_TYPE` parameters are as follow:
+The recognised `SORT_TYPE` parameters are as follows:
 
 | Parameter                                                | Description                            |
 |----------------------------------------------------------|----------------------------------------|
@@ -829,7 +829,7 @@ The task `Complete OP3 Presentation` is now deleted from your task list!
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -883,21 +883,21 @@ Click [here](#clearing-default-tasks) to refer to the quick start guide for `cle
 | `list` ([more info](#see-all-tasks))                                                                                                       | Displays the entire task list to the user.                                                                                                              |
 | `sort o/[SORT_ORDER] ty/[SORT_TYPE]` ([more info](#sort-tasks))                                                                            | Sort tasks by a certain order and by a certain task attribute.                                                                                          |
 | `delete [TASK_NUMBER]` ([more info](#delete-tasks))                                                                                        | Deletes the task from the task list.                                                                                                                    |
-| `clear` ([more info](#clear-tasks))                                                                                                        | Clears the current task list.                                                                                                                           |
+| `clear` ([more info](#clear-all-tasks))                                                                                                    | Clears the current task list.                                                                                                                           |
 
 [[Jump to Features]](#features)
 
 
 # FAQ
 
-Have some burning questions which you need answered? Here are the answers to some of the common questions that you may have!
+Have some burning questions which you need answered? Here are the answers to some of common questions that you may have!
 
 ## General Questions
 **Q**: Is there a way for me to report a bug?  
 **A**: Of course! You can create an issue about the bug [here](https://github.com/AY2324S1-CS2103T-T17-1/tp/issues). Don't forget to include details about the bug and how to reproduce it. We really appreciate your contribution!
 
 **Q**: Is there a way for us to customise the font and the colour of the app?  
-**A**: Unfortunately, we do not offer customisable features for now. However, do keep a look up for potential updates in the future!
+**A**: Unfortunately, we do not offer customisable features for now. However, do keep a look -ut for potential updates in the future!
 
 **Q**: Can I still use this app without an internet connection?  
 **A**: Definitely! This app is designed to be used without an internet connection! Your tasks and progress would be saved on your local computer.
@@ -910,7 +910,7 @@ Have some burning questions which you need answered? Here are the answers to som
 
 **Deadline**  
 **Q**: What if I typed in an invalid deadline?  
-**A**: First, ensure that your deadline is in the right format and it is NOT empty.
+**A**: First, ensure that your deadline is in the right format, and it is NOT empty.
 
 | Format                                              | Description                                                                              |
 |-----------------------------------------------------|------------------------------------------------------------------------------------------|
@@ -945,7 +945,7 @@ Lastly, check that the characters between each number is only the valid ones (re
 **Q**: What if I typed in an invalid task number?  
 **A**: Simply ensure that your task number is within the number of tasks that you have. You can locate the task number beside the task description!
 
-For example, if there are `10` items in your task list, then make sure that you enter in a number between `1` and `10` inclusive! If you enter in any other number, an error will occur!
+For example, if there are `10` items in your task list, then make sure that you enter a number between `1` and `10` inclusive! If you enter any other number, an error will occur!
 
 Decimal point numbers such as `1.0`, while not exactly wrong, is also not recognised by TaskWise!
 
