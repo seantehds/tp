@@ -67,7 +67,7 @@ deactivate Model
 EditCommand -> EditCommand :createEditedTask(taskToEdit, editTaskDescriptor)
 activate EditCommand
 
-EditCommand -> EditCommand  : editedTask
+EditCommand --> EditCommand  : editedTask
 deactivate EditCommand
 
 EditCommand -> Model : setTask(target, editedTask)
