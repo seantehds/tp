@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Task;
 import seedu.address.storage.exceptions.StorageException;
 
 /**
@@ -73,6 +74,10 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
+    public void setTaskToTaskListPanel(Task task) {
+        taskListPanel.selectAndSetTaskInformation(task);
+    }
+
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
@@ -120,8 +125,13 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskWiseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, taskListPanel);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void clearTaskListPanel() {
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
 
     /**
@@ -164,10 +174,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -192,6 +198,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } finally {
+            // Refresh task list panel everytime a command is entered
+            if (!commandText.trim().startsWith("view")) {
+                clearTaskListPanel();
+            }
         }
     }
 }

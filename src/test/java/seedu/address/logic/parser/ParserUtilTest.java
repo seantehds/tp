@@ -25,12 +25,12 @@ import seedu.address.model.task.Note;
 import seedu.address.model.task.Priority;
 
 public class ParserUtilTest {
-    private static final String INVALID_DESCRIPTION = "Do Use@r Guide.";
+    private static final String INVALID_DESCRIPTION = "Do Use/r Guide.";
     private static final String INVALID_MEMBER = "";
 
     private static final String VALID_DESCRIPTION = "Do User Guide";
     private static final String VALID_NOTE = "This is a valid note";
-    private static final String INVALID_NOTE = "Do TaskWise v1.2"; // contains ".", which is not alphanumeric
+    private static final String INVALID_NOTE = "Do TaskWise v1/2"; // contains "/"
     private static final String VALID_MEMBER_1 = "George";
     private static final String VALID_MEMBER_2 = "Harry";
 

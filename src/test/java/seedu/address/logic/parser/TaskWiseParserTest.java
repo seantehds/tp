@@ -27,6 +27,7 @@ import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
@@ -38,13 +39,26 @@ import seedu.address.testutil.TaskUtil;
 
 public class TaskWiseParserTest {
 
+    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+
     private final TaskWiseParser parser = new TaskWiseParser();
+
+    private void setUpDesc(Task validTask) {
+        desc.setDescription(validTask.getDescription());
+        desc.setDeadline(validTask.getDeadline());
+        desc.setPriority(validTask.getPriority());
+        desc.setMembers(validTask.getMembers());
+    }
+
 
     @Test
     public void parseCommand_add() throws Exception {
         Task task = new TaskBuilder().build();
+
+        setUpDesc(task);
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
-        assertEquals(new AddCommand(task), command);
+
+        assertEquals(new AddCommand(desc), command);
     }
 
     @Test
@@ -124,6 +138,14 @@ public class TaskWiseParserTest {
                 + INDEX_FIRST_TASK.getOneBased() + " " + PREFIX_NOTE + task.getNote().fullNote);
         assertEquals(new NoteCommand(INDEX_FIRST_TASK, task.getNote()), command);
     }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new ViewCommand(INDEX_FIRST_TASK), command);
+    }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND_FORMAT, ()

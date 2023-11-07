@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTasks.AMY;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
@@ -23,6 +24,20 @@ import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
+
+    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+
+    private void setUpDesc(Task validTask) {
+        desc.setDescription(validTask.getDescription());
+        desc.setDeadline(validTask.getDeadline());
+        desc.setPriority(validTask.getPriority());
+        desc.setMembers(validTask.getMembers());
+    }
+
+    @AfterEach
+    public void reset() {
+        desc = new AddCommand.AddTaskDescriptor();
+    }
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -73,8 +88,9 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero members
         Task expectedTask = new TaskBuilder(AMY).withMembers().build();
+        setUpDesc(expectedTask);
         assertParseSuccess(parser, NAME_DESC_AMY,
-                new AddCommand(expectedTask));
+                new AddCommand(desc));
     }
 
     @Test

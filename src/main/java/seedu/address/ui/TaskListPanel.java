@@ -1,22 +1,23 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.member.Member;
-import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
 /**
@@ -33,7 +34,40 @@ public class TaskListPanel extends UiPart<Region> {
     private GridPane gridPane;
 
     @FXML
-    private VBox taskInformationView;
+    private ScrollPane taskInfoView;
+
+    @FXML
+    private VBox scrollableBox;
+
+    @FXML
+    private Label selectLabel;
+
+    @FXML
+    private Label descriptionLabel;
+
+    @FXML
+    private HBox statusView;
+
+    @FXML
+    private Label statusText;
+
+    @FXML
+    private Label deadlineView;
+
+    @FXML
+    private HBox priorityView;
+
+    @FXML
+    private Label priorityText;
+
+    @FXML
+    private HBox memberView;
+
+    @FXML
+    private VBox memberList;
+
+    @FXML
+    private Label noteView;
 
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
@@ -52,12 +86,12 @@ public class TaskListPanel extends UiPart<Region> {
         });
 
         //@@author asdfgjkxd-reused
-        // reused from https://copyprogramming.com/howto/implementing-a-global-key-press-for-javafx-methods
+        // reused from https://copyprogramming.com/howto/implementing-a-global-key-press-for-javafx-methods with
+        // minor updates
         taskListView.setOnKeyPressed(
                 x -> {
                     if (x.getCode() == KeyCode.ESCAPE) {
-                        taskListView.getSelectionModel().clearSelection();
-                        this.destroyTaskInformationView();
+                        clearSidePanel();
                     }
 
                     x.consume();
@@ -68,135 +102,150 @@ public class TaskListPanel extends UiPart<Region> {
         this.destroyTaskInformationView();
     }
 
+    /**
+     * Clears the side panel.
+     */
+    public void clearSidePanel() {
+        this.taskListView.getSelectionModel().clearSelection();
+        this.destroyTaskInformationView();
+    }
+
     public void setTaskInformation(Task task) {
-        // show side panel
-        // this.gridPane.getColumnConstraints().get(0).setPercentWidth(60.0);
-        // this.gridPane.getColumnConstraints().get(1).setPercentWidth(40.0);
+        // set the visibility of the fields
+        this.selectLabel.setVisible(false);
+        this.descriptionLabel.setVisible(true);
+        this.statusView.setVisible(true);
+        this.statusText.setVisible(true);
+        this.deadlineView.setVisible(true);
+        this.priorityView.setVisible(true);
+        this.priorityText.setVisible(true);
+        this.memberView.setVisible(true);
+        this.memberList.setVisible(true);
+        this.noteView.setVisible(true);
 
-        // set up the view
-        this.taskInformationView.getChildren().clear();
-        this.taskInformationView.setAlignment(Pos.TOP_LEFT);
+        // set the managed of the fields
+        this.selectLabel.setManaged(false);
+        this.descriptionLabel.setManaged(true);
+        this.statusView.setManaged(true);
+        this.statusText.setManaged(true);
+        this.deadlineView.setManaged(true);
+        this.priorityView.setManaged(true);
+        this.priorityText.setManaged(true);
+        this.memberView.setManaged(true);
+        this.memberList.setManaged(true);
+        this.noteView.setManaged(true);
 
-        Label descriptionView = this.getDescriptionField(task);
-        HBox statusView = this.getStatusField(task);
-        Label deadlineView = this.getDeadlineField(task);
-        HBox priorityView = this.getPriorityField(task);
-        HBox memberField = this.getAssigneeField(task);
-        Label noteView = this.getNoteField(task);
+        this.scrollableBox.setAlignment(Pos.TOP_LEFT);
 
-        this.taskInformationView.getChildren().addAll(
-                descriptionView, statusView, deadlineView, priorityView, memberField, noteView
-        );
+        this.getDescriptionField(task);
+        this.getStatusField(task);
+        this.getDeadlineField(task);
+        this.getPriorityField(task);
+        this.getMemberField(task);
+        this.getNoteField(task);
+
+        this.taskInfoView.setFitToHeight(false);
+    }
+
+    /**
+     * Selects the task in the list view and sets the task information.
+     */
+    public void selectAndSetTaskInformation(Task task) {
+        this.taskListView.getSelectionModel().select(task);
+        this.setTaskInformation(task);
     }
 
     private void destroyTaskInformationView() {
-        // set up the view
-        // this.taskInformationView.setVisible(false);
+        // hide all views except select label
+        this.selectLabel.setVisible(true);
+        this.descriptionLabel.setVisible(false);
+        this.statusView.setVisible(false);
+        this.statusText.setVisible(false);
+        this.deadlineView.setVisible(false);
+        this.priorityView.setVisible(false);
+        this.priorityText.setVisible(false);
+        this.memberView.setVisible(false);
+        this.memberList.setVisible(false);
+        this.noteView.setVisible(false);
 
-        // show side panel
-        // this.gridPane.getColumnConstraints().get(0).setPercentWidth(100.0);
-        // this.gridPane.getColumnConstraints().get(1).setPercentWidth(0.0);
+        // set the managed of the fields
+        this.selectLabel.setManaged(true);
+        this.descriptionLabel.setManaged(false);
+        this.statusView.setManaged(false);
+        this.statusText.setManaged(false);
+        this.deadlineView.setManaged(false);
+        this.priorityView.setManaged(false);
+        this.priorityText.setManaged(false);
+        this.memberView.setManaged(false);
+        this.memberList.setManaged(false);
+        this.noteView.setManaged(false);
 
-        this.taskInformationView.getChildren().clear();
-        this.taskInformationView.setAlignment(Pos.CENTER);
-        this.taskInformationView.setStyle("-fx-border-color: #3f2a03; -fx-border-radius: 10; -fx-border-width: 2; "
-                + "-fx-background-radius: 10; -fx-background-color: #FCF6DB; -fx-border-insets: 5; "
-                + "-fx-background-insets: 5");
-        this.taskInformationView.setPadding(
-                new Insets(5, 5, 5, 5)
-        );
-
-        this.taskInformationView.getChildren().add(
-                new Label("Select a Task...")
-        );
-
+        this.scrollableBox.setAlignment(Pos.CENTER);
+        this.taskInfoView.setFitToWidth(true);
+        this.taskInfoView.setFitToHeight(true);
     }
 
-    private Label getDescriptionField(Task task) {
-        Label description = new Label(task.getDescription().fullDescription);
-        description.setWrapText(true);
-        description.setStyle("-fx-text-fill: black; -fx-font-size: 22; -fx-font-family: Glacial Indifference Bold");
-
-        return description;
+    private void getDescriptionField(Task task) {
+        this.descriptionLabel.setText(task.getDescription().fullDescription);
     }
 
-    private HBox getStatusField(Task task) {
-        HBox status = new HBox();
-        Label stat = new Label("Status: ");
-        stat.setStyle("-fx-text-fill: black;");
-
-        Label formatStat = new Label(task.getStatus().toString());
-        formatStat.setStyle("-fx-text-fill: black; -fx-background-color: #E0DAF9; -fx-padding: 1 3 1 3; "
-                + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
-
-        status.getChildren().addAll(
-                stat, formatStat
-        );
-
-        return status;
+    private void getStatusField(Task task) {
+        this.statusText.setText(task.getStatus().toString());
     }
 
-    private Label getDeadlineField(Task task) {
-        Label dl = new Label("Deadline: " + task.getDeadline().toString());
-        dl.setStyle("-fx-text-fill: black;");
-        return dl;
+    private void getDeadlineField(Task task) {
+        this.deadlineView.setText("Deadline: " + task.getDeadline().toString());
     }
 
-    private HBox getPriorityField(Task task) {
-        HBox box = new HBox();
-        Label title = new Label("Priority: ");
-        title.setStyle("-fx-text-fill: black");
+    private void getPriorityField(Task task) {
+        // set the priority text
+        this.priorityText.setText(task.getPriority().toString());
 
-        Priority priority = task.getPriority();
-        Label priorityLabel = new Label(priority.toString());
-
-        switch (priority) {
+        // then set the style class
+        switch (task.getPriority()) {
         case LOW:
-            priorityLabel.setStyle("-fx-text-fill: black; -fx-background-color: #7ED957; -fx-padding: 1 4 1 4; "
-                    + "-fx-border-radius: 2; -fx-background-radius: 0 10 0 10; -fx-font-size: 11");
+            this.priorityText.getStyleClass().clear();
+            this.priorityText.getStyleClass().add("low_priority_cell_small_label");
             break;
         case MEDIUM:
-            priorityLabel.setStyle("-fx-text-fill: black; -fx-background-color: #FFDE59; -fx-padding: 1 4 1 4; "
-                    + "-fx-border-radius: 2; -fx-background-radius: 0 10 0 10; -fx-font-size: 11");
+            this.priorityText.getStyleClass().clear();
+            this.priorityText.getStyleClass().add("medium_priority_cell_small_label");
             break;
         case HIGH:
-            priorityLabel.setStyle("-fx-text-fill: black; -fx-background-color: #FF443A; -fx-padding: 1 4 1 4; "
-                    + "-fx-border-radius: 2; -fx-background-radius: 0 10 0 10; -fx-font-size: 11");
+            this.priorityText.getStyleClass().clear();
+            this.priorityText.getStyleClass().add("high_priority_cell_small_label");
             break;
         default:
-            priorityLabel.setStyle("-fx-text-fill: black; -fx-background-color: #c2c1c1; -fx-padding: 1 4 1 4; "
-                    + "-fx-border-radius: 2; -fx-background-radius: 0 10 0 10; -fx-font-size: 11");
+            this.priorityText.getStyleClass().clear();
+            this.priorityText.getStyleClass().add("default_priority_cell_small_label");
             break;
         }
-
-        box.getChildren().addAll(title, priorityLabel);
-        return box;
     }
 
-    private HBox getAssigneeField(Task task) {
-        HBox box = new HBox();
-        VBox members = new VBox();
+    private void getMemberField(Task task) {
+        this.memberList.getChildren().clear();
 
-        Label title = new Label("Members: ");
-        title.setStyle("-fx-text-fill: black");
+        task.getMembers().stream().sorted(Comparator.comparing(x -> x.memberName))
+                .forEach(x -> {
+                    if (x.memberName.length() > 25) {
+                        String truncatedName = x.memberName.substring(0, 25) + "...";
+                        Label label = new Label(truncatedName);
+                        label.getStyleClass().add("member_cell_label");
 
-        for (Member m : task.getMembers()) {
-            Label label = new Label(m.memberName);
-            label.setStyle("-fx-text-fill: black; "
-                    + "-fx-background-color: #7CD1E8; -fx-padding: 1 4 1 4; -fx-border-radius: 2;\n"
-                    + "-fx-background-radius: 0 10 0 10; -fx-font-size: 11;");
-            members.getChildren().add(label);
-        }
-
-        box.getChildren().addAll(title, members);
-        return box;
+                        Tooltip tooltip = new Tooltip(x.memberName.substring(0, Math.min(x.memberName.length(), 99)));
+                        tooltip.setShowDelay(new Duration(500));
+                        Tooltip.install(label, tooltip);
+                        this.memberList.getChildren().add(label);
+                    } else {
+                        Label label = new Label(x.memberName);
+                        label.getStyleClass().add("member_cell_label");
+                        this.memberList.getChildren().add(label);
+                    }
+                });
     }
 
-    private Label getNoteField(Task task) {
-        Label note = new Label("Notes: " + task.getNote().fullNote);
-        note.setWrapText(true);
-        note.setStyle("-fx-text-fill: black");
-        return note;
+    private void getNoteField(Task task) {
+        this.noteView.setText("Notes:\n" + task.getNote().fullNote);
     }
 
     /**

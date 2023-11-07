@@ -32,9 +32,9 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_NAME_BOB;
     public static final String MEMBER_DESC_CHARLIE = " " + PREFIX_MEMBER + VALID_MEMBER_CHARLIE;
     public static final String MEMBER_DESC_DAVID = " " + PREFIX_MEMBER + VALID_MEMBER_DAVID;
-
-    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "James&"; // '&' not allowed in names
-    public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + ""; // "" is not allowed as a member name
+    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "James/";
+    // '/' not allowed in descriptions
+    public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

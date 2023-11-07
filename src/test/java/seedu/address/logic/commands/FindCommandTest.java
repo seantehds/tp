@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.DG;
-import static seedu.address.testutil.TypicalTasks.UG;
 import static seedu.address.testutil.TypicalTasks.OP2_MEETING;
 import static seedu.address.testutil.TypicalTasks.OP2_PRESENTATION;
 import static seedu.address.testutil.TypicalTasks.OP2_REHEARSAL;
 import static seedu.address.testutil.TypicalTasks.OP2_REPORT;
+import static seedu.address.testutil.TypicalTasks.UG;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskWise;
 
 import java.util.Arrays;
