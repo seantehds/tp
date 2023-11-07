@@ -17,14 +17,14 @@ if () then ([command recognised])
         :Initialise NoteCommand instance;
         :LogicManager executes NoteCommand;
         if () then ([note is valid])
-            :Update note of Task;
-            :UI updated with new Task details;
+            :Replace old Task with new Task in Task List;
+            :UI updates with new Task details;
             :Initialise CommandResult instance;
             :Return initialised CommandResult instance;
             :LogicManager parses CommandResult instance;
-            :Displays result to user;
+            :Display result to user;
         else ([else])
-            :Display unable to understand note command error message;
+            :Display error message;
         endif
     else ([else])
         :Display error message;
