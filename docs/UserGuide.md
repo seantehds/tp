@@ -378,7 +378,7 @@ Click [here](#adding-your-first-task) to refer to the quick start guide for `add
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -413,7 +413,7 @@ Click [here](#marking-your-first-task) to refer to the quick start guide for `ma
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -453,7 +453,7 @@ To unmark the first task in the list using the example stated above, key in `unm
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -484,11 +484,9 @@ You should also make sure the `NOTE` does not contain the `/` symbol, as it migh
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
-
-![UI screenshot of failed note command](to-be-inserted)
 
 [[Jump to Features]](#features)
 
@@ -591,7 +589,7 @@ This will be what you will see displayed for the following command when you edit
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -625,7 +623,7 @@ _Voilà_, now you get to view the full complete information on the side panel!
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -722,7 +720,7 @@ Currently, the recognised `SORT_ORDER` parameters are as follows:
 | Parameter                     | Description                                           |
 |-------------------------------|-------------------------------------------------------|
 | `a` OR `asc` OR `ascending`   | Causes the task list to be sorted in ascending order  |
-| `d` OR `desc` OR `descending` | Causes the task list to eb sorted in descending order |
+| `d` OR `desc` OR `descending` | Causes the task list to be sorted in descending order |
 
 <div markdown="span" class="alert alert-info">
 :information_source: The phrase `X OR Y`, where `X` and `Y` refers to possible parameters for sort **order**, is used to denote the fact that either `X` or `Y` are accepted as valid parameter values, but **NOT** both at the same time!
@@ -829,7 +827,7 @@ The task `Complete OP3 Presentation` is now deleted from your task list!
 
 **Common Mistakes**
 
-Head over to the [Task-Related Questions](#task-related-questions) section to find out more on what the common mistakes are!
+Head over to the [Task-Related Questions](#task---related-questions) section to find out more on what the common mistakes are!
 
 When there is an error, the instruction with the proper use of the command will be given to you!
 
@@ -897,7 +895,7 @@ Have some burning questions which you need answered? Here are the answers to som
 **A**: Of course! You can create an issue about the bug [here](https://github.com/AY2324S1-CS2103T-T17-1/tp/issues). Don't forget to include details about the bug and how to reproduce it. We really appreciate your contribution!
 
 **Q**: Is there a way for us to customise the font and the colour of the app?  
-**A**: Unfortunately, we do not offer customisable features for now. However, do keep a look -ut for potential updates in the future!
+**A**: Unfortunately, we do not offer customisable features for now. However, do keep a lookout for potential updates in the future!
 
 **Q**: Can I still use this app without an internet connection?  
 **A**: Definitely! This app is designed to be used without an internet connection! Your tasks and progress would be saved on your local computer.
