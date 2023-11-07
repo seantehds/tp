@@ -163,7 +163,7 @@ We shall now take you through the process of how you can start your project mana
     It is crucial that you complete the installation process before continuing with this Quick Start Guide!
 </div>
 
-[[Jump to Table of Content]](#Table-of-Content)
+[[Jump to Table of Content]](#table-of-content)
 
 
 ## Adding Your First Task
