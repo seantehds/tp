@@ -49,7 +49,7 @@ deactivate TaskWiseParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredTaskList()
+FindCommand -> Model : updateFilteredTaskList(predicate)
 activate Model
 
 Model --> FindCommand

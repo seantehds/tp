@@ -12,6 +12,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":TaskWise" as TaskWise MODEL_COLOR
 end box
 
 [-> LogicManager : execute("unmark 1")
@@ -39,7 +40,7 @@ deactivate UnmarkCommand
 
 UnmarkCommandParser --> TaskWiseParser : u
 deactivate UnmarkCommandParser
-'Hidden arrow to position the destroy unmarker below the end of the activation bar.
+'Hidden arrow to position the destroy marker below the end of the activation bar.
 UnmarkCommandParser -[hidden]-> TaskWiseParser
 destroy UnmarkCommandParser
 
@@ -49,8 +50,14 @@ deactivate TaskWiseParser
 LogicManager -> UnmarkCommand : execute()
 activate UnmarkCommand
 
-UnmarkCommand -> Model : unmarkTask(1)
+UnmarkCommand -> Model : setTask(taskToUnmark, markedTask)
 activate Model
+
+Model -> TaskWise : setTask(target, editedTask)
+activate TaskWise
+
+TaskWise --> Model
+deactivate TaskWise
 
 Model --> UnmarkCommand
 deactivate Model
