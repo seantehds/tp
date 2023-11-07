@@ -76,7 +76,7 @@ activate Model
 Model -> TaskWise : setTask(target, editedTask)
 activate TaskWise
 
-TasskWise --> Model
+TaskWise --> Model
 deactivate TaskWise
 
 Model --> EditCommand
