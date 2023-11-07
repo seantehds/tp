@@ -14,9 +14,9 @@ if () then ([command recognised])
     :Initialise EditCommandParser object;
     :EditCommandParser instance parses arguments;
     if () then ([parse successful])
-        :Initialise EditCommand and EditTaskDescriptor instances;
+        :Initialise EditCommand instance;
         :LogicManager executes EditCommand;
-        :Overwrite fields of Task with values from EditTaskDescriptor;
+        :Creates new Task with edited fields;
         :UI updated with new Task fields;
         :Initialise CommandResult instance;
         :Return initialised CommandResult instance;
