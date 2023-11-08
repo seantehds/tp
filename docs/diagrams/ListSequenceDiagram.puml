@@ -32,7 +32,7 @@ deactivate TaskWiseParser
 LogicManager -> ListCommand : execute()
 activate ListCommand
 
-ListCommand -> Model : updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)
+ListCommand -> Model : updateFilteredTaskList(predicate)
 activate Model
 
 Model --> ListCommand
