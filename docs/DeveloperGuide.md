@@ -1170,6 +1170,7 @@ Should the users proceed with adding the task with the specified deadline, they 
 The current implementation of the `edit` feature only allows the user to overwrite the previously stored information of the `Task` specified.
 
 However, this provides a poor user experience which we seek to improve by splitting the `edit` feature into the following 3 modes:
+
 1) Append
 2) Edit
 3) Overwrite
@@ -1264,7 +1265,9 @@ Given below are instructions to test the app manually.
 1. Initial launch
     1. Download the jar file and copy it into an empty folder.
     2. Double-click the jar file. Taskwise should appear with the following UI.
-       [Screenshot of TaskWise UI][images/user_guide/GUI_Interface.png]
+
+![Screenshot of TaskWise UI](images/user_guide/GUI_Interface.png)
+
 2. Saving window preferences
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
     2. Re-launch the app by double-clicking the jar file. The most recent window size and location are retained.
