@@ -48,7 +48,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void TaskWiseReadSave() throws Exception {
+    public void taskWiseReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonTaskWiseStorage} class.
