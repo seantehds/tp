@@ -335,13 +335,13 @@ Adding of tasks consists of 1 compulsory parameter (`TASK_DESCRIPTION`) and 3 op
 
 |                            Add Command                            |
 |:-----------------------------------------------------------------:|
-|   <img src="images/user_guide/AddCommandParam.png"/ width=800>    |
+|    <img src="images/user_guide/AddCommandParam.png" width=800>    |
 | `add t/[TASK_DESCRIPTION] {d/[DEADLINE] p/[PRIORITY] m/[MEMBER]}` |
 
 <div markdown="span" class="alert alert-info">
 :information_source: The parameters in { curly braces } such as `d/[deadline]`, `p/[priority]` and `m/[member]` are OPTIONAL! They are not necessary for the task to be added, and can be arranged in ANY order.
 <br/><br/>
-You can always edit the default values of these optional parameters using the [****edit command****](#edit-tasks).
+You can always edit the default values of these optional parameters using the [***edit command***](#edit-tasks).
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -1022,11 +1022,11 @@ Instead of the workaround as suggested under [Edit Tasks](#edit-tasks), the futu
 
 To do so, there will be 3 different modes of editing:
 
-1) Append
-  * Allows you to add on to whatever was already in the task.
-2) Edit
-  * Allows you to amend that one particular section of notes or the members that were specified.
-3) Overwrite
+1) Append  
+  * Allows you to add on to whatever was already in the task.  
+2) Edit  
+  * Allows you to amend that one particular section of notes or the members that were specified.  
+3) Overwrite  
   * Allows you to completely replace the previous information of that field in the specified task with what you wrote in the command.
 
 ## Improve Find Command To Find By Priority, Deadline, Members and Notes
