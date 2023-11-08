@@ -133,8 +133,8 @@ public class ParserUtil {
         requireNonNull(members);
 
         final Set<Member> memberSet = new HashSet<>();
-        for (String tagName : members) {
-            memberSet.add(parseMember(tagName));
+        for (String memberName : members) {
+            memberSet.add(parseMember(memberName));
         }
         return memberSet;
     }

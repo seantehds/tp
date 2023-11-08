@@ -87,9 +87,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> members} into a {@code Set<Tag>} if {@code members} is non-empty.
+     * Parses {@code Collection<String> members} into a {@code Set<Member>} if {@code members} is non-empty.
      * If {@code members} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero members.
+     * {@code Set<Member>} containing zero members.
      */
     private Optional<Set<Member>> parseMembersForEdit(Collection<String> members) throws ParseException {
         requireNonNull(members);
@@ -98,8 +98,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
 
-        Collection<String> tagSet = members.size() == 1 && members.contains("") ? Collections.emptySet() : members;
-        return Optional.of(ParserUtil.parseMembers(tagSet));
+        Collection<String> memberSet = members.size() == 1 && members.contains("") ? Collections.emptySet() : members;
+        return Optional.of(ParserUtil.parseMembers(memberSet));
     }
 
 }

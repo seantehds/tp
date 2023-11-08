@@ -43,8 +43,8 @@ public class Member {
             return false;
         }
 
-        Member otherTag = (Member) other;
-        return memberName.equals(otherTag.memberName);
+        Member otherMember = (Member) other;
+        return memberName.equals(otherMember.memberName);
     }
 
     @Override

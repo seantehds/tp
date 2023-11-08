@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.model.member.Member;
-import seedu.address.storage.exceptions.json.IllegalJsonTagValueException;
+import seedu.address.storage.exceptions.json.IllegalJsonMemberValueException;
 import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 
@@ -42,7 +42,7 @@ class JsonAdaptedMember {
      */
     public Member toModelType() throws IllegalJsonValueException {
         if (!Member.isValidName(memberName)) {
-            throw new IllegalJsonTagValueException(Member.MESSAGE_CONSTRAINTS);
+            throw new IllegalJsonMemberValueException(Member.MESSAGE_CONSTRAINTS);
         }
         return new Member(memberName);
     }

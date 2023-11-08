@@ -124,7 +124,7 @@ public class AddCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code members} is used internally.
          */
         public AddTaskDescriptor(AddCommand.AddTaskDescriptor toCopy) {
             setDescription(toCopy.description);
