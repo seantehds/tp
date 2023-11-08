@@ -1173,7 +1173,9 @@ The current implementation of the `edit` feature only allows the user to overwri
 However, this provides a poor user experience which we seek to improve by splitting the `edit` feature into the following 3 modes:
 
 1) Append
+
 2) Edit
+
 3) Overwrite
 
 ### Append Mode
