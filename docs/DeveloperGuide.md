@@ -807,3 +807,274 @@ Use case ends.
 &ensp;&ensp;1a2. User acknowledges the warning.
 
 Use case ends.
+
+### UC04: Marks a task as done
+
+Actor(s): Project Manager  
+Guarantees:
+* The specified task is successfully marked as complete in the system.
+
+**MSS**
+
+1. User inputs a command to mark a certain task as done.
+2. System updates and marks the task as done.
+3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC05: Unmarks a task that was marked as done
+
+Actor(s): Project Manager  
+Guarantees:
+* The specified task is successfully marked as incomplete in the system.
+
+**MSS**
+1. User inputs a command to unmark certain task.
+2. System updates and marks the task as incomplete.
+3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC06: Warn on invalid command
+
+Actor(s): Project Manager, System  
+Guarantee(s):
+* No commands will be executed.
+
+**MSS**
+
+1. User inputs an invalid command.
+2. System warns user that the command entered is invalid.
+
+Use case ends.
+
+### UC07: Warn on illegal command
+
+Actor(s): Project Manager, System  
+Guarantee(s):
+* Illegal command will not be executed.
+
+**MSS**
+
+1. User inputs an illegal command (valid command but the user has no permission to execute the command or argument is invalid).
+2. System warns user that the command entered is illegal and cannot be completed.
+
+Use case ends.
+
+### UC08: Add a deadline to an existing task
+Actor(s): Project Manager  
+Guarantees:
+* A deadline is added to an existing task in the list of tasks.
+
+**MSS**
+
+1. User inputs edit command to edit the deadline of an existing task.
+2. System updates and adds the deadline to the specified task.
+3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC09: Assign members to an existing task
+Actor(s): Project Manager  
+Guarantees:
+* The specified member is assigned to the existing task.
+
+**MSS**
+
+1. User inputs edit command to assign member(s) to an existing task.
+2. System assigns members to the existing task.
+3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC10: Update the priority of an existing task
+Actor(s): Project Manager  
+Guarantees:
+* The priority level of the task is updated to what was specified.
+
+**MSS**
+
+1. User inputs the edit command to update the priority of an existing task.
+2. System updates the priority level of the specified task.
+3. Updated list of tasks is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC11: Add a note to a task
+Actor(s): Project Manager  
+Guarantees:
+* The note is added to the task.
+
+**MSS**
+
+1. User inputs a command to add note to an existing task.
+2. System updates the task to include the note.
+3. Updated list of task with note is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC12: Sort tasks in task list
+
+Actor(s): Project Manager
+Guarantees:
+* If the sort is successful, the order of the Tasks on display will be changed(unless the Task List is already sorted)
+* No matter if the order of the Task List changes or otherwise, all existing Tasks will be reassigned to the task list
+
+**MSS**
+
+1. User inputs command to sort the task list.
+2. System parses the command and sorts the task list.
+3. Updated task list is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+![overview](images/UseCaseDiagram.png)
+
+### UC13: Clear tasks in task list
+
+Actor(s): Project Manager
+Guarantees:
+* All tasks in the task list are deleted.
+
+**MSS**
+
+1. User inputs a command to clear the task list.
+2. System parses the command and clears all tasks from task list.
+3. Updated empty task list is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.
+
+Use case ends.
+
+### UC14: Find a task in the task list
+
+Actor(s): Project Manager
+Guarantees:
+* All tasks that contain the keyword in their description will be retrieved for the user.
+
+**MSS**
+
+1. User inputs a command to find all tasks with a description that contains a specified keyword.
+2. System parses the command and retrieves only tasks that have the keyword within their description.
+3. New task list is displayed to the user.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.
+
+Use case ends.
+
+### UC15: View a task
+Actor(s): Project Manager
+Guarantees:
+* The full information about a task will be displayed on the side panel.
+
+**MSS**
+
+1. User inputs command to view a task.
+2. System parses the command to retrieve all information about the task.
+3. The full information about the task is displayed to the user.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.
+
+Use case ends.
+
+### UC16: Edit the description of a task
+Actor(s): Project Manager
+Guarantees:
+* The task's description gets updated.
+
+**MSS**
+
+1. User inputs a command to edit a task.

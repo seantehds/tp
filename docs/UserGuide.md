@@ -685,3 +685,232 @@ Viewing a task has one and only one compulsory parameter (`TASK_NUMBER`).
 ### Parameter
 
 The only parameter here is your task number! Do ensure that your task number exists here and is amongst those task numbers that the task list has!
+
+Say, you wish to view the information of the first task on your task list! Key in the command `view 1` into the command box and press the "Enter" or "Return" key! You should see the following changes made to your GUI:
+
+| Before                                      | After                                     |
+|---------------------------------------------|-------------------------------------------|
+| ![before](images/user_guide/ViewBefore.png) | ![after](images/user_guide/ViewAfter.png) |
+
+_Voilà_, now you get to view the full complete information on the side panel!
+
+**Common Mistakes**
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more about what the common mistakes are!
+
+[[Jump to Features]](#features)
+
+## Find a Task
+
+Looking for a particular task that has been added into TaskWise? Well, we've made finding a task in TaskWise as simple as possible, with the `find` command!
+
+**Format**
+
+The only parameter you will have here is the keywords that you are trying to find!
+
+|                         Find Command                          |
+|:-------------------------------------------------------------:|
+| <img src="images/user_guide/FindCommandParam.png" width=500/> |
+|                       `find [KEYWORD]`                        |
+
+**Example**
+
+* `find OP2`
+* `find meeting`
+* `find todo`
+
+**Expected Output**
+
+TaskWise will filter out the tasks containing the `keywords` specified!
+
+For example, you have a list with the tasks `Complete OP2 Presentation` and `Complete OP3 Presentation`. You wish to find the task with the term "`OP2`" in its description, so, all you need to do is simply key in the command `find OP2` in the command box and press the "Enter" or "Return" key! You should be able to see the following changes reflected on the GUI:
+
+| Before                                      | After                                     |
+|---------------------------------------------|-------------------------------------------|
+| ![before](images/user_guide/FindBefore.png) | ![after](images/user_guide/FindAfter.png) |
+
+Tasks with the term "`OP2`" in the description will now be shown to you!
+
+Note that for now, you can only find by the task `description` so for your convenience, do include the most important information in your `description`, and reserve `note` for additional information. If you want to find by completion `status`, `priority` or `deadline`, you can look at the [Sort Command](#sort-tasks).
+
+[[Jump to Features]](#features)
+
+## See All Tasks
+
+Hmm, seems like your vision is clouded on a selected few tasks out of all the tasks in TaskWise. Let's clear up that vision up see the rest of the tasks, shall we?
+
+**Format**
+
+This feature has no parameters involved! Simply type the `list` command. It is case-sensitive (i.e. `List` and `LIST` will not be recognised as valid commands!).
+
+|                         List Command                          |
+|:-------------------------------------------------------------:|
+| <img src="images/user_guide/ListCommandParam.png" width=150/> |
+|                            `list`                             |
+
+<div markdown="span" class="alert alert-info">
+:information_source: If you accidentally, or intentionally, enter in any number of parameters with the `list` command, they will be ignored and the command will work as usual!
+</div>
+
+**Example**
+
+* `list`
+
+**Expected Output**
+
+Following from the [example given above](#find-a-task) in the `find` command, say you are done looking for the "`OP2`" task, but you realise: "Where are the rest of my tasks?????". Well, simply key in the command `list` into the command box and hit Enter or Return to bring back the rest of the tasks to your view!
+
+| Before                                      | After                                     |
+|---------------------------------------------|-------------------------------------------|
+| ![before](images/user_guide/ListBefore.png) | ![after](images/user_guide/ListAfter.png) |
+
+[[Jump to Features]](#features)
+
+## Sort Tasks
+
+Creating, editing and prioritising tasks is nice and all, but what is the point if you are unable to redefine the order of your task, and personalise it to your needs?
+
+With the **Sort** feature, you can do exactly that! One simple command is all you really need to organise your task list in ascending order by task priority, or descending order by task deadlines! **The possibilities are endless!**
+
+How can you do that? It's simple! Read on to find out more!
+
+**Format**
+
+The `sort` command can be broken up into 3 parts: the command word (`sort`), the sort **order** (`o/[SORT_ORDER]`) and sort **type** (`ty/[SORT_TYPE]`). Here is a visual representation of the `sort` command!
+
+|                         Sort Command                          |
+|:-------------------------------------------------------------:|
+| <img src="images/user_guide/SortCommandParam.png" width=650/> |
+|             `sort o/[SORT_ORDER] ty/[SORT_TYPE]`              |
+
+So, how can you sort your task list?
+
+### Parameter(s)
+
+**SORT_ORDER**
+
+Firstly, you would need to define the `SORT_ORDER`! `SORT_ORDER` is used to refer to whether the task list will be sorted in _ascending_ or _descending_ order!
+
+Currently, the recognised `SORT_ORDER` parameters are as follows:
+
+| Parameter                     | Description                                           |
+|-------------------------------|-------------------------------------------------------|
+| `a` OR `asc` OR `ascending`   | Causes the task list to be sorted in ascending order  |
+| `d` OR `desc` OR `descending` | Causes the task list to eb sorted in descending order |
+
+<div markdown="span" class="alert alert-info">
+:information_source: The phrase `X OR Y`, where `X` and `Y` refer to possible parameters for sort **order**, is used to denote the fact that either `X` or `Y` are accepted as valid parameter values, but **NOT** both at the same time!
+</div>
+
+**SORT_TYPE**
+
+Next, you need to define the `SORT_TYPE`! `SORT_TYPE` is used to refer to the field in which you wish to sort your task list by!
+
+The recognised `SORT_TYPE` parameters are as follows:
+
+| Parameter                                                | Description                            |
+|----------------------------------------------------------|----------------------------------------|
+| `t` OR `td` OR `task` OR `tsk dsc` OR `task description` | Sorts the list by the task description |
+| `p` OR `pr` OR `pri` OR `prior` OR `priority`            | Sorts the list by the task priority    |
+| `d` OR `dl` OR `deadln` OR `deadline`                    | Sorts the list by the task deadline    |
+| `s` OR `st` OR `stat` OR `status`                        | Sorts the list by the task status      |
+
+<div markdown="span" class="alert alert-info">
+:information_source: The phrase `X OR Y`, where `X` and `Y` refer to possible parameters for sort **type**, is used to denote the fact that either `X` or `Y` are accepted as valid parameter values, but **NOT** both at the same time!
+</div>
+
+By using these two parameters, you are able to sort the task list in ascending or descending order, by the task description, priority, deadline or status!
+
+**Examples of correct usage**
+
+Now that you have learnt what parameters are accepted by the `sort` command, here are some more examples of how sort can be properly used to help you achieve the order which you are going for!
+
+* `sort o/a ty/d`: Sorts the task list in ascending order by the task deadline
+* `sort o/d ty/pr`: Sorts the task list in descending order by the task priority
+* `sort o/a ty/status`: Sort the task list in ascending order by the task status
+* `sort o/d ty/task description`: Sort the task list in descending order by the task description
+
+**Expected Output**
+
+In particular, let us examine the first example `sort o/a ty/pr`, which sorts the task list in ascending order by the task priority!
+
+Initially, we can see from the below image that the tasks are not really sorted in any order!
+
+![unsorted sort image](images/user_guide/SortBefore.png)
+
+Now, due to the sheer number of assignments and project tasks, you wish to find out what tasks are the most important, so that you are able to get them out of the way as quickly as possible!
+
+How can you do that? Simply sort the list in ascending order by task deadline!
+
+After entering the aforementioned command into the command box and pressing the "Enter" or "Return" key, you will be able to see that the task list will magically be sorted in ascending order by task deadline! Isn't this amazing?!
+
+| Before                                      | After                                     |
+|---------------------------------------------|-------------------------------------------|
+| ![before](images/user_guide/SortBefore.png) | ![after](images/user_guide/SortAfter.png) |
+
+<div markdown="span" class="alert alert-info">
+:information_source: If you attempt to sort your task list by the same order in which it is already sorted in, you will not be able to see any changes made to the task list!
+</div>
+
+**Common Mistakes**
+
+If you key in any other values into the `SORT_ORDER` or `SORT_TYPE` parameters that are not recognised by TaskWise, an error message will show up, telling you that you have entered in some unrecognised value as parameters for `SORT_ORDER` or `SORT_TYPE`!
+
+For example, if you key in the command `sort o/ascendinggg ty/pr`, you will get the following error message that alerts you that `ascendinggg` is not a recognised sort **order**!
+
+**Limitations**
+
+Currently, due to how the `sort` command treats Task Descriptions that begin with lowercase and uppercase characters differently, you are advised to be **consistent in the capitalisation of your Task Description**!
+
+If the sort is done in an ascending manner, and if your tasks are not consistent with the capitalisation of the Task Description, you may realise that your task list will be sorted in such a way that the Descriptions that begin with lowercase character would be at the top of the list, followed by those that start with uppercase characters!
+
+For example, if your list looks like this:
+
+* `post on the forum for help`
+* `complete OP2`
+* `Complete OP3`
+
+after sorting your list in ascending order by the Task Description, it will now look like this:
+
+* `complete OP2`
+* `post on the forum for help`
+* `Complete OP3`
+
+rather than:
+
+* `complete OP2`
+* `Complete OP3`
+* `post on the forum for help`
+
+which is probably what you expect the command to do!
+
+This is also true if the sort was done in a descending order!
+
+We aim to remedy this behaviour in an upcoming release of TaskWise, whereby this unexpected behaviour will be fixed!
+
+[[Jump to Features]](#features)
+
+## Delete Tasks
+
+After submitting all the deliverables you need for a certain milestone, you sit back and heave a sigh of relief. It's finally done!
+
+Time to clean up TaskWise!
+
+**Format**
+
+The `delete` command only consists of 1 parameter, the `TASK_NUMBER`, which is the number that you see associated with each task in the task list.
+
+|                         Delete Command                          |
+|:---------------------------------------------------------------:|
+| <img src="images/user_guide/DeleteCommandParam.png" width=500/> |
+|                     `delete [TASK_NUMBER]`                      |
+
+<div markdown="span" class="alert alert-danger">
+:bangbang: Please note that deleting a task from TaskWise is permanent, and cannot be undone! Be sure about what you are trying to do before using the `delete` command!
+</div>
+
+### Parameter(s)
+
+**TASK_NUMBER**
