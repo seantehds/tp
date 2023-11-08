@@ -457,7 +457,6 @@ Acceptable values to use with the `mark` command will therefore be integers with
 
 - `mark 1`
 
-
 **Expected Output**
 
 Click [here](#marking-your-first-task) to refer to the quick start guide for `mark` command to see an example of the expected output.
@@ -685,6 +684,8 @@ Viewing a task has one and only one compulsory parameter (`TASK_NUMBER`).
 ### Parameter
 
 The only parameter here is your task number! Do ensure that your task number exists here and is amongst those task numbers that the task list has!
+
+**Expected Output**
 
 Say, you wish to view the information of the first task on your task list! Key in the command `view 1` into the command box and press the "Enter" or "Return" key! You should see the following changes made to your GUI:
 
@@ -914,3 +915,228 @@ The `delete` command only consists of 1 parameter, the `TASK_NUMBER`, which is t
 ### Parameter(s)
 
 **TASK_NUMBER**
+
+Acceptable values to use with the `delete` command will therefore be integers within a range from 1 to the total number of tasks you currently have in TaskWise!
+
+**Example**
+
+- `delete 1`
+
+**Expected Output**
+
+Now, we are done with the first task `Complete OP3 Presentation` and we want to remove it from our view. How can we do that? Simple! Key in the command `delete 1` (which refers to the `Complete OP3 Presentation` task!) and press the "Enter" or "Return" key to delete the task!
+
+| Before                                        | After                                       |
+|-----------------------------------------------|---------------------------------------------|
+| ![before](images/user_guide/DeleteBefore.png) | ![after](images/user_guide/DeleteAfter.png) |
+
+The task `Complete OP3 Presentation` is now deleted from your task list!
+
+**Common Mistakes**
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more about what the common mistakes are!
+
+[[Jump to Features]](#features)
+
+## Clear All Tasks
+
+At the end of your project, you are finally free of all its tasks! You may wish to put it all behind you. With the `clear` command, you can do just that!
+
+**Format**
+
+Enter in the `clear` command in the command box to clear out your task list and delete all saved tasks!
+
+|                         Clear Command                          |
+|:--------------------------------------------------------------:|
+| <img src="images/user_guide/ClearCommandParam.png" width=150/> |
+|                            `clear`                             |
+
+<div markdown="span" class="alert alert-danger">
+:bangbang: Please note that clearing tasks from TaskWise is permanent and irreversible. It will clear ALL your tasks.
+</div>
+
+### Parameters
+
+This feature has no parameters involved! Simply type the `clear` command. It is case-sensitive (i.e. `Clear` and `CLEAR` will not be recognised as valid commands!).
+
+<div markdown="span" class="alert alert-info">
+:information_source: If you accidentally, or intentionally, enter in any number of parameters with the `clear` command, they will be ignored and the command will work as usual!
+</div>
+
+**Example**
+
+* `clear`
+
+**Expected Output**
+
+Click [here](#clearing-default-tasks) to refer to the quick start guide for `clear` command to see an example of the expected output.
+
+[[Jump to Features]](#features)
+
+## Command Summary
+
+| Commands                                                                                                                                   | Description                                                                                                                                             |
+|--------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `help` ([more info](#getting-help))                                                                                                        | Open a popup that shows where users can get a link to this user guide.                                                                                  |
+| `add t/[TASK_DESCRIPTION] {d/[DEADLINE] p/[PRIORITY] m/[MEMBER]}` ([more info](#add-tasks))                                                | Adds a task to the task list.                                                                                                                           |
+| `mark [TASK_NUMBER]` ([more info](#mark-tasks-as-complete))                                                                                | Marks the task at a specified task number as completed.                                                                                                 |
+| `unmark [TASK_NUMBER]` ([more info](#mark-tasks-as-incomplete))                                                                            | Remove the completed status from the task.                                                                                                              |
+| `note [TASK_NUMBER] n/[NOTE_VALUE]` ([more info](#add-notes-to-tasks))                                                                     | Adds a note to the task at the specified task number.                                                                                                   |
+| `edit [TASK_NUMBER] {t/[NEW_TASK_DESCRIPTION] d/[NEW_DEADLINE p/[NEW_PRIORITY_LEVEL] m/[MEMBER_NAME] n/[NOTE]}` ([more info](#edit-tasks)) | Edits the task at the specified task number with the new task description, new deadline, new priority level, new member(s) and new note assigned to it. |
+| `view [TASK_NUMBER]` ([more info](#view-a-task))                                                                                           | Display the full complete information about the task on the side panel.                                                                                 |
+| `find [KEYWORD]` ([more info](#find-a-task))                                                                                               | Displays all tasks that contains the specified keyword.                                                                                                 |
+| `list` ([more info](#see-all-tasks))                                                                                                       | Displays the entire task list to the user.                                                                                                              |
+| `sort o/[SORT_ORDER] ty/[SORT_TYPE]` ([more info](#sort-tasks))                                                                            | Sort tasks by a certain order and by a certain task attribute.                                                                                          |
+| `delete [TASK_NUMBER]` ([more info](#delete-tasks))                                                                                        | Deletes the task from the task list.                                                                                                                    |
+| `clear` ([more info](#clear-all-tasks))                                                                                                    | Clears the current task list.                                                                                                                           |
+
+[[Jump to Features]](#features)
+
+# Planned Enhancements
+
+In our future releases, we are looking to improve your user experience! Here are the plans that we have in mind with regard to the limitations that surfaced in this User Guide.
+
+## Ability To Add Tasks With The Same Description With Different Details
+
+As of now, TaskWise allows you to add tasks with the `Description` being the unique identifier. This means that you cannot add tasks with the same description, even if their deadlines, priority, status and members involved are different!
+
+However, we propose that in the near future, tasks with the same description but at least one different deadline, priority, status or members can be added into TaskWise. This would allow for more convenience for you, as you can create tasks with the same description, as long as its other parameters are different!
+
+For example, if you have marked the task`CS2103T Meeting` with no deadline, priority or member, its status will change from `[Incomplete]` to `[Complete]`. Then, you can add another task with the description `CS2103T Meeting` with the same exact parameters again, since its status is different -- `[Incomplete]`.
+
+## Inform User When Date Input Has Passed
+
+Currently, when a user inputs a date that has already passed as a deadline for a task, TaskWise carries out the command as usual and treats the command like any other.
+
+In the future, we intend for the user to continue to be able to use dates that have already passed as valid deadlines for their tasks, as we still wish for users to be able to add/edit tasks that have deadlines that have passed already. However, when doing so, TaskWise would prompt you and ask for confirmation as to whether you wish to continue adding/editing a deadline that has passed already. The task will only be created/edited should you confirm their decision to use a past date.
+
+Also, tasks with deadlines that are in the past and are incomplete will be indicated with a red highlight, to signify that they are overdue, helping you keep track of overdue tasks that need to be completed as soon as possible!
+
+## Edit Command - Different Modes
+
+We seek to make it easier for you to edit your tasks!
+
+Instead of the workaround as suggested under [Edit Tasks](#edit-tasks), the future implementation will allow you to simply append to the `notes` and `members` fields as well as editing specific fields without having to rewrite whatever that was previously in that field of the task.
+
+To do so, there will be 3 different modes of editing:
+
+1) Append
+  * Allows you to add on to whatever was already in the task.
+2) Edit
+  * Allows you to amend that one particular section of notes or the members that were specified.
+3) Overwrite
+  * Allows you to completely replace the previous information of that field in the specified task with what you wrote in the command.
+
+## Improve Find Command To Find By Priority, Deadline, Members and Notes
+
+Currently, our `find` feature only supports finding by description. Apart from that, we think your experience can be enhanced with the ability to find tasks by other attributes like `priority`, `deadline`, `member` and `note` as well with the following commands:
+
+1. `find t/[TO_FIND]`
+2. `find p/[TO_FIND]`
+3. `find d/[TO_FIND]`
+5. `find m/[TO_FIND]`
+6. `find n/[TO_FIND]`
+
+Furthermore, we could also allow you to combine different attributes in your find command. For example:
+`find t/meeting n/check rubrics m/george`
+
+## Case-insensitive Sort
+
+Currently, the `sort` feature is not really user-friendly, as it sorts your tasks in a case-sensitive manner. For example, if your task list contains:
+
+* `b Task`
+* `a Task`
+* `A Task`
+
+after sorting your task list in ascending order by the task description, your task list will look like this:
+
+* `a Task`
+* `b Task`
+* `A Task`
+
+which is not the expected behaviour you might have for the `sort` feature!
+
+In a future iteration of TaskWise, we will amend this feature to allow sorting to be done in a **case-insensitive** manner, so that, using the same example above, your task list would now look like this:
+
+* `a Task`
+* `A Task`
+* `b Task`
+
+which is the intended behaviour of the `sort` feature!
+
+In a future release of this application, we will amend this unexpected behaviour and allow sorting to be done in a case-insensitive manner!
+
+## Case-insensitive Ordering of Members
+
+Currently, members added to a Task appear on the Task Card as well as the Side Panel in ascending order according to the member's name, using the same sorting process detailed above in [Case-insensitive Sort](#case---insensitive-sort)!
+
+While there are no known workarounds for this issue, we recommend that you remain consistent in your capitalisation of the names of the members to avoid this unexpected behaviour showing up while you are using TaskWise!
+
+We also recognise that this may be inconvenient for you, as you cannot define your personal ordering of members assigned to a particular part, and as such, we aim to amend this behaviour in a future release of TaskWise, which would allow you to define your own ordering of members for all your tasks!
+
+# FAQ
+
+Have some burning questions which you need answered? Here are the answers to some of the common questions that you may have!
+
+## General Questions
+
+**Q**: Is there a way for me to report a bug?  
+**A**: Of course! You can create an issue about the bug [here](https://github.com/AY2324S1-CS2103T-T17-1/tp/issues). Don't forget to include details about the bug and how to reproduce it. We really appreciate your contribution!
+
+**Q**: Is there a way for us to customise the font and the colour of the app?  
+**A**: Unfortunately, we do not offer customisable features for now. However, do keep a lookout for potential updates in the future!
+
+**Q**: Can I still use this app without an internet connection?  
+**A**: Definitely! This app is designed to be used without an internet connection! Your tasks and progress will be saved on your local computer.
+
+## Task-Related Questions
+
+**Task Description**  
+**Q**: What if I typed in the invalid task description?  
+**A**: Simply ensure that your task description is non-empty and does not contain the `/` symbol.
+
+**Deadline**  
+**Q**: What if I typed in an invalid deadline?  
+**A**: First, ensure that your deadline is in the right format, and it is NOT empty.
+
+| Format                                              | Description                                                                              |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------|
+| `dd(- OR /)mm(- OR /)yyyy`                          | The date(dd), month(mm) and year(yyyy) of your task                                      |
+| `dd(- OR /)mm(- OR /)yyyy [ HHmm OR HH(: OR -)mm ]` | The date(dd), month(mm) and year(yyyy) and hour(HH), minute(mm) in 24 hours of your task |
+
+Here are some valid examples:
+
+- `20-01-2023`
+- `20-01/2023`
+- `20/01-2023 0910`
+- `20-01-2023 09:10`
+
+Note that date(dd), month(mm), hour(HH) and minute(mm) should be 2 digits, this means that instead of 1, you should key in 01 instead. The year(yyyy) should be 4 digits.
+
+Next, ensure that your dates and times are VALID dates and times. For example, `32/12/2023` is an invalid date as it does not exist.
+
+Lastly, check that the characters between each number are valid (refer to the format table and examples above!)
+
+**Member**  
+**Q**: What if I typed in an invalid member?  
+**A**: Use the `edit` command to re-enter the members you wish to assign to the task! Do note that using `edit` will not add members to the task, but will overwrite all existing members, so do make sure you take note of existing members first and remember to add them back when you use the `edit` command!
+
+**Note**  
+**Q**: What if I typed in an invalid note?  
+**A**: Simply ensure that your note does not contain the `/` symbol.
+
+**Priority**  
+**Q**: What if I typed in an invalid priority?  
+**A**: Simple ensure that the priority you input is within the set of available options - `none`, `low`, `medium` and `high`. It is not case-sensitive.
+
+**Task Number**  
+**Q**: What if I typed in an invalid task number?  
+**A**: Simply ensure that your task number is within the number of tasks that you have. You can locate the task number beside the task description!
+
+For example, if there are `10` items in your task list, then make sure that you enter a number between `1` and `10` inclusive! If you enter any other number, an error will occur!
+
+Decimal point numbers such as `1.0`, while not exactly wrong, are also not recognised by TaskWise!
+
+[[Jump to Table of Content]](#table-of-content)
