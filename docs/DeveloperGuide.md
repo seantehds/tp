@@ -493,6 +493,8 @@ The process is given as such:
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `EditCommand` and parses it
 8. The execution of `EditCommand` terminates.
 
+Here is the activity diagram from when a user inputs an edit command:
+
 ![Edit command activity diagram](./images/EditCommandActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">
