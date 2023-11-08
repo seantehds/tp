@@ -1078,3 +1078,276 @@ Guarantees:
 **MSS**
 
 1. User inputs a command to edit a task.
+2. System updates the description of the task.
+3. Updated list of task is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC17: Edit note of a task
+Actor(s): Project Manager
+Guarantees:
+* The task's note gets updated.
+
+**MSS**
+
+1. User inputs the command to edit a task.
+2. System updates the note of the task.
+3. Updated list of task is <u>[displayed to the user (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+## Non-Functional Requirements
+
+1. TaskWise should work on Windows/MacOS/Linux as long as the device has `Java 11` or above installed.
+2. A user should be able to accomplish all of the tasks using commands rather than using a mouse.
+3. The size of the JAR file should not be larger than 100 MB.
+4. TaskWise should work without Internet connectivity.
+
+## Glossary
+
+* **Argument**: A word or number or a sequence of words or numbers that represent.
+* **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing commands.
+* **Command**: A sequence of words that represents an action that TaskWise can understand and execute.
+* **Deadline**: A class that represents the date that the task needs to be completed by.
+* **Field**: Refers to the `Status`, `Deadline`, `Priority`, `Description`, `Member` of a Task.
+* **GUI**: A Graphical User Interface is a visual interface where users can interact with the software through on-screen elements like buttons and windows.
+* **JAR**: A file that contains all the resources needed for TaskWise to run.
+* **Java**: A general-purpose programming language on which TextWise is built.
+* **Member**: A class that represents the name of the project's group member(s).
+* **Note**: A class that represents the additional string of information that you want to attach to a task
+* **Priority**: A class that represents the priority level of the task.
+* **Sort Order**: The ascending or descending order to sort the Task List by
+* **Sort Type**: The fields within Task used to sort the Task List by
+* **Status**: A class that represents whether a task is completed or not.
+* **System**: The TaskWise program.
+* **Task**: A Task is a completable objective with or without a deadline.
+
+# Appendix: Planned Enhancements
+
+## Adding Tasks With the Same Description and Different Other Parameters
+
+As of now, TaskWise allows users to add tasks with the `Description` being the unique identifier. This means that they cannot add tasks with the same description, even if their deadlines, priorities, status or members involved are different.
+
+However, there may be instances where users would want to add tasks with the same descriptions, if other details, such as their deadlines and members are different.
+
+We propose that in the near future, tasks with the same description with at least a different deadline, priority, status or member(s) can be added to TaskWise. This would allow for more convenience for the users, as they can create tasks with the same description, as long as their other fields are different.
+
+For example, the user has the task`CS2103T Meeting` with a deadline of `10-20-2023` in the task list. Then, they can still add another task with the same description `CS2103T Meeting` with a different deadline of `20-20-2023`.
+
+## Better Clarity Regarding Deadlines That Have Passed
+
+Currently, when a user inputs a date as a deadline for a task, there are no checks regarding whether the date input is before the current date and time. This is to allow users to input deadlines for tasks, even if they have already passed, to allow them to keep track of them in TaskWise.
+
+However, it may be viewed by some users as unintentional, as they question why we would allow users to enter past dates, and believe that it is due to a lack of validation.
+
+In future iterations of TaskWise, we plan to check the inputs given by users and see if they are using a date that has already passed. Users will still be allowed to proceed with adding the task with a deadline that has already passed but will be prompted by TaskWise as to whether they wish to proceed even with the addition of a past date to their deadline. If a mistake was made by the user, then by rejecting the prompt given to them, they would be able to reverse the state of TaskWise back to its original state.
+
+Should the users proceed with adding the task with the specified deadline, they will be informed by TaskWise that a deadline has passed and that they have overdue tasks. These tasks will also be placed higher among the other tasks when TaskWise is booted up as well as whenever the list is sorted, to signify that they are of higher priority to be completed than other non-overdue tasks.
+
+## Different Modes of Edit Command
+
+The current implementation of the `edit` feature only allows the user to overwrite the previously stored information of the `Task` specified.
+
+However, this provides a poor user experience which we seek to improve by splitting the `edit` feature into the following 3 modes:
+1) Append
+2) Edit
+3) Overwrite
+
+### Append Mode
+
+Under Append Mode, the user would be able to add to the currently existing fields of the specified task.
+
+For example, editing a `Task` instance containing members "John" and "Mary" and Note "To do. " under the append mode with given arguments "Aiken" for the member field and "Wrap up soon" for the note field. This will give us a new `Task` instance replacing the original `Task` instance, but with Members "Aiken", "John" and "Mary", as well as Note "To do. Wrap up soon".
+
+### Edit Mode
+
+Under Edit Mode, the user can specify which information of the existing field of the specified task to amend.
+
+For example, editing a `Task` instance containing Members "Jomn" and "Mary" under the edit mode while specifying the `Member` "Jomn" to be edited to "John" will give us a `Task` instance containing Members "John" and "Mary" instead.
+
+### Overwrite Mode
+
+Under Overwrite Mode, the user would be able to completely replace the existing information under the specified fields with the argument they provide to the `edit` command.
+
+It will work exactly the same as how the current `edit` command works.
+
+## Improve Find Command To Find By Priority, Deadline, Members and Notes
+
+With the new enhanced find command, the users would be able to find tasks not just by description, but also by other attributes as well with the following tweak in command:
+
+1. `find t/[TO_FIND]`
+2. `find p/[TO_FIND]`
+3. `find d/[TO_FIND]`
+5. `find m/[TO_FIND]`
+6. `find n/[TO_FIND]`
+
+Furthermore, we would allow users to find tasks with multiple attributes:
+`find t/meeting n/check rubrics m/george`
+
+This issue can be explored further by looking at the predicate that is passed into updateFilteredTaskList method of Model.
+
+## Case-insensitive Sort
+
+The current implementation of the `sort` feature directly compares the ASCII value of text directly, resulting in tasks being sorted in an unnatural manner.
+
+For example, if a task list contains:
+
+* `a Task`
+* `A Task`
+* `b Task`
+
+after sorting the list in **ascending order** by the **task description**, the list turns into:
+
+* `a Task`
+* `b Task`
+* `A Task`
+
+rather than the natural ordering expected (which is the order in which the list was originally in):
+
+* `a Task`
+* `A Task`
+* `b Task`
+
+This issue can be boiled down to the wrong choice of comparator method used to compare textual information of the different fields of Task. Currently, `String::compareTo` is used, rather than the case-insensitive version `String::compareToIgnoreCase`. This oversight has resulted in this unexpected behaviour of the `sort` feature.
+
+However, in a future iteration of TaskWise, we will replace `String::compareTo` with `String::compareToIgnoreCase`, thereby remediating this erroneous behaviour by allowing text to be compared regardless of its case, allowing for case-insensitive sorts.
+
+## Case-insensitive Ordering of Members
+
+When members are added to any Tasks, they are first sorted by the member's names. This process uses the same case-sensitive comparison method as detailed in [Case-insensitive Sort](#case---insensitive-sort), which results in the same problems as described in the linked issue.
+
+For example, adding the members:
+
+* `andy`
+* `Casey`
+* `dan`
+
+will result in the following order of members being displayed on the Task Card and Side Panel:
+
+* `andy`
+* `dan`
+* `Casey`
+
+as the list of members is automatically sorted in ascending order by the names of the members.
+
+While there are no known workarounds for this issue, the current recommendation to temporarily remedy this issue would be that users are strongly encouraged to remain consistent in their capitalisation of the names of the members to avoid this issue whereby names starting with the same letter but of different cases are put into vastly different locations within the Task List.
+
+This is not the expected behaviour users might expect after they add their list of members of any Task, and hence we will be changing this behaviour in a future iteration, such that users can define their custom ordering of members on the addition of members.
+
+# Appendix: Instructions for Manual Testing
+
+Given below are instructions to test the app manually.
+
+## Launch and shutdown
+
+1. Initial launch
+    1. Download the jar file and copy it into an empty folder.
+    2. Double-click the jar file. Taskwise should appear with the following UI.
+       [Screenshot of TaskWise UI][images/user_guide/GUI_Interface.png]
+2. Saving window preferences
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    2. Re-launch the app by double-clicking the jar file. The most recent window size and location are retained.
+3. Saving tasks
+    1. Add a task using `add t/meeting` and close the window.
+    2. Re-launch the app by double-clicking the jar file. The added tasks should be present with the correct details.
+
+## Features
+
+1. Adding a task
+    1. Try adding a task with more fields `add t/User Guide d/04-11-2023 2100 m/may m/sean m/ m/george m/seb p/high`.
+    2. The task should be added with the correct attributes.
+    3. Try a task with an invalid description, by including `/` in the description and check that the error message is appropriate.
+    4. Try adding a with duplicate prefixes and check that the error message is appropriate.
+
+2. Marking and unmarking a task
+    1. Mark the first task with `mark 1`.
+    2. The task should be marked with the appropriate UI change.
+    3. Unmark the marked task with `unmark 1`.
+    4. The task should be unmarked with the appropriate UI change.
+    5. Try marking a task with an invalid index and check that the error message is appropriate.
+
+3. Adding note to a task
+    1.  Try adding a note to task 1 with `note 1 n/additional information`.
+    2.  The note should be updated on the UI.
+
+4. Edting a task
+    1. Try editing a task with `edit 1 t/Meeting d/05-11-2023 2200 m/john p/low`.
+    2. The task should be updated with the appropriate changes on the UI.
+    3. Try editing with a different date format that is not supported and check that the error message is appropriate.
+    4. Try editing with a different priority that is not supported and check that the error message is appropriate.
+
+5. View a task
+    1. Try viewing a task with `view 1`.
+    2. The task should be displayed on the side panel with all the information.
+    3. Try adding a long note or many members to check that the side panel is scrollable and displays the information properly.
+
+6. Find a task
+    1. Try finding a task using a word present in the description of one existing task with `find [WORD]`.
+    2. The UI should be updated to only display tasks containing the word.
+    3. Make sure that all tasks containing the word are displayed and all tasks that do not contain the word are not displayed.
+
+7. See all tasks
+    1. Now after finding, try to list all the tasks with `list`.
+    2. All the tasks present beforehand should not be displayed on the UI.
+
+8. Sort tasks
+    1. Try to sort the tasks using `sort o/a ty/t`.
+    2. The tasks should be sorted in ascending order by status.
+    3. You can permutate the sort orders `a` and `d`, and sort types `t`, `s`, `d`, `p` and make sure that the expected result is displayed for each of them. Here are some possible permulations:
+        - `sort o/d ty/s`: Sort from incomplete to complete.
+        - `sort o/d ty/p`: Sort from high to low priority.
+        - `sort o/a ty/d`: Sort from earliest to latest deadline.
+    4. Try with invalid orders or types such as `sort o/e ty/d` and check that the error message is appropriate.
+
+9. Delete a task
+    1. Try to delete the first task with `delete 1`.
+    2. The first task should disappear from the UI.
+    3. Try deleting a task with an index greater than the number of tasks like `delete 99` to check that none of the tasks are deleted.
+
+10. Clear all tasks
+    1. Try to populate the Task List with multiple tasks before using typing `clear`.
+    2. All the tasks should disappear.
+
+# Appendix: Effort
+
+This section attempts to explain the amount of effort that was put into developing our app, TaskWise, using code from the base AddressBook Level 3 program.
+
+## Challenges Faced
+
+There are numerous challenges that we encountered while architecting and developing the project.
+
+One of the biggest challenges we encountered was understanding the underlying implementation of AddressBook Level 3. As this is a brownfield project, we are inheriting the code from another developer, and we needed a significant amount of time to understand the inner workings of AddressBook, decipher what each component is responsible for, and how we can extend, modify or replace existing features that already exists in AddressBook, to turn it into our app, TaskWise.
+
+Another big challenge we encountered was refactoring code that was pre-existing in the codebase. Due to the multiple layers of nesting of code, we encountered difficulties refactoring code, and renaming classes and methods, even with the help of IntelliJ IDEA IDE's smart refactoring feature, as some classes or methods cannot be detected properly and ended up not being refactored, resulting in broken code which took us days to fix and test.
+
+We also faced some difficulties with learning to work together as a team using a Version Control System (Github) as there were numerous merge conflicts that overwrote some of the code that we already implemented. The main difficulty came at the end of V1.2 when we had to merge all our separate assigned features into the team repository master branch.
+
+## Effort Required
+
+Indeed, multiple guidances are set in place to help us kickstart the brownfield project and understand how we can start working with the initial codebase. This significantly reduces the time that we require to be familiar with the codebase. Yet, the effort that was required for us to refactor the codebase at the start was an insurmountable one to say, but we did it.
+
+## Achievements
+
+We believe that we made an easy-to-use, simple, and efficient application that we are proud to call our own. For most of us, this is the first project that we have built a project in Java, and we are proud of what we managed to accomplish.
