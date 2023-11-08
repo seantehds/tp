@@ -23,11 +23,11 @@ Welcome to the TaskWise Developer Guide!
     - [Mark Feature](#mark-feature)
     - [Unmark Feature](#unmark-feature)
     - [Edit Feature](#edit-feature)
-        - [Adding Deadlines](#adding-deadlines)
-        - [Updating Description](#updating-description)
+        - [Updating Deadlines of Existing Tasks](#updating-deadlines-of-existing-tasks)
+        - [Updating Description of Exisitng Tasks](#updating-description-of-existing-tasks)
         - [Updating Priority of Existing Tasks](#updating-priority-of-existing-tasks)
-        - [Assigning Members to Existing Tasks](#assigning-members-to-existing-tasks)
-        - [Updating Note](#updating-note)
+        - [Updating Members of Existing Tasks](#updating-members-of-existing-tasks)
+        - [Updating Note of Existing Tasks](#updating-note-of-existing-tasks)
     - [Sort Feature](#sort-feature)
     - [Note Feature](#note-feature)
     - [View Feature](#view-feature)
@@ -417,7 +417,7 @@ Only the `Description` has been made compulsory. The `Edit` feature will allow u
 
 ## Mark Feature
 
-Given below is the sequence diagram from when a user enters a `mark` command.
+Given below is the sequence diagram from when a user enters a `mark` command:
 
 ![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
 
@@ -443,7 +443,7 @@ Here is the activity diagram from when a user inputs a `mark` command:
 
 ## Unmark Feature
 
-Given below is the sequence diagram from when a user enters an `unmark` command.
+Given below is the sequence diagram from when a user enters an `unmark` command:
 
 ![Unmark Sequence Diagram](./images/UnmarkSequenceDiagram.png)
 
@@ -474,30 +474,9 @@ Instead of having multiple components, we could have just had one `MarkCommand`/
 
 The Edit feature is facilitated by `EditCommand` which extends `Command`. It makes use of `EditTaskDescriptor` which encapsulates the details of the fields to be edited.
 
-![Edit command activity diagram](./images/EditCommandActivityDiagram.png)
+Given below is the sequence diagram from when a user enters an `edit` command:
 
-<div markdown="span" class="alert alert-info">
-:information_source: As of now, editing a task will only overwrite the existing information of the specified fields with the new information.
-</div>
-
-We are working on implementing different modes of editing a `Task` in our [future implementations](#edit-command---different-modes).
-
-### Adding Deadlines
-
-The adding of `Deadline` to the existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
-
-### Updating Description
-
-The updating of the `Description` of an existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to reflect the new `Description` object.
-
-
-### Updating Priority of Existing Tasks
-
-The updating of `Priority` of existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Priority` level of the `Task` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH` that was specified in the edit command argument.
-
-### Assigning Members to Existing Tasks
-
-Assigning group members to an existing task can be done using the `EditCommand` class.
+![assign members sequence diagram](/images/AssignSequenceDiagram.png)
 
 The process is given as such:
 
@@ -514,11 +493,31 @@ The process is given as such:
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `EditCommand` and parses it
 8. The execution of `EditCommand` terminates.
 
-![assign members sequence diagram](/images/AssignSequenceDiagram.png)
+![Edit command activity diagram](./images/EditCommandActivityDiagram.png)
 
-To remove the assigned members to a task, the project manager can use the edit command `edit 1 a/` whereby it will remove all assigned members of the task at index 1.
+<div markdown="span" class="alert alert-info">
+:information_source: As of now, editing a task will only overwrite the existing information of the specified fields with the new information.
+</div>
 
-### Updating Note
+We are working on implementing different modes of editing existing tasks in our [future implementations](#edit-command---different-modes).
+
+### Updating Deadlines of Existing Tasks
+
+The updating of `Deadline` to the existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
+
+### Updating Description of Existing Tasks
+
+The updating of the `Description` of an existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to reflect the new `Description` object.
+
+### Updating Priority of Existing Tasks
+
+The updating of `Priority` of existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Priority` level of the `Task` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH` that was specified in the edit command argument.
+
+### Updating Members of Existing Tasks
+
+Assigning group members to an existing task can be done using the `EditCommand` class.
+
+### Updating Note of Existing Tasks
 
 Editing a note can also be done using the `EditCommand` class. When the `EditCommand` is executed, the note in the specified task will be overwritten with the note in the command's arguments.
 
