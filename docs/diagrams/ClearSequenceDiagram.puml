@@ -27,7 +27,7 @@ activate ClearCommand
 ClearCommand --> TaskWiseParser : c
 deactivate ClearCommand
 
-TaskWiseParser --> LogicManager :c 
+TaskWiseParser --> LogicManager :c
 deactivate TaskWiseParser
 
 LogicManager -> ClearCommand : execute()
