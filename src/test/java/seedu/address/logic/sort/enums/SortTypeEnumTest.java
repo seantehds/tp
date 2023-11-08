@@ -33,6 +33,14 @@ public class SortTypeEnumTest {
     }
 
     @Test
+    public void of_validStatus_success() {
+        assertEquals(SortTypeEnum.of("s"), SortTypeEnum.STATUS);
+        assertEquals(SortTypeEnum.of("st"), SortTypeEnum.STATUS);
+        assertEquals(SortTypeEnum.of("stat"), SortTypeEnum.STATUS);
+        assertEquals(SortTypeEnum.of("status"), SortTypeEnum.STATUS);
+    }
+
+    @Test
     public void of_invalidTaskName_failure() {
         assertThrows(IllegalArgumentException.class, () -> SortTypeEnum.of("taskdescription"));
     }
