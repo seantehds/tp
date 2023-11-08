@@ -43,7 +43,7 @@ public class ViewCommand extends Command {
             throw new IllegalTaskIndexException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        seedu.address.model.task.Task taskToView = lastShownList.get(targetIndex.getZeroBased());
+        Task taskToView = lastShownList.get(targetIndex.getZeroBased());
         mainWindow.setTaskToTaskListPanel(taskToView);
 
         return new CommandResult(String.format(SHOWING_VIEW_MESSAGE, Messages.format(taskToView)));
