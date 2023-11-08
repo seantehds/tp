@@ -305,7 +305,7 @@ For example, if the command `add t/task t/another task` is entered, the duplicat
 
 #### `IllegalArgumentException`
 
-This Exception is thrown when the user enters a valid command but with invalid arguments. This Exception is mainly thrown by parsing methods found in `ParserUtil`, which handles the parsing of Task Index, Description, Tag, Sort Order and Sort Type.
+This Exception is thrown when the user enters a valid command but with invalid arguments. This Exception is mainly thrown by parsing methods found in `ParserUtil`, which handles the parsing of Task Index, Description, Member, Sort Order and Sort Type.
 
 #### `InvalidCommandException`
 
@@ -337,9 +337,9 @@ This Exception is thrown when the data stored in TaskWise's JSON data files do n
 
 This Exception is thrown when the stored Task Description is corrupted and cannot be read from the JSON data file.
 
-#### `IllegalJsonTagValueException`
+#### `IllegalJsonMemberValueException`
 
-This Exception is thrown when the stored Task Tags are corrupted and cannot be read from the JSON data file.
+This Exception is thrown when the stored Task Members are corrupted and cannot be read from the JSON data file.
 
 #### `IllegalJsonDuplicatedValueException`
 
@@ -588,11 +588,11 @@ The process is given as such:
 
 ### Alternatives Considered
 
-Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However, we realized that there is a key difference between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
+Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we disallow empty string. However, we realized that there is a key difference between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus, we have decided to proceed with the less strict requirement for `Note`.
 
 Here is the activity diagram from when a user inputs a note command:
 
-[Note Activity Diagram](images/NoteActivityDiagram.png)
+![Note Activity Diagram](images/NoteActivityDiagram.png)
 
 # View Feature
 
@@ -618,7 +618,7 @@ We initially thought of using the observer pattern to update the UI when the tas
 
 Here is the activity diagram from when a user inputs a view command:
 
-[View Activity Diagram](images/ViewActivityDiagram.png)
+![View Activity Diagram](images/ViewActivityDiagram.png)
 
 # Find Feature
 
@@ -1003,8 +1003,6 @@ Use case ends.
 
 Use case ends.
 
-![overview](images/UseCaseDiagram.png)
-
 ### UC13: Clear tasks in task list
 
 Actor(s): Project Manager
@@ -1117,6 +1115,8 @@ Use case ends.
 &ensp;&ensp;1b2. User acknowledges the warning.
 
 Use case ends.
+
+![overview](images/UseCaseDiagram.png)
 
 ## Non-Functional Requirements
 

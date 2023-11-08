@@ -19,7 +19,7 @@ Class "<<interface>>\nTaskWiseStorage" as TaskWiseStorage
 Class JsonTaskWiseStorage
 Class JsonSerializableTaskWise
 Class JsonAdaptedTask
-Class JsonAdaptedTag
+Class JsonAdaptedMember
 }
 
 }
@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTaskWiseStorage .up.|> TaskWiseStorage
 JsonTaskWiseStorage ..> JsonSerializableTaskWise
 JsonSerializableTaskWise --> "*" JsonAdaptedTask
-JsonAdaptedTask --> "*" JsonAdaptedTag
+JsonAdaptedTask --> "*" JsonAdaptedMember
 
 @enduml
