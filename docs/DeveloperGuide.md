@@ -537,3 +537,273 @@ The following diagram shows the association between classes necessary to achieve
 We can break down the class diagram further by analysing how the Sort Command is executed in TaskWise. Given below is the sequence diagram detailing the overall process of executing a Sort Command:
 
 ![overview](images/SortSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `sort` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `SortCommandParser`.
+4. The created `SortCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `SortCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `SortCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `SortCommand` object.
+    1. Firstly, the `SortCommand` object makes a call to the `Model` using the method `getTaskWise()` and `getTaskList()`, returning the list of Tasks.
+    2. The returned List of Tasks is then sorted using the aforementioned specified parameters.
+    3. After the sort, `SortCommand` invokes the `setAllTasks()` method on `Model`, setting the internal filtered list of `Model` to the sorted Tasks.
+    4. A new `CommandResult` object detailing the success of the sort command is then created and returned to the caller of the `SortCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `SortCommand` and parses it.
+8. The execution of `SortCommand` terminates.
+
+For a more intuitive understanding of the above process as described by the Sequence Diagram, refer to the below Activity Diagram for a clearer understanding of the Sort Command, and how it is executed in TaskWise.
+
+![overview](images/SortActivityDiagram.png)
+
+### Alternatives Considered
+
+We have considered not implementing this feature due to the overhead in code that we need to write and maintain within the codebase, and that enforcing comparability between different attributes of Task could prove challenging down the line when the project is extended and more attributes need to be considered to get a proper ordering of Tasks.
+
+However, we have decided to implement the feature in the end, as we conclude that the benefits of providing users with a useful feature to help them organise their Tasks far outweigh the challenges we may face in the future when code needs to be maintained or extended.
+
+To mitigate the problems that the extension of code may cause, we decided to implement the sorting parameters as Enums, hence allowing us as maintainers to easily extend the sort feature to new attributes added to Tasks with just a few lines of code.
+
+## Note Feature
+
+The Note feature is facilitated by the `NoteCommand` which extends `Command`.
+
+Given below is the sequence diagram detailing the overall process of executing a Note Command:
+
+![overview](images/NoteSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `note` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `NoteCommandParser`.
+4. The created `NoteCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `NoteCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `NoteCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `NoteCommand` object.
+    1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turn invokes the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note.
+    2. A new `CommandResult` object detailing the success of the `note` command is then created and returned to the caller of the `NoteCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `NoteCommand` and parses it.
+8. The execution of `NoteCommand` terminates.
+
+### Alternatives Considered
+
+Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However, we realized that there is a key difference between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
+
+Here is the activity diagram from when a user inputs a note command:
+
+[Note Activity Diagram](images/NoteActivityDiagram.png)
+
+# View Feature
+
+The View feature is facilitated by the `ViewCommand` which extends `Command`.
+
+Given below is the sequence diagram detailing the overall process of executing a View Command.
+
+![overview](images/ViewSequenceDiagram.png)
+
+1. The user enters a `view` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `ViewCommandParser`.
+4. The created `ViewCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `ViewCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `ViewCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `ViewCommand` object.
+    1. Then, `ViewCommand` invokes the `getFilteredTaskList()` method on `Model` to get the task specified by the index.
+    2. The `ViewCommand` then invokes the `setTaskToTaskListPanel` method of the main window, passing in the task.
+7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `ViewCommand` and parses it.
+8. The execution of `ViewCommand` terminates.
+
+### Alternatives Considered
+We initially thought of using the observer pattern to update the UI when the task in focus changes. However, we realized that that would require a large refactoring and thus we deem it not worth pursuing.
+
+Here is the activity diagram from when a user inputs a view command:
+
+[View Activity Diagram](images/ViewActivityDiagram.png)
+
+# Find Feature
+
+The Find feature is facilitated by the `FindCommand` which extends `Command`.
+
+Given below is the sequence diagram detailing the overall process of executing a Find Command:
+
+![overview](images/FindSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `find` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `FindCommandParser`.
+4. The created `FindCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `FindCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `FindCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `FindCommand` object.
+    1. Then, `FindCommand` invokes the `updateFilteredTaskList()` method on `Model`, which in turn invokes the `setPredicate()` method on `filteredTasks`, updating the `FilteredTaskList` within the `Model`.
+    2. A new `CommandResult` object detailing the success of the `find` command is then created and returned to the caller of the `FindCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `FindCommand` and parses it.
+8. The execution of `FindCommand` terminates.
+
+# List Feature
+
+The List feature is facilitated by the `ListCommand` which extends `Command`.
+
+Given below is the sequence diagram detailing the overall process of executing a List Command:
+
+![overview](images/ListSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `list` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `ListCommand`.
+4. The `ListCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `ListCommand` object.
+    1. Then, `ListCommand` invokes the `updateFilteredTaskList()` method on `Model`, which in turn invokes the `setPredicate()` method on `filteredTasks`, updating the `FilteredTaskList` within the `Model`.
+    2. A new `CommandResult` object detailing the success of the `list` command is then created and returned to the caller of the `ListCommand::execute()` method.
+5. `LogicManager` receives the `CommandResult` object. returned from the execution of the `ListCommand` and parses it.
+6. The execution of `ListCommand` terminates.
+
+# Delete Feature
+
+The Delete feature is facilitated by the `DeleteCommand` which extends `Command`.
+
+Given below is the sequence diagram detailing the overall process of executing a Delete Command:
+
+![overview](images/DeleteSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `delete` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `DeleteCommandParser`.
+4. The created `DeleteCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `DeleteCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `DeleteCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `DeleteCommand` object.
+    1. Then, `DeleteCommand` invokes the `getFilteredTaskList()` method on `Model`, which will return the `FilteredList<Task>` object called `filteredList`.
+    2. The `targetIndex` to delete will be verified to ensure that it is valid, otherwise, an exception will be thrown to inform the user that the index is invalid.
+    3. Then, the `deleteTask()` method will be invoked on `Model` which in turn invokes the `removeTask()` method on `TaskWise`.
+    4. A new `CommandResult` object detailing the success of the `delete` command is then created and returned to the caller of the `DeleteCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `DeleteCommand` and parses it.
+8. The execution of `DeleteCommand` terminates.
+
+# Clear Feature
+
+The Clear feature is facilitated by the `ClearCommand` which extends `Command`.
+
+Given below is the sequence diagram detailing the overall process of executing a Clear Command:
+
+![overview](images/ClearSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `clear` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method.
+4. If the parse is successful, a new instance of `ClearCommand` is created.
+6. The `ClearCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `ClearCommand` object.
+    1. Then, `ClearCommand` invokes the `setTaskWise()` method on `Model`, which will in turn call the `resetData()` method on`TaskWise` with a `new TaskWise()` instance.
+    2. A new `CommandResult` object detailing the success of the `clear` command is then created and returned to the caller of the `ClearCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `ClearCommand` and parses it.
+8. The execution of `ClearCommand` terminates.
+
+# Documentation, Logging, Testing, Configuration and DevOps
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
+
+# Appendix: Requirements
+
+## Product Scope
+
+### Value Proposition
+
+Provide the project manager of a CS2103T group a fast and intuitive CLI to manage their team project, by providing them a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with deadlines within one project.
+
+### Target Audience
+
+Our target audience for this application are Project Managers of CS2103T Group Projects.
+
+## User Stories
+
+| Priority | As a/an ...                  | I want to ...                                                                        | So that I can...                                               |
+|----------|---------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| `* * *`  | user                      | be able to add tasks to my list of tasks                                             | track tasks to be done                                         |
+| `* * *`  | project manager           | be able to delete tasks from my list of tasks                                        | remove tasks that are completed or wrongly added               |
+| `* * *`  | project manager           | be able to view all my tasks                                                         | get a high-level overview of what needs to be done             |
+| `* * *`  | project manager           | be able to mark tasks that were unmarked                                             | update the progress of the task                                |
+| `* * *`  | clumsy project manager    | be able to unmark tasks that were marked in case I accidentally marked them          | undo my mistake                                                |
+| `* * *`  | forgetful manager         | be told that I have entered an invalid command                                       | be informed if the command I entered is invalid                |
+| `* *`    | project manager           | be able to assign deadlines to tasks                                                 | know when I need to finish the task by                         |
+| `* *`    | forgetful team member     | have a project manager who can track what tasks I need to do                         | be on track for deliverables                                   |
+| `* *`    | busy project manager      | be able to see the task's level of priority                                          | be aware of what the team and I need to prioritise and do next |
+| `* *`    | forgetful project manager | be able to add additional information relevant to my tasks                           | manage my tasks without missing out important details          |
+| `* *`    | timely project manager    | be able to group my tasks by priorities, deadlines, completion status and task names | better track the tasks are that important to my project        |
+| `* *`    | organized project manager    | be able to declutter and clear my tasks in the task list once the project has been completed | better manage only tasks that are relevant to the project I am currently working on |
+| `* *`    | busy project manager    | be able to quickly and easily find tasks that are within my to-do list | spend less time trying to find out information about certain tasks |
+| `* *` | meticulous project manager | be able to see the complete information of the task | make sure that no details have been missed out on |
+| `* *` | meticulous project manager | be able to edit the information of the task | make sure that the task's details remains accurate |
+| `* *` | big project manager | be able to see the group members whom I delegated to each task | follow up with the right party on the progress of the respective tasks |
+
+## Use Cases
+
+### UC01: Add a task
+Actor(s): Project Manager  
+Guarantees:
+* A task is added to the system list of tasks.
+
+**MSS**
+
+1. User inputs a command to add a task.
+2. System adds the task into a list of task and <u>[displays the updated task list (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC02: Delete a task
+Actor(s): Project Manager  
+Guarantees:
+* The specified task is successfully deleted from the system.
+
+**MSS**
+
+1. User inputs a command to delete a certain task.
+2. System deletes the task and <u>[displays the updated task list (UC03)](#UC03-View-all-tasks)</u>.
+
+Use case ends.
+
+**Extensions:**
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.  
+1b. User enters an illegal command.  
+&ensp;&ensp;1b1. System warns that the <u>[command is illegal (UC07)](#UC07-Warn-on-Illegal-Command)</u>.  
+&ensp;&ensp;1b2. User acknowledges the warning.
+
+Use case ends.
+
+### UC03: View all tasks
+
+Actor(s): Project Manager
+
+**MSS**
+
+1. User opens up the application.
+2. System displays a list of tasks to the user.
+
+Use case ends.
+
+**Extensions:**
+1a. User enters an invalid command.  
+&ensp;&ensp;1a1. System warns that the <u>[command is invalid (UC06)](#UC06-Warn-on-Invalid-Command)</u>.  
+&ensp;&ensp;1a2. User acknowledges the warning.
+
+Use case ends.
