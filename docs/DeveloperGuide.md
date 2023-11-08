@@ -588,7 +588,7 @@ The process is given as such:
 
 ### Alternatives Considered
 
-Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However, we realized that there is a key difference between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus we have decided to proceed with the less strict requirement for `Note`.
+Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we disallow empty string. However, we realized that there is a key difference between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus, we have decided to proceed with the less strict requirement for `Note`.
 
 Here is the activity diagram from when a user inputs a note command:
 
