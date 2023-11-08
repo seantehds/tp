@@ -678,7 +678,7 @@ Viewing a task has one and only one compulsory parameter (`TASK_NUMBER`).
 
 |                         View Command                          |
 |:-------------------------------------------------------------:|
-| <img src="images/user_guide/ViewCommandParam.png" width=500/> |
+| <img src="images/user_guide/ViewCommandParam.png" width=400/> |
 |                     `view [TASK_NUMBER]`                      |
 
 ### Parameter
@@ -713,7 +713,7 @@ The only parameter you will have here is the keywords that you are trying to fin
 
 |                         Find Command                          |
 |:-------------------------------------------------------------:|
-| <img src="images/user_guide/FindCommandParam.png" width=500/> |
+| <img src="images/user_guide/FindCommandParam.png" width=400/> |
 |                       `find [KEYWORD]`                        |
 
 **Example**
@@ -1022,12 +1022,17 @@ Instead of the workaround as suggested under [Edit Tasks](#edit-tasks), the futu
 
 To do so, there will be 3 different modes of editing:
 
-1) Append  
-  * Allows you to add on to whatever was already in the task.  
-2) Edit  
-  * Allows you to amend that one particular section of notes or the members that were specified.  
+1) Append
+
+    * Allows you to add on to whatever was already in the task.  
+
+2) Edit
+
+    * Allows you to amend that one particular section of notes or the members that were specified.
+
 3) Overwrite  
-  * Allows you to completely replace the previous information of that field in the specified task with what you wrote in the command.
+
+    * Allows you to completely replace the previous information of that field in the specified task with what you wrote in the command.
 
 ## Improve Find Command To Find By Priority, Deadline, Members and Notes
 

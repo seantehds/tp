@@ -269,7 +269,7 @@ There are *3* other derived classes of `CommandException`, which are the `Duplic
 
 #### `DuplicatedTaskException`
 
-This Exception is thrown when the user attempts to create a new Task with the same Task name as any Tasks already existing in their Task list.
+This Exception is thrown when the user attempts to create a new Task with the same Task name as any Tasks already existing in their task list.
 
 This is due to the fact that duplicated Tasks are not permitted in the current version of the application.
 
@@ -321,7 +321,7 @@ An example of this would be the `add` command: `add` is invalid, and will result
 
 #### `NoRecordedModificationException`
 
-This Exception is thrown when the user indicates that they would like to edit a certain Task on their Task list, but failed to specify any changes made to said Task, i.e. they failed to properly modify the Task.
+This Exception is thrown when the user indicates that they would like to edit a certain Task on their task list, but failed to specify any changes made to said Task, i.e. they failed to properly modify the Task.
 
 ### `StorageException`
 
@@ -528,7 +528,7 @@ Some attributes within the Tasks are comparable with each other as they implemen
 
 <div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task are work-in-progress!</div>
 
-These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the Task List using these attributes to obtain an ordered representation of the Task List.
+These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the task list using these attributes to obtain an ordered representation of the task list.
 
 The following diagram shows the association between classes necessary to achieve the sort feature:
 
@@ -725,24 +725,24 @@ Our target audience for this application are Project Managers of CS2103T Group P
 
 ## User Stories
 
-| Priority | As a/an ...                  | I want to ...                                                                        | So that I can...                                               |
-|----------|---------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| `* * *`  | user                      | be able to add tasks to my list of tasks                                             | track tasks to be done                                         |
-| `* * *`  | project manager           | be able to delete tasks from my list of tasks                                        | remove tasks that are completed or wrongly added               |
-| `* * *`  | project manager           | be able to view all my tasks                                                         | get a high-level overview of what needs to be done             |
-| `* * *`  | project manager           | be able to mark tasks that were unmarked                                             | update the progress of the task                                |
-| `* * *`  | clumsy project manager    | be able to unmark tasks that were marked in case I accidentally marked them          | undo my mistake                                                |
-| `* * *`  | forgetful manager         | be told that I have entered an invalid command                                       | be informed if the command I entered is invalid                |
-| `* *`    | project manager           | be able to assign deadlines to tasks                                                 | know when I need to finish the task by                         |
-| `* *`    | forgetful team member     | have a project manager who can track what tasks I need to do                         | be on track for deliverables                                   |
-| `* *`    | busy project manager      | be able to see the task's level of priority                                          | be aware of what the team and I need to prioritise and do next |
-| `* *`    | forgetful project manager | be able to add additional information relevant to my tasks                           | manage my tasks without missing out important details          |
-| `* *`    | timely project manager    | be able to group my tasks by priorities, deadlines, completion status and task names | better track the tasks are that important to my project        |
-| `* *`    | organized project manager    | be able to declutter and clear my tasks in the task list once the project has been completed | better manage only tasks that are relevant to the project I am currently working on |
-| `* *`    | busy project manager    | be able to quickly and easily find tasks that are within my to-do list | spend less time trying to find out information about certain tasks |
-| `* *` | meticulous project manager | be able to see the complete information of the task | make sure that no details have been missed out on |
-| `* *` | meticulous project manager | be able to edit the information of the task | make sure that the task's details remains accurate |
-| `* *` | big project manager | be able to see the group members whom I delegated to each task | follow up with the right party on the progress of the respective tasks |
+| Priority | As a/an ...                | I want to ...                                                                                | So that I can...                                                                    |
+|----------|----------------------------|----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `* * *`  | user                       | be able to add tasks to my list of tasks                                                     | track tasks to be done                                                              |
+| `* * *`  | project manager            | be able to delete tasks from my list of tasks                                                | remove tasks that are completed or wrongly added                                    |
+| `* * *`  | project manager            | be able to view all my tasks                                                                 | get a high-level overview of what needs to be done                                  |
+| `* * *`  | project manager            | be able to mark tasks that were unmarked                                                     | update the progress of the task                                                     |
+| `* * *`  | clumsy project manager     | be able to unmark tasks that were marked in case I accidentally marked them                  | undo my mistake                                                                     |
+| `* * *`  | forgetful manager          | be told that I have entered an invalid command                                               | be informed if the command I entered is invalid                                     |
+| `* *`    | project manager            | be able to assign deadlines to tasks                                                         | know when I need to finish the task by                                              |
+| `* *`    | forgetful team member      | have a project manager who can track what tasks I need to do                                 | be on track for deliverables                                                        |
+| `* *`    | busy project manager       | be able to see the task's level of priority                                                  | be aware of what the team and I need to prioritise and do next                      |
+| `* *`    | forgetful project manager  | be able to add additional information relevant to my tasks                                   | manage my tasks without missing out important details                               |
+| `* *`    | timely project manager     | be able to group my tasks by priorities, deadlines, completion status and task names         | better track the tasks are that important to my project                             |
+| `* *`    | organized project manager  | be able to declutter and clear my tasks in the task list once the project has been completed | better manage only tasks that are relevant to the project I am currently working on |
+| `* *`    | busy project manager       | be able to quickly and easily find tasks that are within my to-do list                       | spend less time trying to find out information about certain tasks                  |
+| `* *`    | meticulous project manager | be able to see the complete information of the task                                          | make sure that no details have been missed out on                                   |
+| `* *`    | meticulous project manager | be able to edit the information of the task                                                  | make sure that the task's details remains accurate                                  |
+| `* *`    | big project manager        | be able to see the group members whom I delegated to each task                               | follow up with the right party on the progress of the respective tasks              |
 
 ## Use Cases
 
@@ -981,8 +981,8 @@ Use case ends.
 
 Actor(s): Project Manager
 Guarantees:
-* If the sort is successful, the order of the Tasks on display will be changed(unless the Task List is already sorted)
-* No matter if the order of the Task List changes or otherwise, all existing Tasks will be reassigned to the task list
+* If the sort is successful, the order of the Tasks on display will be changed(unless the task list is already sorted)
+* No matter if the order of the task list changes or otherwise, all existing Tasks will be reassigned to the task list
 
 **MSS**
 
@@ -1138,8 +1138,8 @@ Use case ends.
 * **Member**: A class that represents the name of the project's group member(s).
 * **Note**: A class that represents the additional string of information that you want to attach to a task
 * **Priority**: A class that represents the priority level of the task.
-* **Sort Order**: The ascending or descending order to sort the Task List by
-* **Sort Type**: The fields within Task used to sort the Task List by
+* **Sort Order**: The ascending or descending order to sort the task list by
+* **Sort Type**: The fields within Task used to sort the task list by
 * **Status**: A class that represents whether a task is completed or not.
 * **System**: The TaskWise program.
 * **Task**: A Task is a completable objective with or without a deadline.
@@ -1252,7 +1252,7 @@ will result in the following order of members being displayed on the Task Card a
 
 as the list of members is automatically sorted in ascending order by the names of the members.
 
-While there are no known workarounds for this issue, the current recommendation to temporarily remedy this issue would be that users are strongly encouraged to remain consistent in their capitalisation of the names of the members to avoid this issue whereby names starting with the same letter but of different cases are put into vastly different locations within the Task List.
+While there are no known workarounds for this issue, the current recommendation to temporarily remedy this issue would be that users are strongly encouraged to remain consistent in their capitalisation of the names of the members to avoid this issue whereby names starting with the same letter but of different cases are put into vastly different locations within the task list.
 
 This is not the expected behaviour users might expect after they add their list of members of any Task, and hence we will be changing this behaviour in a future iteration, such that users can define their custom ordering of members on the addition of members.
 
@@ -1327,7 +1327,7 @@ Given below are instructions to test the app manually.
     3. Try deleting a task with an index greater than the number of tasks like `delete 99` to check that none of the tasks are deleted.
 
 10. Clear all tasks
-    1. Try to populate the Task List with multiple tasks before using typing `clear`.
+    1. Try to populate the task list with multiple tasks before using typing `clear`.
     2. All the tasks should disappear.
 
 # Appendix: Effort
