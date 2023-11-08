@@ -1022,17 +1022,12 @@ Instead of the workaround as suggested under [Edit Tasks](#edit-tasks), the futu
 
 To do so, there will be 3 different modes of editing:
 
-1) Append
-
-    * Allows you to add on to whatever was already in the task.  
-
-2) Edit
-
-    * Allows you to amend that one particular section of notes or the members that were specified.
-
-3) Overwrite  
-
-    * Allows you to completely replace the previous information of that field in the specified task with what you wrote in the command.
+* Append
+  * Allows you to add on to whatever was already in the task.
+* Edit
+  * Allows you to amend that one particular section of notes or the members that were specified.
+* Overwrite
+  * Allows you to completely replace the previous information of that field in the specified task with what you wrote in the command.
 
 ## Improve Find Command To Find By Priority, Deadline, Members and Notes
 

@@ -1171,6 +1171,7 @@ Should the users proceed with adding the task with the specified deadline, they 
 The current implementation of the `edit` feature only allows the user to overwrite the previously stored information of the `Task` specified.
 
 However, this provides a poor user experience which we seek to improve by splitting the `edit` feature into the following 3 modes:
+
 1) Append
 2) Edit
 3) Overwrite
