@@ -14,9 +14,14 @@ rectangle TaskWise {
     usecase "Warn on illegal command" as UC07
     usecase "Add a deadline to an existing task" as UC08
     usecase "Assign members to an existing task" as UC09
-    usecase "Update priority of an existing task" as UC10
-    usecase "Add note to a task" as UC11
+    usecase "Update the priority of an existing task" as UC10
+    usecase "Add a note to a task" as UC11
     usecase "Sort tasks in task list" as UC12
+    usecase "Clear tasks in task list" as UC13
+    usecase "Find a task in the task list" as UC14
+    usecase "View a task" as UC15
+    usecase "Edit the description of a task" as UC16
+    usecase "Edit note of a task" as UC17
 }
 
 User ---> UC01
@@ -31,6 +36,11 @@ User ---> UC09
 User ---> UC10
 User ---> UC11
 User ---> UC12
+User ---> UC13
+User ---> UC14
+User ---> UC15
+User ---> UC16
+User ---> UC17
 
 System ---> UC06
 System ---> UC07
