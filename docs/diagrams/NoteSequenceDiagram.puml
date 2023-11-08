@@ -39,6 +39,9 @@ deactivate NoteCommand
 NoteCommandParser --> TaskWiseParser : n
 deactivate NoteCommandParser
 
+NoteCommandParser -[hidden]-> TaskWiseParser
+destroy NoteCommandParser
+
 TaskWiseParser --> LogicManager : n
 deactivate TaskWiseParser
 
@@ -59,9 +62,6 @@ deactivate Model
 
 NoteCommand --> LogicManager : result
 deactivate NoteCommand
-
-NoteCommand -[hidden]-> LogicManager
-destroy NoteCommand
 
 [<--LogicManager
 deactivate LogicManager
