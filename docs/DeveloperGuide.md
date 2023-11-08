@@ -23,11 +23,11 @@ Welcome to the TaskWise Developer Guide!
     - [Mark Feature](#mark-feature)
     - [Unmark Feature](#unmark-feature)
     - [Edit Feature](#edit-feature)
-        - [Adding Deadlines](#adding-deadlines)
-        - [Updating Description](#updating-description)
+        - [Updating Deadlines of Existing Tasks](#updating-deadlines-of-existing-tasks)
+        - [Updating Description of Exisitng Tasks](#updating-description-of-existing-tasks)
         - [Updating Priority of Existing Tasks](#updating-priority-of-existing-tasks)
-        - [Assigning Members to Existing Tasks](#assigning-members-to-existing-tasks)
-        - [Updating Note](#updating-note)
+        - [Updating Members of Existing Tasks](#updating-members-of-existing-tasks)
+        - [Updating Note of Existing Tasks](#updating-note-of-existing-tasks)
     - [Sort Feature](#sort-feature)
     - [Note Feature](#note-feature)
     - [View Feature](#view-feature)
@@ -269,7 +269,7 @@ There are *3* other derived classes of `CommandException`, which are the `Duplic
 
 #### `DuplicatedTaskException`
 
-This Exception is thrown when the user attempts to create a new Task with the same Task name as any Tasks already existing in their Task list.
+This Exception is thrown when the user attempts to create a new Task with the same Task name as any Tasks already existing in their task list.
 
 This is due to the fact that duplicated Tasks are not permitted in the current version of the application.
 
@@ -305,7 +305,7 @@ For example, if the command `add t/task t/another task` is entered, the duplicat
 
 #### `IllegalArgumentException`
 
-This Exception is thrown when the user enters a valid command but with invalid arguments. This Exception is mainly thrown by parsing methods found in `ParserUtil`, which handles the parsing of Task Index, Description, Tag, Sort Order and Sort Type.
+This Exception is thrown when the user enters a valid command but with invalid arguments. This Exception is mainly thrown by parsing methods found in `ParserUtil`, which handles the parsing of Task Index, Description, Member, Sort Order and Sort Type.
 
 #### `InvalidCommandException`
 
@@ -321,7 +321,7 @@ An example of this would be the `add` command: `add` is invalid, and will result
 
 #### `NoRecordedModificationException`
 
-This Exception is thrown when the user indicates that they would like to edit a certain Task on their Task list, but failed to specify any changes made to said Task, i.e. they failed to properly modify the Task.
+This Exception is thrown when the user indicates that they would like to edit a certain Task on their task list, but failed to specify any changes made to said Task, i.e. they failed to properly modify the Task.
 
 ### `StorageException`
 
@@ -337,9 +337,9 @@ This Exception is thrown when the data stored in TaskWise's JSON data files do n
 
 This Exception is thrown when the stored Task Description is corrupted and cannot be read from the JSON data file.
 
-#### `IllegalJsonTagValueException`
+#### `IllegalJsonMemberValueException`
 
-This Exception is thrown when the stored Task Tags are corrupted and cannot be read from the JSON data file.
+This Exception is thrown when the stored Task Members are corrupted and cannot be read from the JSON data file.
 
 #### `IllegalJsonDuplicatedValueException`
 
@@ -417,7 +417,7 @@ Only the `Description` has been made compulsory. The `Edit` feature will allow u
 
 ## Mark Feature
 
-Given below is the sequence diagram from when a user enters a `mark` command.
+Given below is the sequence diagram from when a user enters a `mark` command:
 
 ![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
 
@@ -443,7 +443,7 @@ Here is the activity diagram from when a user inputs a `mark` command:
 
 ## Unmark Feature
 
-Given below is the sequence diagram from when a user enters an `unmark` command.
+Given below is the sequence diagram from when a user enters an `unmark` command:
 
 ![Unmark Sequence Diagram](./images/UnmarkSequenceDiagram.png)
 
@@ -474,30 +474,9 @@ Instead of having multiple components, we could have just had one `MarkCommand`/
 
 The Edit feature is facilitated by `EditCommand` which extends `Command`. It makes use of `EditTaskDescriptor` which encapsulates the details of the fields to be edited.
 
-![Edit command activity diagram](./images/EditCommandActivityDiagram.png)
+Given below is the sequence diagram from when a user enters an `edit` command:
 
-<div markdown="span" class="alert alert-info">
-:information_source: As of now, editing a task will only overwrite the existing information of the specified fields with the new information.
-</div>
-
-We are working on implementing different modes of editing a `Task` in our [future implementations](#different-modes-of-edit-command).
-
-### Adding Deadlines
-
-The adding of `Deadline` to the existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
-
-### Updating Description
-
-The updating of the `Description` of an existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to reflect the new `Description` object.
-
-
-### Updating Priority of Existing Tasks
-
-The updating of `Priority` of existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Priority` level of the `Task` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH` that was specified in the edit command argument.
-
-### Assigning Members to Existing Tasks
-
-Assigning group members to an existing task can be done using the `EditCommand` class.
+![assign members sequence diagram](/images/AssignSequenceDiagram.png)
 
 The process is given as such:
 
@@ -514,11 +493,31 @@ The process is given as such:
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `EditCommand` and parses it
 8. The execution of `EditCommand` terminates.
 
-![assign members sequence diagram](./images/AssignSequenceDiagram.png)
+![Edit command activity diagram](./images/EditCommandActivityDiagram.png)
 
-To remove the assigned members to a task, the project manager can use the edit command `edit 1 a/` whereby it will remove all assigned members of the task at index 1.
+<div markdown="span" class="alert alert-info">
+:information_source: As of now, editing a task will only overwrite the existing information of the specified fields with the new information.
+</div>
 
-### Updating Note
+We are working on implementing different modes of editing existing tasks in our [future implementations](#edit-command---different-modes).
+
+### Updating Deadlines of Existing Tasks
+
+The updating of `Deadline` to the existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
+
+### Updating Description of Existing Tasks
+
+The updating of the `Description` of an existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to reflect the new `Description` object.
+
+### Updating Priority of Existing Tasks
+
+The updating of `Priority` of existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Priority` level of the `Task` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH` that was specified in the edit command argument.
+
+### Updating Members of Existing Tasks
+
+Assigning group members to an existing task can be done using the `EditCommand` class.
+
+### Updating Note of Existing Tasks
 
 Editing a note can also be done using the `EditCommand` class. When the `EditCommand` is executed, the note in the specified task will be overwritten with the note in the command's arguments.
 
@@ -528,7 +527,7 @@ Some attributes within the Tasks are comparable with each other as they implemen
 
 <div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task are work-in-progress!</div>
 
-These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the Task List using these attributes to obtain an ordered representation of the Task List.
+These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the task list using these attributes to obtain an ordered representation of the task list.
 
 The following diagram shows the association between classes necessary to achieve the sort feature:
 
@@ -588,11 +587,12 @@ The process is given as such:
 
 ### Alternatives Considered
 
-Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we strictly only accept alphanumeric characters. However, we realized that there is a key difference between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus, we have decided to proceed with the less strict requirement for `Note`.
+Initially, we were considering whether to make the requirement for `Note` as stringent as `Description`, where we disallow empty string. However, we realized that there is a key difference between `Note` and `Description` that makes `Note` less "strict" than `Description`, which is that a `Description` can never be empty while a `Note` can be empty. Thus, we have decided to proceed with the less strict requirement for `Note`.
+
 
 Here is the activity diagram from when a user inputs a note command:
 
-[Note Activity Diagram](images/NoteActivityDiagram.png)
+![Note Activity Diagram](images/NoteActivityDiagram.png)
 
 # View Feature
 
@@ -618,7 +618,7 @@ We initially thought of using the observer pattern to update the UI when the tas
 
 Here is the activity diagram from when a user inputs a view command:
 
-[View Activity Diagram](images/ViewActivityDiagram.png)
+![View Activity Diagram](images/ViewActivityDiagram.png)
 
 # Find Feature
 
@@ -725,24 +725,24 @@ Our target audience for this application are Project Managers of CS2103T Group P
 
 ## User Stories
 
-| Priority | As a/an ...                  | I want to ...                                                                        | So that I can...                                               |
-|----------|---------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| `* * *`  | user                      | be able to add tasks to my list of tasks                                             | track tasks to be done                                         |
-| `* * *`  | project manager           | be able to delete tasks from my list of tasks                                        | remove tasks that are completed or wrongly added               |
-| `* * *`  | project manager           | be able to view all my tasks                                                         | get a high-level overview of what needs to be done             |
-| `* * *`  | project manager           | be able to mark tasks that were unmarked                                             | update the progress of the task                                |
-| `* * *`  | clumsy project manager    | be able to unmark tasks that were marked in case I accidentally marked them          | undo my mistake                                                |
-| `* * *`  | forgetful manager         | be told that I have entered an invalid command                                       | be informed if the command I entered is invalid                |
-| `* *`    | project manager           | be able to assign deadlines to tasks                                                 | know when I need to finish the task by                         |
-| `* *`    | forgetful team member     | have a project manager who can track what tasks I need to do                         | be on track for deliverables                                   |
-| `* *`    | busy project manager      | be able to see the task's level of priority                                          | be aware of what the team and I need to prioritise and do next |
-| `* *`    | forgetful project manager | be able to add additional information relevant to my tasks                           | manage my tasks without missing out important details          |
-| `* *`    | timely project manager    | be able to group my tasks by priorities, deadlines, completion status and task names | better track the tasks are that important to my project        |
-| `* *`    | organized project manager    | be able to declutter and clear my tasks in the task list once the project has been completed | better manage only tasks that are relevant to the project I am currently working on |
-| `* *`    | busy project manager    | be able to quickly and easily find tasks that are within my to-do list | spend less time trying to find out information about certain tasks |
-| `* *` | meticulous project manager | be able to see the complete information of the task | make sure that no details have been missed out on |
-| `* *` | meticulous project manager | be able to edit the information of the task | make sure that the task's details remains accurate |
-| `* *` | big project manager | be able to see the group members whom I delegated to each task | follow up with the right party on the progress of the respective tasks |
+| Priority | As a/an ...                | I want to ...                                                                                | So that I can...                                                                    |
+|----------|----------------------------|----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `* * *`  | user                       | be able to add tasks to my list of tasks                                                     | track tasks to be done                                                              |
+| `* * *`  | project manager            | be able to delete tasks from my list of tasks                                                | remove tasks that are completed or wrongly added                                    |
+| `* * *`  | project manager            | be able to view all my tasks                                                                 | get a high-level overview of what needs to be done                                  |
+| `* * *`  | project manager            | be able to mark tasks that were unmarked                                                     | update the progress of the task                                                     |
+| `* * *`  | clumsy project manager     | be able to unmark tasks that were marked in case I accidentally marked them                  | undo my mistake                                                                     |
+| `* * *`  | forgetful manager          | be told that I have entered an invalid command                                               | be informed if the command I entered is invalid                                     |
+| `* *`    | project manager            | be able to assign deadlines to tasks                                                         | know when I need to finish the task by                                              |
+| `* *`    | forgetful team member      | have a project manager who can track what tasks I need to do                                 | be on track for deliverables                                                        |
+| `* *`    | busy project manager       | be able to see the task's level of priority                                                  | be aware of what the team and I need to prioritise and do next                      |
+| `* *`    | forgetful project manager  | be able to add additional information relevant to my tasks                                   | manage my tasks without missing out important details                               |
+| `* *`    | timely project manager     | be able to group my tasks by priorities, deadlines, completion status and task names         | better track the tasks are that important to my project                             |
+| `* *`    | organized project manager  | be able to declutter and clear my tasks in the task list once the project has been completed | better manage only tasks that are relevant to the project I am currently working on |
+| `* *`    | busy project manager       | be able to quickly and easily find tasks that are within my to-do list                       | spend less time trying to find out information about certain tasks                  |
+| `* *`    | meticulous project manager | be able to see the complete information of the task                                          | make sure that no details have been missed out on                                   |
+| `* *`    | meticulous project manager | be able to edit the information of the task                                                  | make sure that the task's details remains accurate                                  |
+| `* *`    | big project manager        | be able to see the group members whom I delegated to each task                               | follow up with the right party on the progress of the respective tasks              |
 
 ## Use Cases
 
@@ -981,8 +981,8 @@ Use case ends.
 
 Actor(s): Project Manager
 Guarantees:
-* If the sort is successful, the order of the Tasks on display will be changed(unless the Task List is already sorted)
-* No matter if the order of the Task List changes or otherwise, all existing Tasks will be reassigned to the task list
+* If the sort is successful, the order of the Tasks on display will be changed(unless the task list is already sorted)
+* No matter if the order of the task list changes or otherwise, all existing Tasks will be reassigned to the task list
 
 **MSS**
 
@@ -1002,8 +1002,6 @@ Use case ends.
 &ensp;&ensp;1b2. User acknowledges the warning.
 
 Use case ends.
-
-![overview](images/UseCaseDiagram.png)
 
 ### UC13: Clear tasks in task list
 
@@ -1118,6 +1116,8 @@ Use case ends.
 
 Use case ends.
 
+![overview](images/UseCaseDiagram.png)
+
 ## Non-Functional Requirements
 
 1. TaskWise should work on Windows/macOS/Linux as long as the device has `Java 11` or above installed.
@@ -1138,8 +1138,8 @@ Use case ends.
 * **Member**: A class that represents the name of the project's group member(s).
 * **Note**: A class that represents the additional string of information that you want to attach to a task
 * **Priority**: A class that represents the priority level of the task.
-* **Sort Order**: The ascending or descending order to sort the Task List by
-* **Sort Type**: The fields within Task used to sort the Task List by
+* **Sort Order**: The ascending or descending order to sort the task list by
+* **Sort Type**: The fields within Task used to sort the task list by
 * **Status**: A class that represents whether a task is completed or not.
 * **System**: The TaskWise program.
 * **Task**: A Task is a completable objective with or without a deadline.
@@ -1171,8 +1171,11 @@ Should the users proceed with adding the task with the specified deadline, they 
 The current implementation of the `edit` feature only allows the user to overwrite the previously stored information of the `Task` specified.
 
 However, this provides a poor user experience which we seek to improve by splitting the `edit` feature into the following 3 modes:
+
 1) Append
+
 2) Edit
+
 3) Overwrite
 
 ### Append Mode
@@ -1252,7 +1255,7 @@ will result in the following order of members being displayed on the Task Card a
 
 as the list of members is automatically sorted in ascending order by the names of the members.
 
-While there are no known workarounds for this issue, the current recommendation to temporarily remedy this issue would be that users are strongly encouraged to remain consistent in their capitalisation of the names of the members to avoid this issue whereby names starting with the same letter but of different cases are put into vastly different locations within the Task List.
+While there are no known workarounds for this issue, the current recommendation to temporarily remedy this issue would be that users are strongly encouraged to remain consistent in their capitalisation of the names of the members to avoid this issue whereby names starting with the same letter but of different cases are put into vastly different locations within the task list.
 
 This is not the expected behaviour users might expect after they add their list of members of any Task, and hence we will be changing this behaviour in a future iteration, such that users can define their custom ordering of members on the addition of members.
 
@@ -1264,8 +1267,9 @@ Given below are instructions to test the app manually.
 
 1. Initial launch
     1. Download the jar file and copy it into an empty folder.
-    2. Double-click the jar file. TaskWise should appear with the following UI.
-       [Screenshot of TaskWise UI][images/user_guide/GUI_Interface.png]
+    2. Double-click the jar file. Taskwise should appear with the following UI.
+![Screenshot of TaskWise UI](images/user_guide/GUI_Interface.png)
+
 2. Saving window preferences
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
     2. Re-launch the app by double-clicking the jar file. The most recent window size and location are retained.
@@ -1327,7 +1331,7 @@ Given below are instructions to test the app manually.
     3. Try deleting a task with an index greater than the number of tasks like `delete 99` to check that none of the tasks are deleted.
 
 10. Clear all tasks
-    1. Try to populate the Task List with multiple tasks before using typing `clear`.
+    1. Try to populate the task list with multiple tasks before using typing `clear`.
     2. All the tasks should disappear.
 
 # Appendix: Effort
