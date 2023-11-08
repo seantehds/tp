@@ -592,7 +592,7 @@ Initially, we were considering whether to make the requirement for `Note` as str
 
 Here is the activity diagram from when a user inputs a note command:
 
-[Note Activity Diagram](images/NoteActivityDiagram.png)
+![Note Activity Diagram](images/NoteActivityDiagram.png)
 
 # View Feature
 
@@ -618,7 +618,7 @@ We initially thought of using the observer pattern to update the UI when the tas
 
 Here is the activity diagram from when a user inputs a view command:
 
-[View Activity Diagram](images/ViewActivityDiagram.png)
+![View Activity Diagram](images/ViewActivityDiagram.png)
 
 # Find Feature
 
