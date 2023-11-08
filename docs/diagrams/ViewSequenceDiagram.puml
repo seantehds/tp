@@ -39,6 +39,9 @@ deactivate ViewCommand
 ViewCommandParser --> TaskWiseParser :v
 deactivate ViewCommandParser
 
+ViewCommandParser -[hidden]-> TaskWiseParser
+destroy ViewCommandParser
+
 TaskWiseParser --> LogicManager : v
 deactivate TaskWiseParser
 
@@ -59,9 +62,6 @@ deactivate MainWindow
 
 ViewCommand --> LogicManager : result
 deactivate ViewCommand
-
-ViewCommand -[hidden]-> LogicManager : result
-destroy ViewCommand
 
 [<--LogicManager
 deactivate LogicManager
