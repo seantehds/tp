@@ -268,3 +268,272 @@ There are *3* other derived classes of `CommandException`, which are the `Duplic
 ![overview](images/exceptions/CommandExceptionDiagram.png)
 
 #### `DuplicatedTaskException`
+
+This Exception is thrown when the user attempts to create a new Task with the same Task name as any Tasks already existing in their Task list.
+
+This is due to the fact that duplicated Tasks are not permitted in the current version of the application.
+
+#### `IllegalCommandException`
+
+This Exception is thrown when the user attempts to do something that they do not have sufficient permission for, or are attempting to invoke undefined behaviour within TaskWise.
+
+This Exception is meant to be a generic error which other Exceptions can extend from, but it may be thrown if necessary.
+
+#### `IllegalTaskIndexException`
+
+This Exception is thrown when the user attempts to input a Task index that is not permitted. This Exception extends from the above `IllegalCommandException`.
+
+Some examples of task indices that are not permitted include: `-1` (negative indices), `10.0` (floating points) and `10` (when there is only `9` tasks in the task list).
+
+#### `IllegalTaskStatusModificationException`
+
+This Exception is thrown when the user attempts to mark a Task that is already completed or unmark a task that is not completed.
+
+For example, if a given Task is already marked as completed when the user attempts to mark the Task again, this Exception will be thrown.
+
+### `ParseException`
+
+`ParseException` is another generic error which occurs when there w is issue encountered when a `Parser` tries to parse an input from the user. Usually, this error arises due to user error (e.g. wrong commands, invalid or illegal inputs), and should **not** be the result of developer error.
+
+![overview](images/exceptions/ParseExceptionDiagram.png)
+
+#### `DuplicatedPrefixException`
+
+This Exception is thrown when the same `Prefix` is detected more than once in the same command.
+
+For example, if the command `add t/task t/another task` is entered, the duplicated `t/` `Prefix` will be detected, and this Exception will be thrown.
+
+#### `IllegalArgumentException`
+
+This Exception is thrown when the user enters a valid command but with invalid arguments. This Exception is mainly thrown by parsing methods found in `ParserUtil`, which handles the parsing of Task Index, Description, Tag, Sort Order and Sort Type.
+
+#### `InvalidCommandException`
+
+This Exception is thrown when the user attempts to execute a command that is not recognised by TaskWise.
+
+Only commands recognised by TaskWise will be parsed and executed. Any unknown command will result in this Exception being thrown, alerting users that the input command they have entered is invalid.
+
+#### `InvalidFormatException`
+
+This Exception is thrown when the user inputs a command with essential arguments to the command missing.
+
+An example of this would be the `add` command: `add` is invalid, and will result in this Exception being thrown.
+
+#### `NoRecordedModificationException`
+
+This Exception is thrown when the user indicates that they would like to edit a certain Task on their Task list, but failed to specify any changes made to said Task, i.e. they failed to properly modify the Task.
+
+### `StorageException`
+
+`StorageException` is the final class of generic error which occurs when there is an issue loading data from the save files of TaskWise.
+
+![overview](images/exceptions/StorageExceptionDiagram.png)
+
+#### `IllegalJsonValueException`
+
+This Exception is thrown when the data stored in TaskWise's JSON data files do not meet some constraints imposed by the Task model.
+
+#### `IllegalJsonDescriptionValueException`
+
+This Exception is thrown when the stored Task Description is corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonTagValueException`
+
+This Exception is thrown when the stored Task Tags are corrupted and cannot be read from the JSON data file.
+
+#### `IllegalJsonDuplicatedValueException`
+
+This Exception is thrown when the JSON data file is illegally modified or corrupted, resulting in the inclusion of a duplicate Task.
+
+#### `FileStorageLoadException`
+
+This Exception is thrown when there are any issues encountered when loading data from any data files.
+
+#### `InsufficientStoragePrivilegeException`
+
+This Exception is thrown when the user fails to grant TaskWise sufficient access privilege to their file system, resulting in TaskWise being unable to read or write to the data files TaskWise creates while in operation.
+
+#### `StorageReadWriteException`
+
+This Exception is thrown when there is an error encountered when TaskWise is trying to read or write from the data files.
+
+Note that this error differs from [`InsufficientStoragePrivilegeException`](#insufficientstorageprivilegeexception) in that access is granted, but the data file could not be recognised and hence parsed within TaskWise, hence leading to an error being raised.
+
+### Unrecognised Exceptions
+
+Any other Exceptions not mentioned above should not, under most circumstances, be thrown and not be handled by any method within TaskWise, as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application crashing catastrophically.
+
+Developers are recommended to extend the current Exception classes already provided to specify new Exceptions that they would like to handle, rather than throwing any Exceptions directly that are not on the list of pre-approved Exceptions unless there is a legitimate reason to do so.
+
+# Implementation
+
+## General Implementation of Commands In TaskWise
+
+![General Class Diagram](./images/GeneralClassDiagram.png)
+
+This class diagram is applicable for the following commands: `Add`, `Mark`, `Unmark`, `Delete`, `Edit`, `Note`.
+
+From the diagram, we are able to note some aspects of the command:
+
+* `XYZCommand` follows the overall Facade design pattern that is used in TaskWise to dispatch commands to be executed.
+  `XYZCommand` implements the `Command` interface, thereby allowing TaskWise to execute the Command without having to know what Command `XYZCommand` represents.
+* `XYZCommandParser` does most of the heavy lifting in preparing a XYZ Command for execution.
+* Refer to the [`logic`](#logic-component) diagram and [`model`](#model-component) diagrams for more information regarding the `Logic` and `Model` classes and processes.
+
+We can break down the class diagram further by analysing how XYZ Command is executed in TaskWise. Given below is the sequence diagram detailing the overall process of executing XYZ Command:
+
+![XYZSequenceDiagram](./images/XYZSequenceDiagram.png)
+
+## Add Feature
+
+The Add feature is facilitated by `TaskWise` which implements`ReadOnlyTaskWise`, stored internally as a `UniqueTaskList`. Additionally, it implements the `AddCommand#execute()` operation.
+
+The following sequence diagram shows how the add operation works for `add t/Complete DG`:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters an `add` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `AddCommandParser`.
+4. The created `AddCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `AddCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `AddCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AddCommand` object.
+    1. `AddCommand` will then call its `createAddedTask(AddTaskDescriptor)` method which will create a new instance of `Task` with the given inputs.
+    2. After which, it will add the newly created `Task` into the task list using the `addTask(task)`.
+    3. If the addition is successful, a new `CommandResult` object is then created and returned to the caller of the `AddCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AddCommand` and parses it.
+8. The execution of `AddCommand` terminates.
+
+Here is the activity diagram from when a user inputs an add command:
+
+[Add Activity Diagram](images/AddActivityDiagram.png)
+
+### Alternatives Considered
+We considered allowing the add feature to add `Notes`, `Member`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by the user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.
+
+Only the `Description` has been made compulsory. The `Edit` feature will allow users to add and update `Deadline`, `Priority`. The `Note` and `Assign` features will allow for `note` and `member` to be added respectively.
+
+
+## Mark Feature
+
+Given below is the sequence diagram from when a user enters a `mark` command.
+
+![Mark Sequence Diagram](./images/MarkSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `mark` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `MarkCommandParser`.
+4. The created `MarkCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `MarkCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `MarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `MarkCommand` object.
+    1. `MarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated completed status.
+    2. If the existing `Task` is already marked as completed, an exception is thrown to inform the user that they are attempting to `mark` a `Task` already marked as completed.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `MarkCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
+8. The execution of `MarkCommand` terminates.
+
+We implemented the `mark` command this way as we wanted to preserve the original architecture that was present in AddressBook3. Furthermore, by separating the `mark` command into multiple steps, involving multiple components that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
+
+Here is the activity diagram from when a user inputs a `mark` command:
+
+![Mark Activity Diagram](./images/MarkActivityDiagram.png)
+
+## Unmark Feature
+
+Given below is the sequence diagram from when a user enters an `unmark` command.
+
+![Unmark Sequence Diagram](./images/UnmarkSequenceDiagram.png)
+
+The process is given as such:
+
+1. The user enters a `unmark` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `UnmarkCommandParser`.
+4. The created `UnmarkCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `UnmarkCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `UnmarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `UnmarkCommand` object.
+    1. `UnmarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated incomplete status.
+    2. If the existing `Task` is already marked as incomplete, an exception is thrown to inform the user that they are attempting to `unmark` a `Task` already marked as incomplete.
+    3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `UnmarkCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
+8. The execution of `UnmarkCommand` terminates.
+
+We implemented the `unmark` command this way as we wanted to preserve the original architecture that was present in AddressBook3. Furthermore, by separating the `unmark` command into multiple steps, involving multiple components that all handle different responsibilities, we believe that it satisfies the Single Responsibility principle.
+
+Here is the activity diagram from when a user inputs a `unmark` command:
+
+![Unmark Activity Diagram](./images/UnmarkActivityDiagram.png)
+
+### Alternatives Considered
+Instead of having multiple components, we could have just had one `MarkCommand`/`UnmarkCommand` class and have that class be in charge of handling everything, from parsing the inputs from the user to modifying the model when the command is executed. However, we did not proceed with that plan, as doing so would create a `MarkCommand`/`UnmarkCommand` class that would have multiple responsibilities, which may lead to the singular `MarkCommand`/`UnmarkCommand` class requiring multiple changes when different, separate requirements change.
+
+## Edit Feature
+
+The Edit feature is facilitated by `EditCommand` which extends `Command`. It makes use of `EditTaskDescriptor` which encapsulates the details of the fields to be edited.
+
+![Edit command activity diagram](./images/EditCommandActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: As of now, editing a task will only overwrite the existing information of the specified fields with the new information.
+</div>
+
+We are working on implementing different modes of editing a `Task` in our [future implementations](#edit-command---different-modes).
+
+### Adding Deadlines
+
+The adding of `Deadline` to the existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to contain a `Deadline` object containing information about the task's deadline.
+
+### Updating Description
+
+The updating of the `Description` of an existing `Task` will be accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Task` at the specified index will be updated to reflect the new `Description` object.
+
+
+### Updating Priority of Existing Tasks
+
+The updating of `Priority` of existing Tasks is accomplished using the `EditCommand` class. When the `EditCommand` is executed, the `Priority` level of the `Task` is updated to the desired level of `LOW`, `MEDIUM` or `HIGH` that was specified in the edit command argument.
+
+### Assigning Members to Existing Tasks
+
+Assigning group members to an existing task can be done using the `EditCommand` class.
+
+The process is given as such:
+
+1. The user enters an `edit` command into the CLI.
+2. `LogicManager` receives the call to execute the input command via the `execute()` method.
+3. `LogicManager` then parses the input command via the `parseCommand()` method, and dispatches the call to the correct `EditCommandParser`.
+4. The created `EditCommandParser` then parses the parameters of the command via the `parse()` method.
+5. If the parse is successful, a new instance of `EditCommand` with the relevant parsed parameters is created and returned to the caller.
+6. The `EditCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `EditCommand` object.
+    1. `EditCommand` will then call the `getFilteredTaskList()` method on `Model`, retrieving the filtered task lists before calling the `get(Index)` method on the task lists to retrieve the task to edit.
+    2. `EditCommand` will then call its `createEditedTask(Task, EditTaskDescriptor)` method which will create a new instance of `Task` with the updated set of members.
+    3.  After which, it will replace the old `Task` with the new instance of `Task` in the task list.
+    4. If the edit is successful, a new `CommandResult` object is then created and returned to the caller of the `EditCommand::execute()` method.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `EditCommand` and parses it
+8. The execution of `EditCommand` terminates.
+
+![assign members sequence diagram](/images/AssignSequenceDiagram.png)
+
+To remove the assigned members to a task, the project manager can use the edit command `edit 1 a/` whereby it will remove all assigned members of the task at index 1.
+
+### Updating Note
+
+Editing a note can also be done using the `EditCommand` class. When the `EditCommand` is executed, the note in the specified task will be overwritten with the note in the command's arguments.
+
+## Sort Feature
+
+Some attributes within the Tasks are comparable with each other as they implement the `java.lang.Comparable<T>` interface. These attributes are: `Description`, `Status`, `Deadline` and `Priority`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Disclaimer:** Currently, only sorting by Task Description and Status is working, as the other attributes of Task are work-in-progress!</div>
+
+These comparable attributes form the basis on which this Sort Command is built upon. With these comparable attributes, we are able to sort the Task List using these attributes to obtain an ordered representation of the Task List.
+
+The following diagram shows the association between classes necessary to achieve the sort feature:
+
+![overview](images/SortClassDiagram.png)
+
+We can break down the class diagram further by analysing how the Sort Command is executed in TaskWise. Given below is the sequence diagram detailing the overall process of executing a Sort Command:
+
+![overview](images/SortSequenceDiagram.png)
