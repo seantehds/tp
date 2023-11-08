@@ -227,3 +227,232 @@ Just type in the `clear` command into the text box, before pressing on the "Ente
 | Before                                                 | After                                                |
 |--------------------------------------------------------|------------------------------------------------------|
 | ![before](images/user_guide/Tutorial_Clear_Before.png) | ![after](images/user_guide/Tutorial_Clear_After.png) |
+
+<div markdown="span" class="alert alert-danger">
+:bangbang: The `clear` action is irreversible and permanent! Exercise extreme caution when using this command!
+</div>
+
+Rejoice! You have completed the Tutorial on TaskWise.
+
+You are now officially a TaskWise Wizard, ready to use TaskWise to enhance your workflows and manage your project tasks in CS2103T!
+
+[[Jump to Tutorial]](#tutorial)
+
+[[Jump to Clear Task Feature]](#clear-all-tasks)
+
+# Features
+
+Looking for a more detailed explanation of what commands TaskWise can understand? Click [here](#add-tasks) to jump straight to it!
+
+Otherwise, read on to find out more about the features that TaskWise offers!
+
+[[Jump to Table of Content]](#table-of-content)
+
+## Prefixes
+
+Now, before we start with the features proper, let's introduce an important concept in the usage of TaskWise: **Prefixes**!
+
+Prefixes allow you to specify certain important values to TaskWise while you are entering any command into the command box.
+
+Remember the command that was previously used in the tutorial?
+
+```
+add t/Complete CS2103T User Guide d/01-01-2023
+```
+
+The task created by this command contains information about the **task's description** and the **deadline** of the associated task.
+
+This is denoted by the `t/` and `d/` prefixes respectively.
+
+Now, with the power of prefixes, in the same command, you can add even more useful information using the same command!
+
+One such prefix would be the `p/` command, allowing you to change the **priority level of the task** that is being created.
+
+After all, you wouldn't want to miss the most important submission worth 50% of your grade because you didn't see it among the mountain of other tasks you have, right?
+
+```
+add t/Complete CS2103T User Guide d/01-01-2023 p/high
+```
+
+By adding the `p/` prefix into the same command, you can now create the task within TaskWise, with a priority level set to `high` instead of a priority level of `none`.
+
+**Table of Prefixes**
+
+Here is a table of all available prefixes you can use within TaskWise:
+
+| Prefixes | Description                                                                |
+|----------|----------------------------------------------------------------------------|
+| `t/`     | The prefix used to indicate the description of the task.                   |
+| `d/`     | The prefix used to indicate the deadline of the task.                      |
+| `p/`     | The prefix used to indicate the priority of the task.                      |
+| `m/`     | The prefix used to indicate the member you wish to assign to the task.     |
+| `n/`     | The prefix used to indicate the note you wish to associate with the task.  |
+| `o/`     | The prefix used to indicate the order you wish to sort the task list by.   |
+| `ty/`    | The prefix used to indicate the type you wish to sort the task list by.    |
+
+If these prefixes do not make sense to you at this moment, fret not! More information on the prefixes will be provided to you as you use them in the upcoming sections!
+
+[[Jump to Features]](#features)
+
+## Getting Help
+
+If you ever feel overwhelmed by the number of commands TaskWise has, worry not! Whenever you need to refer back to this guide, simply type in the `help` command, and TaskWise will give you the necessary link to come back to this guide!
+
+**Format**
+
+Simply type in the following command:
+
+|                         Help Command                          |
+|:-------------------------------------------------------------:|
+| <img src="images/user_guide/HelpCommandParam.png" width=150/> |
+|                            `help`                             |
+
+to view a **popup window** with a link to our user guide in it!
+
+| Before                                       | After                                      |
+|----------------------------------------------|--------------------------------------------|
+| ![before](images/user_guide/Help_Before.png) | ![after](images/user_guide/Help_After.png) |
+
+### Parameter(s)
+
+The `help` command does not require any parameters; simply type in the `help` command and get all your questions answered!
+
+<div markdown="span" class="alert alert-info">
+:information_source: If you accidentally, or intentionally, enter in any number of parameters with the `help` command, they will be ignored and the command will work as usual!
+</div>
+
+[[Jump to Features]](#features)
+
+## Add Tasks
+
+If you recall, you have already seen this feature in the tutorial! Fret not, you can always head over to [here](#adding-your-first-task) if you need a quick recap on adding tasks.
+
+Now that you have learnt about adding tasks in TaskWise, let's take it to the next level! While adding tasks with a deadline into TaskWise may be useful to track tasks and their respective deadlines, TaskWise can help you keep track of so much more!
+
+**Format**
+
+Adding of tasks consists of 1 compulsory parameter (`TASK_DESCRIPTION`) and 3 optional parameters (`DEADLINE`, `PRIORITY`, `MEMBER`)!
+
+|                            Add Command                            |
+|:-----------------------------------------------------------------:|
+|   <img src="images/user_guide/AddCommandParam.png"/ width=800>    |
+| `add t/[TASK_DESCRIPTION] {d/[DEADLINE] p/[PRIORITY] m/[MEMBER]}` |
+
+<div markdown="span" class="alert alert-info">
+:information_source: The parameters in { curly braces } such as `d/[deadline]`, `p/[priority]` and `m/[member]` are OPTIONAL! They are not necessary for the task to be added, and can be arranged in ANY order.
+<br/><br/>
+You can always edit the default values of these optional parameters using the [****edit command****](#edit-tasks).
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can add a maximum of 1 deadline and 1 priority but more than 1 member to a task!
+</div>
+
+### Parameter(s)
+
+**TASK_DESCRIPTION**
+
+This is all you really need to add a task! It is the description of your task that you want to keep track of, and it is compulsory for it to be filled out before your task successfully gets added to TaskWise.
+
+ANY character is allowed, except for blanks and `/`.
+
+<div markdown="span" class="alert alert-warning">
+:warning: Due to the current limitations of the features provided in TaskWise with regards to the capitalisation of Task Description, you are encouraged to be consistent with the capitalisation of your Task Descriptions of the Tasks that you create!
+<br/><br/>
+Refer to [this](#case---insensitive-sort) section for more information on this issue! Rest assured that we are working hard to improve your user experience and we appreciate your patience on this issue while we work on an appropriate fix for this issue!
+</div>
+
+**DEADLINE**
+
+This is optional to include when you add a task. However, if you would like to add the deadline of a task, ensure that they adhere to the following formats:
+
+| Format             | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `dd-mm-yyyy`       | The date, month, and year of your deadline                                           |
+| `dd-mm-yyyy HH:mm` | The date, month and year as well as the hour and minute in 24 hours of your deadline |
+
+Do note that you are able to add deadlines for tasks that are before the present date in order to keep track of submissions even after their deadline has passed!
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can use the `-` OR `/` between the date, month and year inputs.
+You can use the `:` OR `-` OR nothing between the hour and minute of your time inputs. Lastly, your date, month, hour and minute must be 2 digits, while your year must be 4 digits long. 
+</div>
+
+**PRIORITY**
+
+This is also an optional field! Your tasks will have a default priority of `None`, if you do not assign a priority. However, if you wish to assign a priority to a task, you can simply enter 1 of the 4 priority levels:
+
+- `none`
+- `low`
+- `medium`
+- `high`
+
+each corresponding to the stated priority levels (e.g. `low` corresponds to `Low` priority)!
+
+Priority is not case-sensitive!
+
+**MEMBER**
+
+This is the last optional field of the `add` command. You can assign 1 or more members to a task. ANY character is allowed, except for blanks and `/`.
+
+<div markdown="span" class="alert alert-warning">
+:warning: By default, the list of members added is also sorted using the same algorithm that is used to sort the tasks by Task Description! You are advised to be consistent in your use of capitalisation in the name of the members you add to your task!
+<br/><br/>
+Refer to [this](#case---insensitive-ordering-of-members) section for more information on this issue! Rest assured that we are working hard on fixing this issue to make your TaskWise experience a more enjoyable and productive one!
+</div>
+
+**Examples of correct usage**
+
+* `add t/Fix User Interface`
+* `add t/Developer Guide p/medium`
+* `add t/OP2 Meeting d/01-01-2023 m/ALL p/high`
+* `add t/User Guide d/04-11-2023 2100 m/may m/sean m/justin m/george m/seb p/high`
+
+**Expected Output**
+
+Click [here](#adding-your-first-task) to refer to the quick start guide for `add` command to see an example of the expected output!
+
+**Common Mistakes**
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more about what the common mistakes are!
+
+### Limitations
+
+Currently, TaskWise allows us to only add tasks that are of different names, whether or not parameters such as deadline, priority, status or member are different. We acknowledge that there may be some inconvenience faced and would love to help you workaround this limitation!
+
+**Numbering**
+
+If you have tasks that you wish to add with the same description `CS2103T Meeting`, consider numbering them. For example, `CS2103T Meeting 1`, `CS2103T Meeting 2`, `CS2103T Meeting 3` etc. With the numbering, the task descriptions will each be unique and you can have different deadlines, priority levels, status and members attributed to them!
+
+**Deletion**
+
+Another way you can tackle this problem is to [delete](#delete-tasks) a task that was already completed, instead of leaving it in TaskWise marked as `[Complete]`. That way, you can add the task of that same description, with perhaps a different deadline and `[Incomplete]` status.
+
+There we go! With these workarounds, you can defy the limitations of TaskWise! Do refer to our [planned enhancements](#planned-enhancements) if you are interested to know more about how we plan to enhance this feature to allow for adding tasks of the same description with different parameters.
+
+[[Jump to Features]](#features)
+
+## Mark Tasks as Complete
+
+If you need a quick recap on what you can do with the `mark` command, refer to [here](#marking-your-first-task).
+
+**Format**
+
+The `mark` command only consists of 1 parameter, the `TASK_NUMBER`, which is the number that you see associated with each task in the task list.
+
+|                         Mark Command                          |
+|:-------------------------------------------------------------:|
+| <img src="images/user_guide/MarkCommandParam.png" width=500/> |
+|                     `mark [TASK_NUMBER]`                      |
+
+### Parameters
+
+**TASK_NUMBER**
+
+Acceptable values to use with the `mark` command will therefore be integers within a range from 1 to the total number of tasks you currently have in TaskWise!
+
+**Examples of correct usage**
+
+- `mark 1`
