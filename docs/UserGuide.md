@@ -456,3 +456,232 @@ Acceptable values to use with the `mark` command will therefore be integers with
 **Examples of correct usage**
 
 - `mark 1`
+
+
+**Expected Output**
+
+Click [here](#marking-your-first-task) to refer to the quick start guide for `mark` command to see an example of the expected output.
+
+**Common Mistakes**
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more about what the common mistakes are!
+
+[[Jump to Features]](#features)
+
+## Mark Tasks as Incomplete
+
+Oh dear, it seems like there remain some additional parts that were left out after you marked a task as complete! Well, let's get back to tracking that task by simply marking it back as incomplete!
+
+**Format**
+
+The `unmark` command only consists of 1 parameter, the `TASK_NUMBER`, which is the number that you see associated with each task in the task list.
+
+|                         Unmark Command                          |
+|:---------------------------------------------------------------:|
+| <img src="images/user_guide/UnmarkCommandParam.png" width=500/> |
+|                     `unmark [TASK_NUMBER]`                      |
+
+### Parameters
+
+**TASK_NUMBER**
+
+Acceptable values to use with the `unmark` command will therefore be integers within a range from 1 to the total number of tasks you currently have in TaskWise!
+
+**Examples of correct usage**
+
+- `unmark 1`
+
+**Expected output**
+
+To unmark the first task in the list using the example stated above, key in `unmark 1` and press the "Enter" or "Return" key.
+
+| Before                                        | After                                       |
+|-----------------------------------------------|---------------------------------------------|
+| ![before](images/user_guide/UnmarkBefore.png) | ![after](images/user_guide/UnmarkAfter.png) |
+
+**Common Mistakes**
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more about what the common mistakes are!
+
+[[Jump to Features]](#features)
+
+## Add Notes to Tasks
+
+If you might have additional information about the tasks that you want to note down, TaskWise has got you covered! With the `note` command, you can attach a note to a task, which can be short or _looooong_, it's completely up to you!
+
+**Format**
+
+The `note` command is simple, just key in the following format:
+
+|                         Note Command                          |
+|:-------------------------------------------------------------:|
+| <img src="images/user_guide/NoteCommandParam.png" width=650/> |
+|                 `note [TASK_NUMBER] n/[NOTE]`                 |
+
+### Parameters
+
+**TASK_NUMBER**
+
+Acceptable values for `TASK_NUMBER` would be integers within a range of 1 to the number of tasks that you have in TaskWise.
+
+**NOTE**
+
+You should also make sure the `NOTE` does not contain the `/` symbol, as it might be confused with the prefix command. TaskWise believes in keeping things simple after all!
+
+**Example**
+
+- note 1 n/check the rubrics
+- note 4 n/make sure that all the deliverables are included in the team directory before the final submission
+
+**Common Mistakes**
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more about what the common mistakes are!
+
+[[Jump to Features]](#features)
+
+## Edit Tasks
+
+Oopsie! It seems that you might have made a mistake with the details of an already created task, or have new updates for that task! Don't worry, you also have the power to edit those tasks with new details with the `edit` command!
+
+**Format**
+
+Here is how you can make use of `edit`!
+
+There is 1 compulsory parameter (`TASK_NUMBER`) and 5 optional parameters (`NEW_TASK_DESCRIPTION`, `NEW_DEADLINE`, `NEW_PRIORITY_LEVEL`, `MEMBER_NAME`, `NOTE`) whereby at least 1 of these parameters is required to be present.
+
+|                                                    Edit Command                                                    |
+|:------------------------------------------------------------------------------------------------------------------:|
+|                           <img src="images/user_guide/EditCommandParam.png" width=800/>                            |
+| `edit [TASK_NUMBER] { t/[NEW_TASK_DESCRIPTION] d/[NEW_DEADLINE] p/[NEW_PRIORITY_LEVEL] m/[MEMBER_NAME] n/[NOTE] }` |
+
+<div markdown="span" class="alert alert-info">
+:information_source: The parameters in { curly braces } such as d/[deadline], p/[priority] and m/[member] are OPTIONAL! The ordering does not matter at all!
+
+For fields that you omit, TaskWise will retain the original information from the original task.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can edit a maximum of 1 deadline and 1 priority but assign more than 1 member to a task!
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:warning: Editing any of the parameters will overwrite the corresponding parameters that were attached to your task. As a workaround, if you wish to edit a typo in the task's members, notes or descriptions or maybe to append more members to the task, you would have to rewrite the field that is in the original task.
+</div>
+
+To address this hassle of having to rewrite the field just to edit a typo or append to the task's fields, we are looking to introduce new modes of editing in the [future](#edit-command---different-modes)!
+
+### Parameter(s)
+
+Unsure about the format to use for each parameter? We got you!
+
+**TASK_DESCRIPTION**
+
+This is the description of the task that you want to keep track of. You may wish to change its details using this command.
+
+ANY character is allowed, except for blanks and `/`.
+
+<div markdown="span" class="alert alert-warning">
+:warning: Due to the current limitations of the features provided in TaskWise with regards to the capitalisation of Task Description, you are encouraged to be consistent with the capitalisation of your Task Descriptions of the Tasks that you create!
+<br/><br/>
+Refer to [this](#case---insensitive-sort) section for more information on this issue! Rest assured that we are working hard to improve your user experience and we appreciate your patience on this issue while we work on an appropriate fix for this issue!
+</div>
+
+**DEADLINE**
+
+If you would like to edit the deadline of your task, refer to the following formats:
+
+| Format             | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `dd-mm-yyyy`       | The date, month, and year of your deadline                                           |
+| `dd-mm-yyyy HH:mm` | The date, month and year as well as the hour and minute in 24 hours of your deadline |
+
+Do note that you are able to edit deadlines for tasks to a date before the present date in order to keep track of submissions even after their deadline has passed!
+
+<div markdown="span" class="alert alert-info">
+:information_source: You can use the `-` or `/` between the date, month and year inputs.
+You can use the `:` or `-` or nothing between the hour and minute of your time inputs. Lastly, your date, month, hour and minute must be 2 digits, while your year must be 4 digits long. 
+</div>
+
+**PRIORITY**
+
+Your tasks will have a default priority of `None`, if you have not assigned a priority. However, if you want to change its level of importance, you can simply enter 1 of the 4 priority levels into the `edit` command:
+
+- `none`
+- `low`
+- `medium`
+- `high`
+
+each corresponding to the stated priority levels (e.g. `low` corresponds to `Low` priority)!
+
+Priority is not case-sensitive!
+
+**MEMBER**
+
+You can assign 1 or more member to a task. ANY character is allowed, except for blanks and `/`.
+
+Do note that editing members using this command will overwrite any existing members, if any, previously associated with the task.
+
+<div markdown="span" class="alert alert-warning">
+:warning: By default, the edited list of members is also sorted using the same algorithm that is used to sort the tasks by Task Description! You are advised to be consistent in your use of capitalisation in the name of the members you add to your task!
+<br/><br/>
+Refer to [this](#case---insensitive-ordering-of-members) section for more information on this issue! Rest assured that we are working hard on fixing this issue to make your TaskWise experience a more enjoyable and productive one!
+</div>
+
+**NOTE**
+
+This is the last field of the `edit` command that you can modify. ANY character is allowed, except for `/`.
+
+**Examples of correct usage**
+
+* `edit 1 t/New Task Description`
+* `edit 1 m/John m/Jane m/Mary`
+* `edit 1 p/Medium`
+* `edit 1 d/09-09-2023 0900`
+* `edit 1 n/Check rubrics`
+* `edit 2 t/Another Task Description m/Janet m/Harry p/high d/08-09-2023 19:00 n/Check rubrics`
+* `edit 1 t/Complete OP2 Presentatation d/02-11-2023 m/may m/sean m/justin m/george m/seb m/harry p/high`
+
+**Expected Output**
+
+If all goes well, you should see your specified task being edited and replaced with the new information.
+
+This will be what you will see displayed for the following command when you edit the first task in your list: `edit 1 t/Complete OP2 Presentatation d/02-11-2023 m/may m/sean m/justin m/george m/seb m/harry p/high`
+
+| Before                                      | After                                     |
+|---------------------------------------------|-------------------------------------------|
+| ![before](images/user_guide/EditBefore.png) | ![after](images/user_guide/EditAfter.png) |
+
+<div markdown="span" class="alert alert-info">
+:information_source: Unable to view the full description of your task? That may be because the description is way too long! You could fix this by resizing your window to make it bigger, clicking on the task of interest to view it on the side panel, or using the [`view` command](#view-a-task)!
+</div>
+
+**Common Mistakes**
+
+When there is an error, the instruction with the proper use of the command will be given to you!
+
+Head over to the [Task-Related Questions](#task-related-questions) section to find out more about what the common mistakes are!
+
+[[Jump to Features]](#features)
+
+## View a Task
+
+In some cases, you can be so productive that the `note` you added to a task is so long that it is cut off from the display, or you assign so many `member`(s) to a task that some are being cut off from the display. In that case, you can use the `view` command to see the full information of the task with this simple command!
+
+**Format**
+
+Viewing a task has one and only one compulsory parameter (`TASK_NUMBER`).
+
+|                         View Command                          |
+|:-------------------------------------------------------------:|
+| <img src="images/user_guide/ViewCommandParam.png" width=500/> |
+|                     `view [TASK_NUMBER]`                      |
+
+### Parameter
+
+The only parameter here is your task number! Do ensure that your task number exists here and is amongst those task numbers that the task list has!
