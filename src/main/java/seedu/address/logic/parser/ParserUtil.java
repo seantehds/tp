@@ -84,32 +84,46 @@ public class ParserUtil {
 
         deadline = deadline.strip();
         if (Deadline.isValidDateTime(deadline)) {
-            //@@author asdfghjkxd-reused
-            // Regex strings are reused with major modification from ChatGPT, and is built and tested with
-            // https://regex101.com/.
-            String[] dateTimeSplit = deadline.split(" ");
-            String[] parsedDate = dateTimeSplit[0].split("\\/|-");
-            boolean isMatchingRegex = Pattern.matches("\\d{4}", dateTimeSplit[1]);
-            //@@author
-
-            String[] parsedTime = isMatchingRegex
-                    ? new String[]{dateTimeSplit[1].substring(0, 2), dateTimeSplit[1].substring(2, 4)}
-                    : dateTimeSplit[1].split("-|:");
-            if (parsedDate[1].length() < 2 || parsedDate[0].length() < 2
-                    || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
-                throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
-            }
-            return Deadline.of(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
-                    + parsedTime[0] + ":" + parsedTime[1] + ":00"));
+            return parseDateTime(deadline);
         } else if (Deadline.isValidDate(deadline)) {
-            String[] date = deadline.split("\\/|-");
-            if (date[1].length() < 2 || date[0].length() < 2) {
-                throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
-            }
-            return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
+            return parseDate(deadline);
         }
 
         throw new IllegalArgumentException(Deadline.INVALID_DATE);
+    }
+
+    public static Deadline parseDateTime(String deadline) throws IllegalArgumentException{
+        //@@author asdfghjkxd-reused
+        // Regex strings are reused with major modification from ChatGPT, and is built and tested with
+        // https://regex101.com/.
+        String[] dateTimeSplit = deadline.split(" ");
+        String[] parsedDate = dateTimeSplit[0].split("\\/|-");
+        boolean isMatchingRegex = Pattern.matches("\\d{4}", dateTimeSplit[1]);
+        //@@author
+
+        String[] parsedTime = isMatchingRegex
+                ? new String[]{dateTimeSplit[1].substring(0, 2), dateTimeSplit[1].substring(2, 4)}
+                : dateTimeSplit[1].split("-|:");
+        if (Deadline.isInvalidLeapDay(parsedDate)) {
+            throw new IllegalArgumentException(Deadline.INVALID_DATE);
+        }
+        if (parsedDate[1].length() < 2 || parsedDate[0].length() < 2
+                || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
+            throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return Deadline.of(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
+                + parsedTime[0] + ":" + parsedTime[1] + ":00"));
+    }
+
+    public static Deadline parseDate(String deadline) throws IllegalArgumentException{
+        String[] date = deadline.split("\\/|-");
+        if (Deadline.isInvalidLeapDay(date)) {
+            throw new IllegalArgumentException(Deadline.INVALID_DATE);
+        }
+        if (date[1].length() < 2 || date[0].length() < 2) {
+            throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
     }
 
     /**
