@@ -43,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     AddCommand.MESSAGE_USAGE);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_DEADLINE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_PRIORITY);
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         AddCommand.AddTaskDescriptor addTaskDescriptor = new AddCommand.AddTaskDescriptor();

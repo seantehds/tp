@@ -6,8 +6,9 @@
 # About TaskWise
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-It is modified to create a **task management application** named _TaskWise_.  
-It aims to provide the project manager of a CS2103T group a fast and intuitive CLI to manage their team project, by providing them a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with deadlines within one project.
+It is modified to create a **task management application** named _TaskWise_.
+
+It aims to provide the project manager of a CS2103T group with a fast and intuitive CLI to manage their team project, by providing them a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with deadlines within one project.
 
 ## Features
 Below and some of the features that TaskWise provides:
@@ -19,7 +20,7 @@ Below and some of the features that TaskWise provides:
 - **Add deadline to tasks**: Add deadline to tasks to indicate when they are due.
 - **Add notes to tasks**: Add notes to tasks to provide additional information.
 - **Allocate tasks to team members**: Allocate tasks to team members to indicate who is responsible for the task.
-- **Sort tasks**: Sort tasks by priority, deadline.
+- **Sort tasks**: Sort tasks by description, priority and deadline.
 
 ## Links
 - [User Guide](https://docs.google.com/document/d/1K1zzikbvhjpHor5Ojw0zFVt02ODpOsojrnjz1fSPwIY/edit?usp=sharing)

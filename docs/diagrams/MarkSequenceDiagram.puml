@@ -12,6 +12,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":TaskWise" as TaskWise MODEL_COLOR
 end box
 
 [-> LogicManager : execute("mark 1")
@@ -49,8 +50,14 @@ deactivate TaskWiseParser
 LogicManager -> MarkCommand : execute()
 activate MarkCommand
 
-MarkCommand -> Model : markTask(1)
+MarkCommand -> Model : setTask(taskToMark, markedTask)
 activate Model
+
+Model -> TaskWise : setTask(target, editedTask)
+activate TaskWise
+
+TaskWise --> Model
+deactivate TaskWise
 
 Model --> MarkCommand
 deactivate Model
