@@ -92,7 +92,13 @@ public class ParserUtil {
         throw new IllegalArgumentException(Deadline.INVALID_DATE);
     }
 
-    public static Deadline parseDateTime(String deadline) throws IllegalArgumentException{
+    /**
+     * Parses a {@code String deadline} specified to be in a date and time format into a {@code Deadline}.
+     * @param deadline
+     * @return A Deadline with the specified date and time
+     * @throws IllegalArgumentException
+     */
+    public static Deadline parseDateTime(String deadline) throws IllegalArgumentException {
         //@@author asdfghjkxd-reused
         // Regex strings are reused with major modification from ChatGPT, and is built and tested with
         // https://regex101.com/.
@@ -115,7 +121,13 @@ public class ParserUtil {
                 + parsedTime[0] + ":" + parsedTime[1] + ":00"));
     }
 
-    public static Deadline parseDate(String deadline) throws IllegalArgumentException{
+    /**
+     * Parses a {@code String deadline} specified to be in a date only format into a {@code Deadline}.
+     * @param deadline
+     * @return A Deadline with the specified date and time
+     * @throws IllegalArgumentException
+     */
+    public static Deadline parseDate(String deadline) throws IllegalArgumentException {
         String[] date = deadline.split("\\/|-");
         if (Deadline.isInvalidLeapDay(date)) {
             throw new IllegalArgumentException(Deadline.INVALID_DATE);
