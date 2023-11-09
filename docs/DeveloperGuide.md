@@ -584,7 +584,7 @@ The process is given as such:
 6. The `NoteCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `NoteCommand` object.
     1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turn invokes the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note.
     2. A new `CommandResult` object detailing the success of the `note` command is then created and returned to the caller of the `NoteCommand::execute()` method.
-7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `NoteCommand` and parses it.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `NoteCommand` and parses it.
 8. The execution of `NoteCommand` terminates.
 
 ### Alternatives Considered
@@ -612,7 +612,7 @@ Given below is the sequence diagram detailing the overall process of executing a
 6. The `ViewCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `ViewCommand` object.
     1. Then, `ViewCommand` invokes the `getFilteredTaskList()` method on `Model` to get the task specified by the index.
     2. The `ViewCommand` then invokes the `setTaskToTaskListPanel` method of the main window, passing in the task.
-7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `ViewCommand` and parses it.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `ViewCommand` and parses it.
 8. The execution of `ViewCommand` terminates.
 
 ### Alternatives Considered
@@ -659,7 +659,7 @@ The process is given as such:
 4. The `ListCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `ListCommand` object.
     1. Then, `ListCommand` invokes the `updateFilteredTaskList()` method on `Model`, which in turn invokes the `setPredicate()` method on `filteredTasks`, updating the `FilteredTaskList` within the `Model`.
     2. A new `CommandResult` object detailing the success of the `list` command is then created and returned to the caller of the `ListCommand::execute()` method.
-5. `LogicManager` receives the `CommandResult` object. returned from the execution of the `ListCommand` and parses it.
+5. `LogicManager` receives the `CommandResult` object returned from the execution of the `ListCommand` and parses it.
 6. The execution of `ListCommand` terminates.
 
 # Delete Feature
@@ -682,7 +682,7 @@ The process is given as such:
     2. The `targetIndex` to delete will be verified to ensure that it is valid, otherwise, an exception will be thrown to inform the user that the index is invalid.
     3. Then, the `deleteTask()` method will be invoked on `Model` which in turn invokes the `removeTask()` method on `TaskWise`.
     4. A new `CommandResult` object detailing the success of the `delete` command is then created and returned to the caller of the `DeleteCommand::execute()` method.
-7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `DeleteCommand` and parses it.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `DeleteCommand` and parses it.
 8. The execution of `DeleteCommand` terminates.
 
 # Clear Feature
@@ -702,7 +702,7 @@ The process is given as such:
 6. The `ClearCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `ClearCommand` object.
     1. Then, `ClearCommand` invokes the `setTaskWise()` method on `Model`, which will in turn call the `resetData()` method on`TaskWise` with a `new TaskWise()` instance.
     2. A new `CommandResult` object detailing the success of the `clear` command is then created and returned to the caller of the `ClearCommand::execute()` method.
-7. `LogicManager` receives the `CommandResult` object. returned from the execution of the `ClearCommand` and parses it.
+7. `LogicManager` receives the `CommandResult` object returned from the execution of the `ClearCommand` and parses it.
 8. The execution of `ClearCommand` terminates.
 
 # Documentation, Logging, Testing, Configuration and DevOps
