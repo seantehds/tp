@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,6 +28,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "The index you enter in should be a positive number "
             + "starting from 1!";
+    public static final String LEAP_DAY = "29";
+    public static final String FEBRUARY = "02";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -110,12 +113,13 @@ public class ParserUtil {
         String[] parsedTime = isMatchingRegex
                 ? new String[]{dateTimeSplit[1].substring(0, 2), dateTimeSplit[1].substring(2, 4)}
                 : dateTimeSplit[1].split("-|:");
-        if (Deadline.isInvalidLeapDay(parsedDate)) {
-            throw new IllegalArgumentException(Deadline.INVALID_DATE);
-        }
         if (parsedDate[1].length() < 2 || parsedDate[0].length() < 2
                 || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
             throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        LocalDate dateOnly = LocalDate.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0]);
+        if (parsedDate[1].equals(FEBRUARY) && parsedDate[0].equals(LEAP_DAY) && !dateOnly.isLeapYear()) {
+            throw new IllegalArgumentException(Deadline.INVALID_DATE);
         }
         return Deadline.of(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
                 + parsedTime[0] + ":" + parsedTime[1] + ":00"));
@@ -129,11 +133,12 @@ public class ParserUtil {
      */
     public static Deadline parseDate(String deadline) throws IllegalArgumentException {
         String[] date = deadline.split("\\/|-");
-        if (Deadline.isInvalidLeapDay(date)) {
-            throw new IllegalArgumentException(Deadline.INVALID_DATE);
-        }
         if (date[1].length() < 2 || date[0].length() < 2) {
             throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        LocalDate dateOnly = LocalDate.parse(date[2] + "-" + date[1] + "-" + date[0]);
+        if (date[1].equals(FEBRUARY) && date[0].equals(LEAP_DAY) && !dateOnly.isLeapYear()) {
+            throw new IllegalArgumentException(Deadline.INVALID_DATE);
         }
         return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
     }

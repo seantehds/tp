@@ -96,33 +96,6 @@ public class Deadline implements Comparable<Deadline> {
         return Pattern.matches(DATETIME_REGEX, datetime);
     }
 
-    /**
-     * Checks if the input date is an invalid leap day. Invalid leap days are days specified on 29 February in
-     * years that are not leap years.
-     *
-     * @param dateParts Array containing parts of date
-     * @return true if the String is an invalid leap day, else false
-     */
-    public static boolean isInvalidLeapDay(String[] dateParts) {
-        int year = Integer.parseInt(dateParts[2]);
-        int month = Integer.parseInt(dateParts[1]);
-        int day = Integer.parseInt(dateParts[0]);
-
-        //dont even consider
-        if (day != 29 || month != 2) {
-            return false;
-        }
-
-        // determine if leap year
-        if (year % 4 == 0) {
-            if (year % 100 == 0) {
-                return year % 400 != 0;
-            }
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
