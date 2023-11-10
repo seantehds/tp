@@ -18,7 +18,8 @@ Given below are my contributions to the project.
   ensure that the respective assignees stay accountable for the completion of that task. It also helps reduce possible
   confusions on the ground as to who is doing what, improving the experience project management using TaskWise.
   * Highlights: This mainly affects the Task Model and requires updates to be made to the TaskListCard fxml file.
-  * Credits: Members assigned to task feature was inspired by the AddressBook's `Tags` feature.
+  * Credits: Members assigned to task feature was inspired by the AddressBook's `Tags` feature. The validation REGEX to check for validity of `Member`'s input by user was reused from ChatGPT's
+    generated code.
 
 * **Code contributed:** [Link to reposense](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=Sebtey&tabRepo=AY2324S1-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
