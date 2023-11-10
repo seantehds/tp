@@ -1,4 +1,7 @@
-# George's Project Portfolio Page
+---
+layout: page
+title: George's Project Portfolio Page
+---
 
 ## Project Name: TaskWise
 
@@ -61,11 +64,11 @@ Given below are my contributions to the project.
         * [Defining Behaviours When ListView Cells are Clicked](https://stackoverflow.com/questions/52184611/javafx-keep-oldvalue-and-newvalue-of-listview-the-same-when-condition-has-not-b)
 
 * **Documentation:**
-  * User Guide: Added documentation on the new `sort` feature implemented and the limitations of this feature
+  * User Guide: Added documentation on the new `sort` feature implemented and the limitations of this feature, as well as created some 
+    some UML diagrams pertaining to the `sort` feature implemented.
   * Developer Guide: Added documentation on the new Exceptions that were added to TaskWise to enhance Exception handling
     for other Developers, as well as added documentation on the new `sort` feature and the limitations of this feature.
-    Also added some UML diagrams, as well as other documentation-related diagrams used in the Developer Guide and User
-    Guide.
+    Also added some UML diagrams on the Exceptions enhancements, as well as the `sort` feature, and the use cases of the application.
 
 * **Contribution to team-based tasks**
   * Set up the relevant administrative and DevOps requirements for the project

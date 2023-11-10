@@ -1,4 +1,7 @@
-# May's Project Portfolio Page
+---
+layout: page
+title: May's Project Portfolio Page
+---
 
 ## Project Name: TaskWise
 TaskWise is a task managing application used by CS2103/T task managers.
