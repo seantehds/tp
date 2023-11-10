@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -45,16 +44,13 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_UG = " " + PREFIX_DEADLINE + VALID_DEADLINE_UG;
     public static final String PRIORITY_DESC_DG = " " + PREFIX_PRIORITY + VALID_PRIORITY_DG;
     public static final String PRIORITY_DESC_UG = " " + PREFIX_PRIORITY + VALID_PRIORITY_UG;
-    public static final String NOTE_DESC_DG = " " + PREFIX_NOTE + VALID_NOTE_DG;
-    public static final String NOTE_DESC_UG = " " + PREFIX_NOTE + VALID_NOTE_UG;
     public static final String MEMBER_DESC_DG = " " + PREFIX_MEMBER + VALID_MEMBER_DG;
     public static final String MEMBER_DESC_UG = " " + PREFIX_MEMBER + VALID_MEMBER_UG;
     public static final String INVALID_TASK_DESC = " " + PREFIX_DESCRIPTION + "Invalid Task/";
     // '/' not allowed in descriptions
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2-2-2023";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "hii";
-    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE + "Invalid //Note";
-    public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "";
+    public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "/";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
