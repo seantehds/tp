@@ -6,29 +6,36 @@ title: May's Project Portfolio Page
 ## Project Name: TaskWise
 TaskWise is a task managing application used by CS2103/T task managers.
 The user interacts with it via the Command Line Interface (CLI) and it has a Graphical User
-Interface (GUI) made using JavaFX. It is written in Java, and it has about _______ LoC.
+Interface (GUI) made using JavaFX. It is written in Java, and it has about 13639 LoC.
 
 Given below are my contributions to the project.
 
 * **New Feature:** Add Tasks
   * **What it does:** Adds a task to the task list.
   * **Justifications:** Allows project managers to be able to add tasks to the list of tasks so that they can
-    be tracked easily. We have made **ONLY** the `description` of the task compulsory, since it
+    be tracked easily. I have made **ONLY** the `description` of the task compulsory, since it
     defines the task and it is our unique identifier. Other parameters of a task such as `deadline`, `priority`,
-    `status` and `member` are made optional to be included when using the `add` command.
+    `status` and `member` are made optional to be included when using the `add` command, this part was mostly
+    implemented by Sean.
   * **Highlights:** The `add` command is extremely easy and intuitive to use, due to its nature of only having 1
-    compulsory parameter. Furthermore, its paramters are easily editable with the `edit` command.
-  * **Credits:** The validation REGEX to check for validity of `description`'s input by user was reused from ChatGPT's
-    generated code. I have edited and tried a few variations before using the one that we currently have now.
+    compulsory parameter. Furthermore, its parameters are easily editable with the `edit` command. Originally, `add` was
+    built by AB3, and I have edited, refactored and tweaked it to fit TaskWise.
+  * **Credits:** The validation REGEX to check for validity of `description`, `note` and `member` input by user 
+    was reused from ChatGPT's generated code suggestions. I have edited and tried a few variations before using the one that we
+    currently have now. It checks that the user input for these parameters under the Add command are not blank, only
+    whitespaces and does not contain the "/" character.
 
 * **New Feature:** Priority of Tasks
   * **What it does:** Allow tasks to have a 1 priority level of NONE, LOW, MEDIUM, HIGH.
-  * **Justifications:** With tasks of different deadlines and importance, project managers may want to be able to
-  categorize how important each task is to them. Therefore, they can associate priority levels to those tasks.
-  We allow the priority level to be assigned at the level of adding a task with the `add` command, or to change 
-  default or existing priority level with the `edit` command. 
-  * **Highlights:** [TODO]
-  * **Credits:** [TODO]
+  * **Justifications:** Initially, I considered using the original AB3's implementation of `Tag` to implement the Priority
+    of a task. However, I felt that for `Tag`, there could be more than 1 tag assigned to a task, which is not the
+    behaviour intended for a Priority. Furthermore, a priority should be an enumeration class since it had constant
+    values. Lastly, there was a need to have a default priority leve, NONE, for tasks that had no priority level yet
+    or at all. 
+  * **Highlights:** With tasks of different deadlines and importance, project managers may want to be able to
+    categorize how important each task is to them. Therefore, they can associate priority levels to those tasks.
+    TaskWise allows the priority level to be assigned at the level of adding a task with the `add` command, or to change
+    default or existing priority level with the `edit` command.
 
 * **Code contributed:** [Link to RepoSense](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=maypfv&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=maypfv&tabRepo=AY2324S1-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
@@ -38,10 +45,25 @@ Given below are my contributions to the project.
   * Regularly update meeting dates and times to allow members to stay in the loop.
 
 * **Enhancement to existing features:**
-  * **Updated User Interface** [#64](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/64)
-    * What it does: Changed the user interface to be more user-friendly with a different colour scheme.
-    * Justifications: We wanted a more vibrant and bright user interface which is readable by users. The use of different 
+  * **Redesigned User Interface**: [#64](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/64)
+    * **What it does:** Changed the user interface to be more user-friendly with a different colour scheme.
+    * **Justifications:** We wanted a more vibrant and bright user interface which is readable by users. The use of different 
       colours in the tags also highlight different significance such as priority levels.
+    * **Priority, Status Tags on Task Cards** [#114](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/114)
+    * **What it does:** The priority levels are displayed in a little tag form with colours to indicate the different levels
+      of priority. The status is also displayed in a tag form. This makes it more user-friendly when tracking tasks as
+      project managers can see their tasks' level of importance and status to  manage those tasks better.
+    * **Justifications:** A red coloured tag for priority level HIGH, a yellow tag for priority MEDIUM, a green for a
+      priority of LOW and lastly, grey tag for a priority level of NONE. The colours used are with accordance to the
+      colour scheme that we are used to when associating very important to not important tasks. The light purple colour
+      to represent status was decided to differentiate with other tags in a Task Card.
+    * **Highlights:** I thought that the implementation of the tags would be easy, considering how the AB3 already had
+      similar tags. However, it was difficult to have the different colours be associated to the different text of
+      of priority, especially. I had to explore the use of the visible and managed labels in fxml.
+    * **Credits:** While implementing the priority display on the User Interface, I took some suggestions by ChatGPT on
+      how to make different level of priorities be associated with the different string of priority. The code generated
+      in TaskListCard.fxml and DarkTheme.css regarding priority ids and status are my own while I tweaked and played
+      around with some suggestions. 
 
 * **Documentation:**
   * **User Guide:** 
@@ -66,6 +88,7 @@ Given below are my contributions to the project.
     * Propose Enhancement for `add` feature. 
 * **Contribution to team-based tasks:** 
   * Created the UI mockup
-  * [TODO]
+  * Added some issues on GitHub Project Board for the group
+  * Updated UG on behalf of the team to the GitHub repo
 * **Review/mentoring contributions:**   
   * Reviewed some PRs on GitHub
