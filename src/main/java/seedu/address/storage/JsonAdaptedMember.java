@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.model.member.Member;
 import seedu.address.storage.exceptions.json.IllegalJsonMemberValueException;
-import seedu.address.storage.exceptions.json.IllegalJsonValueException;
 
 
 /**
@@ -38,9 +37,9 @@ class JsonAdaptedMember {
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Member} object.
      *
-     * @throws IllegalJsonValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalJsonMemberValueException if there were any data constraints violated in the adapted tag.
      */
-    public Member toModelType() throws IllegalJsonValueException {
+    public Member toModelType() throws IllegalJsonMemberValueException {
         if (!Member.isValidName(memberName)) {
             throw new IllegalJsonMemberValueException(Member.MESSAGE_CONSTRAINTS);
         }
