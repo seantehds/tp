@@ -1,6 +1,8 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
@@ -41,8 +43,54 @@ public class DeadlineTest {
 
         assertTrue(Deadline.isValidDate(validDate));
 
-        String invalidDate = "32-10-2023";
+        String invalidDateDay = "32-10-2023";
 
-        assertFalse(Deadline.isValidDate(invalidDate));
+        assertFalse(Deadline.isValidDate(invalidDateDay));
+
+        String invalidDateMonth = "32-10-2023";
+
+        assertFalse(Deadline.isValidDate(invalidDateMonth));
+
+        String invalidDateYear = "20-10-10000";
+
+        assertFalse(Deadline.isValidDate(invalidDateYear));
+    }
+
+    @Test
+    public void isValidDateTime() {
+        String validDateValidTime = "25-10-2023 18:00";
+
+        assertTrue(Deadline.isValidDateTime(validDateValidTime));
+
+        String validDateInvalidTimeHour = "32-10-2023 25:00";
+
+        assertFalse(Deadline.isValidDateTime(validDateInvalidTimeHour));
+
+        String invalidDateValidTime = "32-10-2023 18:00";
+
+        assertFalse(Deadline.isValidDateTime(invalidDateValidTime));
+    }
+
+    @Test
+    public void of() {
+        LocalDateTime testLocalDateTime = LocalDateTime.of(2024, 10, 10, 10, 0);
+
+        Deadline originalDeadline = Deadline.of(testLocalDateTime);
+
+        assertEquals(originalDeadline, new Deadline(testLocalDateTime, false));
+
+        assertNotEquals(originalDeadline, Deadline.ofNull());
+    }
+
+    @Test
+    public void ofNull() {
+        LocalDateTime testLocalDateTime = LocalDateTime.of(2024, 10, 10, 10, 0);
+
+        Deadline originalDeadline = Deadline.ofNull();
+
+        assertNotEquals(originalDeadline, new Deadline(testLocalDateTime, false));
+
+        assertEquals(originalDeadline, Deadline.ofNull());
+
     }
 }
