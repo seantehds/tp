@@ -1,4 +1,7 @@
-# Teh De Sheng Sean's Project Portfolio Page
+---
+layout: page
+title: Teh De Sheng Sean's Project Portfolio Page
+---
 
 ## Project Name: TaskWise
 

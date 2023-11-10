@@ -1,4 +1,7 @@
-# Sebastian's Project Portfolio Page
+---
+layout: page
+title: Justin's Project Portfolio Page
+---
 
 ## Project Name: TaskWise
 
