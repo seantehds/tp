@@ -35,8 +35,13 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
-    private static final String VALID_DEADLINE_WITH_TIME = "25-10-2023 16:00";
+    private static final String VALID_DEADLINE_WITH_TIME_COLON = "25-10-2023 16:00";
+    private static final String VALID_DEADLINE_WITH_TIME_DASH = "25-10-2023 16-00";
+    private static final String VALID_DEADLINE_WITH_TIME_NO_COLON_DASH = "25-10-2023 1600";
+    private static final String VALID_DEADLINE_SLASH_WITH_TIME = "25/10/2023 16:00";
+    private static final String VALID_DEADLINE_MIX_WITH_TIME = "25/10-2023 16:00";
     private static final String VALID_DEADLINE_WITHOUT_TIME = "25-10-2023";
+    private static final String VALID_DEADLINE_LEAP_DAY_WITHOUT_TIME = "29-02-2024";
     private static final String INVALID_DAY_INPUT = "9-10-2023 16:00";
     private static final String INVALID_MONTH_INPUT = "19-9-2023 16:00";
     private static final String INVALID_DAY_DEADLINE = "32-10-2023 16:00";
@@ -210,15 +215,45 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDeadline_validValueWithTime_returnsDeadline() throws IllegalArgumentException {
+    public void parseDeadline_validValueWithTimeColon_returnsDeadline() throws IllegalArgumentException {
         Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 16, 0));
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITH_TIME));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITH_TIME_COLON));
+    }
+
+    @Test
+    public void parseDeadline_validValueWithTimeDash_returnsDeadline() throws IllegalArgumentException {
+        Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 16, 0));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITH_TIME_DASH));
+    }
+
+    @Test
+    public void parseDeadline_validValueWithTimeNoColonDash_returnsDeadline() throws IllegalArgumentException {
+        Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 16, 0));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITH_TIME_NO_COLON_DASH));
+    }
+
+    @Test
+    public void parseDeadline_dateDashValidValueWithTime_returnsDeadline() throws IllegalArgumentException {
+        Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 16, 0));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_SLASH_WITH_TIME));
+    }
+
+    @Test
+    public void parseDeadline_dateMixValidValueWithTimeColon_returnsDeadline() throws IllegalArgumentException {
+        Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 16, 0));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_MIX_WITH_TIME));
     }
 
     @Test
     public void parseDeadline_validValueWithoutTime_returnsDeadline() throws IllegalArgumentException {
         Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2023, 10, 25, 0, 0));
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_WITHOUT_TIME));
+    }
+
+    @Test
+    public void parseDeadline_validLeapDayWithoutTime_returnsDeadline() throws IllegalArgumentException {
+        Deadline expectedDeadline = Deadline.of(LocalDateTime.of(2024, 02, 29, 0, 0));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE_LEAP_DAY_WITHOUT_TIME));
     }
 
     @Test
