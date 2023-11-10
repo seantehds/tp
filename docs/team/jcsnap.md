@@ -1,10 +1,10 @@
-# Sebastian's Project Portfolio Page
+# Justin's Project Portfolio Page
 
 ## Project Name: TaskWise
 
 TaskWise is a task managing application used by CS2103/T task managers.
 The user interacts with it via the Command Line Interface (CLI) and it has a Graphical User
-Interface (GUI) made using JavaFX. It is written in Java, and it has about 10813 LoC.
+Interface (GUI) made using JavaFX. It is written in Java, and it has about 13639 LoC.
 
 Given below are my contributions to the project.
 
@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     * What it does: Displays the complete imformation of the task in the side panel.
     * Justifications: It is useful for the user to see the complete information of the task. It is a cli implementation of "clicking" the task.
     * Highlights: Using esc will clear the side panel with the selected task.
-    * Credits: NIL
+    * Challenge: Since this requires interaction with the UI elements, it is difficult to figure out how to let the UI know which task card is selected.
 
 * Code contributed:
 
@@ -26,7 +26,8 @@ Given below are my contributions to the project.
 * Project management: Reviewed teammates' pull requests, give feedback and suggestions for improvements and merge pull
   requests.
 * Enhancement to existing features:
-  * Refactored the underlying code in the AddressBook to fit the use case of TaskWise.
+  * Refactored the underlying code in the AddressBook to fit the use case of TaskWise. This is a bit challenging as the
+    the code is very coupled and it is difficult to change the code without breaking the code.
   * Edited some existing test cases and Builders to fit the use case of TaskWise.
 * Documentation:
     * User Guide
