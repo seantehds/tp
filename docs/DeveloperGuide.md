@@ -407,7 +407,7 @@ The process is given as such:
 
 Here is the activity diagram from when a user inputs an add command:
 
-[Add Activity Diagram](images/AddActivityDiagram.png)
+![Add Activity Diagram](images/AddActivityDiagram.png)
 
 ### Alternatives Considered
 We considered allowing the add feature to add `Notes`, `Member`, `Deadline`, and `Priority` at one go. However, we also needed to consider ease of use by the user when entering all these attributes at one go using the `add` command. Therefore, we concluded that these 4 attributes should be optional to be entered all at once using `add`.
@@ -501,7 +501,7 @@ Here is the activity diagram from when a user inputs an edit command:
 :information_source: As of now, editing a task will only overwrite the existing information of the specified fields with the new information.
 </div>
 
-We are working on implementing different modes of editing existing tasks in our [future implementations](#edit-command---different-modes).
+We are working on implementing different modes of editing existing tasks in our [future implementations](#different-modes-of-edit-command).
 
 ### Updating Deadlines of Existing Tasks
 
