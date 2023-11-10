@@ -40,12 +40,14 @@ public class ParserUtilTest {
     private static final String INVALID_DAY_INPUT = "9-10-2023 16:00";
     private static final String INVALID_MONTH_INPUT = "19-9-2023 16:00";
     private static final String INVALID_DAY_DEADLINE = "32-10-2023 16:00";
+    private static final String INVALID_LEAP_DAY_DEADLINE = "29-02-2023 16:00";
     private static final String INVALID_MONTH_DEADLINE = "25-13-2023 16:00";
     private static final String INVALID_YEAR_DEADLINE = "32-10-10000 16:00";
 
     private static final String INVALID_DAY_INPUT_NO_TIME = "9-10-2023";
     private static final String INVALID_MONTH_INPUT_NO_TIME = "19-9-2023";
     private static final String INVALID_DAY_DEADLINE_NO_TIME = "32-10-2023";
+    private static final String INVALID_LEAP_DAY_DEADLINE_NO_TIME = "29-02-2023";
     private static final String INVALID_MONTH_DEADLINE_NO_TIME = "25-13-2023";
     private static final String INVALID_YEAR_DEADLINE_NO_TIME = "32-10-10000";
     private static final String VALID_PRIORITY = "high";
@@ -225,6 +227,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDeadline_invalidLeapDay_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_LEAP_DAY_DEADLINE));
+    }
+
+    @Test
     public void parseDeadline_invalidMonth_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_MONTH_DEADLINE));
     }
@@ -247,6 +254,11 @@ public class ParserUtilTest {
     @Test
     public void parseDeadline_invalidDayNoTime_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_DAY_DEADLINE_NO_TIME));
+    }
+
+    @Test
+    public void parseDeadline_invalidLeapDayNoTime_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> parseDeadline(INVALID_LEAP_DAY_DEADLINE_NO_TIME));
     }
 
     @Test
