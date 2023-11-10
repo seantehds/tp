@@ -19,27 +19,20 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-    //Alice
     public static final Task FIX_BUG = new TaskBuilder()
             .withDescription("Fix bug").withStatus(false).withNote("Note").withPriority(Priority.NONE).build();
-    //Benson
     public static final Task OP2_REPORT = new TaskBuilder()
             .withDescription("Do OP2 report").withStatus(true).withNote("").withPriority(Priority.NONE).build();
-    //Carl
     public static final Task OP2_PRESENTATION = new TaskBuilder()
             .withDescription("Do OP2 presentation").withStatus(false).withNote("").withPriority(Priority.LOW).build();
-    //Daniel
     public static final Task UG = new TaskBuilder()
             .withDescription("Do user guide").withStatus(false).withNote("").withPriority(Priority.MEDIUM).build();
-    //Elle
     public static final Task DG = new TaskBuilder()
             .withDescription("Do developer guide").withStatus(false).withNote("Note").withPriority(Priority.HIGH)
             .build();
-    //Fiona
     public static final Task OP2_MEETING = new TaskBuilder()
             .withDescription("Meeting to discuss OP2").withStatus(false).withNote("")
             .withPriority(Priority.NONE).build();
-    //George
     public static final Task OP2_REHEARSAL = new TaskBuilder()
             .withDescription("Rehearse OP2 presentation").withStatus(false).withNote("")
             .withPriority(Priority.NONE).build();
@@ -50,7 +43,6 @@ public class TypicalTasks {
     public static final Task TASK_TWO = new TaskBuilder().withDescription("task two").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    // TODO: Add other fields required for test case ie. Deadline, Priority.
     public static final Task TASK_DG = new TaskBuilder()
             .withDescription(VALID_DESC_DG).withStatus(false).withNote(VALID_NOTE_DG)
             .withPriority(Priority.HIGH).withMembers(VALID_MEMBER_DG).build();
