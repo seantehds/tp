@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -23,30 +26,47 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_MEMBER_DAVID = "David";
-    public static final String VALID_MEMBER_CHARLIE = "Charlie";
+    public static final String VALID_DESC_DG = "Developer Guide";
+    public static final String VALID_DESC_UG = "User Guide";
+    public static final String VALID_DESC_TEST = "test";
+    public static final String VALID_DEADLINE_DG = "14-11-2023 23:59";
+    public static final String VALID_DEADLINE_UG = "14-11-2023";
+    public static final String VALID_PRIORITY_DG = "high";
+    public static final String VALID_PRIORITY_UG = "medium";
+    public static final String VALID_NOTE_DG = "Ensure diagrams are correct";
+    public static final String VALID_NOTE_UG = "Ensure links are not broken";
+    public static final String VALID_MEMBER_DG = "David";
+    public static final String VALID_MEMBER_UG = "Charlie";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_NAME_BOB;
-    public static final String MEMBER_DESC_CHARLIE = " " + PREFIX_MEMBER + VALID_MEMBER_CHARLIE;
-    public static final String MEMBER_DESC_DAVID = " " + PREFIX_MEMBER + VALID_MEMBER_DAVID;
-    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "James/";
+    public static final String TASK_DESC_DG = " " + PREFIX_DESCRIPTION + VALID_DESC_DG;
+    public static final String TASK_DESC_UG = " " + PREFIX_DESCRIPTION + VALID_DESC_UG;
+    public static final String TASK_DESC_TEST = " " + PREFIX_DESCRIPTION + VALID_DESC_TEST;
+    public static final String DEADLINE_DESC_DG = " " + PREFIX_DEADLINE + VALID_DEADLINE_DG;
+    public static final String DEADLINE_DESC_UG = " " + PREFIX_DEADLINE + VALID_DEADLINE_UG;
+    public static final String PRIORITY_DESC_DG = " " + PREFIX_PRIORITY + VALID_PRIORITY_DG;
+    public static final String PRIORITY_DESC_UG = " " + PREFIX_PRIORITY + VALID_PRIORITY_UG;
+    public static final String NOTE_DESC_DG = " " + PREFIX_NOTE + VALID_NOTE_DG;
+    public static final String NOTE_DESC_UG = " " + PREFIX_NOTE + VALID_NOTE_UG;
+    public static final String MEMBER_DESC_DG = " " + PREFIX_MEMBER + VALID_MEMBER_DG;
+    public static final String MEMBER_DESC_UG = " " + PREFIX_MEMBER + VALID_MEMBER_UG;
+    public static final String INVALID_TASK_DESC = " " + PREFIX_DESCRIPTION + "Invalid Task/";
     // '/' not allowed in descriptions
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2-2-2023";
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "hii";
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE + "Invalid //Note";
     public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTaskDescriptor DESC_AMY;
-    public static final EditCommand.EditTaskDescriptor DESC_BOB;
+    public static final EditCommand.EditTaskDescriptor DESC_DG;
+    public static final EditCommand.EditTaskDescriptor DESC_UG;
 
     static {
-        DESC_AMY = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_AMY)
-                .withMembers(VALID_MEMBER_CHARLIE).build();
-        DESC_BOB = new EditTaskDescriptorBuilder().withDescription(VALID_NAME_BOB)
-                .withMembers(VALID_MEMBER_DAVID, VALID_MEMBER_CHARLIE).build();
+        DESC_DG = new EditTaskDescriptorBuilder().withDescription(VALID_DESC_DG)
+                .withMembers(VALID_MEMBER_DG).build();
+        DESC_UG = new EditTaskDescriptorBuilder().withDescription(VALID_DESC_UG)
+                .withMembers(VALID_MEMBER_DG, VALID_MEMBER_UG).build();
     }
 
     /**

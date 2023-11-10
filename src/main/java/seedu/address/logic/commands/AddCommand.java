@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -132,14 +131,6 @@ public class AddCommand extends Command {
             setDeadline(toCopy.deadline);
             setPriority(toCopy.priority);
         }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, members, deadline, priority);
-        }
-
         public void setDeadline(Deadline deadline) {
             this.deadline = deadline;
         }

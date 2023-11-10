@@ -56,7 +56,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTaskDescriptor.setNote(ParserUtil.parseNote(argMultimap
                     .getValue(PREFIX_NOTE).get()));
         }
-        // TODO: Add tests for deadline, note, members and priority in EditCommandParserTest
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap
                     .getValue(PREFIX_DEADLINE).get()));

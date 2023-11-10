@@ -4,7 +4,7 @@
     {
       "description": "Fix bug",
       "status": false,
-      "note": "",
+      "note": "Note",
       "deadline" : {
         "details" : "+999999999-12-31T23:59:59.999999999",
         "isNull" : true
@@ -13,7 +13,7 @@
     },
     {
       "description": "Do OP2 report",
-      "status": false,
+      "status": true,
       "note": "",
       "deadline" : {
         "details" : "+999999999-12-31T23:59:59.999999999",
@@ -26,10 +26,10 @@
       "status": false,
       "note": "",
       "deadline" : {
-        "details" : "2023-12-31T23:59:59.999999999",
+        "details" : "+999999999-12-31T23:59:59.999999999",
         "isNull" : false
       },
-      "priority": "NONE"
+      "priority": "LOW"
     },
     {
       "description": "Do user guide",
@@ -39,17 +39,17 @@
         "details" : "2024-12-31T23:59:59.999999999",
         "isNull" : false
       },
-      "priority": "NONE"
+      "priority": "MEDIUM"
     },
     {
       "description": "Do developer guide",
       "status": false,
-      "note": "",
+      "note": "Note",
       "deadline" : {
         "details" : "1990-12-31T23:59:59.999999999",
         "isNull" : false
       },
-      "priority": "NONE"
+      "priority": "HIGH"
     },
     {
       "description": "Meeting to discuss OP2",

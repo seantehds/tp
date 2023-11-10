@@ -1,17 +1,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_CHARLIE;
-import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_DAVID;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_DG;
+import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_UG;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_DG;
+import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_TEST;
+import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_UG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_UG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalTasks.AMY;
+import static seedu.address.testutil.TypicalTasks.TEST;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -41,13 +42,11 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        //TODO test will be fixed with PR merge with feature-add-command-for-deadline
-        //Task expectedTask = new TaskBuilder(BOB).withMembers(VALID_MEMBER_CHARLIE).build();
-
-        // whitespace only preamble
-        //assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
-        //       + MEMBER_DESC_CHARLIE, new AddCommand(expectedTask));
-
+    //        //TODO test will be fixed with PR merge with feature-add-command-for-deadline
+    //        Task expectedTask = new TaskBuilder(TASK_DG).withMembers(VALID_MEMBER_UG).build();
+    //
+    //        // whitespace only preamble
+    //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASK_DESC_TEST, new AddCommand(desc));
 
         // multiple tags - all accepted
         //Task expectedTaskMultipleMembers = new TaskBuilder(BOB).withMembers(VALID_MEMBER_CHARLIE, VALID_MEMBER_DAVID)
@@ -59,38 +58,37 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_repeatedValue_failure() {
-        String validExpectedTaskString = NAME_DESC_BOB + MEMBER_DESC_CHARLIE;
+        String validExpectedTaskString = TASK_DESC_UG + MEMBER_DESC_UG;
 
         // multiple names
-        assertParseFailure(parser, NAME_DESC_AMY + validExpectedTaskString,
+        assertParseFailure(parser, TASK_DESC_DG + validExpectedTaskString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedTaskString + NAME_DESC_AMY + NAME_DESC_BOB
+                validExpectedTaskString + TASK_DESC_DG + TASK_DESC_UG
                         + validExpectedTaskString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
 
         // invalid value followed by valid value
 
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + validExpectedTaskString,
+        assertParseFailure(parser, INVALID_TASK_DESC + validExpectedTaskString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
 
         // valid value followed by invalid value
 
         // invalid name
-        assertParseFailure(parser, validExpectedTaskString + INVALID_NAME_DESC,
+        assertParseFailure(parser, validExpectedTaskString + INVALID_TASK_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero members
-        Task expectedTask = new TaskBuilder(AMY).withMembers().build();
+        Task expectedTask = new TaskBuilder(TEST).withMembers().build();
         setUpDesc(expectedTask);
-        assertParseSuccess(parser, NAME_DESC_AMY,
-                new AddCommand(desc));
+        assertParseSuccess(parser, TASK_DESC_TEST, new AddCommand(desc));
     }
 
     @Test
@@ -99,27 +97,27 @@ public class AddCommandParserTest {
                 + "\nUsage: " + AddCommand.MESSAGE_USAGE;
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB,
+        assertParseFailure(parser, VALID_DESC_UG,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB,
+        assertParseFailure(parser, VALID_DESC_UG,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC
-                + MEMBER_DESC_DAVID + MEMBER_DESC_CHARLIE, Description.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TASK_DESC
+                + MEMBER_DESC_DG + MEMBER_DESC_UG, Description.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC,
+        assertParseFailure(parser, INVALID_TASK_DESC,
                 Description.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
-                + MEMBER_DESC_DAVID + MEMBER_DESC_CHARLIE,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TASK_DESC_UG
+                + MEMBER_DESC_DG + MEMBER_DESC_UG,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.COMMAND_WORD)
                         + "\nUsage: " + AddCommand.MESSAGE_USAGE);
     }

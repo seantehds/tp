@@ -3,11 +3,12 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DAVID;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_UG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_UG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.BOB;
 import static seedu.address.testutil.TypicalTasks.FIX_BUG;
+import static seedu.address.testutil.TypicalTasks.TASK_UG;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,21 +31,21 @@ public class TaskTest {
         assertFalse(FIX_BUG.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedFixBug = new TaskBuilder(FIX_BUG).withMembers(VALID_MEMBER_DAVID).build();
+        Task editedFixBug = new TaskBuilder(FIX_BUG).withMembers(VALID_MEMBER_DG).build();
         assertTrue(FIX_BUG.isSameTask(editedFixBug));
 
         // different name, all other attributes same -> returns false
-        editedFixBug = new TaskBuilder(FIX_BUG).withDescription(VALID_NAME_BOB).build();
+        editedFixBug = new TaskBuilder(FIX_BUG).withDescription(VALID_MEMBER_UG).build();
         assertFalse(FIX_BUG.isSameTask(editedFixBug));
 
         // name differs in case, all other attributes same -> returns false
-        Task editedBob = new TaskBuilder(BOB).withDescription(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameTask(editedBob));
+        Task editedBob = new TaskBuilder(TASK_UG).withDescription(VALID_MEMBER_UG.toLowerCase()).build();
+        assertFalse(TASK_UG.isSameTask(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new TaskBuilder(BOB).withDescription(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameTask(editedBob));
+        String nameWithTrailingSpaces = VALID_MEMBER_UG + " ";
+        editedBob = new TaskBuilder(TASK_UG).withDescription(nameWithTrailingSpaces).build();
+        assertFalse(TASK_UG.isSameTask(editedBob));
     }
 
     @Test
@@ -63,10 +64,10 @@ public class TaskTest {
         assertFalse(FIX_BUG.equals(5));
 
         // different task -> returns false
-        assertFalse(FIX_BUG.equals(BOB));
+        assertFalse(FIX_BUG.equals(TASK_UG));
 
         // different name -> returns false
-        Task editedAlice = new TaskBuilder(FIX_BUG).withDescription(VALID_NAME_BOB).build();
+        Task editedAlice = new TaskBuilder(FIX_BUG).withDescription(VALID_DESC_UG).build();
         assertFalse(FIX_BUG.equals(editedAlice));
     }
 
