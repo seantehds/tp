@@ -3,9 +3,11 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_DG;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_DG;
+import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_DG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.AMY;
+import static seedu.address.testutil.TypicalTasks.TASK_DG;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -164,8 +166,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveTaskWise method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY;
-        Task expectedTask = new TaskBuilder(AMY).build();
+        String addCommand = AddCommand.COMMAND_WORD + TASK_DESC_DG + PRIORITY_DESC_DG + MEMBER_DESC_DG;
+        Task expectedTask = new TaskBuilder(TASK_DG).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
         assertCommandFailure(addCommand, StorageException.class, expectedMessage, expectedModel);

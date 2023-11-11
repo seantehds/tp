@@ -1,4 +1,4 @@
-package seedu.address.model.tag;
+package seedu.address.model.member;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -66,14 +66,14 @@ class MemberTest {
     @Test
     public void equals_differentType_invalid() {
         Member member = new Member("John");
-        Tag tag = new Tag("John");
+        String name = "John";
 
-        assertFalse(member.equals(tag));
+        assertFalse(member.equals(name));
     }
 
     @Test
     public void toString_member_valid() {
-        Member tag = new Member("John");
-        assertEquals(tag.toString(), "[John]");
+        Member member = new Member("John");
+        assertEquals(member.toString(), "[John]");
     }
 }

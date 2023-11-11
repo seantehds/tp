@@ -16,7 +16,7 @@ public class CliSyntaxTest {
     }
 
     @Test
-    public void tagDescription_exists() {
+    public void memberPrefix_exists() {
         assertNotNull(CliSyntax.PREFIX_MEMBER);
         assertEquals(CliSyntax.PREFIX_MEMBER.getPrefix(), "m/");
     }
@@ -24,5 +24,29 @@ public class CliSyntaxTest {
     public void priorityPrefix_exists() {
         assertNotNull(CliSyntax.PREFIX_PRIORITY);
         assertEquals(CliSyntax.PREFIX_PRIORITY.getPrefix(), "p/");
+    }
+
+    @Test
+    public void notePrefix_exists() {
+        assertNotNull(CliSyntax.PREFIX_NOTE);
+        assertEquals(CliSyntax.PREFIX_NOTE.getPrefix(), "n/");
+    }
+
+    @Test
+    public void deadlinePrefix_exists() {
+        assertNotNull(CliSyntax.PREFIX_DEADLINE);
+        assertEquals(CliSyntax.PREFIX_DEADLINE.getPrefix(), "d/");
+    }
+
+    @Test
+    public void sortOrderPrefix_exists() {
+        assertNotNull(CliSyntax.PREFIX_SORT_ORDER);
+        assertEquals(CliSyntax.PREFIX_SORT_ORDER.getPrefix(), "o/");
+    }
+
+    @Test
+    public void sortTypePrefix_exists() {
+        assertNotNull(CliSyntax.PREFIX_SORT_TYPE);
+        assertEquals(CliSyntax.PREFIX_SORT_TYPE.getPrefix(), "ty/");
     }
 }

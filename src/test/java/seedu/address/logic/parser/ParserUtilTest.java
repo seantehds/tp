@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -26,13 +26,13 @@ import seedu.address.model.task.Priority;
 
 public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = "Do Use/r Guide.";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_MEMBER = "";
 
     private static final String VALID_DESCRIPTION = "Do User Guide";
     private static final String VALID_NOTE = "This is a valid note";
     private static final String INVALID_NOTE = "Do TaskWise v1/2"; // contains "/"
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_MEMBER_1 = "George";
+    private static final String VALID_MEMBER_2 = "Harry";
 
     private static final String WHITESPACE = " \t\r\n";
     private static final String VALID_DEADLINE_WITH_TIME_COLON = "25-10-2023 16:00";
@@ -138,61 +138,63 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseMember_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMember(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseMember_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMember(INVALID_MEMBER));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseMember_validValueWithoutWhitespace_returnsMember() throws Exception {
+        Member expectedMember = new Member(VALID_MEMBER_1);
+        assertEquals(expectedMember, ParserUtil.parseMember(VALID_MEMBER_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseMember_validValueWithWhitespace_returnsTrimmedMember() throws Exception {
+        String memberWithWhitespace = WHITESPACE + VALID_MEMBER_1 + WHITESPACE;
+        Member expectedMember = new Member(VALID_MEMBER_1);
+        assertEquals(expectedMember, ParserUtil.parseMember(memberWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseMembers_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMembers(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseMembers_collectionWithInvalidMembers_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseMembers(Arrays.asList(VALID_MEMBER_1, INVALID_MEMBER)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseMembers_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseMembers(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseMembers_collectionWithValidMembers_returnsMemberSet() throws Exception {
+        Set<Member> actualMemberSet = ParserUtil.parseMembers(Arrays.asList(VALID_MEMBER_1, VALID_MEMBER_2));
+        Set<Member> expectedMemberSet = new HashSet<Member>(
+                Arrays.asList(new Member(VALID_MEMBER_1), new Member(VALID_MEMBER_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedMemberSet, actualMemberSet);
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_returnsTagSet() {
-        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseTags(
-                Arrays.asList(INVALID_TAG, VALID_TAG_1)));
+    public void parseMembers_collectionWithInvalidMembers_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseMembers(
+                Arrays.asList(INVALID_MEMBER, VALID_MEMBER_1)));
     }
 
     @Test
-    public void parseTags_collectionwithMembersDuplicates_returnsTagSet() {
-        assertDoesNotThrow(() -> ParserUtil.parseTags(
-                Arrays.asList(VALID_TAG_1, VALID_TAG_1, VALID_TAG_1)));
+    public void parseMembers_collectionWithMembersDuplicates_returnsMemberSet() {
+        assertDoesNotThrow(() -> ParserUtil.parseMembers(
+                Arrays.asList(VALID_MEMBER_1, VALID_MEMBER_1, VALID_MEMBER_1)));
     }
 
     @Test

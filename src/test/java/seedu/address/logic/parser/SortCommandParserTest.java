@@ -22,7 +22,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_failure() {
+    public void parse_repeatedOrderValue_failure() {
         assertParseFailure(parser,
                 PREAMBLE_WHITESPACE + " o/a o/dl",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.COMMAND_WORD)

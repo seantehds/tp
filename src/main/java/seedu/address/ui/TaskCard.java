@@ -12,7 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
-import seedu.address.model.tag.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Task;
 
 /**

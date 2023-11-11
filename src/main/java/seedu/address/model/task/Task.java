@@ -8,8 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Member;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.member.Member;
 
 /**
  * Represents a Task in the address book.
@@ -23,7 +22,6 @@ public class Task {
     private final Note note;
     private final Deadline deadline;
     private final Priority priority;
-    private final Set<Tag> tags = new HashSet<>();
     private final Set<Member> members = new HashSet<>();
     /**
      * Only description is required.
@@ -37,7 +35,6 @@ public class Task {
         this.note = new Note("");
         this.deadline = Deadline.ofNull();
         this.priority = Priority.NONE;
-        this.tags.addAll(Collections.emptySet());
         this.members.addAll(Collections.emptySet());
     }
 
@@ -59,7 +56,6 @@ public class Task {
         this.note = note;
         this.deadline = deadline;
         this.priority = priority;
-        this.tags.addAll(Collections.emptySet());
         this.members.addAll(members);
     }
     public Description getDescription() {
@@ -67,11 +63,11 @@ public class Task {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable member set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Member> getMembers() {
+        return Collections.unmodifiableSet(members);
     }
 
     public Status getStatus() {
@@ -91,14 +87,6 @@ public class Task {
      */
     public Priority getPriority() {
         return priority;
-    }
-
-    /**
-     * Returns an immutable member set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Member> getMembers() {
-        return Collections.unmodifiableSet(members);
     }
 
     /**
@@ -131,7 +119,6 @@ public class Task {
 
         Task otherTask = (Task) other;
         return description.equals(otherTask.description)
-                && tags.equals(otherTask.tags)
                 && status.equals(otherTask.status)
                 && priority.equals(otherTask.priority)
                 && members.equals(otherTask.members);
@@ -140,14 +127,13 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, tags, status, note, deadline, priority, members);
+        return Objects.hash(description, status, note, deadline, priority, members);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", description)
-                .add("tags", tags)
                 .add("status", status)
                 .add("note", note)
                 .add("deadline", deadline)

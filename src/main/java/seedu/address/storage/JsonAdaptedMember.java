@@ -3,9 +3,8 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.model.tag.Member;
-import seedu.address.storage.exceptions.json.IllegalJsonTagValueException;
-import seedu.address.storage.exceptions.json.IllegalJsonValueException;
+import seedu.address.model.member.Member;
+import seedu.address.storage.exceptions.json.IllegalJsonMemberValueException;
 
 
 /**
@@ -36,13 +35,13 @@ class JsonAdaptedMember {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted tag object into the model's {@code Member} object.
      *
-     * @throws IllegalJsonValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalJsonMemberValueException if there were any data constraints violated in the adapted tag.
      */
-    public Member toModelType() throws IllegalJsonValueException {
+    public Member toModelType() throws IllegalJsonMemberValueException {
         if (!Member.isValidName(memberName)) {
-            throw new IllegalJsonTagValueException(Member.MESSAGE_CONSTRAINTS);
+            throw new IllegalJsonMemberValueException(Member.MESSAGE_CONSTRAINTS);
         }
         return new Member(memberName);
     }

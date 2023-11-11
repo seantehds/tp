@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.InvalidFormatException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Member;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Description;
 
 /**
@@ -62,7 +62,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     .getAllValues(PREFIX_MEMBER)));
         }
 
-        parseMembersForEdit(argMultimap.getAllValues(PREFIX_MEMBER)).ifPresent(addTaskDescriptor::setMembers);
+        parseMembersForAdd(argMultimap.getAllValues(PREFIX_MEMBER)).ifPresent(addTaskDescriptor::setMembers);
 
         return new AddCommand(addTaskDescriptor);
     }
@@ -72,7 +72,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * If {@code members} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Member>} containing zero Members.
      */
-    private Optional<Set<Member>> parseMembersForEdit(Collection<String> members) throws ParseException {
+    private Optional<Set<Member>> parseMembersForAdd(Collection<String> members) throws ParseException {
         requireNonNull(members);
 
         if (members.isEmpty()) {

@@ -23,8 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.DuplicatedTaskException;
 import seedu.address.logic.commands.exceptions.IllegalTaskIndexException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Member;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.member.Member;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Note;
@@ -47,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NOTE + "NOTE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]..."
-            + "[" + PREFIX_MEMBER + "TAG]...\n"
+            + "[" + PREFIX_MEMBER + "MEMBER]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Finalise features "
             + PREFIX_PRIORITY + "high";
@@ -142,7 +141,6 @@ public class EditCommand extends Command {
         private Note note;
         private Deadline deadline;
         private Priority priority;
-        private Set<Tag> tags;
         private Set<Member> members;
 
         public EditTaskDescriptor() {
@@ -150,12 +148,11 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code members} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setDescription(toCopy.description);
             setNote(toCopy.note);
-            setTags(toCopy.tags);
             setDeadline(toCopy.deadline);
             setPriority(toCopy.priority);
             setMembers(toCopy.members);
@@ -165,7 +162,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, note, tags, deadline, priority, members);
+            return CollectionUtil.isAnyNonNull(description, note, deadline, priority, members);
         }
 
         public void setNote(Note note) {
@@ -199,24 +196,6 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return Optional.ofNullable(tags).map(x -> Collections.unmodifiableSet(tags));
-        }
-
-
-        /**
          * Sets {@code members} to this object's {@code members}.
          * A defensive copy of {@code members} is used internally.
          */
@@ -247,7 +226,6 @@ public class EditCommand extends Command {
             EditTaskDescriptor otherEditTaskDescriptor = (EditTaskDescriptor) other;
             return Objects.equals(description, otherEditTaskDescriptor.description)
                     && Objects.equals(note, otherEditTaskDescriptor.note)
-                    && Objects.equals(tags, otherEditTaskDescriptor.tags)
                     && Objects.equals(deadline, otherEditTaskDescriptor.deadline)
                     && Objects.equals(priority, otherEditTaskDescriptor.priority)
                     && Objects.equals(members, otherEditTaskDescriptor.members);
@@ -258,7 +236,6 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("description", description)
                     .add("note", note)
-                    .add("tags", tags)
                     .add("deadline", deadline)
                     .add("priority", priority)
                     .add("members", members)

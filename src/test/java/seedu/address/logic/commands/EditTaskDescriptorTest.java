@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_DG;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_UG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_UG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_UG;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,28 +18,29 @@ public class EditTaskDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditTaskDescriptor descriptorWithSameValues = new EditTaskDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditTaskDescriptor descriptorWithSameValues = new EditTaskDescriptor(DESC_DG);
+        assertTrue(DESC_DG.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_DG.equals(DESC_DG));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_DG.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_DG.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_DG.equals(DESC_UG));
 
         // different name -> returns false
-        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDescription(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditTaskDescriptor editedDG = new EditTaskDescriptorBuilder(DESC_DG).withDescription(VALID_DESC_UG)
+                .build();
+        assertFalse(DESC_DG.equals(editedDG));
 
-        // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withMembers(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different members -> returns false
+        editedDG = new EditTaskDescriptorBuilder(DESC_DG).withMembers(VALID_MEMBER_UG).build();
+        assertFalse(DESC_DG.equals(editedDG));
     }
 
     @Test
@@ -47,8 +48,7 @@ public class EditTaskDescriptorTest {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         String expected = EditTaskDescriptor.class.getCanonicalName() + "{description="
                 + editTaskDescriptor.getDescription().orElse(null) + ", note="
-                + editTaskDescriptor.getNote().orElse(null) + ", tags="
-                + editTaskDescriptor.getTags().orElse(null) + ", deadline="
+                + editTaskDescriptor.getNote().orElse(null) + ", deadline="
                 + editTaskDescriptor.getDeadline().orElse(null) + ", priority="
                 + editTaskDescriptor.getPriority().orElse(null) + ", members="
                 + editTaskDescriptor.getMembers().orElse(null) + "}";

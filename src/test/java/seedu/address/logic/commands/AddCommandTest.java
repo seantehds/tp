@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -106,12 +105,10 @@ public class AddCommandTest {
         assertFalse(addUserGuideCommand.equals(addDeveloperGuideCommand));
     }
 
-    @Disabled ("This test is disabled while we are trying to fix the issue")
     @Test
     public void toStringMethod() {
-
         AddCommand addCommand = new AddCommand(desc);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + addCommand + "}";
+        String expected = AddCommand.class.getCanonicalName() + "{desc=" + addCommand.getDesc() + "}";
         assertEquals(expected, addCommand.toString());
     }
 

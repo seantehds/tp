@@ -3,9 +3,9 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.FIX_BUG;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskWise;
 
 import java.util.Arrays;
@@ -23,69 +23,69 @@ import seedu.address.testutil.TaskBuilder;
 
 public class TaskWiseTest {
 
-    private final TaskWise addressBook = new TaskWise();
+    private final TaskWise taskWise = new TaskWise();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getTaskList());
+        assertEquals(Collections.emptyList(), taskWise.getTaskList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> taskWise.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyTaskWise_replacesData() {
         TaskWise newData = getTypicalTaskWise();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        taskWise.resetData(newData);
+        assertEquals(newData, taskWise);
     }
 
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(FIX_BUG).withMembers(VALID_MEMBER_DG)
                 .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        List<Task> newTasks = Arrays.asList(FIX_BUG, editedAlice);
         TaskWiseStub newData = new TaskWiseStub(newTasks);
 
-        assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTaskException.class, () -> taskWise.resetData(newData));
     }
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTask(null));
+        assertThrows(NullPointerException.class, () -> taskWise.hasTask(null));
     }
 
     @Test
     public void hasTask_taskNotInTaskWise_returnsFalse() {
-        assertFalse(addressBook.hasTask(ALICE));
+        assertFalse(taskWise.hasTask(FIX_BUG));
     }
 
     @Test
     public void hasTask_taskInTaskWise_returnsTrue() {
-        addressBook.addTask(ALICE);
-        assertTrue(addressBook.hasTask(ALICE));
+        taskWise.addTask(FIX_BUG);
+        assertTrue(taskWise.hasTask(FIX_BUG));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskWise_returnsTrue() {
-        addressBook.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withMembers(VALID_TAG_HUSBAND)
+        taskWise.addTask(FIX_BUG);
+        Task editedAlice = new TaskBuilder(FIX_BUG).withMembers(VALID_MEMBER_DG)
                 .build();
-        assertTrue(addressBook.hasTask(editedAlice));
+        assertTrue(taskWise.hasTask(editedAlice));
     }
 
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTaskList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taskWise.getTaskList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = TaskWise.class.getCanonicalName() + "{tasks=" + addressBook.getTaskList() + "}";
-        assertEquals(expected, addressBook.toString());
+        String expected = TaskWise.class.getCanonicalName() + "{tasks=" + taskWise.getTaskList() + "}";
+        assertEquals(expected, taskWise.toString());
     }
 
     /**

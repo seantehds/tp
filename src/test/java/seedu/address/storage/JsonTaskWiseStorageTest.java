@@ -3,9 +3,9 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
-import static seedu.address.testutil.TypicalTasks.HOON;
-import static seedu.address.testutil.TypicalTasks.IDA;
+import static seedu.address.testutil.TypicalTasks.FIX_BUG;
+import static seedu.address.testutil.TypicalTasks.TASK_ONE;
+import static seedu.address.testutil.TypicalTasks.TASK_TWO;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskWise;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonTaskWiseStorageTest {
         assertEquals(original, new TaskWise(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTask(HOON);
-        original.removeTask(ALICE);
+        original.addTask(TASK_ONE);
+        original.removeTask(FIX_BUG);
         jsonTaskWiseStorage.saveTaskWise(original, filePath);
         readBack = jsonTaskWiseStorage.readTaskWise(filePath).get();
         assertEquals(original, new TaskWise(readBack));
 
         // Save and read without specifying file path
-        original.addTask(IDA);
+        original.addTask(TASK_TWO);
         jsonTaskWiseStorage.saveTaskWise(original); // file path not specified
         readBack = jsonTaskWiseStorage.readTaskWise().get(); // file path not specified
         assertEquals(original, new TaskWise(readBack));
