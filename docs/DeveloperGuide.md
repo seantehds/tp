@@ -5,7 +5,7 @@ title: Developer Guide
 
 Welcome to the TaskWise Developer Guide!
 
-## Content
+## Table of Contents
 
 - [Acknowledgements](#acknowledgements)
 - [Introduction](#introduction)
