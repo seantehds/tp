@@ -31,7 +31,7 @@ public class ParserUtil {
             + "starting from 1!";
     private static final String SPLIT_WHITESPACE = " ";
     private static final String SPLIT_DATE = "\\/|-";
-    private static final String SPLIT_TIME ="-|:";
+    private static final String SPLIT_TIME = "-|:";
     private static final String REGEX_TIME = "\\d{4}";
     private static final String DEFAULT_TIME = "T00:00:00";
 
