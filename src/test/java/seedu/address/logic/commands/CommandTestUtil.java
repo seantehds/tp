@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskWise;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -28,8 +31,12 @@ public class CommandTestUtil {
     public static final String VALID_DESC_DG = "Developer Guide";
     public static final String VALID_DESC_UG = "User Guide";
     public static final String VALID_DESC_TEST = "test";
-    public static final String VALID_DEADLINE_DG = "14-11-2023 23:59";
-    public static final String VALID_DEADLINE_UG = "14-11-2023";
+    public static final String VALID_DEADLINE_DG_STRING = "14-11-2023 23:59";
+    public static final Deadline VALID_DEADLINE_DG_DEADLINE = Deadline.of(
+            LocalDateTime.parse("2023-11-14T23:59:00"));
+    public static final String VALID_DEADLINE_UG_STRING = "14-11-2023";
+    public static final Deadline VALID_DEADLINE_UG_DEADLINE = Deadline.of(
+            LocalDateTime.parse("2023-11-14T00:00:00"));
     public static final String VALID_PRIORITY_DG = "high";
     public static final String VALID_PRIORITY_UG = "medium";
     public static final String VALID_NOTE_DG = "Ensure diagrams are correct";
@@ -40,18 +47,19 @@ public class CommandTestUtil {
     public static final String TASK_DESC_DG = " " + PREFIX_DESCRIPTION + VALID_DESC_DG;
     public static final String TASK_DESC_UG = " " + PREFIX_DESCRIPTION + VALID_DESC_UG;
     public static final String TASK_DESC_TEST = " " + PREFIX_DESCRIPTION + VALID_DESC_TEST;
-    public static final String DEADLINE_DESC_DG = " " + PREFIX_DEADLINE + VALID_DEADLINE_DG;
-    public static final String DEADLINE_DESC_UG = " " + PREFIX_DEADLINE + VALID_DEADLINE_UG;
+    public static final String DEADLINE_DESC_DG = " " + PREFIX_DEADLINE + VALID_DEADLINE_DG_STRING;
+    public static final String DEADLINE_DESC_UG = " " + PREFIX_DEADLINE + VALID_DEADLINE_UG_STRING;
     public static final String PRIORITY_DESC_DG = " " + PREFIX_PRIORITY + VALID_PRIORITY_DG;
     public static final String PRIORITY_DESC_UG = " " + PREFIX_PRIORITY + VALID_PRIORITY_UG;
     public static final String MEMBER_DESC_DG = " " + PREFIX_MEMBER + VALID_MEMBER_DG;
     public static final String MEMBER_DESC_UG = " " + PREFIX_MEMBER + VALID_MEMBER_UG;
+    public static final String NOTE_DESC_DG = " " + PREFIX_NOTE + VALID_NOTE_DG;
     public static final String INVALID_TASK_DESC = " " + PREFIX_DESCRIPTION + "Invalid Task/";
     // '/' not allowed in descriptions
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2-2-2023";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "hii";
     public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "/";
-
+    // '/' not allowed in members
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

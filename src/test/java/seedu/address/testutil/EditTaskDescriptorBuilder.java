@@ -6,7 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.member.Member;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Note;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
 /**
@@ -34,6 +37,15 @@ public class EditTaskDescriptorBuilder {
         descriptor.setMembers(task.getMembers());
     }
 
+
+    /**
+     * Sets the {@code deadline} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withDeadline(Deadline deadline) {
+        descriptor.setDeadline(deadline);
+        return this;
+    }
+
     /**
      * Sets the {@code Name} of the {@code EditTaskDescriptor} that we are building.
      */
@@ -50,6 +62,23 @@ public class EditTaskDescriptorBuilder {
         Set<Member> memberSet = Stream.of(members).map(Member::new).collect(Collectors.toSet());
 
         descriptor.setMembers(memberSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code note} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withNote(String note) {
+        descriptor.setNote(new Note(note));
+        return this;
+    }
+
+
+    /**
+     * Sets the {@code priority} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withPriority(Priority priority) {
+        descriptor.setPriority(priority);
         return this;
     }
 
