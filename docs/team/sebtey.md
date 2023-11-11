@@ -55,4 +55,4 @@ Given below are my contributions to the project.
   * Suggests possible alternatives to code, ensuring codebase is adhering to software engineering principles
 
 * **Contributions to community:**
-  * PRs Reviewed (with non-trivial comments): [#127](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/127)
+  * PRs Reviewed (with non-trivial comments): [#127](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/127), [#213](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/213)
