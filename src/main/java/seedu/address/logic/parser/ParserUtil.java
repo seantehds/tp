@@ -31,7 +31,9 @@ public class ParserUtil {
             + "starting from 1!";
     private static final String SPLIT_WHITESPACE = " ";
     private static final String SPLIT_DATE = "\\/|-";
+    private static final String SPLIT_TIME ="-|:";
     private static final String REGEX_TIME = "\\d{4}";
+    private static final String DEFAULT_TIME = "T00:00:00";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -114,7 +116,7 @@ public class ParserUtil {
 
         String[] parsedTime = isMatchingRegex
                 ? new String[]{dateTimeSplit[1].substring(0, 2), dateTimeSplit[1].substring(2, 4)}
-                : dateTimeSplit[1].split("-|:");
+                : dateTimeSplit[1].split(SPLIT_TIME);
         if (parsedDate[1].length() < 2 || parsedDate[0].length() < 2
                 || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
             throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
@@ -144,7 +146,7 @@ public class ParserUtil {
         } catch (DateTimeException e) {
             throw new IllegalArgumentException(Deadline.INVALID_DATE);
         }
-        return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
+        return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + DEFAULT_TIME));
     }
 
     /**
