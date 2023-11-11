@@ -15,7 +15,7 @@ Here's a quick summary of what TaskWise can do for you:
 * Add useful information like deadlines and priorities to each of your tasks!
 * Reorder the tasks within the list at will to meet your needs!
 
-## Table of Contentss
+## Table of Contents
 
 - [Introduction](#introduction)
   - [Usage of User Guide](#usage-of-user-guide)
