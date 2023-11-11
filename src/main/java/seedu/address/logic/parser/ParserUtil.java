@@ -29,8 +29,9 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "The index you enter in should be a positive number "
             + "starting from 1!";
-    public static final String LEAP_DAY = "29";
-    public static final String FEBRUARY = "02";
+    private static final String SPLIT_WHITESPACE = " ";
+    private static final String SPLIT_DATE = "\\/|-";
+    private static final String REGEX_TIME = "\\d{4}";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -106,9 +107,9 @@ public class ParserUtil {
         //@@author asdfghjkxd-reused
         // Regex strings are reused with major modification from ChatGPT, and is built and tested with
         // https://regex101.com/.
-        String[] dateTimeSplit = deadline.split(" ");
-        String[] parsedDate = dateTimeSplit[0].split("\\/|-");
-        boolean isMatchingRegex = Pattern.matches("\\d{4}", dateTimeSplit[1]);
+        String[] dateTimeSplit = deadline.split(SPLIT_WHITESPACE);
+        String[] parsedDate = dateTimeSplit[0].split(SPLIT_DATE);
+        boolean isMatchingRegex = Pattern.matches(REGEX_TIME, dateTimeSplit[1]);
         //@@author
 
         String[] parsedTime = isMatchingRegex
@@ -118,7 +119,6 @@ public class ParserUtil {
                 || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
             throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        LocalDate dateOnly = LocalDate.now();
         try {
             LocalDate.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0]);
         } catch (DateTimeException e) {
@@ -135,11 +135,10 @@ public class ParserUtil {
      * @throws IllegalArgumentException
      */
     public static Deadline parseDate(String deadline) throws IllegalArgumentException {
-        String[] date = deadline.split("\\/|-");
+        String[] date = deadline.split(SPLIT_DATE);
         if (date[1].length() < 2 || date[0].length() < 2) {
             throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        LocalDate dateOnly = LocalDate.now();
         try {
             LocalDate.parse(date[2] + "-" + date[1] + "-" + date[0]);
         } catch (DateTimeException e) {
