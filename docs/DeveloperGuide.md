@@ -36,6 +36,7 @@ Welcome to the TaskWise Developer Guide!
     - [Delete Feature](#delete-feature)
     - [Clear Feature](#clear-feature)
 - [Documentation, Logging, Testing, Configuration and DevOps](#documentation-logging-testing-configuration-and-devops)
+- [Glossary](#glossary)
 - [Appendix: Requirements](#appendix-requirements)
     - [Product Scope](#product-scope)
         - [Value Proposition](#value-proposition)
@@ -43,7 +44,6 @@ Welcome to the TaskWise Developer Guide!
     - [User Stories](#user-stories)
     - [Use Cases](#use-cases)
     - [Non-Functional Requirements](#non-functional-requirements)
-    - [Glossary](#glossary)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
     - [Adding Tasks With the Same Description and Different Other Parameters](#adding-tasks-with-the-same-description-and-different-other-parameters)
     - [Better Clarity Regarding Deadlines That Have Passed](#better-clarity-regarding-deadlines-that-have-passed)
@@ -400,7 +400,7 @@ The process is given as such:
 4. The created `AddCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `AddCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `AddCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `AddCommand` object.
-    1. `AddCommand` will then call its `createAddedTask(AddTaskDescriptor)` method which will create a new instance of `Task` with the given inputs.
+    1. `AddCommand` will then call its `createAddedTask(AddTaskDescriptor)` method which will create a new instance of `Task` with the given inputs. The instance of `Task` has been omitted from the sequence diagram above, for simplicity sake.
     2. After which, it will add the newly created `Task` into the task list using the `addTask(task)`.
     3. If the addition is successful, a new `CommandResult` object is then created and returned to the caller of the `AddCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `AddCommand` and parses it.
@@ -430,7 +430,7 @@ The process is given as such:
 4. The created `MarkCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `MarkCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `MarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `MarkCommand` object.
-    1. `MarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated completed status.
+    1. `MarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated completed status. The instance of `Task` has been omitted from the sequence diagram above, for simplicity sake.
     2. If the existing `Task` is already marked as completed, an exception is thrown to inform the user that they are attempting to `mark` a `Task` already marked as completed.
     3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `MarkCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
@@ -456,7 +456,7 @@ The process is given as such:
 4. The created `UnmarkCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `UnmarkCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `UnmarkCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `UnmarkCommand` object.
-    1. `UnmarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated incomplete status.
+    1. `UnmarkCommand` will then call the `setTask()` method on `Model`, which will in turn call the `setTask()` method on `TaskWise`, replacing the old `Task` with a new instance of the `Task` with an updated incomplete status. The instance of `Task` has been omitted from the sequence diagram above, for simplicity sake.
     2. If the existing `Task` is already marked as incomplete, an exception is thrown to inform the user that they are attempting to `unmark` a `Task` already marked as incomplete.
     3. If the marking of the `Task` is successful, a new `CommandResult` object is then created and returned to the caller of the `UnmarkCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `MarkCommand` and parses it.
@@ -488,7 +488,7 @@ The process is given as such:
 5. If the parse is successful, a new instance of `EditCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `EditCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `EditCommand` object.
     1. `EditCommand` will then call the `getFilteredTaskList()` method on `Model`, retrieving the filtered task lists before calling the `get(Index)` method on the task lists to retrieve the task to edit.
-    2. `EditCommand` will then call its `createEditedTask(Task, EditTaskDescriptor)` method which will create a new instance of `Task` with the updated set of members.
+    2. `EditCommand` will then call its `createEditedTask(Task, EditTaskDescriptor)` method which will create a new instance of `Task` with the updated set of members. The instance of `Task` has been omitted from the sequence diagram above, for simplicity sake.
     3.  After which, it will replace the old `Task` with the new instance of `Task` in the task list.
     4. If the edit is successful, a new `CommandResult` object is then created and returned to the caller of the `EditCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `EditCommand` and parses it
@@ -583,7 +583,7 @@ The process is given as such:
 4. The created `NoteCommandParser` then parses the parameters of the command via the `parse()` method.
 5. If the parse is successful, a new instance of `NoteCommand` with the relevant parsed parameters is created and returned to the caller.
 6. The `NoteCommand` object is then returned back to `LogicManager`, which invokes the `execute()` method of the `NoteCommand` object.
-    1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turn invokes the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note.
+    1. Then, `NoteCommand` invokes the `setTask()` method on `Model`, which in turn invokes the `setTask()` method on `TaskWise`, replacing the old Task with a new instance of the Task with the Note. The instance of `Task` has been omitted from the sequence diagram above, for simplicity sake.
     2. A new `CommandResult` object detailing the success of the `note` command is then created and returned to the caller of the `NoteCommand::execute()` method.
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `NoteCommand` and parses it.
 8. The execution of `NoteCommand` terminates.
@@ -713,6 +713,25 @@ The process is given as such:
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+# Glossary
+
+* **Argument**: A word or number or a sequence of words or numbers that represent.
+* **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing commands.
+* **Command**: A sequence of words that represents an action that TaskWise can understand and execute.
+* **Deadline**: A class that represents the date that the task needs to be completed by.
+* **Field/Parameter**: Refers to the `Status`, `Deadline`, `Priority`, `Description`, `Member` of a Task.
+* **GUI**: A Graphical User Interface is a visual interface where users can interact with the software through on-screen elements like buttons and windows.
+* **JAR**: A file that contains all the resources needed for TaskWise to run.
+* **Java**: A general-purpose programming language on which TextWise is built.
+* **Member**: A class that represents the name of the project's group member(s).
+* **Note**: A class that represents the additional string of information that you want to attach to a task
+* **Priority**: A class that represents the priority level of the task.
+* **Sort Order**: The ascending or descending order to sort the task list by
+* **Sort Type**: The fields within Task used to sort the task list by
+* **Status**: A class that represents whether a task is completed or not.
+* **System**: The TaskWise program.
+* **Task**: A Task is a completable objective with or without a deadline.
 
 # Appendix: Requirements
 
@@ -1127,25 +1146,6 @@ Use case ends.
 2. A user should be able to accomplish all the tasks using commands rather than using a mouse.
 3. The size of the JAR file should not be larger than 100 MB.
 4. TaskWise should work without Internet connectivity.
-
-## Glossary
-
-* **Argument**: A word or number or a sequence of words or numbers that represent.
-* **CLI**: A Command Line Interface is a text-based interface where users can interact with the software by typing commands.
-* **Command**: A sequence of words that represents an action that TaskWise can understand and execute.
-* **Deadline**: A class that represents the date that the task needs to be completed by.
-* **Field**: Refers to the `Status`, `Deadline`, `Priority`, `Description`, `Member` of a Task.
-* **GUI**: A Graphical User Interface is a visual interface where users can interact with the software through on-screen elements like buttons and windows.
-* **JAR**: A file that contains all the resources needed for TaskWise to run.
-* **Java**: A general-purpose programming language on which TextWise is built.
-* **Member**: A class that represents the name of the project's group member(s).
-* **Note**: A class that represents the additional string of information that you want to attach to a task
-* **Priority**: A class that represents the priority level of the task.
-* **Sort Order**: The ascending or descending order to sort the task list by
-* **Sort Type**: The fields within Task used to sort the task list by
-* **Status**: A class that represents whether a task is completed or not.
-* **System**: The TaskWise program.
-* **Task**: A Task is a completable objective with or without a deadline.
 
 # Appendix: Planned Enhancements
 
