@@ -1156,7 +1156,7 @@ However, there may be instances where users would want to add tasks with the sam
 
 We propose that in the near future, tasks with the same description with at least a different deadline, priority, status or member(s) can be added to TaskWise. This would allow for more convenience for the users, as they can create tasks with the same description, as long as their other fields are different.
 
-For example, the user has the task`CS2103T Meeting` with a deadline of `10-20-2023` in the task list. Then, they can still add another task with the same description `CS2103T Meeting` with a different deadline of `20-20-2023`.
+For example, the user has the task`CS2103T Meeting` with a deadline of `10-10-2023` in the task list. Then, they can still add another task with the same description `CS2103T Meeting` with a different deadline of `11-11-2023`.
 
 ## Better Clarity Regarding Deadlines That Have Passed
 
