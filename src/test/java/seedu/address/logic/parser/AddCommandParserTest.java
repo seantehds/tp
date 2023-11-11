@@ -10,17 +10,22 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_UG;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_UG;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_TEST;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_UG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_UG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_UG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalTasks.TASK_DG;
+import static seedu.address.testutil.TypicalTasks.TASK_UG;
 import static seedu.address.testutil.TypicalTasks.TEST;
 
 import org.junit.jupiter.api.AfterEach;
@@ -53,19 +58,28 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsPresent_success() {
-    //        //TODO test will be fixed with PR merge with feature-add-command-for-deadline
-    //        Task expectedTask = new TaskBuilder(TASK_DG).withMembers(VALID_MEMBER_UG).build();
-    //
-    //        // whitespace only preamble
-    //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASK_DESC_TEST, new AddCommand(desc));
+    public void parse_allFieldsPresentSingleMember_success() {
+        Task expectedTask = new TaskBuilder(TASK_DG).withMembers(VALID_MEMBER_DG).withNote("").build();
 
-        // multiple tags - all accepted
-        //Task expectedTaskMultipleMembers = new TaskBuilder(BOB).withMembers(VALID_MEMBER_CHARLIE, VALID_MEMBER_DAVID)
-        //        .build();
-        //assertParseSuccess(parser,
-        //        NAME_DESC_BOB + MEMBER_DESC_DAVID + MEMBER_DESC_CHARLIE,
-        //        new AddCommand(expectedTaskMultipleMembers));
+        setUpDesc(expectedTask);
+
+        // whitespace only preamble
+        assertParseSuccess(parser,
+                PREAMBLE_WHITESPACE + TASK_DESC_DG + PRIORITY_DESC_DG + MEMBER_DESC_DG,
+                new AddCommand(desc));
+    }
+
+    @Test
+    public void parse_allFieldsPresentMultipleMember_success() {
+        //multiple members - all accepted //TODO
+        Task expectedTask = new TaskBuilder(TASK_UG).withMembers(VALID_MEMBER_DG, VALID_MEMBER_UG).withNote("")
+                .build();
+
+        setUpDesc(expectedTask);
+
+        assertParseSuccess(parser,
+                TASK_DESC_UG + MEMBER_DESC_DG + MEMBER_DESC_UG + PRIORITY_DESC_UG,
+                new AddCommand(desc));
     }
 
     @Test
