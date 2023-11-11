@@ -359,7 +359,7 @@ ANY character is allowed, except for blanks and `/`.
 <div markdown="span" class="alert alert-warning">
 :warning: Due to the current limitations of the features provided in TaskWise in regard to the capitalisation of Task Description, you are encouraged to be consistent with the capitalisation of your Task Descriptions of the Tasks that you create!
 <br/><br/>
-Refer to [this](#case---insensitive-sort) section for more information on this issue! Rest assured that we are working hard to improve your user experience, and we appreciate your patience on this issue while we work on an appropriate fix for this issue!
+Refer to <a href="https://ay2324s1-cs2103t-t17-1.github.io/tp/UserGuide.html#case-insensitive-ordering-of-members">this</a> section for more information on this issue! Rest assured that we are working hard to improve your user experience, and we appreciate your patience on this issue while we work on an appropriate fix for this issue!
 </div>
 
 **DEADLINE**
@@ -398,7 +398,7 @@ This is the last optional field of the `add` command. You can assign 1 or more m
 <div markdown="span" class="alert alert-warning">
 :warning: By default, the list of members added is also sorted using the same algorithm that is used to sort the tasks by Task Description! You are advised to be consistent in your use of capitalisation in the name of the members you add to your task!
 <br/><br/>
-Refer to [this](#case---insensitive-ordering-of-members) section for more information on this issue! Rest assured that we are working hard on fixing this issue to make your TaskWise experience a more enjoyable and productive one!
+Refer to <a href="https://ay2324s1-cs2103t-t17-1.github.io/tp/UserGuide.html#case-insensitive-ordering-of-members">this</a> section for more information on this issue! Rest assured that we are working hard on fixing this issue to make your TaskWise experience a more enjoyable and productive one!
 </div>
 
 **Examples of correct usage**
@@ -588,7 +588,7 @@ ANY character is allowed, except for blanks and `/`.
 <div markdown="span" class="alert alert-warning">
 :warning: Due to the current limitations of the features provided in TaskWise in regard to the capitalisation of Task Description, you are encouraged to be consistent with the capitalisation of your Task Descriptions of the Tasks that you create!
 <br/><br/>
-Refer to [this](#case---insensitive-sort) section for more information on this issue! Rest assured that we are working hard to improve your user experience, and we appreciate your patience on this issue while we work on an appropriate fix for this issue!
+Refer to <a href="https://ay2324s1-cs2103t-t17-1.github.io/tp/UserGuide.html#case-insensitive-sort">this</a> section for more information on this issue! Rest assured that we are working hard to improve your user experience, and we appreciate your patience on this issue while we work on an appropriate fix for this issue!
 </div>
 
 **DEADLINE**
@@ -629,7 +629,7 @@ Do note that editing members using this command will overwrite any existing memb
 <div markdown="span" class="alert alert-warning">
 :warning: By default, the edited list of members is also sorted using the same algorithm that is used to sort the tasks by Task Description! You are advised to be consistent in your use of capitalisation in the name of the members you add to your task!
 <br/><br/>
-Refer to [this](#case---insensitive-ordering-of-members) section for more information on this issue! Rest assured that we are working hard on fixing this issue to make your TaskWise experience a more enjoyable and productive one!
+Refer to <a href="https://ay2324s1-cs2103t-t17-1.github.io/tp/UserGuide.html#case-insensitive-ordering-of-members">this</a> section for more information on this issue! Rest assured that we are working hard on fixing this issue to make your TaskWise experience a more enjoyable and productive one!
 </div>
 
 **NOTE**
@@ -657,7 +657,7 @@ This will be what you will see displayed for the following command when you edit
 | ![before](images/user_guide/EditBefore.png) | ![after](images/user_guide/EditAfter.png) |
 
 <div markdown="span" class="alert alert-info">
-:information_source: Unable to view the full description of your task? That may be because the description is way too long! You could fix this by resizing your window to make it bigger, clicking on the task of interest to view it on the side panel, or using the [`view` command](#view-a-task)!
+:information_source: Unable to view the full description of your task? That may be because the description is way too long! You could fix this by resizing your window to make it bigger, clicking on the task of interest to view it on the side panel, or using the <a href="https://ay2324s1-cs2103t-t17-1.github.io/tp/UserGuide.html#view-a-task"><code>view</code> command</a>!
 </div>
 
 **Common Mistakes**
@@ -1041,6 +1041,7 @@ Currently, our `find` feature only supports finding by description. Apart from t
 
 Furthermore, we could also allow you to combine different attributes in your find command. For example:
 `find t/meeting n/check rubrics m/george`
+
 
 ## Case-insensitive Sort
 
