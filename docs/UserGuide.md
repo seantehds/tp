@@ -15,7 +15,7 @@ Here's a quick summary of what TaskWise can do for you:
 * Add useful information like deadlines and priorities to each of your tasks!
 * Reorder the tasks within the list at will to meet your needs!
 
-## Table of Content
+## Table of Contents
 
 - [Introduction](#introduction)
   - [Usage of User Guide](#usage-of-user-guide)
@@ -57,7 +57,7 @@ We've all been there. It's exam season, and all the project deadlines are coming
 
 TaskWise has a variety of features to help you do exactly just that! Download and install TaskWise today to start effortlessly managing your team's workload!
 
-[[Jump to Table of Content]](#table-of-content)
+[[Jump to Table of Contents]](#table-of-contents)
 
 ## Usage of User Guide
 
@@ -138,7 +138,7 @@ If you have done everything correctly, you should see the TaskWise application o
 
 If you have reached this point in the User Guide, congratulations! You are now one step closer to being a proficient TaskWise wizard!
 
-[[Jump to Table of Content]](#table-of-content)
+[[Jump to Table of Contents]](#table-of-contents)
 
 # GUI Interface
 
@@ -159,7 +159,7 @@ Here is a short description of what each component can do and how it is supposed
 
 Now that you have learnt the different components of the GUI/CLI interface which you will interact with TaskWise through, let us move on to a tutorial on how you can get up and running on TaskWise!
 
-[[Jump to Table of Content]](#table-of-content)
+[[Jump to Table of Contents]](#table-of-contents)
 
 # Tutorial
 
@@ -169,7 +169,7 @@ Feeling overwhelmed? Fret not, for TaskWise is here to the rescue!
 
 We shall now take you through the process of how you can start your project management journey with TaskWise, by adding your first task to TaskWise!
 
-[[Jump to Table of Content]](#Table-of-Content)
+[[Jump to Table of Contents]](#Table-of-Contents)
 
 
 ## Adding Your First Task
@@ -246,7 +246,7 @@ Looking for a more detailed explanation of what commands TaskWise can understand
 
 Otherwise, read on to find out more about the features that TaskWise offers!
 
-[[Jump to Table of Content]](#table-of-content)
+[[Jump to Table of Contents]](#table-of-contents)
 
 ## Prefixes
 
@@ -1140,4 +1140,4 @@ For example, if there are `10` items in your task list, then make sure that you 
 
 Decimal point numbers such as `1.0`, while not exactly wrong, are also not recognised by TaskWise!
 
-[[Jump to Table of Content]](#table-of-content)
+[[Jump to Table of Contents]](#table-of-contents)

@@ -5,7 +5,7 @@ title: Developer Guide
 
 Welcome to the TaskWise Developer Guide!
 
-## Content
+## Table of Contents
 
 - [Acknowledgements](#acknowledgements)
 - [Introduction](#introduction)
@@ -24,7 +24,7 @@ Welcome to the TaskWise Developer Guide!
     - [Unmark Feature](#unmark-feature)
     - [Edit Feature](#edit-feature)
         - [Updating Deadlines of Existing Tasks](#updating-deadlines-of-existing-tasks)
-        - [Updating Description of Exisitng Tasks](#updating-description-of-existing-tasks)
+        - [Updating Description of Existing Tasks](#updating-description-of-existing-tasks)
         - [Updating Priority of Existing Tasks](#updating-priority-of-existing-tasks)
         - [Updating Members of Existing Tasks](#updating-members-of-existing-tasks)
         - [Updating Note of Existing Tasks](#updating-note-of-existing-tasks)
