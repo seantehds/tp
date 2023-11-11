@@ -60,6 +60,8 @@ Given below are my contributions to the project.
   * Added planned enhancements to the checking and adding of deadlines.
 * **Developer Guide**: 
   * Added documentation on the Mark, Unmark, Find and List command.
+  * Added corresponding UML diagrams for these commands. 
+  * Added documentation on the Deadline class.
   * Added planned enhancements to the checking and adding of deadlines.
 
 ### Contribution to team-based tasks:
