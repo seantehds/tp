@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,6 +29,11 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "The index you enter in should be a positive number "
             + "starting from 1!";
+    private static final String SPLIT_WHITESPACE = " ";
+    private static final String SPLIT_DATE = "\\/|-";
+    private static final String SPLIT_TIME = "-|:";
+    private static final String REGEX_TIME = "\\d{4}";
+    private static final String DEFAULT_TIME = "T00:00:00";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -84,32 +91,62 @@ public class ParserUtil {
 
         deadline = deadline.strip();
         if (Deadline.isValidDateTime(deadline)) {
-            //@@author asdfghjkxd-reused
-            // Regex strings are reused with major modification from ChatGPT, and is built and tested with
-            // https://regex101.com/.
-            String[] dateTimeSplit = deadline.split(" ");
-            String[] parsedDate = dateTimeSplit[0].split("\\/|-");
-            boolean isMatchingRegex = Pattern.matches("\\d{4}", dateTimeSplit[1]);
-            //@@author
-
-            String[] parsedTime = isMatchingRegex
-                    ? new String[]{dateTimeSplit[1].substring(0, 2), dateTimeSplit[1].substring(2, 4)}
-                    : dateTimeSplit[1].split("-|:");
-            if (parsedDate[1].length() < 2 || parsedDate[0].length() < 2
-                    || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
-                throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
-            }
-            return Deadline.of(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
-                    + parsedTime[0] + ":" + parsedTime[1] + ":00"));
+            return parseDateTime(deadline);
         } else if (Deadline.isValidDate(deadline)) {
-            String[] date = deadline.split("\\/|-");
-            if (date[1].length() < 2 || date[0].length() < 2) {
-                throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
-            }
-            return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + "T00:00:00"));
+            return parseDate(deadline);
         }
 
         throw new IllegalArgumentException(Deadline.INVALID_DATE);
+    }
+
+    /**
+     * Parses a {@code String deadline} specified to be in a date and time format into a {@code Deadline}.
+     * @param deadline
+     * @return A Deadline with the specified date and time
+     * @throws IllegalArgumentException
+     */
+    public static Deadline parseDateTime(String deadline) throws IllegalArgumentException {
+        //@@author asdfghjkxd-reused
+        // Regex strings are reused with major modification from ChatGPT, and is built and tested with
+        // https://regex101.com/.
+        String[] dateTimeSplit = deadline.split(SPLIT_WHITESPACE);
+        String[] parsedDate = dateTimeSplit[0].split(SPLIT_DATE);
+        boolean isMatchingRegex = Pattern.matches(REGEX_TIME, dateTimeSplit[1]);
+        //@@author
+
+        String[] parsedTime = isMatchingRegex
+                ? new String[]{dateTimeSplit[1].substring(0, 2), dateTimeSplit[1].substring(2, 4)}
+                : dateTimeSplit[1].split(SPLIT_TIME);
+        if (parsedDate[1].length() < 2 || parsedDate[0].length() < 2
+                || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
+            throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            LocalDate.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0]);
+        } catch (DateTimeException e) {
+            throw new IllegalArgumentException(Deadline.INVALID_DATE);
+        }
+        return Deadline.of(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
+                + parsedTime[0] + ":" + parsedTime[1] + ":00"));
+    }
+
+    /**
+     * Parses a {@code String deadline} specified to be in a date only format into a {@code Deadline}.
+     * @param deadline
+     * @return A Deadline with the specified date and time
+     * @throws IllegalArgumentException
+     */
+    public static Deadline parseDate(String deadline) throws IllegalArgumentException {
+        String[] date = deadline.split(SPLIT_DATE);
+        if (date[1].length() < 2 || date[0].length() < 2) {
+            throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            LocalDate.parse(date[2] + "-" + date[1] + "-" + date[0]);
+        } catch (DateTimeException e) {
+            throw new IllegalArgumentException(Deadline.INVALID_DATE);
+        }
+        return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + DEFAULT_TIME));
     }
 
     /**
