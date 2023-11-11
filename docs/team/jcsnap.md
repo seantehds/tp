@@ -18,7 +18,7 @@ Given below are my contributions to the project.
     * Credits: The validation REGEX to check for validity of `note`'s input by user was reused from ChatGPT's
       generated code.
 * New Feature: View
-    * What it does: Displays the complete imformation of the task in the side panel.
+    * What it does: Displays the complete information of the task in the side panel.
     * Justifications: It is useful for the user to see the complete information of the task. It is a cli implementation of "clicking" the task.
     * Highlights: Using esc will clear the side panel with the selected task.
     * Challenge: Since this requires interaction with the UI elements, it is difficult to figure out how to let the UI know which task card is selected.
