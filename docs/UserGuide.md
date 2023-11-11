@@ -169,7 +169,7 @@ Feeling overwhelmed? Fret not, for TaskWise is here to the rescue!
 
 We shall now take you through the process of how you can start your project management journey with TaskWise, by adding your first task to TaskWise!
 
-[[Jump to Table of Contents]](#Table-of-Content)
+[[Jump to Table of Contents]](#Table-of-Contents)
 
 
 ## Adding Your First Task
