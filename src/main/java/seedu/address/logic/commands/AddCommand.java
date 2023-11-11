@@ -38,15 +38,13 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "Oh no! This task already exists in the task list!";
 
-    private final Task toAdd;
-    private AddTaskDescriptor desc;
+    private final AddTaskDescriptor desc;
     /**
      * Creates an AddCommand with the specified {@code AddTaskDescriptor}
      */
     public AddCommand(AddTaskDescriptor desc) {
         requireNonNull(desc);
 
-        toAdd = new Task(new Description("test"));
         this.desc = desc;
     }
 
@@ -80,6 +78,10 @@ public class AddCommand extends Command {
         return new Task(updatedDescription, status, note, updatedDeadline, updatedPriority, members);
     }
 
+    public AddTaskDescriptor getDesc() {
+        return desc;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -98,7 +100,7 @@ public class AddCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
+                .add("desc", desc)
                 .toString();
     }
 
@@ -121,16 +123,6 @@ public class AddCommand extends Command {
             this.members = new HashSet<>();
         }
 
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code members} is used internally.
-         */
-        public AddTaskDescriptor(AddCommand.AddTaskDescriptor toCopy) {
-            setDescription(toCopy.description);
-            setMembers(toCopy.members);
-            setDeadline(toCopy.deadline);
-            setPriority(toCopy.priority);
-        }
         public void setDeadline(Deadline deadline) {
             this.deadline = deadline;
         }
