@@ -5,7 +5,7 @@ title: Teh De Sheng Sean's Project Portfolio Page
 
 ## Project Name: TaskWise
 
-TaskWise is a task management application used by CS2103/T project managers.
+TaskWise is a project management application used by CS2103/T project managers.
 
 The user interacts with it via the Command Line Interface (CLI) and it has a Graphical User
 Interface (GUI) made using JavaFX. It is written in Java, and it has about 13848 LoC.
