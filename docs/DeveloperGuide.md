@@ -54,6 +54,7 @@ Welcome to the TaskWise Developer Guide!
     - [Improve Find Command To Find By Priority, Deadline, Members and Notes](#improve-find-command-to-find-by-priority-deadline-members-and-notes)
     - [Case-insensitive Sort](#case-insensitive-sort)
     - [Case-insensitive Ordering of Members](#case-insensitive-ordering-of-members)
+    - [Unable To Handle Large Indices In User Input](#unable-to-handle-large-indices-in-user-input)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 - [Appendix: Effort](#appendix-effort)
 
@@ -365,6 +366,8 @@ Note that this error differs from [`InsufficientStoragePrivilegeException`](#ins
 Any other Exceptions not mentioned above should not, under most circumstances, be thrown and not be handled by any method within TaskWise, as they will not be caught by TaskWise's internal Exception handling system, leading to the user's application crashing catastrophically.
 
 Developers are recommended to extend the current Exception classes already provided to specify new Exceptions that they would like to handle, rather than throwing any Exceptions directly that are not on the list of pre-approved Exceptions unless there is a legitimate reason to do so.
+
+[[Jump to Table of Contents]](#table-of-contents)
 
 # Implementation
 
@@ -706,6 +709,8 @@ The process is given as such:
 7. `LogicManager` receives the `CommandResult` object returned from the execution of the `ClearCommand` and parses it.
 8. The execution of `ClearCommand` terminates.
 
+[[Jump to Table of Contents]](#table-of-contents)
+
 # Documentation, Logging, Testing, Configuration and DevOps
 
 * [Documentation guide](Documentation.md)
@@ -713,6 +718,8 @@ The process is given as such:
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[[Jump to Table of Contents]](#table-of-contents)
 
 # Glossary
 
@@ -732,6 +739,8 @@ The process is given as such:
 * **Status**: A class that represents whether a task is completed or not.
 * **System**: The TaskWise program.
 * **Task**: A Task is a completable objective with or without a deadline.
+
+[[Jump to Table of Contents]](#table-of-contents)
 
 # Appendix: Requirements
 
@@ -1001,16 +1010,16 @@ Use case ends.
 
 ### UC12: Sort tasks in task list
 
-Actor(s): Project Manager
+Actor(s): Project Manager  
 Guarantees:
-* If the sort is successful, the order of the Tasks on display will be changed(unless the task list is already sorted)
+* If the sort is successful, the order of the Tasks on display will be changed(unless the task list is already sorted).
 * No matter if the order of the task list changes or otherwise, all existing Tasks will be reassigned to the task list
 
 **MSS**
 
 1. User inputs command to sort the task list.
 2. System parses the command and sorts the task list.
-3. Updated task list is [displayed to the user (UC03)](#uc03-view-all-tasks)
+3. Updated task list is [displayed to the user (UC03)](#uc03-view-all-tasks).
 
 Use case ends.
 
@@ -1140,6 +1149,8 @@ Use case ends.
 
 ![overview](images/UseCaseDiagram.png)
 
+[[Jump to Table of Contents]](#table-of-contents)
+
 ## Non-Functional Requirements
 
 1. TaskWise should work on Windows/macOS/Linux as long as the device has `Java 11` or above installed.
@@ -1262,6 +1273,14 @@ While there are no known workarounds for this issue, the current recommendation 
 
 This is not the expected behaviour users might expect after they add their list of members of any Task, and hence we will be changing this behaviour in a future iteration, such that users can define their custom ordering of members on the addition of members.
 
+## Unable To Handle Large Indices In User Input
+
+Currently, TaskWise is unable to handle large indices from the user's input. This is due to the fact that the `Index` class used to represent the indices of the tasks uses an `int` primitive to keep track of its value, which has a maximum value of `2,147,483,647` or `Integer.MAX_VALUE`. As such, any user input that is greater than that value will not result in the correct error message of the task index being invalid, but rather, will result in the error message stating that the command is not recognised.
+
+A proposed fix to this issue would be to change the `Index` class to use `BigInteger` instead of `int`. This would allow for the representation of indices of tasks in the task list to be of any size, and hence, would allow for large indices greater than `Integer.MAX_VALUE` to be handled properly.
+
+[[Jump to Table of Contents]](#table-of-contents)
+
 # Appendix: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
@@ -1337,6 +1356,8 @@ Given below are instructions to test the app manually.
     1. Try to populate the task list with multiple tasks before using typing `clear`.
     2. All the tasks should disappear.
 
+[[Jump to Table of Contents]](#table-of-contents)
+
 # Appendix: Effort
 
 This section attempts to explain the amount of effort that was put into developing our app, TaskWise, using code from the base AddressBook Level 3 program.
@@ -1358,3 +1379,5 @@ Indeed, multiple guidance are set in place to help us kickstart the brownfield p
 ## Achievements
 
 We believe that we made an easy-to-use, simple, and efficient application that we are proud to call our own. For most of us, this is the first project that we have built a project in Java, and we are proud of what we managed to accomplish.
+
+[[Jump to Table of Contents]](#table-of-contents)
