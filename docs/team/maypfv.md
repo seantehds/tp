@@ -8,7 +8,7 @@ title: May's Project Portfolio Page
 TaskWise is a task management application used by CS2103/T project managers.
 
 The user interacts with it via the Command Line Interface (CLI) and it has a Graphical User
-Interface (GUI) made using JavaFX. It is written in Java, and it has about 13848 LoC.
+Interface (GUI) made using JavaFX. It is written in Java, and it has about  LoC.
 
 Given below are my contributions to the project.
 
@@ -16,7 +16,7 @@ Given below are my contributions to the project.
   * **What it does:** Adds a task to the task list.
   * **Justifications:** Allows project managers to be able to add tasks to the list of tasks so that they can
     be tracked easily. I have made **ONLY** the `description` of the task compulsory, since it
-    defines the task and it is our unique identifier. Other parameters of a task such as `deadline`, `priority`,
+    defines the task, and it is our unique identifier. Other parameters of a task such as `deadline`, `priority`,
     `status` and `member` are made optional to be included when using the `add` command, this part was mostly
     implemented by Sean.
   * **Highlights:** The `add` command is extremely easy and intuitive to use, due to its nature of only having 1
@@ -92,5 +92,8 @@ Given below are my contributions to the project.
   * Created the UI mockup
   * Added some issues on the GitHub Project Board for the group
   * Updated UG on behalf of the team to the GitHub repo
+  * Contributed to demo video
+  * Checking of all documentation's links and grammar mistakes
+  * Clean up some test cases and its fields
 * **Review/mentoring contributions:**
   * Reviewed some PRs on GitHub
