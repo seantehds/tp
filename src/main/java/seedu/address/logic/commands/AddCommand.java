@@ -68,6 +68,8 @@ public class AddCommand extends Command {
      */
     private static Task createAddedTask(AddCommand.AddTaskDescriptor addTaskDescriptor) {
 
+        assert addTaskDescriptor != null;
+
         Description updatedDescription = addTaskDescriptor.getDescription().get();
         Deadline updatedDeadline = addTaskDescriptor.getDeadline().orElse(Deadline.ofNull());
         Priority updatedPriority = addTaskDescriptor.getPriority().orElse(Priority.NONE);

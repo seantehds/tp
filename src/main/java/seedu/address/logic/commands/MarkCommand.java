@@ -32,6 +32,7 @@ public class MarkCommand extends Command {
 
     public MarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        assert targetIndex != null;
     }
 
     @Override
@@ -52,6 +53,9 @@ public class MarkCommand extends Command {
 
         Task markedTask = new Task(taskToMark.getDescription(), status.updateStatus(),
                 taskToMark.getNote(), taskToMark.getDeadline(), taskToMark.getPriority(), taskToMark.getMembers());
+
+        assert !taskToMark.equals(markedTask);
+
         model.setTask(taskToMark, markedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.format(taskToMark)));

@@ -32,6 +32,7 @@ public class UnmarkCommand extends Command {
 
     public UnmarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        assert targetIndex != null;
     }
 
     @Override
@@ -52,6 +53,9 @@ public class UnmarkCommand extends Command {
 
         Task markedTask = new Task(taskToUnmark.getDescription(), status.updateStatus(), taskToUnmark.getNote(),
                     taskToUnmark.getDeadline(), taskToUnmark.getPriority(), taskToUnmark.getMembers());
+
+        assert !taskToUnmark.equals(markedTask);
+
         model.setTask(taskToUnmark, markedTask);
 
 
