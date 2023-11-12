@@ -16,6 +16,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.logic.parser.exceptions.IllegalArgumentException;
 import seedu.address.logic.parser.exceptions.InvalidFormatException;
 import seedu.address.logic.parser.exceptions.NoRecordedModificationException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -50,7 +51,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         setDescriptorFields(argMultimap, editTaskDescriptor);
 
         // now validate the index
-        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidFormatException(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD,
+                    EditCommand.MESSAGE_USAGE);
+        }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new NoRecordedModificationException(EditCommand.MESSAGE_NOT_EDITED);
