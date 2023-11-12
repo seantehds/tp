@@ -61,22 +61,7 @@ public class SortTypeEnumTest {
     }
 
     @Test
-    public void of_nullTaskName_failure() {
-        assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
-    }
-
-    @Test
-    public void of_nullPriority_failure() {
-        assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
-    }
-
-    @Test
-    public void of_nullDeadline_failure() {
-        assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
-    }
-
-    @Test
-    public void of_nullStatus_failure() {
+    public void of_nullInput_failure() {
         assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
     }
 

@@ -36,11 +36,6 @@ public class SortOrderEnumTest {
     }
 
     @Test
-    public void of_emptyString_failure() {
-        assertThrows(AssertionError.class, () -> SortOrderEnum.of(null));
-    }
-
-    @Test
     public void toString_ascending_success() {
         assertEquals(SortOrderEnum.ASCENDING.toString(), "ascending");
     }
