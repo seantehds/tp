@@ -6,7 +6,7 @@
 # About TaskWise
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-It is modified to create a **task management application** named _TaskWise_.
+It is modified to create a **project management application** named _TaskWise_.
 
 It aims to provide the project manager of a CS2103T group with a fast and intuitive CLI to manage their team project, by providing them a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with deadlines within one project.
 
