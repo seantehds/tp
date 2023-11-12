@@ -1080,7 +1080,7 @@ We also recognise that this may be inconvenient for you, as you cannot define yo
 
 ## Unable To Handle Large Task Numbers In User Input
 
-Currently, TaskWise is unable to handle large task numbers from the user's input. Currently, TaskWise can only track up to an upper limit of 2,147,483,647 tasks. Unfortunately, this means that above this value, TaskWise does not view any command you give it that is larger than that as a valid command!
+Currently, TaskWise is unable to handle large task numbers from the user's input. It can only track up to an upper limit of 2,147,483,647 tasks. Unfortunately, this means that above this value, TaskWise does not view any command you give it that is larger than that as a valid command!
 
 In a future release of TaskWise, we will amend this issue and allow TaskWise to handle large task numbers from the user's input! Like you, TaskWise will improve and become even more capable in the future, handling 2,147,483,649 tasks, and even more! 
 
