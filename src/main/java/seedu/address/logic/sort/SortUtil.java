@@ -11,53 +11,53 @@ import seedu.address.model.task.Task;
  * Class that contains utility methods that help to sort the Tasks in the Task List.
  */
 public abstract class SortUtil {
-    private static int sortTaskNameAscending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortTaskNameAscending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
-        return t1.getDescription().compareTo(t2.getDescription());
+        return task1.getDescription().compareTo(task2.getDescription());
     }
 
-    private static int sortTaskNameDescending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortTaskNameDescending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
         // invert the conditions from ascending
-        return -1 * SortUtil.sortTaskNameAscending(t1, t2);
+        return -1 * SortUtil.sortTaskNameAscending(task1, task2);
     }
 
-    private static int sortPriorityAscending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortPriorityAscending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
-        return t1.getPriority().compareTo(t2.getPriority());
+        return task1.getPriority().compareTo(task2.getPriority());
     }
 
-    private static int sortPriorityDescending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortPriorityDescending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
-        return -1 * SortUtil.sortPriorityAscending(t1, t2);
+        return -1 * SortUtil.sortPriorityAscending(task1, task2);
     }
 
-    private static int sortDeadlineAscending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortDeadlineAscending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
-        return t1.getDeadline().compareTo(t2.getDeadline());
+        return task1.getDeadline().compareTo(task2.getDeadline());
     }
 
-    private static int sortDeadlineDescending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortDeadlineDescending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
-        return -1 * SortUtil.sortDeadlineAscending(t1, t2);
+        return -1 * SortUtil.sortDeadlineAscending(task1, task2);
     }
 
-    private static int sortStatusAscending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortStatusAscending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
-        return t1.getStatus().compareTo(t2.getStatus());
+        return task1.getStatus().compareTo(task2.getStatus());
     }
 
-    private static int sortStatusDescending(Task t1, Task t2) {
-        assertAllTasksNotNull(t1, t2);
+    private static int sortStatusDescending(Task task1, Task task2) {
+        assertAllTasksNotNull(task1, task2);
 
-        return -1 * SortUtil.sortStatusAscending(t1, t2);
+        return -1 * SortUtil.sortStatusAscending(task1, task2);
     }
 
     private static void assertAllTasksNotNull(Task... tasks) {
@@ -77,6 +77,8 @@ public abstract class SortUtil {
      * @return {@code Comparator<Task>} object
      */
     public static Comparator<Task> ofTaskName(SortOrderEnum sortOrderEnum) {
+        assert (sortOrderEnum != null);
+        
         switch (sortOrderEnum) {
         case ASCENDING:
             return SortUtil::sortTaskNameAscending;
@@ -98,6 +100,8 @@ public abstract class SortUtil {
      * @return {@code Comparator<Task>} object
      */
     public static Comparator<Task> ofPriority(SortOrderEnum sortOrderEnum) {
+        assert (sortOrderEnum != null);
+        
         switch (sortOrderEnum) {
         case ASCENDING:
             return SortUtil::sortPriorityAscending;
@@ -119,6 +123,8 @@ public abstract class SortUtil {
      * @return {@code Comparator<Task>} object
      */
     public static Comparator<Task> ofDeadline(SortOrderEnum sortOrderEnum) {
+        assert (sortOrderEnum != null);
+        
         switch (sortOrderEnum) {
         case ASCENDING:
             return SortUtil::sortDeadlineAscending;
@@ -140,6 +146,8 @@ public abstract class SortUtil {
      * @return {@code Comparator<Task>} object
      */
     public static Comparator<Task> ofStatus(SortOrderEnum sortOrderEnum) {
+        assert (sortOrderEnum != null);
+
         switch (sortOrderEnum) {
         case ASCENDING:
             return SortUtil::sortStatusAscending;

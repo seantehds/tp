@@ -11,6 +11,7 @@ public enum SortOrderEnum {
     private final String representation;
 
     SortOrderEnum(String representation) {
+        assert (representation != null && !representation.isEmpty());
         this.representation = representation;
     }
 

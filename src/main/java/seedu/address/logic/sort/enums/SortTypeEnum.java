@@ -14,6 +14,7 @@ public enum SortTypeEnum {
     private final String representation;
 
     SortTypeEnum(String representation) {
+        assert (representation != null && !representation.isEmpty());
         this.representation = representation;
     }
 
