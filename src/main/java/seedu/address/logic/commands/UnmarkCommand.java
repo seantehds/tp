@@ -30,6 +30,10 @@ public class UnmarkCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an UnmarkCommand to mark the specified {@code Task} as incomplete.
+     * @param targetIndex Index of the task in the task list to mark as incomplete.
+     */
     public UnmarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         assert targetIndex != null;
