@@ -93,29 +93,14 @@ public class TaskCard extends UiPart<Region> {
 
         for (Member m : sourceMembers) {
             if (members.getChildren().size() < 3) {
-                if (m.memberName.length() > 6) {
-                    String truncatedName = m.memberName.substring(0, 6) + "...";
-                    Label label = new Label(truncatedName);
-                    label.getStyleClass().add("member_cell_label");
-
-                    Tooltip tooltip = new Tooltip(m.memberName.substring(0, Math.min(m.memberName.length(), 99)));
-                    tooltip.setShowDelay(new Duration(500));
-                    Tooltip.install(label, tooltip);
-                    members.getChildren().add(label);
-                } else {
-                    Label label = new Label(m.memberName);
-                    label.getStyleClass().add("member_cell_label");
-                    members.getChildren().add(label);
-                }
+                bindLongLabel(m);
             } else {
                 excessCount++;
             }
         }
 
         if (excessCount > 0) {
-            Label excessLabel = new Label("+" + Math.min(excessCount, 99));
-            excessLabel.getStyleClass().add("member_cell_overflow");
-            members.getChildren().add(excessLabel);
+            this.bindExcessLabel(excessCount);
         }
     }
 
@@ -125,6 +110,33 @@ public class TaskCard extends UiPart<Region> {
         } else {
             this.cardPane.setOpacity(INCOMPLETE_OPACITY_VALUE);
         }
+    }
+
+    private void bindLongLabel(Member m) {
+        if (m.memberName.length() > 6) {
+            String truncatedName = m.memberName.substring(0, 6) + "...";
+            Label label = new Label(truncatedName);
+            label.getStyleClass().add("member_cell_label");
+
+            Tooltip tooltip = new Tooltip(m.memberName.substring(0, Math.min(m.memberName.length(), 99)));
+            tooltip.setShowDelay(new Duration(500));
+            Tooltip.install(label, tooltip);
+            this.members.getChildren().add(label);
+        } else {
+            this.bindShortLabel(m);
+        }
+    }
+
+    private void bindExcessLabel(int excessCount) {
+        Label excessLabel = new Label("+" + Math.min(excessCount, 99));
+        excessLabel.getStyleClass().add("member_cell_overflow");
+        this.members.getChildren().add(excessLabel);
+    }
+
+    private void bindShortLabel(Member m) {
+        Label label = new Label(m.memberName);
+        label.getStyleClass().add("member_cell_label");
+        this.members.getChildren().add(label);
     }
 
     public void setPriority(String priorityText) {

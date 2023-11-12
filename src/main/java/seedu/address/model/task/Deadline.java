@@ -60,6 +60,8 @@ public class Deadline implements Comparable<Deadline> {
     private Deadline(boolean isNull, LocalDateTime deadline) {
         this.isNull = isNull;
         this.details = deadline;
+
+        assert deadline != null;
     }
 
     public static Deadline of(LocalDateTime localDateTime) {

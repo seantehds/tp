@@ -30,8 +30,13 @@ public class MarkCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a MarkCommand to mark the specified {@code Task} as completed.
+     * @param targetIndex Index of the task in the task list to mark as completed.
+     */
     public MarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        assert targetIndex != null;
     }
 
     @Override
@@ -52,6 +57,9 @@ public class MarkCommand extends Command {
 
         Task markedTask = new Task(taskToMark.getDescription(), status.updateStatus(),
                 taskToMark.getNote(), taskToMark.getDeadline(), taskToMark.getPriority(), taskToMark.getMembers());
+
+        assert !taskToMark.equals(markedTask);
+
         model.setTask(taskToMark, markedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, Messages.format(taskToMark)));

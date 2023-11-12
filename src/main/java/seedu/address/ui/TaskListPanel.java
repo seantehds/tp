@@ -115,7 +115,7 @@ public class TaskListPanel extends UiPart<Region> {
         this.destroyTaskInformationView();
     }
 
-    public void setTaskInformation(Task task) {
+    private void setTaskInformation(Task task) {
         // set the visibility of the fields
         this.selectLabel.setVisible(false);
         this.descriptionLabel.setVisible(true);

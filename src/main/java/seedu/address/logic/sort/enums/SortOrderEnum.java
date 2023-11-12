@@ -22,6 +22,8 @@ public enum SortOrderEnum {
      * @throws IllegalArgumentException if the input String is not a valid input String value
      */
     public static SortOrderEnum of(String sortOrder) {
+        assert (sortOrder != null);
+
         String strippedSortOrder = sortOrder.strip();
 
         switch (strippedSortOrder) {

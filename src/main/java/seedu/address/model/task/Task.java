@@ -24,9 +24,9 @@ public class Task {
     private final Priority priority;
     private final Set<Member> members = new HashSet<>();
     /**
-     * Only description is required.
+     * Only description is required. All other fields are initialised to their default values.
      *
-     * @param description
+     * @param description Description of the task.
      */
     public Task(Description description) {
         requireAllNonNull(description);
@@ -41,12 +41,12 @@ public class Task {
     /**
      * Constructor for a task with a description, status, note, deadline and priority.
      *
-     * @param description
-     * @param status
-     * @param note
-     * @param deadline
-     * @param priority
-     * @param members
+     * @param description Description of the task.
+     * @param status Status of the task.
+     * @param note Note associated with the task.
+     * @param deadline Deadline of the task.
+     * @param priority Priority of the task.
+     * @param members Members associated with the task.
      */
     public Task(Description description, Status status, Note note,
                 Deadline deadline, Priority priority, Set<Member> members) {
@@ -58,6 +58,10 @@ public class Task {
         this.priority = priority;
         this.members.addAll(members);
     }
+
+    /**
+     * Returns the description of the task.
+     */
     public Description getDescription() {
         return description;
     }
@@ -70,20 +74,29 @@ public class Task {
         return Collections.unmodifiableSet(members);
     }
 
+    /**
+     * Returns the status of the task.
+     */
     public Status getStatus() {
         return status;
     }
 
+    /**
+     * Returns the note associated with the task.
+     */
     public Note getNote() {
         return note;
     }
+
+    /**
+     * Returns the deadline of the task.
+     */
     public Deadline getDeadline() {
         return deadline;
     }
 
     /**
      * Returns the priority level of the task.
-     * @return priority
      */
     public Priority getPriority() {
         return priority;

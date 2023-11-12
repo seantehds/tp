@@ -14,6 +14,9 @@ public class LogsCenterTest {
         assertDoesNotThrow(() -> LogsCenter.init(configStub));
     }
 
+    /**
+     * Stub used to test out the functionality of {@code LogsCenter::init()}.
+     */
     private static final class ConfigStub extends Config {
         @Override
         public Level getLogLevel() {

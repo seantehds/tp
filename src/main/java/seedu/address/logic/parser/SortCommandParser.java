@@ -16,6 +16,14 @@ import seedu.address.logic.sort.enums.SortTypeEnum;
  * Parses input arguments and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
+    /**
+     * Parses the {@code String} user input into the necessary arguments for
+     * {@code SortCommand}.
+     *
+     * @param userInput User Input
+     * @return {@code SortCommand} object
+     * @throws ParseException if the user does not enter a properly formatted command
+     */
     @Override
     public SortCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_SORT_ORDER, PREFIX_SORT_TYPE);

@@ -26,7 +26,9 @@ public class Member {
     }
 
     /**
-     * Returns true if a given string is a valid member name.
+     * Checks if a given string is a valid member name.
+     * @param test String to be tested for validity.
+     * @return True if the string is a valid member name, false otherwise.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
