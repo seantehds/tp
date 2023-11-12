@@ -106,8 +106,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the task.
+     * Stores the details to create a new task with.
      */
     public static class AddTaskDescriptor {
         private Description description;
