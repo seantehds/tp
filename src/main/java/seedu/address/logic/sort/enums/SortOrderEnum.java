@@ -11,7 +11,7 @@ public enum SortOrderEnum {
     private final String representation;
 
     SortOrderEnum(String representation) {
-        assert (representation != null && !representation.isEmpty());
+        assert (representation != null);
         this.representation = representation;
     }
 
@@ -23,6 +23,8 @@ public enum SortOrderEnum {
      * @throws IllegalArgumentException if the input String is not a valid input String value
      */
     public static SortOrderEnum of(String sortOrder) {
+        assert (sortOrder != null);
+
         String strippedSortOrder = sortOrder.strip();
 
         switch (strippedSortOrder) {

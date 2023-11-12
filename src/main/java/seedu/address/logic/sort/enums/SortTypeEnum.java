@@ -14,7 +14,7 @@ public enum SortTypeEnum {
     private final String representation;
 
     SortTypeEnum(String representation) {
-        assert (representation != null && !representation.isEmpty());
+        assert (representation != null);
         this.representation = representation;
     }
 
@@ -26,6 +26,8 @@ public enum SortTypeEnum {
      * @throws IllegalArgumentException if the input String is not a valid input String value
      */
     public static SortTypeEnum of(String sortType) {
+        assert (sortType != null);
+
         String strippedSortType = sortType.strip();
 
         switch (strippedSortType) {

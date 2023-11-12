@@ -56,6 +56,31 @@ public class SortTypeEnumTest {
     }
 
     @Test
+    public void of_invalidStatus_failure() {
+        assertThrows(IllegalArgumentException.class, () -> SortTypeEnum.of("statsu"));
+    }
+
+    @Test
+    public void of_nullTaskName_failure() {
+        assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
+    }
+
+    @Test
+    public void of_nullPriority_failure() {
+        assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
+    }
+
+    @Test
+    public void of_nullDeadline_failure() {
+        assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
+    }
+
+    @Test
+    public void of_nullStatus_failure() {
+        assertThrows(AssertionError.class, () -> SortTypeEnum.of(null));
+    }
+
+    @Test
     public void toString_taskName_success() {
         assertEquals(SortTypeEnum.TASK_DESCRIPTION.toString(), "task description");
     }
