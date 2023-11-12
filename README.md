@@ -6,7 +6,7 @@
 # About TaskWise
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-It is modified to create a **task management application** named _TaskWise_.
+It is modified to create a **project management application** named _TaskWise_.
 
 It aims to provide the project manager of a CS2103T group with a fast and intuitive CLI to manage their team project, by providing them a platform to manage different deadlines for different tasks, allowing them to be more on task and keep up with deadlines within one project.
 
@@ -23,7 +23,8 @@ Below and some of the features that TaskWise provides:
 - **Sort tasks**: Sort tasks by description, priority and deadline.
 
 ## Links
-- [User Guide](https://docs.google.com/document/d/1K1zzikbvhjpHor5Ojw0zFVt02ODpOsojrnjz1fSPwIY/edit?usp=sharing)
+- [User Guide](https://ay2324s1-cs2103t-t17-1.github.io/tp/UserGuide.html)
+- [Developer Guide](https://ay2324s1-cs2103t-t17-1.github.io/tp/DeveloperGuide.html)
 - [User Stories](https://docs.google.com/document/d/1uk-aV06Lu2xX8SkyAiJdZPcEHYN7I0KGXfyskkbbcwY/edit?usp=sharing)
-- [Github Project Board](https://github.com/orgs/AY2324S1-CS2103T-T17-1/projects/1)
-- [Github Organization](https://github.com/AY2324S1-CS2103T-T17-1)
+- [GitHub Project Board](https://github.com/orgs/AY2324S1-CS2103T-T17-1/projects/1)
+- [GitHub Organization](https://github.com/AY2324S1-CS2103T-T17-1)
