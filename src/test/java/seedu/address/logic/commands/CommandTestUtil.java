@@ -60,6 +60,7 @@ public class CommandTestUtil {
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "hii";
     public static final String INVALID_MEMBER_DESC = " " + PREFIX_MEMBER + "/";
     // '/' not allowed in members
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE + "///";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
