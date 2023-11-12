@@ -5,7 +5,7 @@ title: Sebastian's Project Portfolio Page
 
 ## Project Name: TaskWise
 
-TaskWise is a task management application used by CS2103/T project managers.
+TaskWise is a project management application used by CS2103/T project managers.
 
 The user interacts with it via the Command Line Interface (CLI) and it has a Graphical User
 Interface (GUI) made using JavaFX. It is written in Java, and it has about 14107 LoC.
@@ -23,8 +23,8 @@ Given below are my contributions to the project.
     ensure that the respective assignees stay accountable for the completion of that task. It also helps reduce possible
     confusion on the ground as to who is doing what, improving the experience of project management using TaskWise.
   * Highlights: This mainly affects the Task Model and requires updates to be made to the TaskListCard FXML file.
-  * Credits: The members assigned to the task feature was inspired by the AddressBook's `Tags` feature. The validation REGEX to check for the validity of `Member`'s input by the user was reused from ChatGPT's
-    generated code.
+  * Credits: The members assigned to the task feature was adapted from the AddressBook's `Tags` feature. The validation REGEX to check for the validity of `Member`'s input by the user was reused from ChatGPT's
+    generated code that May has.
 
 * **Code contributed:** [Link to reposense](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=Sebtey&tabRepo=AY2324S1-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
@@ -51,6 +51,8 @@ Given below are my contributions to the project.
 
 * **Contribution to team-based tasks:**
   * Release Management
+  * Check for documentation bugs
+  * Check for software bugs
 
 * **Review/mentoring contributions:**
   * Provides feedback for codebase quality and pull requests
