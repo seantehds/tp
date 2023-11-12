@@ -149,6 +149,7 @@ public class EditCommand extends Command {
         /**
          * Copy constructor.
          * A defensive copy of {@code members} is used internally.
+         * @param toCopy the task to copy from.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setDescription(toCopy.description);
@@ -159,7 +160,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Checks if at least one field is edited when the edit command is used.
+         * @return true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(description, note, deadline, priority, members);

@@ -32,7 +32,9 @@ public class NoteCommand extends Command {
     private final Note note;
 
     /**
-     * Creates a NoteCommand to add the specified {@code Note}
+     * Creates a NoteCommand to add the specified {@code Note} to the {@code Task} at the specified {@code Index}.
+     * @param targetIndex Index of the task in the task list to add the note to.
+     * @param note Note to be added to the task.
      */
     public NoteCommand(Index targetIndex, Note note) {
         requireNonNull(targetIndex);

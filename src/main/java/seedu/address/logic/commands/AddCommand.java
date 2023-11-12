@@ -41,6 +41,7 @@ public class AddCommand extends Command {
     private final AddTaskDescriptor desc;
     /**
      * Creates an AddCommand with the specified {@code AddTaskDescriptor}
+     * @param desc the {@code AddTaskDescriptor} with the necessary details to instantiate the task
      */
     public AddCommand(AddTaskDescriptor desc) {
         requireNonNull(desc);
@@ -105,8 +106,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the task.
+     * Stores the details to create a new task with.
      */
     public static class AddTaskDescriptor {
         private Description description;
@@ -148,6 +148,7 @@ public class AddCommand extends Command {
         /**
          * Sets {@code members} to this object's {@code members}.
          * A defensive copy of {@code members} is used internally.
+         * @param members A set of members to be added to the task.
          */
         public void setMembers(Set<Member> members) {
             this.members = (members != null) ? new HashSet<>(members) : null;
@@ -156,7 +157,7 @@ public class AddCommand extends Command {
         /**
          * Returns an unmodifiable member set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code members} is null.
+         * @return An {@code Optional#empty()} if {@code members} is null.
          */
         public Optional<Set<Member>> getMembers() {
             return Optional.ofNullable(members).map(x -> Collections.unmodifiableSet(members));
