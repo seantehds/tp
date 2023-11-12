@@ -120,11 +120,13 @@ public class ParserUtil {
                 || parsedTime[0].length() < 2 || parsedTime[1].length() < 2) {
             throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
         }
+
         try {
             LocalDate.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0]);
         } catch (DateTimeException e) {
             throw new IllegalArgumentException(Deadline.INVALID_DATE);
         }
+
         return Deadline.of(LocalDateTime.parse(parsedDate[2] + "-" + parsedDate[1] + "-" + parsedDate[0] + "T"
                 + parsedTime[0] + ":" + parsedTime[1] + ":00"));
     }
@@ -140,11 +142,13 @@ public class ParserUtil {
         if (date[1].length() < 2 || date[0].length() < 2) {
             throw new IllegalArgumentException(Deadline.MESSAGE_CONSTRAINTS);
         }
+
         try {
             LocalDate.parse(date[2] + "-" + date[1] + "-" + date[0]);
         } catch (DateTimeException e) {
             throw new IllegalArgumentException(Deadline.INVALID_DATE);
         }
+
         return Deadline.of(LocalDateTime.parse(date[2] + "-" + date[1] + "-" + date[0] + DEFAULT_TIME));
     }
 
