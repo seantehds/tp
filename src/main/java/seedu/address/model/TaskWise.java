@@ -31,7 +31,8 @@ public class TaskWise implements ReadOnlyTaskWise {
     public TaskWise() {}
 
     /**
-     * Creates an TaskWise using the Tasks in the {@code toBeCopied}
+     * Creates an TaskWise using the Tasks in the {@code toBeCopied}.
+     * @param toBeCopied A ReadOnlyTaskWise that will be copied from.
      */
     public TaskWise(ReadOnlyTaskWise toBeCopied) {
         this();
@@ -43,6 +44,7 @@ public class TaskWise implements ReadOnlyTaskWise {
     /**
      * Replaces the contents of the task list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
+     * @param tasks A list of tasks that replace the existing list.
      */
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);

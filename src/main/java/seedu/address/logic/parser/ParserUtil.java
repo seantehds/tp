@@ -82,7 +82,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param deadline A string containing the deadline.
      * @throws IllegalArgumentException if the given {@code deadline} is invalid.
      */
     public static Deadline parseDeadline(String deadline) throws IllegalArgumentException {
@@ -100,8 +100,8 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String deadline} specified to be in a date and time format into a {@code Deadline}.
-     * @param deadline
-     * @return A Deadline with the specified date and time
+     * @param deadline A string containing the date and time of the deadline.
+     * @return A Deadline with the specified date and time.
      * @throws IllegalArgumentException
      */
     public static Deadline parseDateTime(String deadline) throws IllegalArgumentException {
@@ -131,7 +131,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String deadline} specified to be in a date only format into a {@code Deadline}.
-     * @param deadline
+     * @param deadline A string containing the date of the deadline.
      * @return A Deadline with the specified date and time
      * @throws IllegalArgumentException
      */
@@ -151,7 +151,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String memberName} into a {@code Member}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param memberName A string containing the name of the member.
      * @throws IllegalArgumentException if the given {@code memberName} is invalid.
      */
     public static Member parseMember(String memberName) throws IllegalArgumentException {
@@ -165,6 +165,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> members} into a {@code Set<Member>}.
+     * @param members A collection of strings containing the names of the members.
+     * @return A set of members to be added to the task.
+     * @throws IllegalArgumentException if the given {@code members} is invalid.
      */
     public static Set<Member> parseMembers(Collection<String> members) throws IllegalArgumentException {
         requireNonNull(members);
@@ -176,9 +179,9 @@ public class ParserUtil {
         return memberSet;
     }
     /**
-     * Parses {@code String} into a {@code SortOrderEnum}
-     * @param enumValue String enum value to parse
-     * @return Parsed {@code SortOrderEnum} value
+     * Parses {@code String} into a {@code SortOrderEnum}.
+     * @param enumValue String enum value to parse.
+     * @return Parsed {@code SortOrderEnum} value.
      */
     public static SortOrderEnum parseSortOrder(String enumValue) throws IllegalArgumentException {
         try {
@@ -189,9 +192,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String} into a {@code SortTypeEnum}
-     * @param enumValue String enum value to parse
-     * @return Parsed {@code SortTypeEnum} value
+     * Parses {@code String} into a {@code SortTypeEnum}.
+     * @param enumValue String enum value to parse.
+     * @return Parsed {@code SortTypeEnum} value.
      */
     public static SortTypeEnum parseSortType(String enumValue) throws IllegalArgumentException {
         try {
