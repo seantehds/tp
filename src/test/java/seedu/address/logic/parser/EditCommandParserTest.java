@@ -164,7 +164,7 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + TASK_DESC_DG + TASK_DESC_UG + TASK_DESC_DG;
 
         assertParseFailure(parser, userInput,
