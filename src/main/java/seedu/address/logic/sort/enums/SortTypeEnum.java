@@ -25,6 +25,8 @@ public enum SortTypeEnum {
      * @throws IllegalArgumentException if the input String is not a valid input String value
      */
     public static SortTypeEnum of(String sortType) {
+        assert (sortType != null);
+
         String strippedSortType = sortType.strip();
 
         switch (strippedSortType) {

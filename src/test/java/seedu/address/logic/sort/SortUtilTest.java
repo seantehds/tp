@@ -23,13 +23,15 @@ import seedu.address.model.task.Task;
 public class SortUtilTest {
     private static final Description FIRST_DESCRIPTION = new Description("A");
     private static final Description SECOND_DESCRIPTION = new Description("B");
+    private static final Status SECOND_STATUS = new Status().updateStatus();
     private static final Status DEFAULT_STATUS = new Status();
     private static final Note DEFAULT_NOTE = new Note("");
     private static final Deadline FIRST_DEADLINE = Deadline.of(LocalDateTime.of(2023, 1, 1, 18, 0));
     private static final Deadline SECOND_DEADLINE = Deadline.of(LocalDateTime.of(2023, 1, 1, 22, 0));
+    private static final Deadline DEFAULT_DEADLINE = Deadline.of(LocalDateTime.of(2023, 1, 1, 0, 0));
     private static final Priority DEFAULT_PRIORITY = Priority.NONE;
-    private static final Priority FIRST_PRIORITY = Priority.HIGH;
-    private static final Priority SECOND_PRIORITY = Priority.LOW;
+    private static final Priority FIRST_PRIORITY = Priority.LOW;
+    private static final Priority SECOND_PRIORITY = Priority.HIGH;
     private static final Set<Member> DEFAULT_MEMBERS = new HashSet<>(List.of(new Member("John")));
     private final Comparator<Task> taskComparatorAscending = SortUtil.ofTaskName(SortOrderEnum.ASCENDING);
     private final Comparator<Task> taskComparatorDescending = SortUtil.ofTaskName(SortOrderEnum.DESCENDING);
@@ -37,6 +39,28 @@ public class SortUtilTest {
     private final Comparator<Task> priorityComparatorDescending = SortUtil.ofPriority(SortOrderEnum.DESCENDING);
     private final Comparator<Task> deadlineComparatorAscending = SortUtil.ofDeadline(SortOrderEnum.ASCENDING);
     private final Comparator<Task> deadlineComparatorDescending = SortUtil.ofDeadline(SortOrderEnum.DESCENDING);
+    private final Comparator<Task> statusComparatorAscending = SortUtil.ofStatus(SortOrderEnum.ASCENDING);
+    private final Comparator<Task> statusComparatorDescending = SortUtil.ofStatus(SortOrderEnum.DESCENDING);
+
+    @Test
+    public void ofTaskName_nullInput_failure() {
+        assertThrows(AssertionError.class, () -> SortUtil.ofTaskName(null));
+    }
+
+    @Test
+    public void ofDeadline_nullInput_failure() {
+        assertThrows(AssertionError.class, () -> SortUtil.ofDeadline(null));
+    }
+
+    @Test
+    public void ofPriority_nullInput_failure() {
+        assertThrows(AssertionError.class, () -> SortUtil.ofPriority(null));
+    }
+
+    @Test
+    public void ofStatus_nullInput_failure() {
+        assertThrows(AssertionError.class, () -> SortUtil.ofStatus(null));
+    }
 
     @Test
     public void ofTaskName_ascendingLessThan_valid() {
@@ -93,27 +117,27 @@ public class SortUtilTest {
     @Test
     public void ofPriority_ascendingLessThan_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, SECOND_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorAscending.compare(t1, t2), -2);
     }
 
     @Test
     public void ofPriority_ascendingEqual_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorAscending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofPriority_ascendingMoreThan_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, SECOND_PRIORITY, DEFAULT_MEMBERS);
         Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorAscending.compare(t1, t2), 2);
     }
 
@@ -125,27 +149,27 @@ public class SortUtilTest {
     @Test
     public void ofPriority_descendingLessThan_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, SECOND_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorDescending.compare(t1, t2), 2);
     }
 
     @Test
     public void ofPriority_descendingEqual_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorDescending.compare(t1, t2), 0);
     }
 
     @Test
     public void ofPriority_descendingMoreThan_valid() {
         Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.HIGH, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, SECOND_PRIORITY, DEFAULT_MEMBERS);
         Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
-                FIRST_DEADLINE, Priority.LOW, DEFAULT_MEMBERS);
+                FIRST_DEADLINE, FIRST_PRIORITY, DEFAULT_MEMBERS);
         assertEquals(priorityComparatorDescending.compare(t1, t2), -2);
     }
 
@@ -216,5 +240,69 @@ public class SortUtilTest {
     @Test
     public void ofDeadline_descending_invalid() {
         assertThrows(AssertionError.class, () -> deadlineComparatorDescending.compare(null, null));
+    }
+
+    @Test
+    public void ofStatus_ascendingLessThan_valid() {
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, SECOND_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        assertEquals(statusComparatorAscending.compare(t1, t2), -1);
+    }
+
+    @Test
+    public void ofStatus_ascendingEqual_valid() {
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        assertEquals(statusComparatorAscending.compare(t1, t2), 0);
+    }
+
+    @Test
+    public void ofStatus_ascendingMoreThan_valid() {
+        Task t1 = new Task(FIRST_DESCRIPTION, SECOND_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        assertEquals(statusComparatorAscending.compare(t1, t2), 1);
+    }
+
+    @Test
+    public void ofStatus_ascending_invalid() {
+        assertThrows(AssertionError.class, () -> statusComparatorAscending.compare(null, null));
+    }
+
+    @Test
+    public void ofStatus_descendingLessThan_valid() {
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, SECOND_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        assertEquals(statusComparatorDescending.compare(t1, t2), 1);
+    }
+
+    @Test
+    public void ofStatus_descendingEqual_valid() {
+        Task t1 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        assertEquals(statusComparatorDescending.compare(t1, t2), 0);
+    }
+
+    @Test
+    public void ofStatus_descendingMoreThan_valid() {
+        Task t1 = new Task(FIRST_DESCRIPTION, SECOND_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        Task t2 = new Task(FIRST_DESCRIPTION, DEFAULT_STATUS, DEFAULT_NOTE,
+                DEFAULT_DEADLINE, DEFAULT_PRIORITY, DEFAULT_MEMBERS);
+        assertEquals(statusComparatorDescending.compare(t1, t2), -1);
+    }
+
+    @Test
+    public void ofStatus_descending_invalid() {
+        assertThrows(AssertionError.class, () -> statusComparatorDescending.compare(null, null));
     }
 }
