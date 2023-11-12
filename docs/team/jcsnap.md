@@ -12,6 +12,8 @@ Interface (GUI) made using JavaFX. It is written in Java, and it has about 14107
 
 Given below are my contributions to the project.
 
+### New Features and Components
+
 * New Feature: Note
     * What it does: Add a note to a task.
     * Justifications: There might be additional information that the user wants to add to a task, but is too long to be included in the description.
@@ -24,28 +26,39 @@ Given below are my contributions to the project.
     * Highlights: Using esc will clear the side panel with the selected task.
     * Challenge: Since this requires interaction with the UI elements, it is difficult to figure out how to let the UI know which task card is selected.
 
-* Code contributed:
+### Enhancement To Existing Features
 
-1. [link to Reposense](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=JCSnap&tabRepo=AY2324S1-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
-* Project management: Reviewed teammates' pull requests, gave feedback and suggestions for improvements and merged pull
-  requests.
-* Enhancement to existing features:
-    * Refactored the underlying code in the AddressBook to fit the use case of TaskWise. This is a bit challenging as the
+* Refactored the underlying code in the AddressBook to fit the use case of TaskWise. This is a bit challenging as the
       code is very coupled and it is difficult to change the code without breaking the code.
-    * Edited some existing test cases and Builders to fit the use case of TaskWise.
-* Documentation:
-    * User Guide
-        * Added documentation on the delete function (1.2).
-        * Added documentation on the note feature.
-        * Added documentation on the view feature.
-    * Developer Guide:
-        * Added documentation on the delete function (1.2).
-        * Added documentation on the note feature.
-        * Added documentation on the view feature.
-        * Added the manual testing section.
-* Contribution to team-based tasks:
-    * Helped create issues and manage issues.
+* Edited some existing test cases and Builders to fit the use case of TaskWise.
+
+
+* Code contributed: [Link to Reposense](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=JCSnap&tabRepo=AY2324S1-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+### Project Management
+
+* Reviewed teammates' pull requests, gave feedback and suggestions for improvements and merged pull
+  requests.
+
+### Documentation
+
+* User Guide
+  * Added documentation on the delete function (1.2).
+  * Added documentation on the note feature.
+  * Added documentation on the view feature.
+* Developer Guide:
+    * Added documentation on the delete function (1.2).
+    * Added documentation on the note feature.
+    * Added documentation on the view feature.
+    * Added the manual testing section.
+
+
+### Contributions To Team-based Tasks
+* Helped create issues and manage issues.
+* Contributed to demo video
+
+### Contributions To Community
+
 * Review/mentoring contributions:
     * Guided teammates on using Git workflow and GitHub.
     * Reviewed teammates' pull requests, gave feedback and suggestions for improvements and merged pull requests.
