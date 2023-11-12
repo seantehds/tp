@@ -78,7 +78,6 @@ public abstract class SortUtil {
      */
     public static Comparator<Task> ofTaskName(SortOrderEnum sortOrderEnum) {
         assert (sortOrderEnum != null);
-        
         switch (sortOrderEnum) {
         case ASCENDING:
             return SortUtil::sortTaskNameAscending;
@@ -101,7 +100,6 @@ public abstract class SortUtil {
      */
     public static Comparator<Task> ofPriority(SortOrderEnum sortOrderEnum) {
         assert (sortOrderEnum != null);
-        
         switch (sortOrderEnum) {
         case ASCENDING:
             return SortUtil::sortPriorityAscending;
@@ -124,7 +122,6 @@ public abstract class SortUtil {
      */
     public static Comparator<Task> ofDeadline(SortOrderEnum sortOrderEnum) {
         assert (sortOrderEnum != null);
-        
         switch (sortOrderEnum) {
         case ASCENDING:
             return SortUtil::sortDeadlineAscending;
