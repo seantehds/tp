@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.NameContainsKeywordsPredicate;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskWiseBuilder;
 
@@ -141,7 +141,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = FIX_BUG.getDescription().fullDescription.split("\\s+");
-        modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskWise, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

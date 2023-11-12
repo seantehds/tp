@@ -31,7 +31,7 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
-import seedu.address.model.task.NameContainsKeywordsPredicate;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
@@ -94,7 +94,7 @@ public class TaskWiseParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new DescriptionContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

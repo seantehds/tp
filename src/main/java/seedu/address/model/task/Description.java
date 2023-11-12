@@ -17,8 +17,6 @@ public class Description implements Comparable<Description> {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^(?!\\s*$)[^/]*$";
-
-
     public final String fullDescription;
 
     /**

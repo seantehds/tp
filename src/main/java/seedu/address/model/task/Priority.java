@@ -24,6 +24,7 @@ public enum Priority {
      * @throws IllegalArgumentException if the String input is not a valid {@code Priority} value
      */
     public static Priority of(String priority) throws IllegalArgumentException {
+        assert priority != null;
         switch (priority.strip().toLowerCase()) {
         case "low":
             return Priority.LOW;
@@ -44,6 +45,7 @@ public enum Priority {
      * @return boolean
      */
     public static boolean isValidPriority(String priority) {
+        assert priority != null;
         switch (priority.strip().toLowerCase()) {
         case "low":
         case "medium":
