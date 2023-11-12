@@ -1,11 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_UG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NOTE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.MEMBER_DESC_UG;
 import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_DG;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_UG;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_UG;
@@ -14,9 +19,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEMBER_UG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_DG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -39,14 +46,14 @@ public class EditCommandParserTest {
     private static final String NOTE_EMPTY = " " + PREFIX_NOTE;
 
     private final EditCommandParser parser = new EditCommandParser();
+    private final String errString = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD)
+            + "\nUsage: "
+            + EditCommand.MESSAGE_USAGE;
 
     @Test
     public void parse_missingParts_failure() {
-        String errString = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD) + "\nUsage: "
-                + EditCommand.MESSAGE_USAGE;
-
         // no index specified
-        assertParseFailure(parser, VALID_DESC_DG, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, VALID_DESC_DG, errString);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -58,16 +65,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + TASK_DESC_DG, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "-5" + TASK_DESC_DG, errString);
 
         // zero index
-        assertParseFailure(parser, "0" + TASK_DESC_DG, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "0" + TASK_DESC_DG, errString);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "1 some random string", errString);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "1 i/ string", errString);
     }
 
     @Test
@@ -149,10 +156,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedFields_failure() {
-        // More extensive testing of duplicate parameter detections is done in
-        // AddCommandParserTest#parse_repeatedNonTagValue_failure()
-
+    public void parse_multipleRepeatedDescriptionField_failure() {
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + TASK_DESC_DG + INVALID_TASK_DESC;
@@ -164,11 +168,71 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + TASK_DESC_DG + TASK_DESC_UG + TASK_DESC_DG;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DESCRIPTION));
+    }
+
+    @Test
+    public void parse_multipleRepeatedPriorityField_failure() {
+        // valid followed by invalid
+        Index targetIndex = INDEX_FIRST_TASK;
+        String userInput = targetIndex.getOneBased() + PRIORITY_DESC_UG + INVALID_PRIORITY_DESC;
+
+        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRIORITY));
+
+        // invalid followed by valid
+        userInput = targetIndex.getOneBased() + INVALID_PRIORITY_DESC + PRIORITY_DESC_UG;
+
+        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRIORITY));
+
+        // multiple valid fields repeated
+        userInput = targetIndex.getOneBased() + PRIORITY_DESC_UG + PRIORITY_DESC_DG;
+
+        assertParseFailure(parser, userInput,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PRIORITY));
+    }
+
+    @Test
+    public void parse_multipleRepeatedDeadlineField_failure() {
+        // valid followed by invalid
+        Index targetIndex = INDEX_FIRST_TASK;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_UG + INVALID_DEADLINE_DESC;
+
+        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DEADLINE));
+
+        // invalid followed by valid
+        userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DEADLINE_DESC_UG;
+
+        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DEADLINE));
+
+        // multiple valid fields repeated
+        userInput = targetIndex.getOneBased() + DEADLINE_DESC_UG + DEADLINE_DESC_DG;
+
+        assertParseFailure(parser, userInput,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DEADLINE));
+    }
+
+    @Test
+    public void parse_multipleRepeatedNoteField_failure() {
+        // valid followed by invalid
+        Index targetIndex = INDEX_FIRST_TASK;
+        String userInput = targetIndex.getOneBased() + NOTE_DESC_DG + INVALID_NOTE_DESC;
+
+        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
+
+        // invalid followed by valid
+        userInput = targetIndex.getOneBased() + INVALID_NOTE_DESC + NOTE_DESC_DG;
+
+        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
+
+        // multiple valid fields repeated
+        userInput = targetIndex.getOneBased() + NOTE_DESC_DG + NOTE_DESC_DG;
+
+        assertParseFailure(parser, userInput,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NOTE));
     }
 
     @Test
