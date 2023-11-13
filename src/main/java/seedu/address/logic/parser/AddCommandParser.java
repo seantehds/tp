@@ -14,10 +14,10 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCommand.AddTaskDescriptor;
 import seedu.address.logic.parser.exceptions.InvalidFormatException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.member.Member;
-import seedu.address.model.task.Description;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -27,44 +27,53 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_DEADLINE, PREFIX_MEMBER);
 
-
         // Only description is the compulsory field to be parsed
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new InvalidFormatException(
-                    MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddCommand.COMMAND_WORD,
+            throw new InvalidFormatException(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.COMMAND_WORD,
                     AddCommand.MESSAGE_USAGE);
         }
 
+        // ensure no duplicate prefixes for description, deadline and priority
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_PRIORITY);
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        AddCommand.AddTaskDescriptor addTaskDescriptor = new AddCommand.AddTaskDescriptor();
+        // creates a new AddTaskDescriptor with the values inside the argMultimap
+        AddTaskDescriptor addTaskDescriptor = setUpDescriptor(argMultimap);
 
-        addTaskDescriptor.setDescription(description);
+        return new AddCommand(addTaskDescriptor);
+    }
+
+    /**
+     * Creates and returns a {@code AddTaskDescriptor} with the details from a {@code argMultimap}.
+     * @param argMultimap the argMultimap containing the details given by the user.
+     * @return a new AddTaskDescriptor with the details from the argMultimap input.
+     * @throws ParseException if any of the details are invalid.
+     */
+    private AddTaskDescriptor setUpDescriptor(ArgumentMultimap argMultimap) throws ParseException {
+        // initialise the AddTaskDescriptor
+        AddTaskDescriptor addTaskDescriptor = new AddTaskDescriptor();
+
+        // set up all fields present in the argMultimap
+        addTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-            addTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap
-                    .getValue(PREFIX_DEADLINE).get()));
+            addTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
-            addTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap
-                    .getValue(PREFIX_PRIORITY).get()));
+            addTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
         if (argMultimap.getValue(PREFIX_MEMBER).isPresent()) {
             addTaskDescriptor.setMembers(ParserUtil.parseMembers(argMultimap
                     .getAllValues(PREFIX_MEMBER)));
         }
-
         parseMembersForAdd(argMultimap.getAllValues(PREFIX_MEMBER)).ifPresent(addTaskDescriptor::setMembers);
 
-        return new AddCommand(addTaskDescriptor);
+        return addTaskDescriptor;
     }
 
     /**

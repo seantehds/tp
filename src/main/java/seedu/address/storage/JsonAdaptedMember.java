@@ -35,9 +35,9 @@ class JsonAdaptedMember {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Member} object.
+     * Converts this Jackson-friendly adapted member object into the model's {@code Member} object.
      *
-     * @throws IllegalJsonMemberValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalJsonMemberValueException if there were any data constraints violated in the adapted member.
      */
     public Member toModelType() throws IllegalJsonMemberValueException {
         if (!Member.isValidName(memberName)) {

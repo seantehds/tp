@@ -60,6 +60,10 @@ public class TaskWiseParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
+        return createCommand(commandWord, arguments, userInput);
+    }
+
+    private Command createCommand(String commandWord, String arguments, String userInput) throws ParseException {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);

@@ -47,6 +47,7 @@ Here's a quick summary of what TaskWise can do for you:
   - [Improve Find Command To Find By Priority, Deadline, Members and Notes](#improve-find-command-to-find-by-priority-deadline-members-and-notes)
   - [Case-insensitive Sort](#case-insensitive-sort)
   - [Case-insensitive Ordering of Members](#case-insensitive-ordering-of-members)
+  - [Unable To Handle Large Task Numbers In User Input](#unable-to-handle-large-task-numbers-in-user-input)
 - [Glossary](#glossary)
 - [FAQ](#faq)
   - [General Questions](#general-questions)
@@ -1078,6 +1079,14 @@ While there are no known workarounds for this issue, we recommend that you remai
 
 We also recognise that this may be inconvenient for you, as you cannot define your personal ordering of members assigned to a particular part, and as such, we aim to amend this behaviour in a future release of TaskWise, which would allow you to define your own ordering of members for all your tasks!
 
+## Unable To Handle Large Task Numbers In User Input
+
+Currently, TaskWise is unable to handle large task numbers from the user's input. It can only track up to an upper limit of 2,147,483,647 tasks. Unfortunately, this means that above this value, TaskWise does not view any command you give it that is larger than that as a valid command!
+
+In a future release of TaskWise, we will amend this issue and allow TaskWise to handle large task numbers from the user's input! Like you, TaskWise will improve and become even more capable in the future, handling 2,147,483,649 tasks, and even more! 
+
+[[Jump to Table of Contents]](#table-of-contents)
+
 ## Glossary
 
 * **Argument**: A word or number or a sequence of words or numbers that represent.
@@ -1117,7 +1126,7 @@ Have some burning questions which you need answered? Here are the answers to som
 ## Task-Related Questions
 
 **Task Description**  
-**Q**: What if I typed in the invalid task description?  
+**Q**: What if I typed in an invalid task description?  
 **A**: Simply ensure that your task description is non-empty and does not contain the `/` symbol.
 
 **Deadline**  
@@ -1152,7 +1161,7 @@ Lastly, check that the characters between each number are valid (refer to the fo
 
 **Priority**  
 **Q**: What if I typed in an invalid priority?  
-**A**: Simple ensure that the priority you input is within the set of available options - `none`, `low`, `medium` and `high`. It is not case-sensitive.
+**A**: Simply ensure that the priority you input is within the set of available options - `none`, `low`, `medium` and `high`. It is not case-sensitive.
 
 **Task Number**  
 **Q**: What if I typed in an invalid task number?  

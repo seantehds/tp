@@ -31,7 +31,7 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sort.enums.SortOrderEnum;
 import seedu.address.logic.sort.enums.SortTypeEnum;
-import seedu.address.model.task.NameContainsKeywordsPredicate;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
@@ -39,24 +39,19 @@ import seedu.address.testutil.TaskUtil;
 
 public class TaskWiseParserTest {
 
-    private AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
-
     private final TaskWiseParser parser = new TaskWiseParser();
-
-    private void setUpDesc(Task validTask) {
-        desc.setDescription(validTask.getDescription());
-        desc.setDeadline(validTask.getDeadline());
-        desc.setPriority(validTask.getPriority());
-        desc.setMembers(validTask.getMembers());
-    }
-
 
     @Test
     public void parseCommand_add() throws Exception {
         Task task = new TaskBuilder().build();
 
-        setUpDesc(task);
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
+
+        AddCommand.AddTaskDescriptor desc = new AddCommand.AddTaskDescriptor();
+        desc.setDescription(task.getDescription());
+        desc.setDeadline(task.getDeadline());
+        desc.setPriority(task.getPriority());
+        desc.setMembers(task.getMembers());
 
         assertEquals(new AddCommand(desc), command);
     }
@@ -94,7 +89,7 @@ public class TaskWiseParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new DescriptionContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

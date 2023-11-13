@@ -97,6 +97,7 @@ public class EditCommand extends Command {
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
+        assert editTaskDescriptor != null;
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Note updatedNote = editTaskDescriptor.getNote().orElse(taskToEdit.getNote());
