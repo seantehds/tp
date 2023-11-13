@@ -47,6 +47,7 @@ Here's a quick summary of what TaskWise can do for you:
   - [Improve Find Command To Find By Priority, Deadline, Members and Notes](#improve-find-command-to-find-by-priority-deadline-members-and-notes)
   - [Case-insensitive Sort](#case-insensitive-sort)
   - [Case-insensitive Ordering of Members](#case-insensitive-ordering-of-members)
+  - [Unable To Handle Large Task Numbers In User Input](#unable-to-handle-large-task-numbers-in-user-input)
 - [Glossary](#glossary)
 - [FAQ](#faq)
   - [General Questions](#general-questions)
