@@ -37,7 +37,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 1, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -58,8 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TaskWiseStorage addressBookStorage = new JsonTaskWiseStorage(userPrefs.getTaskWiseFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskWiseStorage taskWiseStorage = new JsonTaskWiseStorage(userPrefs.getTaskWiseFilePath());
+        storage = new StorageManager(taskWiseStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -69,22 +69,22 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s taskwise and {@code userPrefs}. <br>
+     * The data from the sample taskwise will be used instead if {@code storage}'s taskwise is not found,
+     * or an empty taskwise will be used instead if errors occur when reading {@code storage}'s taskwise.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getTaskWiseFilePath());
 
-        Optional<ReadOnlyTaskWise> addressBookOptional;
+        Optional<ReadOnlyTaskWise> taskWiseOptional;
         ReadOnlyTaskWise initialData;
         try {
-            addressBookOptional = storage.readTaskWise();
-            if (addressBookOptional.isEmpty()) {
+            taskWiseOptional = storage.readTaskWise();
+            if (taskWiseOptional.isEmpty()) {
                 logger.info("Creating a new data file " + storage.getTaskWiseFilePath()
                         + " populated with a sample TaskWise.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaskWise);
+            initialData = taskWiseOptional.orElseGet(SampleDataUtil::getSampleTaskWise);
         } catch (FileStorageLoadException e) {
             logger.warning("Data file at " + storage.getTaskWiseFilePath() + " could not be loaded."
                     + " Will be starting with an empty TaskWise.");
@@ -177,7 +177,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping TaskWise ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
