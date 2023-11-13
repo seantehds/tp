@@ -64,34 +64,34 @@ Given below are my contributions to the project.
 
 ### Project Management
 
-* Set up the team organisation on GitHub
-* Set up the team's repository with the relevant issue trackers and tags
+* Set up the team organisation on GitHub.
+* Set up the team's repository with the relevant issue trackers and tags.
 * Created project boards used for [Issue Tracking and User Stories](https://github.com/orgs/AY2324S1-CS2103T-T17-1/projects/1),
-  as well as [v1.3 Bugs](https://github.com/orgs/AY2324S1-CS2103T-T17-1/projects/3)
-* Managed team DevOps processes such as CI/CD
+  as well as [v1.3 Bugs](https://github.com/orgs/AY2324S1-CS2103T-T17-1/projects/3).
+* Managed team DevOps processes such as CI/CD.
 
 ### Documentation
 
 * User Guide
-  * Added documentation on the new `sort` feature implemented and the limitations of this feature
+  * Added documentation on the new `sort` feature implemented and the limitations of this feature.
   * Created UML diagrams for the `sort` feature.
 * Developer Guide
   * Added documentation on the new Exceptions that were added to TaskWise to enhance Exception handling
-    for other Developers
-  * Added documentation on the new `sort` feature and the limitations of this feature
+    for other Developers.
+  * Added documentation on the new `sort` feature and the limitations of this feature.
   * Added UML diagrams on the Exceptions enhancements, as well as the `sort` feature and the use cases of the application.
-  * Updated User Stories and Use Cases for `sort` feature
+  * Updated User Stories and Use Cases for `sort` feature.
 
 ### Contributions To Team-based Tasks
 
-* Set up the relevant administrative and DevOps requirements for the project
-* Maintain said requirements throughout the project by leveraging tools such as GitHub Projects
+* Set up the relevant administrative and DevOps requirements for the project.
+* Maintain said requirements throughout the project by leveraging tools such as GitHub Projects.
 
 ### Contributions To Community
 
-* Conduct frequent PR and Code Reviews
-* Helping to answer questions regarding DevOps processes from other team members
-* Assist team members with any queries on other communication channels
+* Conduct frequent PR and Code Reviews.
+* Helping to answer questions regarding DevOps processes from other team members.
+* Assist team members with any queries on other communication channels.
 * PRs Reviewed (with non-trivial comments): [#55](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/55),
   [#61](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/61),
   [#62](https://github.com/AY2324S1-CS2103T-T17-1/tp/pull/62),
